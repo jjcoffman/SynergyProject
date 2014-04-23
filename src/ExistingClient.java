@@ -59,12 +59,20 @@ public class ExistingClient
 		panel.add(lblClientName);
 		
 		JLabel lblClientId = new JLabel("Client ID:");
-		lblClientId.setBounds(474, 151, 143, 16);
+		lblClientId.setBounds(742, 123, 143, 16);
 		panel.add(lblClientId);
 		
 		JLabel lblEmergencyContact = new JLabel("Emergency Contact:");
-		lblEmergencyContact.setBounds(474, 179, 143, 16);
+		lblEmergencyContact.setBounds(474, 226, 143, 16);
 		panel.add(lblEmergencyContact);
+		
+		JLabel lblEmergencyPhone = new JLabel("Emergency Phone:");
+		lblEmergencyPhone.setBounds(474, 254, 143, 16);
+		panel.add(lblEmergencyPhone);
+		
+		JLabel lblClientPhone = new JLabel("Client Phone:");
+		lblClientPhone.setBounds(474, 151, 143, 16);
+		panel.add(lblClientPhone);
 		
 		
 		panel.setVisible(true);
