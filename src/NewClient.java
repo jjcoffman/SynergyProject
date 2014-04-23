@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -7,6 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -31,7 +33,8 @@ public class NewClient
 		table.setBackground(Color.WHITE);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		table.setBounds(108, 470, 687, -317);
-		newClient.add(table);
+		scroll = new JScrollPane(table);
+		newClient.add(scroll);
 		
 		
 		JLabel lblClientsPendingIntake = new JLabel("Clients Pending Intake");

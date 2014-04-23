@@ -1,3 +1,42 @@
+private static void createAddTransPage() {
+		addTransPage = new JPanel(new BorderLayout());
+		JPanel data = new JPanel(new GridLayout(6,2,2,2));
+		JLabel dateLabel = new JLabel("Date",JLabel.RIGHT);
+		data.add(dateLabel);
+		dateTF = new JTextField("",35);
+		data.add(dateTF);
+		JLabel transTypeLabel = new JLabel("Trans. Type",JLabel.RIGHT);
+		data.add(transTypeLabel);
+		String[] typeOfTrans = {"Deposit", "Automatic Deposit", "ATM Withdrawel", "Check", "Debit Card"};
+		transTypeCB = new JComboBox(typeOfTrans);
+		data.add(transTypeCB);
+		JLabel checkLabel = new JLabel("Check No.",JLabel.RIGHT);
+		data.add(checkLabel);
+		checkTF = new JTextField("",35);
+		data.add(checkTF);
+		JLabel descLabel = new JLabel("Trans. Description",JLabel.RIGHT);
+		data.add(descLabel);
+		descTF = new JTextField("",35);
+		data.add(descTF);
+		JLabel payDebLabel = new JLabel("Payment/Debit(-)",JLabel.RIGHT);
+		data.add(payDebLabel);
+		payDebTF = new JTextField("",35);
+		data.add(payDebTF);
+		JLabel depositLabel = new JLabel("Deposit/Credit(+)",JLabel.RIGHT);
+		data.add(depositLabel);
+		depositTF = new JTextField("",35);
+		data.add(depositTF);
+		addTransPage.add(data);
+		JPanel buttons = new JPanel();
+		save = new JButton("Save New Transaction");
+		buttons.add(save);
+		ATtopMenu = new JButton("Top Menu");
+		buttons.add(ATtopMenu);
+		addTransPage.add(buttons,BorderLayout.SOUTH);
+		save.addActionListener(AL);
+		ATtopMenu.addActionListener(AL);
+	}
+
 	private static void createViewDeleteTransPage() {
 		viewDeleteTransPage = new JPanel(new BorderLayout());
 		JPanel top = new JPanel(new GridLayout(1,1));
