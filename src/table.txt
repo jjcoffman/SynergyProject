@@ -1,0 +1,21 @@
+	private static void createViewDeleteTransPage() {
+		viewDeleteTransPage = new JPanel(new BorderLayout());
+		JPanel top = new JPanel(new GridLayout(1,1));
+		JLabel heading = new JLabel("Transactions Currently In The Checkbook",JLabel.CENTER);
+		heading.setPreferredSize(new Dimension(250,30));
+		heading.setFont(new Font("", Font.BOLD, 14));
+		top.add(heading);
+		String[] columnNames = {"Date", "Trans. Type", "Trans. Description", "Payment/Debit(-)", "Deposit/Credit(+)", "Balance"};
+		model = new DefaultTableModel(data, columnNames);
+		transactions = new JTable(model);
+		scroll = new JScrollPane(transactions);
+		viewDeleteTransPage.add(top, BorderLayout.NORTH);
+		viewDeleteTransPage.add(scroll);
+		JPanel buttons = new JPanel();
+		delete = new JButton("Delete Selected");
+		buttons.add(delete);
+		VDtopMenu = new JButton("Top Menu");
+		buttons.add(VDtopMenu);
+		viewDeleteTransPage.add(buttons,BorderLayout.SOUTH);
+		delete.addActionListener(AL);
+		VDtopMenu.addActionListener(AL);
