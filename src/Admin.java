@@ -67,12 +67,12 @@ public class Admin
 		lblpanels.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblpanels.setHorizontalAlignment(SwingConstants.CENTER);
 		lblpanels.setRequestFocusEnabled(false);
-		lblpanels.setBounds(31, 58, 356, 16);
+		lblpanels.setBounds(20, 20, 360, 16);
 		Archive.add(lblpanels);
 		
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnSelect.setBounds(40, 465, 160, 29);
+		btnSelect.setBounds(20, 420, 160, 29);
 		Archive.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
@@ -115,7 +115,7 @@ public class Admin
 		table.getColumnModel().getColumn(0).setWidth(10);
 		table.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(31, 86, 356, 367);
+		sp.setBounds(20, 50, 360, 360);
 		sp.setVisible(true);
 		Archive.add(sp);
 		
@@ -128,7 +128,7 @@ public class Admin
 		groupTable.getColumnModel().getColumn(0).setWidth(10);
 		groupTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spGroup = new JScrollPane(groupTable);
-		spGroup.setBounds(662, 270, 190, 234);
+		spGroup.setBounds(620, 270, 200, 220);
 		spGroup.setVisible(true);
 		Archive.add(spGroup);
 		
@@ -141,38 +141,38 @@ public class Admin
 		IndividualTable.getColumnModel().getColumn(0).setWidth(10);
 		IndividualTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spInd = new JScrollPane(IndividualTable);
-		spInd.setBounds(440, 270, 190, 234);
+		spInd.setBounds(400, 270, 200, 220);
 		spInd.setVisible(true);
 		Archive.add(spInd);
 		
 		JButton btnViewInd = new JButton("View");
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnViewInd.setBounds(441, 510, 94, 29);
+		btnViewInd.setBounds(450, 500, 100, 29);
 		Archive.add(btnViewInd);
 		
 		JButton btnViewGroup = new JButton("View");
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnViewGroup.setBounds(662, 510, 94, 29);
+		btnViewGroup.setBounds(670, 500, 100, 29);
 		Archive.add(btnViewGroup);
 		
 		JLabel lblIndividualNotes = new JLabel("Individual Notes");
 		lblIndividualNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblIndividualNotes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIndividualNotes.setBounds(441, 243, 190, 16);
+		lblIndividualNotes.setBounds(400, 240, 200, 16);
 		Archive.add(lblIndividualNotes);
 		
 		JLabel lblGroupNotes = new JLabel("Group Notes");
 		lblGroupNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblGroupNotes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGroupNotes.setBounds(662, 243, 190, 16);
+		lblGroupNotes.setBounds(620, 240, 200, 16);
 		Archive.add(lblGroupNotes);
 		
 		JButton btnViewprintForms = new JButton("View/Print Forms");
-		btnViewprintForms.setBounds(40, 510, 160, 29);
+		btnViewprintForms.setBounds(20, 460, 160, 29);
 		Archive.add(btnViewprintForms);
 		
 		JButton btnDischarge = new JButton("Search");
-		btnDischarge.setBounds(220, 465, 160, 29);
+		btnDischarge.setBounds(220, 420, 160, 29);
 		Archive.add(btnDischarge);
 
 		//add items such as buttons etc
