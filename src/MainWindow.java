@@ -23,7 +23,6 @@ public class MainWindow
 	JButton btnExisting;
 	JButton btnIntake;
 	JButton btnArchive;
-	JButton btnManage;
 	JButton btnExit;
 	CardLayout cl = new CardLayout();
 	/**
@@ -81,7 +80,7 @@ public class MainWindow
 		menu.setBorder((Border) new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		menu.setLayout(null);
 		menu.setSize(120, 640);
-		btnExisting = new JButton("Existing Patient");
+		btnExisting = new JButton("Existing");
 		btnExisting.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -99,7 +98,7 @@ public class MainWindow
 		btnLogs.setBounds(6, 229, 110, 73);
 		menu.add(btnLogs);
 		
-		btnIntake = new JButton("Intake");
+		btnIntake = new JButton("New");
 		btnIntake.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -109,7 +108,7 @@ public class MainWindow
 		btnIntake.setBounds(6, 59, 110, 73);
 		menu.add(btnIntake);
 		
-		btnArchive = new JButton("Archive");
+		btnArchive = new JButton("Admin");
 		btnArchive.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,15 +116,6 @@ public class MainWindow
 		});
 		btnArchive.setBounds(6, 314, 110, 73);
 		menu.add(btnArchive);
-		
-		btnManage = new JButton("Manage Users");
-		btnManage.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		btnManage.setBounds(6, 399, 110, 73);
-		menu.add(btnManage);
 		
 		btnExit = new JButton("Logout");
 		btnExit.addMouseListener(new MouseAdapter() {
