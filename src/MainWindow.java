@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import java.awt.Font;
 
 
 //this class contains the most vital GUI component. it manages the overall navigation for the user. The goal is to limit the depth the 
@@ -81,6 +82,7 @@ public class MainWindow
 		menu.setLayout(null);
 		menu.setSize(120, 640);
 		btnExisting = new JButton("Existing");
+		btnExisting.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnExisting.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -90,6 +92,7 @@ public class MainWindow
 		menu.add(btnExisting);
 		
 		btnLogs = new JButton("Logs");
+		btnLogs.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnLogs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -99,6 +102,7 @@ public class MainWindow
 		menu.add(btnLogs);
 		
 		btnIntake = new JButton("New");
+		btnIntake.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnIntake.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -109,6 +113,7 @@ public class MainWindow
 		menu.add(btnIntake);
 		
 		btnArchive = new JButton("Admin");
+		btnArchive.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnArchive.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,6 +123,7 @@ public class MainWindow
 		menu.add(btnArchive);
 		
 		btnExit = new JButton("Logout");
+		btnExit.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {System.exit(0);}//this exits the program
@@ -125,6 +131,7 @@ public class MainWindow
 		btnExit.setBounds(6, 484, 110, 73);
 		menu.add(btnExit);
 		JLabel lblMenu = new JLabel("MENU");
+		lblMenu.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenu.setBounds(30, 31, 59, 16);

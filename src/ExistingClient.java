@@ -43,32 +43,39 @@ public class ExistingClient
 		
 		
 		JLabel lblpanels = new JLabel("Existing Clients");
+		lblpanels.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblpanels.setHorizontalAlignment(SwingConstants.CENTER);
 		lblpanels.setRequestFocusEnabled(false);
 		lblpanels.setBounds(64, 123, 356, 16);
 		panel.add(lblpanels);
 		
 		JButton btnSelect = new JButton("Select");
+		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnSelect.setBounds(304, 510, 117, 29);
 		panel.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
+		lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblClientName.setBounds(474, 123, 143, 16);
 		panel.add(lblClientName);
 		
 		JLabel lblClientId = new JLabel("Client ID:");
+		lblClientId.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblClientId.setBounds(742, 123, 143, 16);
 		panel.add(lblClientId);
 		
 		JLabel lblEmergencyContact = new JLabel("Emergency Contact:");
+		lblEmergencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblEmergencyContact.setBounds(474, 226, 143, 16);
 		panel.add(lblEmergencyContact);
 		
 		JLabel lblEmergencyPhone = new JLabel("Emergency Phone:");
+		lblEmergencyPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblEmergencyPhone.setBounds(474, 254, 143, 16);
 		panel.add(lblEmergencyPhone);
 		
 		JLabel lblClientPhone = new JLabel("Client Phone:");
+		lblClientPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblClientPhone.setBounds(474, 151, 143, 16);
 		panel.add(lblClientPhone);
 		
@@ -76,6 +83,7 @@ public class ExistingClient
 		Object[][] data = getExisting();
 		String[] columnNames = {"Client ID","Client Name"};
 		table = new JTable(data, columnNames);
+		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
 		table.getColumnModel().getColumn(0).setWidth(10);
@@ -88,6 +96,7 @@ public class ExistingClient
 		Object[][] data1 = getGroup();
 		String[] columnNames1 = {"Date","Counselor"};
 		groupTable = new JTable(data1, columnNames1);
+		groupTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		groupTable.setGridColor(Color.LIGHT_GRAY);
 		groupTable.setFillsViewportHeight(true);
 		groupTable.getColumnModel().getColumn(0).setWidth(10);
@@ -100,6 +109,7 @@ public class ExistingClient
 		Object[][] data2 = getInd();
 		String[] columnNames2 = {"Date","Counselor"};
 		IndividualTable = new JTable(data2, columnNames2);
+		IndividualTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		IndividualTable.setGridColor(Color.LIGHT_GRAY);
 		IndividualTable.setFillsViewportHeight(true);
 		IndividualTable.getColumnModel().getColumn(0).setWidth(10);
@@ -110,27 +120,33 @@ public class ExistingClient
 		panel.add(spInd);
 		
 		JButton btnViewInd = new JButton("View");
+		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(474, 510, 94, 29);
 		panel.add(btnViewInd);
 		
 		JButton btnAddInd = new JButton("Add");
+		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(570, 510, 94, 29);
 		panel.add(btnAddInd);
 		
 		JButton btnViewGroup = new JButton("View");
+		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(695, 510, 94, 29);
 		panel.add(btnViewGroup);
 		
 		JButton btnAddGroup = new JButton("Add");
+		btnAddGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddGroup.setBounds(790, 510, 94, 29);
 		panel.add(btnAddGroup);
 		
 		JLabel lblIndividualNotes = new JLabel("Individual Notes");
+		lblIndividualNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblIndividualNotes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIndividualNotes.setBounds(474, 301, 190, 16);
 		panel.add(lblIndividualNotes);
 		
 		JLabel lblGroupNotes = new JLabel("Group Notes");
+		lblGroupNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblGroupNotes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGroupNotes.setBounds(695, 301, 190, 16);
 		panel.add(lblGroupNotes);
