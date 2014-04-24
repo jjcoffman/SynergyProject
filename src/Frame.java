@@ -1,7 +1,5 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.SystemColor;
-
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -11,7 +9,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 
 
 public class Frame extends JFrame
