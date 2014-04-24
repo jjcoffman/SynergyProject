@@ -4,15 +4,22 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerListModel;
+
 import java.util.Date;
 import java.util.Calendar;
+
 import javax.swing.JTextField;
 import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
+
 import javax.swing.Box;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+
 import javax.swing.table.DefaultTableModel;
 
 
@@ -21,6 +28,7 @@ public class Log
 	private JPanel Log;
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	/**							
@@ -67,13 +75,13 @@ public class Log
 		numOfDischarges.setBounds(10, 80, 290, 20);
 		clinicTraffic.add(numOfDischarges);
 		
-		JLabel numOfSuccesses = new JLabel("Successes:");
+		JLabel numOfSuccesses = new JLabel("Successful:");
 		numOfSuccesses.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfSuccesses.setFont(new Font("Verdana", Font.PLAIN, 13));
 		numOfSuccesses.setBounds(10, 120, 290, 20);
 		clinicTraffic.add(numOfSuccesses);
 		
-		JLabel numOfUnsuccesses = new JLabel("Unsuccesses:");
+		JLabel numOfUnsuccesses = new JLabel("Unsuccessful:");
 		numOfUnsuccesses.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfUnsuccesses.setFont(new Font("Verdana", Font.PLAIN, 13));
 		numOfUnsuccesses.setBounds(10, 160, 290, 20);
@@ -361,6 +369,120 @@ public class Log
 		
 		JPanel client_Log = new JPanel();
 		tabbedPane.addTab("Client Log", null, client_Log, null);
+		client_Log.setLayout(null);
+		
+		JLabel sortBy = new JLabel("Sort By:");
+		sortBy.setFont(new Font("Verdana", Font.PLAIN, 13));
+		sortBy.setHorizontalAlignment(SwingConstants.RIGHT);
+		sortBy.setBounds(25, 25, 70, 20);
+		client_Log.add(sortBy);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setFont(new Font("Verdana", Font.PLAIN, 11));
+		spinner.setModel(new SpinnerListModel(new String[] {"Name", "ID #", "Intake Date", "Exit Date", "# of Days ", "DOB", "Age", "Gender", "Race", "Funder", "Counter", "S/U"}));
+		spinner.setBounds(105, 22, 94, 31);
+		client_Log.add(spinner);
+		
+		
+		table_2 = new JTable();
+		table_2.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table_2.setBounds(20, 109, 712, 352);
+		client_Log.add(table_2);
+		
+		JLabel label_43 = new JLabel("Name");
+		label_43.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_43.setBounds(20, 84, 60, 14);
+		client_Log.add(label_43);
+		
+		JLabel label_44 = new JLabel("Name");
+		label_44.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_44.setBounds(80, 84, 60, 14);
+		client_Log.add(label_44);
+		
+		JLabel label_45 = new JLabel("Name");
+		label_45.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_45.setBounds(140, 84, 60, 14);
+		client_Log.add(label_45);
+		
+		JLabel label_46 = new JLabel("Name");
+		label_46.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_46.setBounds(200, 84, 60, 14);
+		client_Log.add(label_46);
+		
+		JLabel label_47 = new JLabel("Name");
+		label_47.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_47.setBounds(260, 84, 60, 14);
+		client_Log.add(label_47);
+		
+		JLabel label_48 = new JLabel("Name");
+		label_48.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_48.setBounds(320, 84, 60, 14);
+		client_Log.add(label_48);
+		
+		JLabel label_49 = new JLabel("Name");
+		label_49.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_49.setBounds(380, 84, 60, 14);
+		client_Log.add(label_49);
+		
+		JLabel label_50 = new JLabel("Name");
+		label_50.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_50.setBounds(440, 84, 60, 14);
+		client_Log.add(label_50);
+		
+		JLabel label_51 = new JLabel("Name");
+		label_51.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_51.setBounds(500, 84, 60, 14);
+		client_Log.add(label_51);
+		
+		JLabel label_52 = new JLabel("Name");
+		label_52.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_52.setBounds(560, 84, 60, 14);
+		client_Log.add(label_52);
+		
+		JLabel label_53 = new JLabel("Name");
+		label_53.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_53.setBounds(620, 84, 60, 14);
+		client_Log.add(label_53);
+		
+		JLabel label_54 = new JLabel("Name");
+		label_54.setFont(new Font("Verdana", Font.PLAIN, 11));
+		label_54.setBounds(680, 84, 60, 14);
+		client_Log.add(label_54);
 		
 		
 		
