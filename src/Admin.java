@@ -1,5 +1,6 @@
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class Admin
 {
@@ -15,6 +16,16 @@ public class Admin
 		Admin.setSize(904,640);
 		Admin.setLayout(null);
 		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(6, 20, 864, 600);
+		Admin.add(tabbedPane);
+		
+		JPanel ManageUsers = new JPanel();
+		tabbedPane.addTab("Manage Users", null, ManageUsers, null);
+		
+		JPanel Archive = new JPanel();
+		tabbedPane.addTab("Archive", null, Archive, null);
+		
 
 		//add items such as buttons etc
 		
@@ -26,7 +37,6 @@ public class Admin
 	{
 		return Admin;
 	}
-
 }
 
 		//past this into a class the panel that contains this panel, if you are unsure don't do anything with this!!!!!!!!
