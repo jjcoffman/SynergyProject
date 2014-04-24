@@ -54,38 +54,45 @@ public class Log
 		clinicTraffic.setLayout(null);
 		
 		JLabel label_2 = new JLabel("Intakes:");
+		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("Verdana", Font.PLAIN, 13));
-		label_2.setBounds(35, 11, 250, 14);
+		label_2.setBounds(10, 40, 290, 20);
 		clinicTraffic.add(label_2);
 		
 		JLabel numOfDischarges = new JLabel("Discharges:");
+		numOfDischarges.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfDischarges.setFont(new Font("Verdana", Font.PLAIN, 13));
-		numOfDischarges.setBounds(35, 36, 250, 14);
+		numOfDischarges.setBounds(10, 80, 290, 20);
 		clinicTraffic.add(numOfDischarges);
 		
 		JLabel numOfSuccesses = new JLabel("Successes:");
+		numOfSuccesses.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfSuccesses.setFont(new Font("Verdana", Font.PLAIN, 13));
-		numOfSuccesses.setBounds(35, 61, 250, 14);
+		numOfSuccesses.setBounds(10, 120, 290, 20);
 		clinicTraffic.add(numOfSuccesses);
 		
 		JLabel numOfUnsuccesses = new JLabel("Unsuccesses:");
+		numOfUnsuccesses.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfUnsuccesses.setFont(new Font("Verdana", Font.PLAIN, 13));
-		numOfUnsuccesses.setBounds(35, 86, 250, 14);
+		numOfUnsuccesses.setBounds(10, 160, 290, 20);
 		clinicTraffic.add(numOfUnsuccesses);
 		
 		JLabel numOfClientsServed = new JLabel("Total clients served:");
+		numOfClientsServed.setHorizontalAlignment(SwingConstants.RIGHT);
 		numOfClientsServed.setFont(new Font("Verdana", Font.PLAIN, 13));
-		numOfClientsServed.setBounds(35, 111, 200, 14);
+		numOfClientsServed.setBounds(10, 200, 290, 20);
 		clinicTraffic.add(numOfClientsServed);
 		
 		JLabel meanDaysInTreatment = new JLabel("Mean days spent in treatment:");
+		meanDaysInTreatment.setHorizontalAlignment(SwingConstants.RIGHT);
 		meanDaysInTreatment.setFont(new Font("Verdana", Font.PLAIN, 13));
-		meanDaysInTreatment.setBounds(35, 136, 250, 14);
+		meanDaysInTreatment.setBounds(10, 240, 290, 20);
 		clinicTraffic.add(meanDaysInTreatment);
 		
 		JLabel currentTotal = new JLabel("Current total:");
+		currentTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		currentTotal.setFont(new Font("Verdana", Font.PLAIN, 13));
-		currentTotal.setBounds(35, 161, 250, 14);
+		currentTotal.setBounds(10, 280, 290, 20);
 		clinicTraffic.add(currentTotal);
 		
 		JPanel age = new JPanel();
