@@ -123,6 +123,11 @@ public class ExistingClient
 		panel.add(btnViewGroup);
 		
 		JButton btnAddGroup = new JButton("Add");
+		btnAddGroup.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{new newGroupNote();}
+		});
 		btnAddGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddGroup.setBounds(757, 510, 94, 29);
 		panel.add(btnAddGroup);
