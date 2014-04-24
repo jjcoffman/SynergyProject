@@ -16,7 +16,7 @@ public class Admin
 {
 	private JPanel Admin;
 	
-	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL Test
+	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL 
 	/**							
 	 * @wbp.parser.entryPoint
 	 */
