@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import
+import javax.swing.*;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -28,18 +28,23 @@ public class NewClient
 		newClient.setSize(904,640);
 		newClient.setLayout(null);
 		
-		table = new JTable();
-		table.setAutoCreateColumnsFromModel(true);
-		table.setBackground(Color.WHITE);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		table.setBounds(108, 470, 687, -317);
-		scroll = new JScrollPane(table);
+		Object[][] data = {{1,1,1}, {1,1,1}, {1,1,1}};
+		String[] columnNames = {"Name", "Phone Number", "Date"};
+		JTable table = new JTable(data, columnNames);
+		table.setGridColor(Color.LIGHT_GRAY);
+		table.setFillsViewportHeight(true);
+		//table.setAutoCreateColumnsFromModel(true);
+		//table.setBackground(Color.WHITE);
+		//table.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setSize(864, 400);
+		scroll.setLocation(20, 40);
 		newClient.add(scroll);
 		
 		
 		JLabel lblClientsPendingIntake = new JLabel("Clients Pending Intake");
 		lblClientsPendingIntake.setHorizontalAlignment(SwingConstants.CENTER);
-		lblClientsPendingIntake.setBounds(357, 107, 190, 16);
+		lblClientsPendingIntake.setBounds(350, 20, 200, 16);
 		newClient.add(lblClientsPendingIntake);
 		
 		
