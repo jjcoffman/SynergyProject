@@ -27,16 +27,15 @@ public class Frame extends JFrame
 		JTextField text = new JTextField("");
 		text.setBounds(0, 80, 120, -80);
 		JLabel label = new JLabel("");
-		label.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		label.setBounds(0, 0, 120, 80);
 		label.setIcon(new ImageIcon("src//westSlopeImagesmall.jpg"));
 		frame.getContentPane().add(label);
 		
-		JLabel lblNewLabel = new JLabel("West Slope Recovery Patient Management");
-		lblNewLabel.setBackground(SystemColor.control);
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, Color.BLACK, Color.LIGHT_GRAY));
 		lblNewLabel.setRequestFocusEnabled(false);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon("src//WestSlopeBanner.jpg"));
 		lblNewLabel.setBounds(120, 0, 904, 80);
 		frame.getContentPane().add(lblNewLabel);
 		

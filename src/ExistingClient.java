@@ -1,24 +1,7 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 
-import javax.swing.AbstractListModel;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.JTable;
 
 
 public class ExistingClient
@@ -33,7 +16,6 @@ public class ExistingClient
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public void buildPanel()
 	{
 		panel = new JPanel();
