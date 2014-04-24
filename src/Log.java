@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
 
 
 public class Log
@@ -380,11 +381,12 @@ public class Log
 		JSpinner spinner = new JSpinner();
 		spinner.setFont(new Font("Verdana", Font.PLAIN, 11));
 		spinner.setModel(new SpinnerListModel(new String[] {"Name", "ID #", "Intake Date", "Exit Date", "# of Days ", "DOB", "Age", "Gender", "Race", "Funder", "Counter", "S/U"}));
-		spinner.setBounds(105, 22, 94, 31);
+		spinner.setBounds(105, 25, 94, 20);
 		client_Log.add(spinner);
 		
 		
 		table_2 = new JTable();
+		table_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table_2.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null, null, null, null, null},
@@ -421,68 +423,101 @@ public class Log
 				return columnTypes[columnIndex];
 			}
 		});
-		table_2.setBounds(20, 109, 712, 352);
+		table_2.setBounds(16, 109, 720, 352);
 		client_Log.add(table_2);
 		
 		JLabel label_43 = new JLabel("Name");
-		label_43.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_43.setBounds(20, 84, 60, 14);
+		label_43.setHorizontalAlignment(SwingConstants.CENTER);
+		label_43.setFont(new Font("Verdana", Font.PLAIN, 10));
+		label_43.setBounds(16, 84, 60, 14);
 		client_Log.add(label_43);
 		
-		JLabel label_44 = new JLabel("Name");
-		label_44.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_44.setBounds(80, 84, 60, 14);
+		JLabel label_44 = new JLabel("ID#");
+		label_44.setHorizontalAlignment(SwingConstants.CENTER);
+		label_44.setFont(new Font("Verdana", Font.PLAIN, 10));
+		label_44.setBounds(76, 84, 60, 14);
 		client_Log.add(label_44);
 		
-		JLabel label_45 = new JLabel("Name");
-		label_45.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_45.setBounds(140, 84, 60, 14);
-		client_Log.add(label_45);
+		JLabel lblIntakendate = new JLabel("Intake");
+		lblIntakendate.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIntakendate.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblIntakendate.setBounds(139, 84, 60, 14);
+		client_Log.add(lblIntakendate);
 		
-		JLabel label_46 = new JLabel("Name");
-		label_46.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_46.setBounds(200, 84, 60, 14);
-		client_Log.add(label_46);
+		JLabel lblIntake = new JLabel("Exit");
+		lblIntake.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIntake.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblIntake.setBounds(196, 84, 60, 14);
+		client_Log.add(lblIntake);
 		
-		JLabel label_47 = new JLabel("Name");
-		label_47.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_47.setBounds(260, 84, 60, 14);
-		client_Log.add(label_47);
+		JLabel lblOfDays = new JLabel("# of");
+		lblOfDays.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOfDays.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblOfDays.setBounds(256, 84, 60, 14);
+		client_Log.add(lblOfDays);
 		
-		JLabel label_48 = new JLabel("Name");
-		label_48.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_48.setBounds(320, 84, 60, 14);
-		client_Log.add(label_48);
+		JLabel lblDob = new JLabel("DOB");
+		lblDob.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDob.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblDob.setBounds(316, 84, 60, 14);
+		client_Log.add(lblDob);
 		
-		JLabel label_49 = new JLabel("Name");
-		label_49.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_49.setBounds(380, 84, 60, 14);
-		client_Log.add(label_49);
+		JLabel lblAge = new JLabel("Age");
+		lblAge.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAge.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblAge.setBounds(376, 84, 60, 14);
+		client_Log.add(lblAge);
 		
-		JLabel label_50 = new JLabel("Name");
-		label_50.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_50.setBounds(440, 84, 60, 14);
-		client_Log.add(label_50);
+		JLabel lblGender = new JLabel("Gender");
+		lblGender.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGender.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblGender.setBounds(436, 84, 60, 14);
+		client_Log.add(lblGender);
 		
-		JLabel label_51 = new JLabel("Name");
-		label_51.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_51.setBounds(500, 84, 60, 14);
-		client_Log.add(label_51);
+		JLabel lblRace = new JLabel("Race");
+		lblRace.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRace.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblRace.setBounds(496, 84, 60, 14);
+		client_Log.add(lblRace);
 		
-		JLabel label_52 = new JLabel("Name");
-		label_52.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_52.setBounds(560, 84, 60, 14);
-		client_Log.add(label_52);
+		JLabel lblFunder = new JLabel("Funder");
+		lblFunder.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFunder.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblFunder.setBounds(556, 84, 60, 14);
+		client_Log.add(lblFunder);
 		
-		JLabel label_53 = new JLabel("Name");
-		label_53.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_53.setBounds(620, 84, 60, 14);
-		client_Log.add(label_53);
+		JLabel lblCounty = new JLabel("County");
+		lblCounty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCounty.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblCounty.setBounds(616, 84, 60, 14);
+		client_Log.add(lblCounty);
 		
-		JLabel label_54 = new JLabel("Name");
-		label_54.setFont(new Font("Verdana", Font.PLAIN, 11));
-		label_54.setBounds(680, 84, 60, 14);
-		client_Log.add(label_54);
+		JLabel lblSu = new JLabel("S/U");
+		lblSu.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSu.setFont(new Font("Verdana", Font.PLAIN, 11));
+		lblSu.setBounds(676, 84, 60, 14);
+		client_Log.add(lblSu);
+		
+		JLabel lblDate = new JLabel("date");
+		lblDate.setVerticalAlignment(SwingConstants.TOP);
+		lblDate.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDate.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblDate.setBounds(139, 96, 60, 14);
+		client_Log.add(lblDate);
+		
+		JLabel lblDate_1 = new JLabel("date");
+		lblDate_1.setVerticalAlignment(SwingConstants.TOP);
+		lblDate_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDate_1.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblDate_1.setBounds(196, 96, 60, 14);
+		client_Log.add(lblDate_1);
+		
+		JLabel lblDays = new JLabel("days");
+		lblDays.setVerticalAlignment(SwingConstants.TOP);
+		lblDays.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDays.setFont(new Font("Verdana", Font.PLAIN, 10));
+		lblDays.setBounds(256, 96, 60, 14);
+		client_Log.add(lblDays);
 		
 		
 		
