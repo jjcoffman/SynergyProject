@@ -48,6 +48,7 @@ public class MainWindow
 		ExistingClient ec = new ExistingClient();
 		NewClient nc = new NewClient();
 		Log log = new Log();
+		Admin admin = new Admin();
 		//Archive am = new Archive();
 
 		//here we are building the card layout that is navigated by the menu
@@ -67,6 +68,10 @@ public class MainWindow
 		log.buildPanel();	//This builds the object
 		JPanel l = (JPanel) log.getPanel(); //this creates a local version
 		card.add(l, "3"); //this adds it to the current panel
+		
+		admin.buildPanel();
+		JPanel ad = (JPanel) admin.getPanel();
+		card.add(ad, "4");
 		
 		panel.add(card);
 		panel.setVisible(true);
@@ -116,8 +121,8 @@ public class MainWindow
 		btnArchive.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnArchive.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+			public void mouseClicked(MouseEvent e) 
+			{cl.show(card, "4");}
 		});
 		btnArchive.setBounds(6, 314, 110, 73);
 		menu.add(btnArchive);
