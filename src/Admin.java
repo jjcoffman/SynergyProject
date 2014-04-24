@@ -63,7 +63,7 @@ public class Admin
 		
 		JPanel Archive = new JPanel();
 
-		JLabel lblpanels = new JLabel("Existing Clients");
+		JLabel lblpanels = new JLabel("Archived Clients");
 		lblpanels.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblpanels.setHorizontalAlignment(SwingConstants.CENTER);
 		lblpanels.setRequestFocusEnabled(false);
@@ -72,32 +72,37 @@ public class Admin
 		
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnSelect.setBounds(150, 465, 117, 29);
+		btnSelect.setBounds(40, 465, 160, 29);
 		Archive.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
+		lblClientName.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientName.setBounds(441, 86, 143, 16);
+		lblClientName.setBounds(400, 70, 140, 16);
 		Archive.add(lblClientName);
 		
 		JLabel lblClientId = new JLabel("Client ID:");
+		lblClientId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientId.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientId.setBounds(441, 58, 143, 16);
+		lblClientId.setBounds(400, 40, 140, 16);
 		Archive.add(lblClientId);
 		
 		JLabel lblEmergencyContact = new JLabel("Emergency Contact:");
+		lblEmergencyContact.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmergencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblEmergencyContact.setBounds(441, 163, 143, 16);
+		lblEmergencyContact.setBounds(400, 140, 140, 16);
 		Archive.add(lblEmergencyContact);
 		
 		JLabel lblEmergencyPhone = new JLabel("Emergency Phone:");
+		lblEmergencyPhone.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmergencyPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblEmergencyPhone.setBounds(441, 191, 143, 16);
+		lblEmergencyPhone.setBounds(400, 170, 140, 16);
 		Archive.add(lblEmergencyPhone);
 		
 		JLabel lblClientPhone = new JLabel("Client Phone:");
+		lblClientPhone.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientPhone.setBounds(441, 114, 143, 16);
+		lblClientPhone.setBounds(400, 100, 140, 16);
 		Archive.add(lblClientPhone);
 		tabbedPane.addTab("Archive", null, Archive, null);
 		Archive.setLayout(null);
@@ -123,7 +128,7 @@ public class Admin
 		groupTable.getColumnModel().getColumn(0).setWidth(10);
 		groupTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spGroup = new JScrollPane(groupTable);
-		spGroup.setBounds(662, 271, 190, 234);
+		spGroup.setBounds(662, 270, 190, 234);
 		spGroup.setVisible(true);
 		Archive.add(spGroup);
 		
@@ -136,7 +141,7 @@ public class Admin
 		IndividualTable.getColumnModel().getColumn(0).setWidth(10);
 		IndividualTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spInd = new JScrollPane(IndividualTable);
-		spInd.setBounds(441, 271, 190, 234);
+		spInd.setBounds(440, 270, 190, 234);
 		spInd.setVisible(true);
 		Archive.add(spInd);
 		
@@ -145,20 +150,10 @@ public class Admin
 		btnViewInd.setBounds(441, 510, 94, 29);
 		Archive.add(btnViewInd);
 		
-		JButton btnAddInd = new JButton("Add");
-		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnAddInd.setBounds(537, 510, 94, 29);
-		Archive.add(btnAddInd);
-		
 		JButton btnViewGroup = new JButton("View");
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(662, 510, 94, 29);
 		Archive.add(btnViewGroup);
-		
-		JButton btnAddGroup = new JButton("Add");
-		btnAddGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnAddGroup.setBounds(757, 510, 94, 29);
-		Archive.add(btnAddGroup);
 		
 		JLabel lblIndividualNotes = new JLabel("Individual Notes");
 		lblIndividualNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -173,11 +168,11 @@ public class Admin
 		Archive.add(lblGroupNotes);
 		
 		JButton btnViewprintForms = new JButton("View/Print Forms");
-		btnViewprintForms.setBounds(64, 510, 160, 29);
+		btnViewprintForms.setBounds(40, 510, 160, 29);
 		Archive.add(btnViewprintForms);
 		
-		JButton btnDischarge = new JButton("Discharge");
-		btnDischarge.setBounds(236, 510, 117, 29);
+		JButton btnDischarge = new JButton("Search");
+		btnDischarge.setBounds(220, 465, 160, 29);
 		Archive.add(btnDischarge);
 
 		//add items such as buttons etc
