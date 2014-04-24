@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 
@@ -107,6 +109,10 @@ public class ExistingClient
 		panel.add(btnViewInd);
 		
 		JButton btnAddInd = new JButton("Add");
+		btnAddInd.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{AddIndividualNote ind = new AddIndividualNote();}
+		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(537, 510, 94, 29);
 		panel.add(btnAddInd);

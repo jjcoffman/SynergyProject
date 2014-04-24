@@ -145,6 +145,13 @@ public class MainWindow
 		menu.setLocation(0, 80);
 
 		
+/*		//this makes the buttons invisible and inactive until the user logs in
+		btnArchive.setVisible(false);
+		btnIntake.setVisible(false);
+		btnLogs.setVisible(false);
+		btnExisting.setVisible(false);*/
+		
+		
 		//and finally set it to visible
 		panel.setVisible(true);
 	}
