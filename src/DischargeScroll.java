@@ -7,7 +7,6 @@ import javax.swing.JScrollPane;
 public class DischargeScroll
 {
 	private Discharge DischargeS;
-	private Discharge2 DischargeS2;
 	private JFrame window;
 	private JScrollPane spInd;
 	
@@ -20,16 +19,10 @@ public class DischargeScroll
 		DischargeS.buildGUI();
 		JPanel d = (JPanel) DischargeS.getPanel();
 		
-		DischargeS2 = new Discharge2();
-		DischargeS2.buildPanel();
-		
-		JPanel d2 = (JPanel) DischargeS2.getPanel();
 		JPanel d3 = new JPanel();
 		d3.setLayout(null);
-		d3.add(d);
-		d3.add(d2);
-		d3.setPreferredSize(new Dimension(645, 1400));
-		d2.setLocation(0, 750);
+		d3.add(d);;
+		d3.setPreferredSize(new Dimension(645, 1250));
 		
 		spInd = new JScrollPane(d3);
 		spInd.setBounds(0, 0, 665, 678);

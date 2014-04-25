@@ -29,6 +29,24 @@ public class Discharge implements ActionListener
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
+	private JTextField txtDrugUsage;
+	private JTextField txtCriminal;
+	private JTextField txtAxis1;
+	private JTextField txtAxis2;
+	private JTextField txtAxis3;
+	private JTextField txtAxis4;
+	private JTextField txtAxis5;
+	private JTextField txtAxisPost1;
+	private JTextField txtAxisPost2;
+	private JTextField txtAxisPost3;
+	private JTextField txtAxisPost4;
+	private JTextField txtAxisPost5;
+	private JTextField txtTransPlans;
+	private JTextField txtRecommendation;
+	private JTextField txtClientComment;
+	private JButton btnCancel;
+	private JButton btnCompleteDischarge;
+	
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -36,7 +54,7 @@ public class Discharge implements ActionListener
 	public void buildGUI()
 	{
 		Discharge = new JPanel();
-		Discharge.setSize(665, 780);
+		Discharge.setSize(665, 1250);
 		Discharge.setLayout(null);
 		
 		JLabel lblPatientName = new JLabel("Patient Name");
@@ -287,7 +305,7 @@ public class Discharge implements ActionListener
 		textField_8.setColumns(10);
 		
 		JCheckBox chckbxCriminalInvolvement = new JCheckBox("Criminal Involvement");
-		chckbxCriminalInvolvement.setBounds(21, 690, 176, 23);
+		chckbxCriminalInvolvement.setBounds(21, 691, 176, 23);
 		Discharge.add(chckbxCriminalInvolvement);
 		
 		textField_9 = new JTextField();
@@ -307,6 +325,128 @@ public class Discharge implements ActionListener
 		JLabel lblContactDate = new JLabel("Contact Date");
 		lblContactDate.setBounds(366, 728, 94, 16);
 		Discharge.add(lblContactDate);
+		
+		JLabel lblAxis = new JLabel("AXIS 1:");
+		lblAxis.setBounds(59, 800, 61, 16);
+		Discharge.add(lblAxis);
+		
+		txtAxis1 = new JTextField();
+		txtAxis1.setBounds(163, 788, 163, 28);
+		Discharge.add(txtAxis1);
+		txtAxis1.setColumns(10);
+		
+		JLabel lblAxis_2 = new JLabel("AXIS 2:");
+		lblAxis_2.setBounds(59, 831, 61, 16);
+		Discharge.add(lblAxis_2);
+		
+		txtAxis2 = new JTextField();
+		txtAxis2.setColumns(10);
+		txtAxis2.setBounds(163, 820, 163, 28);
+		Discharge.add(txtAxis2);
+		
+		JLabel lblAxis_3 = new JLabel("AXIS 3:");
+		lblAxis_3.setBounds(59, 862, 61, 16);
+		Discharge.add(lblAxis_3);
+		
+		txtAxis3 = new JTextField();
+		txtAxis3.setColumns(10);
+		txtAxis3.setBounds(163, 852, 163, 28);
+		Discharge.add(txtAxis3);
+		
+		JLabel lblAxis_4 = new JLabel("AXIS 4:");
+		lblAxis_4.setBounds(59, 893, 61, 16);
+		Discharge.add(lblAxis_4);
+		
+		txtAxis4 = new JTextField();
+		txtAxis4.setColumns(10);
+		txtAxis4.setBounds(163, 884, 163, 28);
+		Discharge.add(txtAxis4);
+		
+		JLabel lblAxis_5 = new JLabel("AXIS 5/GAF Score:");
+		lblAxis_5.setBounds(31, 924, 120, 16);
+		Discharge.add(lblAxis_5);
+		
+		txtAxis5 = new JTextField();
+		txtAxis5.setColumns(10);
+		txtAxis5.setBounds(163, 916, 163, 28);
+		Discharge.add(txtAxis5);
+		
+		txtAxisPost1 = new JTextField();
+		txtAxisPost1.setColumns(10);
+		txtAxisPost1.setBounds(408, 784, 163, 28);
+		Discharge.add(txtAxisPost1);
+		
+		txtAxisPost2 = new JTextField();
+		txtAxisPost2.setColumns(10);
+		txtAxisPost2.setBounds(408, 816, 163, 28);
+		Discharge.add(txtAxisPost2);
+		
+		txtAxisPost3 = new JTextField();
+		txtAxisPost3.setColumns(10);
+		txtAxisPost3.setBounds(408, 848, 163, 28);
+		Discharge.add(txtAxisPost3);
+		
+		txtAxisPost4 = new JTextField();
+		txtAxisPost4.setColumns(10);
+		txtAxisPost4.setBounds(408, 880, 163, 28);
+		Discharge.add(txtAxisPost4);
+		
+		txtAxisPost5 = new JTextField();
+		txtAxisPost5.setColumns(10);
+		txtAxisPost5.setBounds(408, 912, 163, 28);
+		Discharge.add(txtAxisPost5);
+		
+		JLabel lblAtIntake = new JLabel("At Intake");
+		lblAtIntake.setBounds(212, 760, 61, 16);
+		Discharge.add(lblAtIntake);
+		
+		JLabel lblAtDischarge = new JLabel("At Discharge");
+		lblAtDischarge.setBounds(444, 756, 94, 16);
+		Discharge.add(lblAtDischarge);
+		
+		JLabel lblTransitionalPlanAnd = new JLabel("Transitional Plan and Counselor Recommendations");
+		lblTransitionalPlanAnd.setBounds(21, 952, 337, 16);
+		Discharge.add(lblTransitionalPlanAnd);
+		
+		txtTransPlans = new JTextField();
+		txtTransPlans.setBounds(21, 977, 613, 66);
+		Discharge.add(txtTransPlans);
+		txtTransPlans.setColumns(10);
+		
+		JLabel lblRecommendationClientShould = new JLabel("Recommendation Client should return:");
+		lblRecommendationClientShould.setBounds(22, 1069, 322, 16);
+		Discharge.add(lblRecommendationClientShould);
+		
+		txtRecommendation = new JTextField();
+		txtRecommendation.setBounds(22, 1097, 613, 28);
+		Discharge.add(txtRecommendation);
+		txtRecommendation.setColumns(10);
+		
+		JLabel lblClientsComments = new JLabel("Clients Comments upon discharge");
+		lblClientsComments.setBounds(22, 1137, 269, 16);
+		Discharge.add(lblClientsComments);
+		
+		txtClientComment = new JTextField();
+		txtClientComment.setBounds(22, 1165, 613, 28);
+		Discharge.add(txtClientComment);
+		txtClientComment.setColumns(10);
+		
+		btnCompleteDischarge = new JButton("Complete Discharge");
+		btnCompleteDischarge.setBounds(464, 1200, 171, 29);
+		Discharge.add(btnCompleteDischarge);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.setBounds(22, 1200, 117, 29);
+		Discharge.add(btnCancel);
+		
+		JLabel lblContactName = new JLabel("Contact Name");
+		lblContactName.setBounds(228, 728, 106, 16);
+		Discharge.add(lblContactName);
+		
+		
+		
+		
+		
 	}
 	public JComponent getPanel()
 	{
