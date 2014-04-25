@@ -437,6 +437,7 @@ public class Discharge implements ActionListener
 		
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(22, 1200, 117, 29);
+		btnCancel.addActionListener(this);
 		Discharge.add(btnCancel);
 		
 		JLabel lblContactName = new JLabel("Contact Name");
@@ -454,6 +455,8 @@ public class Discharge implements ActionListener
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
-		
+		if(e.getSource()==btnCancel)
+		{
+		}
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 
 public class Log
@@ -374,6 +375,7 @@ public class Log
 		
 		
 		table_2 = new JTable();
+		table_2.setGridColor(Color.LIGHT_GRAY);
 		table_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table_2.setModel(new DefaultTableModel(
 			new Object[][] {

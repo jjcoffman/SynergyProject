@@ -104,6 +104,9 @@ public class ExistingClient
 		panel.add(spInd);
 		
 		JButton btnViewInd = new JButton("View");
+		btnViewInd.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new ViewIndividualNote();}});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(441, 510, 94, 29);
 		panel.add(btnViewInd);
@@ -111,13 +114,16 @@ public class ExistingClient
 		JButton btnAddInd = new JButton("Add");
 		btnAddInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{AddIndividualNote ind = new AddIndividualNote();}
+			{new AddIndividualNote();}
 		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(537, 510, 94, 29);
 		panel.add(btnAddInd);
 		
 		JButton btnViewGroup = new JButton("View");
+		btnViewGroup.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new viewGroupNote();}});
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(662, 510, 94, 29);
 		panel.add(btnViewGroup);

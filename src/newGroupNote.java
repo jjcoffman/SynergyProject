@@ -4,12 +4,13 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class newGroupNote extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JFrame AddNote;
-	private JTextField textField;
+	private JTextField txtNote;
 	private JButton btnSubmit;
 	private JButton btnCancel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -33,17 +34,20 @@ public class newGroupNote extends JFrame implements ActionListener
 	lblClientId.setBounds(8, 56, 93, 16);
 	AddNote.getContentPane().add(lblClientId);
 	
-	textField = new JTextField();
-	textField.setBounds(8, 84, 434, 140);
-	AddNote.getContentPane().add(textField);
-	textField.setColumns(10);
+	txtNote = new JTextField();
+	txtNote.setFont(new Font("Verdana", Font.PLAIN, 13));
+	txtNote.setBackground(Color.WHITE);
+	txtNote.setBounds(8, 84, 434, 140);
+	AddNote.getContentPane().add(txtNote);
 	
 	btnCancel = new JButton("Cancel");
+	btnCancel.setFont(new Font("Verdana", Font.PLAIN, 13));
 	btnCancel.setBounds(6, 236, 117, 29);
 	btnCancel.addActionListener(this);
 	AddNote.getContentPane().add(btnCancel);
 	
 	btnSubmit = new JButton("Submit");
+	btnSubmit.setFont(new Font("Verdana", Font.PLAIN, 13));
 	btnSubmit.setBounds(327, 236, 117, 29);
 	btnSubmit.addActionListener(this);
 	AddNote.getContentPane().add(btnSubmit);
