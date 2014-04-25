@@ -26,6 +26,9 @@ public class Discharge implements ActionListener
 	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_8 = new ButtonGroup();
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -33,7 +36,7 @@ public class Discharge implements ActionListener
 	public void buildGUI()
 	{
 		Discharge = new JPanel();
-		Discharge.setSize(665, 905);
+		Discharge.setSize(665, 780);
 		Discharge.setLayout(null);
 		
 		JLabel lblPatientName = new JLabel("Patient Name");
@@ -274,7 +277,36 @@ public class Discharge implements ActionListener
 		radioButton_9.setBounds(518, 608, 47, 23);
 		Discharge.add(radioButton_9);
 		
-		Discharge.setVisible(true);
+		JCheckBox chckbxCurrentDrugUsage = new JCheckBox("Current Drug Usage:");
+		chckbxCurrentDrugUsage.setBounds(21, 656, 176, 23);
+		Discharge.add(chckbxCurrentDrugUsage);
+		
+		textField_8 = new JTextField();
+		textField_8.setBounds(231, 654, 391, 28);
+		Discharge.add(textField_8);
+		textField_8.setColumns(10);
+		
+		JCheckBox chckbxCriminalInvolvement = new JCheckBox("Criminal Involvement");
+		chckbxCriminalInvolvement.setBounds(21, 690, 176, 23);
+		Discharge.add(chckbxCriminalInvolvement);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(231, 688, 391, 28);
+		Discharge.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JCheckBox chckbxPersonagencyNotified = new JCheckBox("Person/Agency Notified");
+		chckbxPersonagencyNotified.setBounds(21, 725, 192, 23);
+		Discharge.add(chckbxPersonagencyNotified);
+		
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(458, 723, 164, 28);
+		Discharge.add(textField_10);
+		
+		JLabel lblContactDate = new JLabel("Contact Date");
+		lblContactDate.setBounds(366, 728, 94, 16);
+		Discharge.add(lblContactDate);
 	}
 	public JComponent getPanel()
 	{

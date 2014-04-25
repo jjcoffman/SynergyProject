@@ -151,7 +151,7 @@ public class ExistingClient
 		JButton btnDischarge = new JButton("Discharge");
 		btnDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{ //new DischargeScroll();
+			{ new DischargeScroll();
 			}
 		});
 		btnDischarge.setBounds(236, 510, 117, 29);
