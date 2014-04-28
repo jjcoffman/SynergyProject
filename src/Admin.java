@@ -146,11 +146,17 @@ public class Admin
 		Archive.add(spInd);
 		
 		JButton btnViewInd = new JButton("View");
+		btnViewInd.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new ViewIndividualNote();}});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(450, 500, 100, 29);
 		Archive.add(btnViewInd);
 		
 		JButton btnViewGroup = new JButton("View");
+		btnViewGroup.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new viewGroupNote();}});
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(670, 500, 100, 29);
 		Archive.add(btnViewGroup);
