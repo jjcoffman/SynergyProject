@@ -49,11 +49,19 @@ public class NewClient
 		newClient.add(lblClientsPendingIntake);
 		
 		JButton btnNewPhoneInterview = new JButton("New Phone Interview");
+		btnNewPhoneInterview.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new IntakeForm();}
+		});
 		btnNewPhoneInterview.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnNewPhoneInterview.setBounds(192, 452, 200, 29);
 		newClient.add(btnNewPhoneInterview);
 		
 		JButton button = new JButton("Proceed to Initial Intake");
+		button.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{new IntakeForm();}
+		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));
 		button.setBounds(482, 452, 200, 29);
 		newClient.add(button);
