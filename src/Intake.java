@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import java.awt.Component;
 
 
 public class Intake implements ActionListener
@@ -58,12 +59,14 @@ public class Intake implements ActionListener
 	private JTextField txtWhy_2;
 	private JTextField txtHowMany;
 	private JTextField txtWhereAndWhen;
-	private JLabel label;
 	private JLabel lblNewLabel;
 	private JButton btnExit;
 	private JButton btnSubmit;
 	private JButton btnAddSubstances;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void BuildPanel() 
 	{
 		Intake = new JPanel();
@@ -78,28 +81,33 @@ public class Intake implements ActionListener
 		btnSubmit.setBounds(334, 764, 101, 29);
 		
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(6, 106, 167, 28);
-		txtFirstName.setText("First Name");
+		txtFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtFirstName.setBounds(20, 80, 200, 28);
+		txtFirstName.setText("John");
 		txtFirstName.setColumns(10);
 		
 		txtLastName = new JTextField();
-		txtLastName.setBounds(185, 106, 197, 28);
-		txtLastName.setText("Last Name");
+		txtLastName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtLastName.setBounds(230, 80, 200, 28);
+		txtLastName.setText("Doe");
 		txtLastName.setColumns(10);
 		
 		txtDateOfBirth = new JTextField();
-		txtDateOfBirth.setBounds(387, 106, 106, 28);
-		txtDateOfBirth.setText("Date of Birth");
+		txtDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDateOfBirth.setBounds(440, 80, 100, 28);
+		txtDateOfBirth.setText("1960-03-25");
 		txtDateOfBirth.setColumns(10);
 		
 		txtAge = new JTextField();
-		txtAge.setBounds(505, 106, 41, 28);
-		txtAge.setText("Age");
+		txtAge.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAge.setBounds(550, 80, 40, 28);
+		txtAge.setText("54");
 		txtAge.setColumns(10);
 		
 		txtVet = new JTextField();
-		txtVet.setBounds(558, 106, 82, 28);
-		txtVet.setText("VET:");
+		txtVet.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtVet.setBounds(595, 80, 50, 28);
+		txtVet.setText("y/n?");
 		txtVet.setColumns(10);
 		
 		txtAddress = new JTextField();
@@ -219,7 +227,8 @@ public class Intake implements ActionListener
 		txtCellPhone.setColumns(10);
 		
 		JLabel lblPatientInformation = new JLabel("PATIENT INFORMATION");
-		lblPatientInformation.setBounds(255, 78, 148, 16);
+		lblPatientInformation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPatientInformation.setBounds(0, 40, 665, 16);
 		
 		txtYears_1 = new JTextField();
 		txtYears_1.setBounds(230, 186, 60, 28);
@@ -392,18 +401,48 @@ public class Intake implements ActionListener
 		Intake.add(textField_5);
 		Intake.add(textField_3);
 		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon("src//westSlopeImagesmall.jpg"));
-		label.setBounds(0, 0, 94, 66);
-		Intake.add(label);
-		
-		lblNewLabel = new JLabel("WEST SLOPE RECOVERY PATIENT MANAGEMENT");
+		lblNewLabel = new JLabel("WEST SLOPE RECOVERY NEW CLIENT INTAKE");
+		lblNewLabel.setHorizontalTextPosition(SwingConstants.LEADING);
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 20));
 		lblNewLabel.setBackground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(101, 0, 562, 66);
+		lblNewLabel.setBounds(0, 0, 665, 30);
 		Intake.add(lblNewLabel);
+		
+		JLabel lblFirstName = new JLabel("First Name");
+		lblFirstName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblFirstName.setBounds(20, 60, 200, 20);
+		Intake.add(lblFirstName);
+		
+		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLastName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblLastName.setBounds(230, 60, 200, 20);
+		Intake.add(lblLastName);
+		
+		JLabel lblDateOfBirth = new JLabel("Date of Birth");
+		lblDateOfBirth.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblDateOfBirth.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblDateOfBirth.setBounds(440, 60, 100, 20);
+		Intake.add(lblDateOfBirth);
+		
+		JLabel lblAge = new JLabel("Age");
+		lblAge.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblAge.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAge.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAge.setBounds(550, 60, 40, 20);
+		Intake.add(lblAge);
+		
+		JLabel lblVet = new JLabel("Vet?");
+		lblVet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVet.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblVet.setAlignmentX(0.5f);
+		lblVet.setBounds(595, 60, 50, 20);
+		Intake.add(lblVet);
 		Intake.setVisible(true);
 	}
 	
