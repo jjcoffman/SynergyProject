@@ -63,6 +63,18 @@ public class Intake implements ActionListener
 	private JButton btnExit;
 	private JButton btnSubmit;
 	private JButton btnAddSubstances;
+	private JLabel lblCity;
+	private JLabel lblState;
+	private JLabel lblZipCode;
+	private JLabel lblCounty;
+	private JLabel lblYearsInCounty;
+	private JLabel lblPhoneNumber;
+	private JLabel lblSecondaryPhone;
+	private JLabel lblSocialSecurityNumber;
+	private JLabel lblDriversLicense;
+	private JLabel lblDlState;
+	private JLabel lblMaritalStatus;
+	private JLabel lblSpouseName;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -111,23 +123,26 @@ public class Intake implements ActionListener
 		txtVet.setColumns(10);
 		
 		txtAddress = new JTextField();
-		txtAddress.setBounds(6, 146, 298, 28);
-		txtAddress.setText("Address");
+		txtAddress.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAddress.setBounds(20, 130, 280, 28);
+		txtAddress.setText("123 Default Ave");
 		txtAddress.setColumns(10);
 		
 		txtCity = new JTextField();
-		txtCity.setBounds(316, 146, 148, 28);
-		txtCity.setText("City");
+		txtCity.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtCity.setBounds(310, 130, 160, 28);
+		txtCity.setText("Sacramento");
 		txtCity.setColumns(10);
 		
 		txtState = new JTextField();
-		txtState.setBounds(476, 146, 68, 28);
-		txtState.setText("State");
+		txtState.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtState.setBounds(480, 130, 80, 28);
+		txtState.setText("California");
 		txtState.setColumns(10);
 		
 		txtCounty = new JTextField();
-		txtCounty.setBounds(6, 186, 212, 28);
-		txtCounty.setText("County");
+		txtCounty.setBounds(20, 180, 180, 28);
+		txtCounty.setText("Sacramento");
 		txtCounty.setColumns(10);
 		
 		txtName = new JTextField();
@@ -149,8 +164,9 @@ public class Intake implements ActionListener
 		txtCity_1.setColumns(10);
 		
 		textField = new JTextField();
-		textField.setBounds(558, 146, 82, 28);
-		textField.setText("Zip Code");
+		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField.setBounds(570, 130, 75, 28);
+		textField.setText("95819");
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
@@ -226,48 +242,54 @@ public class Intake implements ActionListener
 		txtCellPhone.setText("Cell Phone");
 		txtCellPhone.setColumns(10);
 		
-		JLabel lblPatientInformation = new JLabel("PATIENT INFORMATION");
+		JLabel lblPatientInformation = new JLabel("CLIENT INFORMATION");
+		lblPatientInformation.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblPatientInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPatientInformation.setBounds(0, 40, 665, 16);
 		
 		txtYears_1 = new JTextField();
-		txtYears_1.setBounds(230, 186, 60, 28);
-		txtYears_1.setText("Years");
+		txtYears_1.setBounds(210, 180, 110, 28);
+		txtYears_1.setText("2");
 		txtYears_1.setColumns(10);
 		
 		txtPhoneNumber_1 = new JTextField();
-		txtPhoneNumber_1.setBounds(302, 186, 162, 28);
-		txtPhoneNumber_1.setText("Phone Number");
+		txtPhoneNumber_1.setBounds(330, 180, 150, 28);
+		txtPhoneNumber_1.setText("916-555-5555");
 		txtPhoneNumber_1.setColumns(10);
 		
 		txtSecondaryPhone = new JTextField();
-		txtSecondaryPhone.setBounds(476, 186, 164, 28);
-		txtSecondaryPhone.setText("Secondary Phone");
+		txtSecondaryPhone.setBounds(490, 180, 155, 28);
+		txtSecondaryPhone.setText("916-555-5556");
 		txtSecondaryPhone.setColumns(10);
 		
 		txtSocialSecurityNumber = new JTextField();
-		txtSocialSecurityNumber.setBounds(6, 226, 167, 28);
-		txtSocialSecurityNumber.setText("Social Security Number");
+		txtSocialSecurityNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtSocialSecurityNumber.setBounds(20, 230, 140, 28);
+		txtSocialSecurityNumber.setText("111-11-1111");
 		txtSocialSecurityNumber.setColumns(10);
 		
 		txtDriversLicense = new JTextField();
-		txtDriversLicense.setBounds(185, 226, 111, 28);
-		txtDriversLicense.setText("Drivers License");
+		txtDriversLicense.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDriversLicense.setBounds(170, 230, 120, 28);
+		txtDriversLicense.setText("D1234567");
 		txtDriversLicense.setColumns(10);
 		
 		txtDlState = new JTextField();
-		txtDlState.setBounds(302, 226, 80, 28);
-		txtDlState.setText("DL State");
+		txtDlState.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDlState.setBounds(300, 231, 70, 28);
+		txtDlState.setText("CA");
 		txtDlState.setColumns(10);
 		
 		txtMaritalStatus = new JTextField();
-		txtMaritalStatus.setBounds(393, 226, 100, 28);
-		txtMaritalStatus.setText("Marital Status");
+		txtMaritalStatus.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtMaritalStatus.setBounds(380, 230, 110, 28);
+		txtMaritalStatus.setText("Married");
 		txtMaritalStatus.setColumns(10);
 		
 		txtName_1 = new JTextField();
-		txtName_1.setBounds(500, 226, 140, 28);
-		txtName_1.setText("Name");
+		txtName_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtName_1.setBounds(500, 230, 145, 28);
+		txtName_1.setText("Jane Doe");
 		txtName_1.setColumns(10);
 		
 		JCheckBox chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
@@ -443,6 +465,84 @@ public class Intake implements ActionListener
 		lblVet.setAlignmentX(0.5f);
 		lblVet.setBounds(595, 60, 50, 20);
 		Intake.add(lblVet);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddress.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAddress.setBounds(20, 110, 280, 20);
+		Intake.add(lblAddress);
+		
+		lblCity = new JLabel("City");
+		lblCity.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCity.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCity.setBounds(310, 110, 160, 20);
+		Intake.add(lblCity);
+		
+		lblState = new JLabel("State");
+		lblState.setHorizontalAlignment(SwingConstants.CENTER);
+		lblState.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblState.setBounds(480, 110, 80, 20);
+		Intake.add(lblState);
+		
+		lblZipCode = new JLabel("Zip Code");
+		lblZipCode.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZipCode.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblZipCode.setBounds(570, 110, 75, 20);
+		Intake.add(lblZipCode);
+		
+		lblCounty = new JLabel("County");
+		lblCounty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCounty.setBounds(20, 160, 180, 20);
+		Intake.add(lblCounty);
+		
+		lblYearsInCounty = new JLabel("Years in County");
+		lblYearsInCounty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYearsInCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblYearsInCounty.setBounds(210, 160, 110, 20);
+		Intake.add(lblYearsInCounty);
+		
+		lblPhoneNumber = new JLabel("Phone Number");
+		lblPhoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPhoneNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblPhoneNumber.setBounds(330, 160, 150, 20);
+		Intake.add(lblPhoneNumber);
+		
+		lblSecondaryPhone = new JLabel("Secondary Phone");
+		lblSecondaryPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSecondaryPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSecondaryPhone.setBounds(490, 160, 155, 20);
+		Intake.add(lblSecondaryPhone);
+		
+		lblSocialSecurityNumber = new JLabel("Social Security #");
+		lblSocialSecurityNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSocialSecurityNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSocialSecurityNumber.setBounds(20, 210, 140, 20);
+		Intake.add(lblSocialSecurityNumber);
+		
+		lblDriversLicense = new JLabel("Drivers License #");
+		lblDriversLicense.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDriversLicense.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblDriversLicense.setBounds(170, 210, 120, 20);
+		Intake.add(lblDriversLicense);
+		
+		lblDlState = new JLabel("DL State");
+		lblDlState.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDlState.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblDlState.setBounds(300, 210, 70, 20);
+		Intake.add(lblDlState);
+		
+		lblMaritalStatus = new JLabel("Marital Status");
+		lblMaritalStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMaritalStatus.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblMaritalStatus.setBounds(380, 210, 110, 20);
+		Intake.add(lblMaritalStatus);
+		
+		lblSpouseName = new JLabel("Spouse Name");
+		lblSpouseName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpouseName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSpouseName.setBounds(500, 210, 145, 20);
+		Intake.add(lblSpouseName);
 		Intake.setVisible(true);
 	}
 	
