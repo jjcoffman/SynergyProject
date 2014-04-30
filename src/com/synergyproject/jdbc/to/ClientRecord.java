@@ -1,6 +1,6 @@
 package com.synergyproject.jdbc.to;
 
-public class CientRecord {
+public class ClientRecord {
 	private int C_ID;
 	private String C_LastName;
 	private String C_FirstName;

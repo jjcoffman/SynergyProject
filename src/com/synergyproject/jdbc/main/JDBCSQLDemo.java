@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.synergyproject.jdbc.db.DbUtil;
-import com.theopentutorials.jdbc.db.JDBCMySQLConnection;
-import com.theopentutorials.jdbc.to.Employee;
+import com.synergyproject.jdbc.db.JDBCMySQLConnection;
+import com.synergyproject.jdbc.to.ClientRecord;
 
 public class JDBCSQLDemo {
 
