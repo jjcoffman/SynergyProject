@@ -7,11 +7,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.synergyproject.jdbc.db.DbUtil;
+//import com.synergyproject.jdbc.db.DbUtil;
 import com.synergyproject.jdbc.db.JDBCMySQLConnection;
 import com.synergyproject.jdbc.to.ClientRecord;
 
-public class JDBCMySQLDemo {
+public class JDBCSQLDemo {
 	public static void main(String[] args) { 
 
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,16 +19,18 @@ public class JDBCMySQLDemo {
 	
 	int clientID;
 	try {
-		clientId = Integer.parseInt(br.readLine());
-		JDBCMySQLDemo demo = new JDBCMySQLDemo();
+		clientID = Integer.parseInt(br.readLine());
+		JDBCSQLDemo demo = new JDBCSQLDemo();
 		ClientRecord client = demo.getClient(clientID);
-		System.out.println(employee);
-		} catch (NumberFormatException e) {
+		System.out.println(client);
+		} 
+		catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-        }       
-    }
+		}
+	}
 	
 	public ClientRecord getClient(int clientID){
 		ResultSet rs = null;
@@ -36,31 +38,29 @@ public class JDBCMySQLDemo {
 		Statement statement = null; 
 
 		ClientRecord client = null;
-		String query = "SELECT * FROM employee WHERE C_ID=" + clientId;
-        try {           
-            connection = JDBCMySQLConnection.getConnection();
-            statement = connection.createStatement();
-            rs = statement.executeQuery(query);
-             
-            if (rs.next()) {
-                employee = new Employee();
-                employee.setEmpId(rs.getInt("emp_id"));
-                employee.setEmpName(rs.getString("emp_name"));
-                employee.setDob(rs.getDate("dob"));
-                employee.setSalary(rs.getDouble("salary"));
-                employee.setDeptId((rs.getInt("dept_id")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return employee;
-    }
+		String query = "SELECT * FROM Client_Record WHERE C_ID=" + clientID;
+		try { 
+			connection = JDBCMySQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			
+			if (rs.next()) {
+				client = new ClientRecord();
+				client.setC_ID(rs.getInt("C_ID"));
+				client.setC_LastName(rs.getString("C_LastName"));
+				client.setC_FirstName(rs.getString("C_FirstName"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return client;
+	}
 }

@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public class JDBCMySQLConnection {
   //static reference to itself
   private static JDBCMySQLConnection instance = new JDBCMySQLConnection();
-  private static String URL = "jdbc:mysql://localhost/jdbcdb";
-  private static final String USER = "YOUR_DATABASE_USERNAME";
-  private static final String PASSWORD = "YOUR_DATABASE_PASSWORD";
+  private static String URL = "jdbc:mysql://localhost/synergy";
+  private static final String USER = "root";
+  private static final String PASSWORD = "T01RMA72";
   private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
    
   //private constructor
