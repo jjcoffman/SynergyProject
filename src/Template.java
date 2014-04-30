@@ -1,9 +1,15 @@
+
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class Template
 {
 	private JPanel Template;
+	
+	
+	
+	
+	
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	/**							
@@ -27,7 +33,9 @@ public class Template
 		return Template;
 	}
 
+	
 }
+
 
 		//past this into a class the panel that contains this panel, if you are unsure don't do anything with this!!!!!!!!
 		//Template pane = new Template(); //this creates a new object	

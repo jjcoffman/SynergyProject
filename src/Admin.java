@@ -46,6 +46,10 @@ public class Admin
 		tabbedPane.addTab("Manage Users", null, ManageUsers, null);
 		
 		JButton btnEditSelectedUser = new JButton("Edit Selected User");
+		btnEditSelectedUser.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) { new EditUser();
+			}
+		});
 		btnEditSelectedUser.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnEditSelectedUser.setBounds(160, 470, 200, 29);
 		ManageUsers.add(btnEditSelectedUser);

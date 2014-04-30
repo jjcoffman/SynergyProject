@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,7 +8,7 @@ import javax.swing.JScrollPane;
 public class DischargeScroll
 {
 	private Discharge DischargeS;
-	private JFrame window;
+	private static JFrame window;
 	private JScrollPane spInd;
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
@@ -21,7 +22,7 @@ public class DischargeScroll
 		
 		JPanel d3 = new JPanel();
 		d3.setLayout(null);
-		d3.add(d);;
+		d3.add(d);
 		d3.setPreferredSize(new Dimension(645, 1250));
 		
 		spInd = new JScrollPane(d3);
@@ -37,4 +38,10 @@ public class DischargeScroll
 		window.pack();
 		window.setVisible(true);
 	}
+
+	public static void closeWindow() 
+	{
+		window.dispose();
+	}
+
 }

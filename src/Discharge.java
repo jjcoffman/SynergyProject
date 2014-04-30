@@ -1,10 +1,13 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
 
 
 
-public class Discharge implements ActionListener
+public class Discharge
 {
 
 	private static final long serialVersionUID = 1L;
@@ -433,30 +436,34 @@ public class Discharge implements ActionListener
 		
 		btnCompleteDischarge = new JButton("Complete Discharge");
 		btnCompleteDischarge.setBounds(464, 1200, 171, 29);
+		btnCompleteDischarge.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{ complete();}
+		});
 		Discharge.add(btnCompleteDischarge);
 		
 		btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{ DischargeScroll.closeWindow();}
+		});
 		btnCancel.setBounds(22, 1200, 117, 29);
-		btnCancel.addActionListener(this);
+
 		Discharge.add(btnCancel);
 		
 		JLabel lblContactName = new JLabel("Contact Name");
 		lblContactName.setBounds(228, 728, 106, 16);
-		Discharge.add(lblContactName);
-		
-		
-		
-		
+		Discharge.add(lblContactName);	
 		
 	}
+	private void complete() 
+	{
+		//TODO handle the data that has been imported
+		DischargeScroll.closeWindow();
+		
+	}	
 	public JComponent getPanel()
 	{
 		return Discharge;
-	}
-	public void actionPerformed(ActionEvent e) 
-	{
-		if(e.getSource()==btnCancel)
-		{
-		}
 	}
 }
