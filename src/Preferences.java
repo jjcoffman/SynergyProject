@@ -93,7 +93,7 @@ public class Preferences
 		//0 = yes, 1 = no, 2 = cancel
 		yes = JOptionPane.showConfirmDialog(null, "Are you Sure that you want to make this change???");
 		System.out.println(yes);
-		if(yes == 2)
+		if(yes == 0)
 			changeSQL();
 	}
 	private void changeSQL() 
