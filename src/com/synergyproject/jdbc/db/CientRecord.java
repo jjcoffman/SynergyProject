@@ -1,0 +1,31 @@
+package com.synergyproject.jdbc.db;
+
+public class CientRecord {
+	private int C_ID;
+	private String C_LastName;
+	private String C_FirstName;
+	
+	public int getC_ID(){
+		return C_ID;
+	}
+	
+	public void setC_ID(int C_ID){
+		this.C_ID = C_ID;
+	}
+	
+	public String getC_LastName(){
+		return C_LastName;
+	}
+	
+	public void setC_LastName(String C_LastName){
+		this.C_LastName = C_LastName;
+	}
+	
+	public String getC_FirstName(){
+		return C_FirstName;
+	}
+	
+	public void setC_FirstName(String C_FirstName){
+		this.C_FirstName = C_FirstName;
+	}
+}
