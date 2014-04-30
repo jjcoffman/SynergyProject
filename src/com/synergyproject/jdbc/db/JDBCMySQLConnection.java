@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public class JDBCMySQLConnection {
   //static reference to itself
   private static JDBCMySQLConnection instance = new JDBCMySQLConnection();
-  public static final String URL = "jdbc:mysql://localhost/jdbcdb";
-  public static final String USER = "YOUR_DATABASE_USERNAME";
-  public static final String PASSWORD = "YOUR_DATABASE_PASSWORD";
-  public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
+  private static String URL = "jdbc:mysql://localhost/jdbcdb";
+  private static final String USER = "YOUR_DATABASE_USERNAME";
+  private static final String PASSWORD = "YOUR_DATABASE_PASSWORD";
+  private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
    
   //private constructor
   private JDBCMySQLConnection() {
@@ -37,5 +37,11 @@ public class JDBCMySQLConnection {
    
   public static Connection getConnection() {
       return instance.createConnection();
+  }
+  
+  //this method changes the the url path
+  public static void setPath(String s)
+  {
+	  URL = s;
   }
 }

@@ -19,6 +19,7 @@ public class MainWindow
 {
 	private JPanel panel;
 	private JPanel menu;
+	private JPanel menu_1;
 	private JPanel card;
 	JButton btnLogs;
 	JButton btnExisting;
@@ -26,6 +27,7 @@ public class MainWindow
 	JButton btnArchive;
 	JButton btnExit;
 	CardLayout cl = new CardLayout();
+	private JButton btnPreferences;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -49,7 +51,7 @@ public class MainWindow
 		NewClient nc = new NewClient();
 		Log log = new Log();
 		Admin admin = new Admin();
-		//Archive am = new Archive();
+		Preferences pref = new Preferences();
 
 		//here we are building the card layout that is navigated by the menu
 		card.setLayout(cl);
@@ -73,6 +75,10 @@ public class MainWindow
 		JPanel ad = (JPanel) admin.getPanel();
 		card.add(ad, "4");
 		
+		pref.buildPanel();
+		JPanel prefPane = (JPanel) pref.getPanel();
+		card.add(prefPane, "5");
+		
 		panel.add(card);
 		panel.setVisible(true);
 		cl.show(card, "1");
@@ -82,10 +88,10 @@ public class MainWindow
 		
 		
 		//here is the menu object that is used to navigate the card object and the various GUI objects
-		menu = new JPanel();
-		menu.setBorder((Border) new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		menu.setLayout(null);
-		menu.setSize(120, 640);
+		menu_1 = new JPanel();
+		menu_1.setBorder((Border) new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		menu_1.setLayout(null);
+		menu_1.setSize(120, 640);
 		btnExisting = new JButton("Existing");
 		btnExisting.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnExisting.addMouseListener(new MouseAdapter() {
@@ -94,7 +100,7 @@ public class MainWindow
 			{ cl.show(card, "2");}								//this shows the card based on user selection
 		});
 		btnExisting.setBounds(6, 144, 110, 73);
-		menu.add(btnExisting);
+		menu_1.add(btnExisting);
 		
 		btnLogs = new JButton("Logs");
 		btnLogs.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -104,7 +110,7 @@ public class MainWindow
 			{cl.show(card, "3");}
 		});
 		btnLogs.setBounds(6, 229, 110, 73);
-		menu.add(btnLogs);
+		menu_1.add(btnLogs);
 		
 		btnIntake = new JButton("New");
 		btnIntake.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -115,43 +121,43 @@ public class MainWindow
 			{cl.show(card, "1");}								//this shows the card based on user selection
 		});
 		btnIntake.setBounds(6, 59, 110, 73);
-		menu.add(btnIntake);
+		menu_1.add(btnIntake);
 		
 		btnArchive = new JButton("Admin");
 		btnArchive.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnArchive.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) 
 			{cl.show(card, "4");}
 		});
 		btnArchive.setBounds(6, 314, 110, 73);
-		menu.add(btnArchive);
+		menu_1.add(btnArchive);
 		
 		btnExit = new JButton("Logout");
 		btnExit.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnExit.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {System.exit(0);}//this exits the program
 		});
 		btnExit.setBounds(6, 484, 110, 73);
-		menu.add(btnExit);
+		menu_1.add(btnExit);
 		JLabel lblMenu = new JLabel("MENU");
 		lblMenu.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenu.setBounds(30, 31, 59, 16);
-		menu.add(lblMenu);
-		panel.add(menu);
-		menu.setLocation(0, 80);
+		menu_1.add(lblMenu);
+		panel.add(menu_1);
+		menu_1.setLocation(0, 80);
+		
+		btnPreferences = new JButton("Preferences");
+		btnPreferences.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{cl.show(card, "5");}
+		});
+		btnPreferences.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnPreferences.setBounds(6, 399, 110, 73);
+		menu_1.add(btnPreferences);
 
-		
-/*		//this makes the buttons invisible and inactive until the user logs in
-		btnArchive.setVisible(false);
-		btnIntake.setVisible(false);
-		btnLogs.setVisible(false);
-		btnExisting.setVisible(false);*/
-		
-		
+	
 		//and finally set it to visible
 		panel.setVisible(true);
 	}
