@@ -1,4 +1,4 @@
-package com.synergyproject.jdbc.db;
+package com.synergyproject.jdbc.to;
 
 public class CientRecord {
 	private int C_ID;
@@ -27,5 +27,10 @@ public class CientRecord {
 	
 	public void setC_FirstName(String C_FirstName){
 		this.C_FirstName = C_FirstName;
+	}
+	
+	@Override
+    public String toString() {
+		return "Client [C_ID=" + C_ID + " , C_LastName=" + C_LastName + " , C_FirstName=" + C_FirstName + "]";
 	}
 }
