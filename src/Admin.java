@@ -56,6 +56,10 @@ public class Admin
 		
 		JButton btnAddNewUser = new JButton("Add New User");
 		btnAddNewUser.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnAddNewUser.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) { new EditUser();
+			}
+		});
 		btnAddNewUser.setBounds(440, 470, 200, 29);
 		ManageUsers.add(btnAddNewUser);
 		

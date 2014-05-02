@@ -50,7 +50,6 @@ public class SigPane extends JPanel
              {
                  points.add(e.getPoint());
                  points.clear();
-                 System.out.println("mouseReleased X: "+e.getX()+"mouseReleased Y: "+e.getY());
                  repaint();
              }
          });
@@ -99,6 +98,11 @@ public class SigPane extends JPanel
             g.dispose();
             repaint();
         }
+    }
+    
+    public BufferedImage getImage()
+    {
+    	return bImage;
     }
     
     //this will write a file to the computer and stores
