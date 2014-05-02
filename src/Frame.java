@@ -14,7 +14,7 @@ import javax.swing.border.BevelBorder;
 public class Frame extends JFrame
 {
 	private static final long serialVersionUID = 1L;
-	private JFrame frame = new JFrame("West Slope Recovery");;
+	private JFrame frame = new JFrame("West Slope Recovery");
 	JPanel EnclosingPanel;
 	
 	

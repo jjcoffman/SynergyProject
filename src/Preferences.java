@@ -1,21 +1,21 @@
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-
-import java.awt.*;
-
-import javax.swing.text.*;
-
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-
-import com.synergyproject.jdbc.db.JDBCMySQLConnection;
-
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 
 //This class handles the preferences of changing the SQL Database Path in the event that it needs to be changed
@@ -92,13 +92,12 @@ public class Preferences
 		int yes = 2;
 		//0 = yes, 1 = no, 2 = cancel
 		yes = JOptionPane.showConfirmDialog(null, "Are you Sure that you want to make this change???");
-		System.out.println(yes);
 		if(yes == 0)
 			changeSQL();
 	}
 	private void changeSQL() 
 	{
-		
+		//TODO
 		//JDBCMySQLConnection.setPath(textField.getText());
 		JOptionPane.showMessageDialog(null, "The Path has been changed");
 	}
