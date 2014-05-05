@@ -148,7 +148,7 @@ public class MainWindow
 		panel.add(menu_1);
 		menu_1.setLocation(0, 80);
 		
-		btnPreferences = new JButton("Preferences");
+		btnPreferences = new JButton("Setup");
 		btnPreferences.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{cl.show(card, "5");}
