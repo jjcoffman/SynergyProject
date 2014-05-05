@@ -1,10 +1,15 @@
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.*;
+
+import com.synergyproject.jdbc.to.ClientRecord;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
+import com.synergyproject.jdbc.db.JDBCMySQLConnection;
+import com.synergyproject.jdbc.to.ClientRecord;
 
 public class ExistingClient
 
@@ -14,6 +19,8 @@ public class ExistingClient
 	private JTable table;
 	private JTable groupTable;
 	private JTable IndividualTable;
+	SQLRetrieveInfo test = new SQLRetrieveInfo();
+	
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -186,6 +193,13 @@ public class ExistingClient
 	private Object[][] getExisting() 
 	{
 		Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		/*int size = test.getSize("Client_Record");
+		Object[][] data = new Object[size][2];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test.getRows(i);
+		}
+		System.out.println("rows in client_record: " + test.getSize("Client_Record"));
+		*/
 		return data;
 	}
 	public JComponent getPanel()
