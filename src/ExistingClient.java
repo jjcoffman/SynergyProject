@@ -38,37 +38,42 @@ public class ExistingClient
 		lblpanels.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblpanels.setHorizontalAlignment(SwingConstants.CENTER);
 		lblpanels.setRequestFocusEnabled(false);
-		lblpanels.setBounds(31, 58, 356, 16);
+		lblpanels.setBounds(20, 20, 356, 20);
 		panel.add(lblpanels);
 		
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnSelect.setBounds(150, 465, 117, 29);
+		btnSelect.setBounds(20, 480, 160, 29);
 		panel.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
+		lblClientName.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientName.setBounds(441, 86, 143, 16);
+		lblClientName.setBounds(420, 70, 140, 16);
 		panel.add(lblClientName);
 		
 		JLabel lblClientId = new JLabel("Client ID:");
+		lblClientId.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientId.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientId.setBounds(441, 58, 143, 16);
+		lblClientId.setBounds(420, 40, 140, 16);
 		panel.add(lblClientId);
 		
 		JLabel lblEmergencyContact = new JLabel("Emergency Contact:");
+		lblEmergencyContact.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmergencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblEmergencyContact.setBounds(441, 163, 143, 16);
+		lblEmergencyContact.setBounds(420, 140, 140, 16);
 		panel.add(lblEmergencyContact);
 		
 		JLabel lblEmergencyPhone = new JLabel("Emergency Phone:");
+		lblEmergencyPhone.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblEmergencyPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblEmergencyPhone.setBounds(441, 191, 143, 16);
+		lblEmergencyPhone.setBounds(420, 170, 140, 16);
 		panel.add(lblEmergencyPhone);
 		
 		JLabel lblClientPhone = new JLabel("Client Phone:");
+		lblClientPhone.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblClientPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblClientPhone.setBounds(441, 114, 143, 16);
+		lblClientPhone.setBounds(420, 100, 140, 16);
 		panel.add(lblClientPhone);
 		
 		
@@ -81,7 +86,7 @@ public class ExistingClient
 		table.getColumnModel().getColumn(0).setWidth(10);
 		table.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane sp = new JScrollPane(table);
-		sp.setBounds(31, 86, 356, 367);
+		sp.setBounds(20, 50, 380, 420);
 		sp.setVisible(true);
 		panel.add(sp);
 		
@@ -94,7 +99,7 @@ public class ExistingClient
 		groupTable.getColumnModel().getColumn(0).setWidth(10);
 		groupTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spGroup = new JScrollPane(groupTable);
-		spGroup.setBounds(662, 271, 190, 234);
+		spGroup.setBounds(660, 250, 200, 260);
 		spGroup.setVisible(true);
 		panel.add(spGroup);
 		
@@ -107,7 +112,7 @@ public class ExistingClient
 		IndividualTable.getColumnModel().getColumn(0).setWidth(10);
 		IndividualTable.getColumnModel().getColumn(1).setWidth(40);
 		JScrollPane spInd = new JScrollPane(IndividualTable);
-		spInd.setBounds(441, 271, 190, 234);
+		spInd.setBounds(430, 250, 200, 260);
 		spInd.setVisible(true);
 		panel.add(spInd);
 		
@@ -116,7 +121,7 @@ public class ExistingClient
 			public void mouseClicked(MouseEvent e) 
 			{new ViewIndividualNote();}});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnViewInd.setBounds(441, 510, 94, 29);
+		btnViewInd.setBounds(430, 520, 94, 29);
 		panel.add(btnViewInd);
 		
 		JButton btnAddInd = new JButton("Add");
@@ -125,7 +130,7 @@ public class ExistingClient
 			{new AddIndividualNote();}
 		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnAddInd.setBounds(537, 510, 94, 29);
+		btnAddInd.setBounds(540, 520, 94, 29);
 		panel.add(btnAddInd);
 		
 		JButton btnViewGroup = new JButton("View");
@@ -133,7 +138,7 @@ public class ExistingClient
 			public void mouseClicked(MouseEvent e) 
 			{new viewGroupNote();}});
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnViewGroup.setBounds(662, 510, 94, 29);
+		btnViewGroup.setBounds(660, 520, 94, 29);
 		panel.add(btnViewGroup);
 		
 		JButton btnAddGroup = new JButton("Add");
@@ -143,33 +148,41 @@ public class ExistingClient
 			{new newGroupNote();}
 		});
 		btnAddGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnAddGroup.setBounds(757, 510, 94, 29);
+		btnAddGroup.setBounds(770, 520, 94, 29);
 		panel.add(btnAddGroup);
 		
 		JLabel lblIndividualNotes = new JLabel("Individual Notes");
 		lblIndividualNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblIndividualNotes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIndividualNotes.setBounds(441, 243, 190, 16);
+		lblIndividualNotes.setBounds(430, 220, 200, 16);
 		panel.add(lblIndividualNotes);
 		
 		JLabel lblGroupNotes = new JLabel("Group Notes");
 		lblGroupNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblGroupNotes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGroupNotes.setBounds(662, 243, 190, 16);
+		lblGroupNotes.setBounds(660, 220, 190, 16);
 		panel.add(lblGroupNotes);
 		
 		JButton btnViewprintForms = new JButton("View/Print Forms");
-		btnViewprintForms.setBounds(64, 510, 160, 29);
+		btnViewprintForms.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnViewprintForms.setBounds(20, 520, 160, 29);
 		panel.add(btnViewprintForms);
 		
 		JButton btnDischarge = new JButton("Discharge");
+		btnDischarge.setForeground(Color.RED);
+		btnDischarge.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{ new DischargeScroll();
 			}
 		});
-		btnDischarge.setBounds(236, 510, 117, 29);
+		btnDischarge.setBounds(240, 520, 160, 29);
 		panel.add(btnDischarge);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnRefresh.setBounds(240, 480, 160, 29);
+		panel.add(btnRefresh);
 		
 		
 		
@@ -194,6 +207,7 @@ public class ExistingClient
 	private Object[][] getExisting() 
 	{
 		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		//return data;
 		try {
 			int size = test.getSize("Client_Record");
 		
