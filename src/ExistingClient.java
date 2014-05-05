@@ -1,16 +1,13 @@
 import java.awt.Color;
 import java.awt.Font;
-
+import java.awt.event.*;
 import javax.swing.*;
-
-import com.synergyproject.jdbc.to.ClientRecord;
-
+import javax.swing.table.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
-import com.synergyproject.jdbc.db.JDBCMySQLConnection;
-import com.synergyproject.jdbc.to.ClientRecord;
 
 public class ExistingClient
 
@@ -18,6 +15,7 @@ public class ExistingClient
 
 	private JPanel panel;
 	private JTable table;
+	private DefaultTableModel existing;
 	private JTable groupTable;
 	private JTable IndividualTable;
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
@@ -79,7 +77,20 @@ public class ExistingClient
 		
 		Object[][] data = getExisting();
 		String[] columnNames = {"Client ID","Client Name"};
-		table = new JTable(data, columnNames);
+		existing = new DefaultTableModel(data, columnNames);
+		table = new JTable(existing);
+		table.getModel().addTableModelListener(new TableModelListener() {
+
+		      public void tableChanged(TableModelEvent e) {
+		    	  // your code goes here;
+		    	  table.invalidate();
+		    	  Object[][] data = getExisting();
+		    	  String[] columnNames = {"Client ID","Client Name"};
+		    	  existing = new DefaultTableModel(data, columnNames);
+		    	  table.repaint();
+		    	  System.out.println("changed");
+		      }
+		    });
 		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
@@ -181,6 +192,15 @@ public class ExistingClient
 		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnRefresh.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//Execute when button is pressed
+				System.out.println("You clicked the button");
+				existing.fireTableDataChanged();
+				}
+		});
 		btnRefresh.setBounds(240, 480, 160, 29);
 		panel.add(btnRefresh);
 		
