@@ -7,6 +7,7 @@ import com.synergyproject.jdbc.to.ClientRecord;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import com.synergyproject.jdbc.db.JDBCMySQLConnection;
 import com.synergyproject.jdbc.to.ClientRecord;
@@ -192,15 +193,22 @@ public class ExistingClient
 	//This will fill the object array with the data from the the existing users
 	private Object[][] getExisting() 
 	{
-		Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
-		/*int size = test.getSize("Client_Record");
+		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		try {
+			int size = test.getSize("Client_Record");
+		
 		Object[][] data = new Object[size][2];
 		for (int i = 1; i <= size; i++){
-			data[i-1] = test.getRows(i);
+			data[i-1] = test.getRows(i - 1, 1);
 		}
 		System.out.println("rows in client_record: " + test.getSize("Client_Record"));
-		*/
 		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}
 	}
 	public JComponent getPanel()
 	{

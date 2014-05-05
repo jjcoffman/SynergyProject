@@ -12,13 +12,13 @@ public class SQLRetrieveInfo {
 	}
 	
 	// Returns array of strings for given Client Id
-	public Object[] getRows(int id){
+	public Object[] getRows(int rowNum, int numRows){
 		Object[] results = new Object[2];
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
 
-		String query = "SELECT * FROM Client_Record WHERE C_ID=" + id;
+		String query = "SELECT * FROM Client_Record limit " + rowNum + "," + numRows;  
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
