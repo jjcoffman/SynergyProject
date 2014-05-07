@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class SQLConnection {
   //static reference to itself
   private static SQLConnection instance = new SQLConnection();
-  private static String URL = "jdbc:mysql://localhost/synergy";
+  private static String URL = "jdbc:mysql://localhost/newDB";
   private static final String USER = "root";
   private static final String PASSWORD = "T01RMA72";
   private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 

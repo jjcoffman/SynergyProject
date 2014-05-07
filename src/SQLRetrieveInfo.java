@@ -56,7 +56,7 @@ public class SQLRetrieveInfo {
 			while (rs.next()) {
 				results[1] = (rs.getString("C_PrimPhone"));
 				results[0] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
-				results[2] = (rs.getString("C_AdmitDate"));
+				results[2] = (rs.getString("C_IntakeDate"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
