@@ -15,9 +15,11 @@ public class ExistingClient
 
 	private JPanel panel;
 	private JTable table;
-	private DefaultTableModel existing;
 	private JTable groupTable;
 	private JTable IndividualTable;
+	private MyTableModel existing;
+
+	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
 	
 	
@@ -77,20 +79,11 @@ public class ExistingClient
 		
 		Object[][] data = getExisting();
 		String[] columnNames = {"Client ID","Client Name"};
-		existing = new DefaultTableModel(data, columnNames);
+		//existing = new DefaultTableModel(data, columnNames);
+		existing = new MyTableModel(data, columnNames);
 		table = new JTable(existing);
-		table.getModel().addTableModelListener(new TableModelListener() {
-
-		      public void tableChanged(TableModelEvent e) {
-		    	  // your code goes here;
-		    	  table.invalidate();
-		    	  Object[][] data = getExisting();
-		    	  String[] columnNames = {"Client ID","Client Name"};
-		    	  existing = new DefaultTableModel(data, columnNames);
-		    	  table.repaint();
-		    	  System.out.println("changed");
-		      }
-		    });
+		table.getModel().addTableModelListener(table);
+		//table = new JTable(existing);
 		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
@@ -198,7 +191,10 @@ public class ExistingClient
 			{
 				//Execute when button is pressed
 				System.out.println("You clicked the button");
-				existing.fireTableDataChanged();
+				//String test = "Changed!";
+				//existing.setValueAt(test, 1, 1);
+				Object[][] data = getExisting();
+				existing.update(data);
 				}
 		});
 		btnRefresh.setBounds(240, 480, 160, 29);
