@@ -83,12 +83,13 @@ public class ExistingClient
 		existing = new MyTableModel(data, columnNames);
 		table = new JTable(existing);
 		table.getModel().addTableModelListener(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		//table = new JTable(existing);
 		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
-		table.getColumnModel().getColumn(0).setWidth(10);
-		table.getColumnModel().getColumn(1).setWidth(40);
+		table.getColumnModel().getColumn(0).setMinWidth(60);
+		table.getColumnModel().getColumn(1).setMinWidth(320);
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(20, 50, 380, 420);
 		sp.setVisible(true);
@@ -189,10 +190,6 @@ public class ExistingClient
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				//Execute when button is pressed
-				System.out.println("You clicked the button");
-				//String test = "Changed!";
-				//existing.setValueAt(test, 1, 1);
 				Object[][] data = getExisting();
 				existing.update(data);
 				}
