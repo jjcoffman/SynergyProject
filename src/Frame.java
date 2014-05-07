@@ -25,14 +25,14 @@ public class Frame extends JFrame
 		text.setBounds(0, 80, 120, -80);
 		JLabel label = new JLabel("");
 		label.setBounds(0, 0, 120, 80);
-		label.setIcon(new ImageIcon("img/westSlopeImagesmall.jpg"));
+		label.setIcon(new ImageIcon(getClass().getResource("westSlopeImagesmall.jpg")));
 		frame.getContentPane().add(label);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, Color.BLACK, Color.LIGHT_GRAY));
 		lblNewLabel.setRequestFocusEnabled(false);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("img/WestSlopeBanner.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("WestSlopeBanner.jpg")));
 		lblNewLabel.setBounds(120, 0, 904, 80);
 		frame.getContentPane().add(lblNewLabel);
 		

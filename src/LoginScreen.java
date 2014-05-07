@@ -58,7 +58,7 @@ public class LoginScreen extends JFrame implements ActionListener
 		lblNewLabel.setFocusable(false);
 		lblNewLabel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		lblNewLabel.setRequestFocusEnabled(false);
-		lblNewLabel.setIcon(new ImageIcon("img/westSlopeImage.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getResource("westSlopeImage.jpg")));
 		lblNewLabel.setBounds(40, 75, 319, 198);
 		WelcomeScreen.getContentPane().add(lblNewLabel);
 		
