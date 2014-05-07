@@ -82,8 +82,11 @@ public class Intake implements ActionListener
 	private JTable table;
 	private MyTableModel model;
 	private JTextComponent txtName;
-	private JTextField txtSubs;
-	private JTextField txtDateLastUsed;
+	private JTextField txtSubs1;
+	private JTextField txtSubsDate1;
+	private JTextField txtSubsFreq1;
+	private JTextField txtsubsAmount1;
+	private JTextField txtSubsMeth1;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -686,17 +689,40 @@ public class Intake implements ActionListener
 		lblPhone.setBounds(510, 600, 135, 16);
 		Intake.add(lblPhone);
 		
-		txtSubs = new JTextField();
-		txtSubs.setText("Subs1");
-		txtSubs.setBounds(20, 751, 134, 28);
-		Intake.add(txtSubs);
-		txtSubs.setColumns(10);
+		txtSubs1 = new JTextField();
+		txtSubs1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtSubs1.setText("Subs1");
+		txtSubs1.setBounds(20, 751, 125, 28);
+		Intake.add(txtSubs1);
+		txtSubs1.setColumns(10);
 		
-		txtDateLastUsed = new JTextField();
-		txtDateLastUsed.setText("Date Last Used");
-		txtDateLastUsed.setBounds(156, 751, 134, 28);
-		Intake.add(txtDateLastUsed);
-		txtDateLastUsed.setColumns(10);
+		txtSubsDate1 = new JTextField();
+		txtSubsDate1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtSubsDate1.setText("Date Last Used");
+		txtSubsDate1.setBounds(145, 751, 125, 28);
+		Intake.add(txtSubsDate1);
+		txtSubsDate1.setColumns(10);
+		
+		txtSubsFreq1 = new JTextField();
+		txtSubsFreq1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtSubsFreq1.setText("Frequency");
+		txtSubsFreq1.setBounds(270, 751, 125, 28);
+		Intake.add(txtSubsFreq1);
+		txtSubsFreq1.setColumns(10);
+		
+		txtsubsAmount1 = new JTextField();
+		txtsubsAmount1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtsubsAmount1.setText("Amount of Use");
+		txtsubsAmount1.setBounds(395, 751, 125, 28);
+		Intake.add(txtsubsAmount1);
+		txtsubsAmount1.setColumns(10);
+		
+		txtSubsMeth1 = new JTextField();
+		txtSubsMeth1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtSubsMeth1.setText("Method");
+		txtSubsMeth1.setBounds(520, 751, 125, 28);
+		Intake.add(txtSubsMeth1);
+		txtSubsMeth1.setColumns(10);
 		Intake.setVisible(true);
 	}
 	
