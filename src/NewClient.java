@@ -84,7 +84,7 @@ public class NewClient
 		}
 		catch(NullPointerException e) {
 			System.out.println("No database connected!");
-			Object[][] data = {{"No database", "Connected"}};
+			Object[][] data = {{"No data", "base", "Connected"}};
 			return data;
 		}
 	}
