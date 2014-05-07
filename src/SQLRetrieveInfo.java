@@ -23,10 +23,40 @@ public class SQLRetrieveInfo {
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-			
 			while (rs.next()) {
 				results[0] = (rs.getInt("C_ID"));
 				results[1] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
+	
+	public Object[] getPendingRows(int rowNum, int numRows){
+		Object[] results = new Object[3];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Phone_Intake limit " + rowNum + "," + numRows;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				results[1] = (rs.getInt("C_PrimPhone"));
+				results[0] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+				results[2] = (rs.getString("C_AdmitDate"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

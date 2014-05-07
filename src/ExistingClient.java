@@ -76,7 +76,6 @@ public class ExistingClient
 		lblClientPhone.setBounds(420, 100, 140, 16);
 		panel.add(lblClientPhone);
 		
-		
 		Object[][] data = getExisting();
 		String[] columnNames = {"Client ID","Client Name"};
 		//existing = new DefaultTableModel(data, columnNames);
@@ -217,7 +216,7 @@ public class ExistingClient
 	}
 
 	//This will fill the object array with the data from the the existing users
-	private Object[][] getExisting() 
+	private Object[][] getExisting()
 	{
 		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
 		//return data;
