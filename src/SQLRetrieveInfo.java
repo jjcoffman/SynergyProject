@@ -73,6 +73,43 @@ public class SQLRetrieveInfo {
 		return results;
 	}
 	
+	public Object[] getUSERSRows(int rowNum, int numRows){
+		Object[] results = new Object[4];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM USERS limit " + rowNum + "," + numRows;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				results[0] = "default";
+				results[1] = (rs.getString("USER_FNAME"));
+				results[2] = (rs.getString("USER_LNAME"));
+				String access = rs.getString("ADMIN_ACCESS");
+				if (access.equals("1")){
+					results[3] = "yes";
+				}
+				else
+				results[3] = "no";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
+	
 	// Returns number of rows in given database
 	public int getSize(String s) {
 		int result = 0;

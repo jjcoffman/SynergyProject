@@ -16,6 +16,8 @@ public class Admin
 {
 	private JPanel Admin;
 	
+	SQLRetrieveInfo test = new SQLRetrieveInfo();
+	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL 
 	/**							
 	 * @wbp.parser.entryPoint
@@ -31,7 +33,7 @@ public class Admin
 		Admin.add(tabbedPane);
 		
 		JPanel ManageUsers = new JPanel();
-		Object[][] data = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
+		Object[][] data = getUsers();//{{1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
 		String[] columnNames = {"ID #", "First Name", "Last Name", "Admin Access"};
 		ManageUsers.setLayout(null);
 		JTable table = new JTable(data, columnNames);
@@ -217,6 +219,26 @@ public class Admin
 	{
 		Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
 		return data;
+	}
+	private Object[][] getUsers()
+	{
+		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		//return data;
+		try {
+			int size = test.getSize("USERS");
+		
+		Object[][] data = new Object[size][4];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test.getUSERSRows(i - 1, 1);
+		}
+		System.out.println("rows in USERS: " + test.getSize("USERS"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No", "data", "base", "Connected"}};
+			return data;
+		}
 	}
 }
 
