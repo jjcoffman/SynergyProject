@@ -99,7 +99,7 @@ public class MainWindow
 			public void mouseClicked(MouseEvent e) 
 			{ cl.show(card, "2");}								//this shows the card based on user selection
 		});
-		btnExisting.setBounds(6, 144, 110, 73);
+		btnExisting.setBounds(5, 145, 110, 70);
 		menu_1.add(btnExisting);
 		
 		btnLogs = new JButton("Logs");
@@ -109,7 +109,7 @@ public class MainWindow
 			public void mouseClicked(MouseEvent e) 
 			{cl.show(card, "3");}
 		});
-		btnLogs.setBounds(6, 229, 110, 73);
+		btnLogs.setBounds(5, 230, 110, 70);
 		menu_1.add(btnLogs);
 		
 		btnIntake = new JButton("New");
@@ -120,7 +120,7 @@ public class MainWindow
 			public void mouseClicked(MouseEvent e) 
 			{cl.show(card, "1");}								//this shows the card based on user selection
 		});
-		btnIntake.setBounds(6, 59, 110, 73);
+		btnIntake.setBounds(5, 60, 110, 70);
 		menu_1.add(btnIntake);
 		
 		btnArchive = new JButton("Admin");
@@ -129,7 +129,7 @@ public class MainWindow
 			public void mouseClicked(MouseEvent e) 
 			{cl.show(card, "4");}
 		});
-		btnArchive.setBounds(6, 314, 110, 73);
+		btnArchive.setBounds(5, 315, 110, 70);
 		menu_1.add(btnArchive);
 		
 		btnExit = new JButton("Logout");
@@ -137,13 +137,13 @@ public class MainWindow
 		btnExit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {System.exit(0);}//this exits the program
 		});
-		btnExit.setBounds(6, 484, 110, 73);
+		btnExit.setBounds(5, 485, 110, 70);
 		menu_1.add(btnExit);
 		JLabel lblMenu = new JLabel("MENU");
 		lblMenu.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenu.setBounds(30, 31, 59, 16);
+		lblMenu.setBounds(0, 30, 120, 16);
 		menu_1.add(lblMenu);
 		panel.add(menu_1);
 		menu_1.setLocation(0, 80);
@@ -154,7 +154,7 @@ public class MainWindow
 			{cl.show(card, "5");}
 		});
 		btnPreferences.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnPreferences.setBounds(6, 399, 110, 73);
+		btnPreferences.setBounds(5, 400, 110, 70);
 		menu_1.add(btnPreferences);
 
 	
