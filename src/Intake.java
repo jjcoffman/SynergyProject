@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.JTextComponent;
+
 import java.awt.Component;
 
 
@@ -20,15 +24,14 @@ public class Intake implements ActionListener
 	private JTextField txtCity;
 	private JTextField txtState;
 	private JTextField txtCounty;
-	private JTextField txtName;
-	private JTextField txtAddress_1;
-	private JTextField txtCity_1;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txtEmergencyAddress;
+	private JTextField txtEmergencyCity;
+	private JTextField txtZip;
+	private JTextField textRelationship;
+	private JTextField textEmergencyPhone;
+	private JTextField txtEmergencySecondary;
+	private JTextField textEmergencyState;
+	private JTextField textEmergencyZip;
 	private JTextField txtAgencyName;
 	private JTextField txtAgencyContact;
 	private JTextField txtCounty_1;
@@ -62,7 +65,6 @@ public class Intake implements ActionListener
 	private JLabel lblNewLabel;
 	private JButton btnExit;
 	private JButton btnSubmit;
-	private JButton btnAddSubstances;
 	private JLabel lblCity;
 	private JLabel lblState;
 	private JLabel lblZipCode;
@@ -75,6 +77,13 @@ public class Intake implements ActionListener
 	private JLabel lblDlState;
 	private JLabel lblMaritalStatus;
 	private JLabel lblSpouseName;
+	private JTextField textField;
+	private JLabel lblSecondaryPhone_1;
+	private JTable table;
+	private MyTableModel model;
+	private JTextComponent txtName;
+	private JTextField txtSubs;
+	private JTextField txtDateLastUsed;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -86,11 +95,11 @@ public class Intake implements ActionListener
 		
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(this);
-		btnExit.setBounds(229, 764, 75, 29);
+		btnExit.setBounds(234, 870, 75, 29);
 		
 		btnSubmit = new JButton("Continue");
 		btnSubmit.addActionListener(this);
-		btnSubmit.setBounds(334, 764, 101, 29);
+		btnSubmit.setBounds(339, 870, 101, 29);
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -145,101 +154,100 @@ public class Intake implements ActionListener
 		txtCounty.setText("Sacramento");
 		txtCounty.setColumns(10);
 		
-		txtName = new JTextField();
-		txtName.setBounds(6, 288, 240, 28);
-		txtName.setText("Name");
-		txtName.setColumns(10);
-		
 		JLabel lblEmergencyContact = new JLabel("EMERGENCY CONTACT");
-		lblEmergencyContact.setBounds(261, 266, 143, 16);
+		lblEmergencyContact.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEmergencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblEmergencyContact.setBounds(0, 270, 665, 16);
 		
-		txtAddress_1 = new JTextField();
-		txtAddress_1.setBounds(6, 328, 183, 28);
-		txtAddress_1.setText("Address");
-		txtAddress_1.setColumns(10);
+		txtEmergencyAddress = new JTextField();
+		txtEmergencyAddress.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtEmergencyAddress.setBounds(20, 358, 280, 28);
+		txtEmergencyAddress.setColumns(10);
 		
-		txtCity_1 = new JTextField();
-		txtCity_1.setBounds(198, 324, 134, 28);
-		txtCity_1.setText("City");
-		txtCity_1.setColumns(10);
+		txtEmergencyCity = new JTextField();
+		txtEmergencyCity.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtEmergencyCity.setBounds(310, 358, 160, 28);
+		txtEmergencyCity.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
-		textField.setBounds(570, 130, 75, 28);
-		textField.setText("95819");
-		textField.setColumns(10);
+		txtZip = new JTextField();
+		txtZip.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtZip.setBounds(570, 130, 75, 28);
+		txtZip.setText("95819");
+		txtZip.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(258, 288, 213, 28);
-		textField_1.setText("Relationship");
-		textField_1.setColumns(10);
+		textRelationship = new JTextField();
+		textRelationship.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textRelationship.setBounds(230, 308, 150, 28);
+		textRelationship.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(476, 288, 164, 28);
-		textField_2.setText("Primary Phone");
-		textField_2.setColumns(10);
+		textEmergencyPhone = new JTextField();
+		textEmergencyPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textEmergencyPhone.setBounds(385, 308, 125, 28);
+		textEmergencyPhone.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(476, 324, 164, 28);
-		textField_3.setText("Secondary Phone");
-		textField_3.setColumns(10);
+		txtEmergencySecondary = new JTextField();
+		txtEmergencySecondary.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtEmergencySecondary.setBounds(520, 308, 125, 28);
+		txtEmergencySecondary.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(337, 324, 51, 28);
-		textField_4.setText("State");
-		textField_4.setColumns(10);
+		textEmergencyState = new JTextField();
+		textEmergencyState.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textEmergencyState.setBounds(480, 358, 80, 28);
+		textEmergencyState.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(399, 324, 72, 28);
-		textField_5.setText("Zip Code");
-		textField_5.setColumns(10);
+		textEmergencyZip = new JTextField();
+		textEmergencyZip.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textEmergencyZip.setBounds(570, 358, 75, 28);
+		textEmergencyZip.setColumns(10);
 		
 		JLabel lblAgencyrelationshipcoordinator = new JLabel("AGENCY/RELATIONSHIP/COORDINATOR");
-		lblAgencyrelationshipcoordinator.setBounds(206, 364, 253, 16);
+		lblAgencyrelationshipcoordinator.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAgencyrelationshipcoordinator.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAgencyrelationshipcoordinator.setBounds(0, 398, 665, 16);
 		
 		txtAgencyName = new JTextField();
-		txtAgencyName.setBounds(6, 381, 183, 28);
-		txtAgencyName.setText("Agency Name");
+		txtAgencyName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAgencyName.setBounds(20, 446, 200, 28);
 		txtAgencyName.setColumns(10);
 		
 		txtAgencyContact = new JTextField();
-		txtAgencyContact.setBounds(198, 381, 134, 28);
-		txtAgencyContact.setText("Agency Contact");
+		txtAgencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAgencyContact.setBounds(230, 446, 130, 28);
 		txtAgencyContact.setColumns(10);
 		
 		txtCounty_1 = new JTextField();
-		txtCounty_1.setBounds(337, 381, 134, 28);
-		txtCounty_1.setText("County");
+		txtCounty_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtCounty_1.setBounds(370, 446, 130, 28);
 		txtCounty_1.setColumns(10);
 		
 		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setBounds(476, 381, 164, 28);
-		txtPhoneNumber.setText("Phone Number");
+		txtPhoneNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtPhoneNumber.setBounds(510, 447, 135, 28);
 		txtPhoneNumber.setColumns(10);
 		
 		txtAddress_2 = new JTextField();
-		txtAddress_2.setBounds(6, 421, 183, 28);
-		txtAddress_2.setText("Address");
+		txtAddress_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAddress_2.setBounds(20, 498, 180, 28);
 		txtAddress_2.setColumns(10);
 		
 		txtCity_2 = new JTextField();
-		txtCity_2.setBounds(198, 421, 134, 28);
-		txtCity_2.setText("City");
+		txtCity_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtCity_2.setBounds(210, 498, 130, 28);
 		txtCity_2.setColumns(10);
 		
 		txtState_1 = new JTextField();
-		txtState_1.setBounds(337, 421, 55, 28);
-		txtState_1.setText("State");
+		txtState_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtState_1.setBounds(350, 498, 60, 28);
 		txtState_1.setColumns(10);
 		
 		txtZipCode = new JTextField();
-		txtZipCode.setBounds(396, 421, 75, 28);
-		txtZipCode.setText("zip code");
+		txtZipCode.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtZipCode.setBounds(420, 499, 80, 28);
 		txtZipCode.setColumns(10);
 		
 		txtCellPhone = new JTextField();
-		txtCellPhone.setBounds(476, 421, 164, 28);
-		txtCellPhone.setText("Cell Phone");
+		txtCellPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtCellPhone.setBounds(510, 499, 135, 28);
 		txtCellPhone.setColumns(10);
 		
 		JLabel lblPatientInformation = new JLabel("CLIENT INFORMATION");
@@ -293,76 +301,86 @@ public class Intake implements ActionListener
 		txtName_1.setColumns(10);
 		
 		JCheckBox chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
-		chckbxJailprobationInLast.setBounds(6, 481, 219, 23);
+		chckbxJailprobationInLast.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxJailprobationInLast.setBounds(20, 566, 240, 23);
 		
 		lblLegalInformation = new JLabel("LEGAL INFORMATION");
-		lblLegalInformation.setBounds(265, 461, 134, 16);
+		lblLegalInformation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLegalInformation.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblLegalInformation.setBounds(0, 538, 665, 16);
 		
 		chckbxOnProbation = new JCheckBox("On Probation?");
-		chckbxOnProbation.setBounds(231, 481, 119, 23);
+		chckbxOnProbation.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxOnProbation.setBounds(260, 566, 135, 23);
 		
 		txtWhy = new JTextField();
-		txtWhy.setBounds(356, 479, 284, 28);
+		txtWhy.setBounds(400, 566, 245, 28);
 		txtWhy.setText("Why:");
 		txtWhy.setColumns(10);
 		
 		txtNameOfOfficer = new JTextField();
-		txtNameOfOfficer.setBounds(6, 519, 134, 28);
-		txtNameOfOfficer.setText("Name of Officer");
+		txtNameOfOfficer.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtNameOfOfficer.setBounds(20, 620, 130, 28);
 		txtNameOfOfficer.setColumns(10);
 		
 		txtAddress_3 = new JTextField();
-		txtAddress_3.setBounds(146, 519, 336, 28);
-		txtAddress_3.setText("Address");
+		txtAddress_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtAddress_3.setBounds(160, 620, 340, 28);
 		txtAddress_3.setColumns(10);
 		
 		txtPhone = new JTextField();
-		txtPhone.setBounds(494, 519, 146, 28);
-		txtPhone.setText("Phone");
+		txtPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtPhone.setBounds(510, 620, 135, 28);
 		txtPhone.setColumns(10);
 		
 		lblPhysicalAndMental = new JLabel("PHYSICAL AND MENTAL HEALTH");
-		lblPhysicalAndMental.setBounds(230, 553, 205, 16);
+		lblPhysicalAndMental.setBounds(235, 660, 205, 16);
 		
 		chckbxPhysicalHospitalizationIn = new JCheckBox("Physical Hospitalization in last 30 days?");
-		chckbxPhysicalHospitalizationIn.setBounds(6, 575, 284, 23);
+		chckbxPhysicalHospitalizationIn.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxPhysicalHospitalizationIn.setBounds(20, 688, 300, 23);
 		
 		chckbxMentalHospitalizationIn = new JCheckBox("Mental Hospitalization in last 30 days?");
-		chckbxMentalHospitalizationIn.setBounds(6, 610, 284, 23);
+		chckbxMentalHospitalizationIn.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxMentalHospitalizationIn.setBounds(20, 716, 290, 23);
+		
+		
+		
+		
+		
+		
 		
 		txtWhy_1 = new JTextField();
-		txtWhy_1.setBounds(296, 573, 344, 28);
-		txtWhy_1.setText("Why");
+		txtWhy_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtWhy_1.setBounds(320, 688, 325, 28);
+		txtWhy_1.setText("Why:");
 		txtWhy_1.setColumns(10);
 		
 		txtWhy_2 = new JTextField();
-		txtWhy_2.setBounds(293, 608, 347, 28);
-		txtWhy_2.setText("Why?");
+		txtWhy_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtWhy_2.setBounds(320, 714, 325, 28);
+		txtWhy_2.setText("Why:");
 		txtWhy_2.setColumns(10);
 		
-		btnAddSubstances = new JButton("ADD SUBSTANCES");
-		btnAddSubstances.setBounds(253, 639, 157, 29);
-		btnAddSubstances.addActionListener(this);
-		
 		JCheckBox chckbxIvUsedIn = new JCheckBox("IV used in last 12 months");
-		chckbxIvUsedIn.setBounds(6, 673, 197, 23);
+		chckbxIvUsedIn.setBounds(11, 779, 197, 23);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Prior treatment Plans");
-		chckbxNewCheckBox.setBounds(205, 673, 162, 23);
+		chckbxNewCheckBox.setBounds(210, 779, 162, 23);
 		
 		txtHowMany = new JTextField();
-		txtHowMany.setBounds(374, 671, 266, 28);
+		txtHowMany.setBounds(379, 777, 266, 28);
 		txtHowMany.setText("How Many");
 		txtHowMany.setColumns(10);
 		
 		txtWhereAndWhen = new JTextField();
-		txtWhereAndWhen.setBounds(6, 703, 634, 28);
+		txtWhereAndWhen.setBounds(11, 809, 634, 28);
 		txtWhereAndWhen.setHorizontalAlignment(SwingConstants.LEFT);
 		txtWhereAndWhen.setText("Where and When");
 		txtWhereAndWhen.setColumns(10);
 		
 		JLabel lblCompleteAsamBefore = new JLabel("COMPLETE ASAM BEFORE CONTINUING!!!");
-		lblCompleteAsamBefore.setBounds(205, 736, 255, 16);
+		lblCompleteAsamBefore.setBounds(210, 842, 255, 16);
 		Intake.setLayout(null);
 		Intake.add(txtAddress);
 		Intake.add(txtFirstName);
@@ -376,7 +394,7 @@ public class Intake implements ActionListener
 		Intake.add(txtVet);
 		Intake.add(txtSecondaryPhone);
 		Intake.add(txtState);
-		Intake.add(textField);
+		Intake.add(txtZip);
 		Intake.add(txtAddress_2);
 		Intake.add(txtCity_2);
 		Intake.add(txtState_1);
@@ -389,13 +407,11 @@ public class Intake implements ActionListener
 		Intake.add(txtDlState);
 		Intake.add(txtMaritalStatus);
 		Intake.add(txtName_1);
-		Intake.add(txtName);
-		Intake.add(textField_1);
-		Intake.add(textField_2);
+		Intake.add(textRelationship);
+		Intake.add(textEmergencyPhone);
 		Intake.add(lblEmergencyContact);
 		Intake.add(btnSubmit);
 		Intake.add(lblCompleteAsamBefore);
-		Intake.add(btnAddSubstances);
 		Intake.add(lblPhysicalAndMental);
 		Intake.add(txtNameOfOfficer);
 		Intake.add(txtAddress_3);
@@ -417,11 +433,11 @@ public class Intake implements ActionListener
 		Intake.add(txtCounty_1);
 		Intake.add(txtPhoneNumber);
 		Intake.add(lblAgencyrelationshipcoordinator);
-		Intake.add(txtAddress_1);
-		Intake.add(txtCity_1);
-		Intake.add(textField_4);
-		Intake.add(textField_5);
-		Intake.add(textField_3);
+		Intake.add(txtEmergencyAddress);
+		Intake.add(txtEmergencyCity);
+		Intake.add(textEmergencyState);
+		Intake.add(textEmergencyZip);
+		Intake.add(txtEmergencySecondary);
 		
 		lblNewLabel = new JLabel("WEST SLOPE RECOVERY NEW CLIENT INTAKE");
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.LEADING);
@@ -543,9 +559,148 @@ public class Intake implements ActionListener
 		lblSpouseName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblSpouseName.setBounds(500, 210, 145, 20);
 		Intake.add(lblSpouseName);
+		
+		JLabel lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblName.setBounds(20, 288, 200, 20);
+		Intake.add(lblName);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField.setColumns(10);
+		textField.setBounds(20, 308, 200, 28);
+		Intake.add(textField);
+		
+		JLabel lblRelationship = new JLabel("Relationship");
+		lblRelationship.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblRelationship.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRelationship.setBounds(230, 288, 150, 16);
+		Intake.add(lblRelationship);
+		
+		JLabel lblPrimaryPhone = new JLabel("Primary Phone");
+		lblPrimaryPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblPrimaryPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrimaryPhone.setBounds(385, 288, 110, 16);
+		Intake.add(lblPrimaryPhone);
+		
+		JLabel lblAddress_1 = new JLabel("Address");
+		lblAddress_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAddress_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddress_1.setBounds(20, 338, 280, 16);
+		Intake.add(lblAddress_1);
+		
+		JLabel lblCity1 = new JLabel("City");
+		lblCity1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCity1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCity1.setBounds(309, 338, 161, 16);
+		Intake.add(lblCity1);
+		
+		JLabel lblState_1 = new JLabel("State");
+		lblState_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblState_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblState_1.setBounds(480, 338, 80, 16);
+		Intake.add(lblState_1);
+		
+		JLabel lblZipCode_1 = new JLabel("Zip Code");
+		lblZipCode_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZipCode_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblZipCode_1.setBounds(570, 338, 75, 16);
+		Intake.add(lblZipCode_1);
+		
+		lblSecondaryPhone_1 = new JLabel("Secondary Phone");
+		lblSecondaryPhone_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSecondaryPhone_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSecondaryPhone_1.setBounds(520, 291, 125, 16);
+		Intake.add(lblSecondaryPhone_1);
+		
+		JLabel lblAgencyName = new JLabel("Agency Name");
+		lblAgencyName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAgencyName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAgencyName.setBounds(20, 426, 200, 16);
+		Intake.add(lblAgencyName);
+		
+		JLabel lblAgencyContact = new JLabel("Agency Contact");
+		lblAgencyContact.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAgencyContact.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAgencyContact.setBounds(230, 426, 130, 16);
+		Intake.add(lblAgencyContact);
+		
+		JLabel lblAgencyCounty = new JLabel("AgencyCounty");
+		lblAgencyCounty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAgencyCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAgencyCounty.setBounds(370, 427, 130, 16);
+		Intake.add(lblAgencyCounty);
+		
+		JLabel lblPhoneNumber_1 = new JLabel("Phone Number");
+		lblPhoneNumber_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPhoneNumber_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblPhoneNumber_1.setBounds(510, 427, 135, 16);
+		Intake.add(lblPhoneNumber_1);
+		
+		JLabel lblAddress_2 = new JLabel("Address");
+		lblAddress_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddress_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAddress_2.setBounds(20, 480, 180, 16);
+		Intake.add(lblAddress_2);
+		
+		JLabel lblCity_1 = new JLabel("City");
+		lblCity_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCity_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCity_1.setBounds(210, 480, 130, 16);
+		Intake.add(lblCity_1);
+		
+		JLabel lblState_2 = new JLabel("State");
+		lblState_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblState_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblState_2.setBounds(350, 481, 60, 16);
+		Intake.add(lblState_2);
+		
+		JLabel lblZipCode_2 = new JLabel("Zip Code");
+		lblZipCode_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZipCode_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblZipCode_2.setBounds(420, 481, 75, 16);
+		Intake.add(lblZipCode_2);
+		
+		JLabel lblCellPhone = new JLabel("Cell Phone");
+		lblCellPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCellPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCellPhone.setBounds(510, 481, 135, 16);
+		Intake.add(lblCellPhone);
+		
+		JLabel lblNameOfOfficer = new JLabel("Name of Officer");
+		lblNameOfOfficer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameOfOfficer.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNameOfOfficer.setBounds(20, 600, 130, 16);
+		Intake.add(lblNameOfOfficer);
+		
+		JLabel lblAddress_3 = new JLabel("Address");
+		lblAddress_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAddress_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAddress_3.setBounds(159, 600, 340, 16);
+		Intake.add(lblAddress_3);
+		
+		JLabel lblPhone = new JLabel("Phone");
+		lblPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblPhone.setBounds(510, 600, 135, 16);
+		Intake.add(lblPhone);
+		
+		txtSubs = new JTextField();
+		txtSubs.setText("Subs1");
+		txtSubs.setBounds(20, 751, 134, 28);
+		Intake.add(txtSubs);
+		txtSubs.setColumns(10);
+		
+		txtDateLastUsed = new JTextField();
+		txtDateLastUsed.setText("Date Last Used");
+		txtDateLastUsed.setBounds(156, 751, 134, 28);
+		Intake.add(txtDateLastUsed);
+		txtDateLastUsed.setColumns(10);
 		Intake.setVisible(true);
 	}
 	
+
 	public JComponent getPanel()
 	{
 		return Intake;
@@ -563,10 +718,129 @@ public class Intake implements ActionListener
 			
 			new Admin();
 		}
-		if(e.getSource()==btnAddSubstances)
+		
+	}
+	
+	private boolean validateInput()
+	{
+		boolean valid = true;
+		
+		if(!txtDateOfBirth.getText().matches("\\d{4}-\\d{2}-\\d{2}") && valid == true)
 		{
-			new SubstanceIntake();
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format YYYY-MM-DD");
+		}
+		if(!txtFirstName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The First Name must have letters only");
+			
+		}
+		if(!txtLastName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Last Name must have letters only");
+			
+		}
+		if(!txtAge.getText().matches("[0-9]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The clients age must have numbers only");
+		}
+		if(!txtVet.getText().matches("[ynYN]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Vet must be a Y or N");
 		}
 		
+		//not checking address due to high variation in input
+		
+		if(!txtCity.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The City must have letters only");
+		}
+		if(!txtState.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The State must have letters only");
+		}
+		if(!txtCounty.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The County must have letters only");
+		}
+		if(!txtName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact Name must have letters only");
+		}
+		
+		//not checking emergency address due to high variation in input
+		
+		if(!txtEmergencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact City must have letters only");
+		}
+		if(!txtZip.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Zip Code must have 5 numbers only");
+		}
+		if(!textEmergencyState.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact State must have letters only");
+		}
+		if(!textEmergencyZip.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact zip must have 5 numbers only");
+		}
+		if(!txtPhoneNumber.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtState_1.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact State must have letters only");
+		}
+		if(!txtCity_2.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact city must have letters only");
+		}
+		if(!txtPhoneNumber.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtZipCode.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Zip Code must have 5 numbers only");
+		}
+		if(!txtCellPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact Cell Phone must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtPhoneNumber_1.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Probation Contact number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		
+
+		
+		return valid;
 	}
 }
