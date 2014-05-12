@@ -1,23 +1,40 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-import java.awt.Font;
 
+import javax.swing.*;
+
+import java.awt.Font;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class AddIndividualNote extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JFrame IndividualNotes;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtT;
 	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtHhmm;
 	private JButton btnSubmit;
 	private JButton btnCancel;
 	private JTextField textField_6;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
 	public AddIndividualNote()
 	{
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YY");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+		Calendar c = Calendar.getInstance();
+		c.setFirstDayOfWeek(Calendar.MONDAY);
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		Date mon = c.getTime();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		Date sun = c.getTime();
+		System.out.println("Date " + dateFormat.format(mon));
 		IndividualNotes = new JFrame("Patient Notes");
 		IndividualNotes.setTitle("Add Client Note");
 		IndividualNotes.getContentPane().setLayout(null);
@@ -57,31 +74,35 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		
 		JLabel lblTo = new JLabel("To:");
 		lblTo.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblTo.setBounds(600, 50, 30, 28);
+		lblTo.setBounds(610, 50, 30, 28);
 		IndividualNotes.getContentPane().add(lblTo);
 		
 		textField = new JTextField();
-		textField.setText("00/00/00");
+		textField.setText(dateFormat.format(mon));
 		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textField.setBounds(80, 50, 80, 28);
 		IndividualNotes.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(210, 50, 80, 28);
-		IndividualNotes.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		txtT = new JTextField();
+		txtT.setText(dateFormat.format(sun));
+		txtT.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtT.setBounds(210, 50, 80, 28);
+		IndividualNotes.getContentPane().add(txtT);
+		txtT.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textField_2.setBounds(360, 50, 80, 28);
 		IndividualNotes.getContentPane().add(textField_2);
+		textField_2.setText(dateFormat.format(date));
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("12:43");
-		textField_3.setBounds(490, 50, 50, 28);
-		IndividualNotes.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		txtHhmm = new JTextField();
+		txtHhmm.setText("HH:MM");
+		txtHhmm.setBounds(490, 50, 60, 28);
+		IndividualNotes.getContentPane().add(txtHhmm);
+		txtHhmm.setColumns(10);
 		
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -95,31 +116,11 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		btnCancel.addActionListener(this);
 		IndividualNotes.getContentPane().add(btnCancel);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("AM");
-		chckbxNewCheckBox.setFont(new Font("Verdana", Font.PLAIN, 13));
-		chckbxNewCheckBox.setBounds(540, 40, 60, 20);
-		IndividualNotes.getContentPane().add(chckbxNewCheckBox);
-		
-		JCheckBox chckbxPm = new JCheckBox("PM");
-		chckbxPm.setFont(new Font("Verdana", Font.PLAIN, 13));
-		chckbxPm.setBounds(540, 60, 60, 20);
-		IndividualNotes.getContentPane().add(chckbxPm);
-		
 		textField_6 = new JTextField();
-		textField_6.setText("12:43");
+		textField_6.setText("HH:MM");
 		textField_6.setColumns(10);
-		textField_6.setBounds(630, 50, 50, 28);
+		textField_6.setBounds(640, 50, 60, 28);
 		IndividualNotes.getContentPane().add(textField_6);
-		
-		JCheckBox checkBox = new JCheckBox("PM");
-		checkBox.setFont(new Font("Verdana", Font.PLAIN, 13));
-		checkBox.setBounds(680, 60, 60, 20);
-		IndividualNotes.getContentPane().add(checkBox);
-		
-		JCheckBox checkBox_1 = new JCheckBox("AM");
-		checkBox_1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		checkBox_1.setBounds(680, 40, 60, 20);
-		IndividualNotes.getContentPane().add(checkBox_1);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -127,7 +128,27 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		textArea.setLineWrap(true);
 		textArea.setBounds(20, 90, 720, 360);
 		IndividualNotes.getContentPane().add(textArea);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("AM");
+		rdbtnNewRadioButton.setBounds(550, 40, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnNewRadioButton);
+		buttonGroup.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnPm = new JRadioButton("PM");
+		rdbtnPm.setBounds(550, 60, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnPm);
+		buttonGroup.add(rdbtnPm);
+		
+		JRadioButton radioButton = new JRadioButton("AM");
+		radioButton.setBounds(700, 40, 60, 20);
+		IndividualNotes.getContentPane().add(radioButton);
+		buttonGroup_1.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("PM");
+		radioButton_1.setBounds(700, 60, 60, 20);
+		IndividualNotes.getContentPane().add(radioButton_1);
 		IndividualNotes.setVisible(true);
+		buttonGroup_1.add(radioButton_1);
 		
 	}
 
