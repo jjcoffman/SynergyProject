@@ -21,7 +21,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		IndividualNotes = new JFrame("Patient Notes");
 		IndividualNotes.setTitle("Add Client Note");
 		IndividualNotes.getContentPane().setLayout(null);
-		IndividualNotes.setSize(760, 520);
+		IndividualNotes.setSize(760, 540);
 		IndividualNotes.setLocationRelativeTo(null);
 		IndividualNotes.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
