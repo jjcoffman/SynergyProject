@@ -49,7 +49,10 @@ public class NewClient
 		JButton btnNewPhoneInterview = new JButton("New Phone Interview");
 		btnNewPhoneInterview.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new IntakeForm();}
+			
+			 //TODO add id identifier for no existing user
+			
+			{new IntakeForm(0);} 
 		});
 		btnNewPhoneInterview.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnNewPhoneInterview.setBounds(192, 452, 200, 29);
@@ -58,7 +61,10 @@ public class NewClient
 		JButton button = new JButton("Proceed to Initial Intake");
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new IntakeForm();}
+			 //TODO add id identifier for no existing user
+			
+			
+			{new IntakeForm(1);} //TODO add id identifier for the existing client we are passing
 		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));
 		button.setBounds(482, 452, 200, 29);

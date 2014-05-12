@@ -8,22 +8,22 @@ public class IntakeForm extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private Intake Intake;
-	private JFrame window;
+	private static JFrame window;
 	private JScrollPane spInd;
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public IntakeForm()
+	public IntakeForm(int i) //TODO add id field to identify which user info to populate
 	{
 		window = new JFrame("Intake");
 		Intake = new Intake();
-		Intake.BuildPanel();
+		Intake.BuildPanel(i);  //TODO add id field
 		JPanel d = (JPanel) Intake.getPanel();
 		
 		JPanel d3 = new JPanel();
 		d3.setLayout(null);
 		d3.add(d);;
-		d3.setPreferredSize(new Dimension(645, 1250));
+		d3.setPreferredSize(new Dimension(645, 1350));
 		
 		spInd = new JScrollPane(d3);
 		spInd.setBounds(0, 0, 665, 678);
@@ -37,5 +37,11 @@ public class IntakeForm extends JFrame
 		window.getContentPane().add(spInd);
 		window.pack();
 		window.setVisible(true);
+	}
+
+	public static void close() 
+	{
+		window.dispose();
+		
 	}
 }

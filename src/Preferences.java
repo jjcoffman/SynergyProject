@@ -16,6 +16,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
+import javax.swing.SwingConstants;
 
 
 //This class handles the preferences of changing the SQL Database Path in the event that it needs to be changed
@@ -25,6 +26,10 @@ public class Preferences
 	private JLabel lblSqlPath;
 	private JTextField textField;
 	private JButton btnSubmit;
+	private JTextField txtUserName;
+	private JTextField txtPassword;
+	private JLabel lblUsername;
+	private JLabel lblPassword;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -58,18 +63,24 @@ public class Preferences
 				textField.setVisible(true);
 				btnSubmit.setVisible(true);
 				lblSqlPath.setVisible(true);
+				lblUsername.setVisible(true);
+				lblPassword.setVisible(true);
+				txtUserName.setVisible(true);
+				txtPassword.setVisible(true);
 			}
 		});
 		btnIUnderstand.setBounds(393, 247, 117, 29);
 		prefPane.add(btnIUnderstand);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textField.setVisible(false);
 		textField.setBounds(145, 348, 613, 28);
 		prefPane.add(textField);
 		textField.setColumns(10);
 		
 		lblSqlPath = new JLabel("SQL Path:");
+		lblSqlPath.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblSqlPath.setVisible(false);
 		lblSqlPath.setBounds(145, 329, 77, 16);
 		prefPane.add(lblSqlPath);
@@ -82,8 +93,34 @@ public class Preferences
 			}
 		});
 		btnSubmit.setVisible(false);
-		btnSubmit.setBounds(641, 388, 117, 29);
+		btnSubmit.setBounds(393, 423, 117, 29);
 		prefPane.add(btnSubmit);
+		
+		lblUsername = new JLabel("Username:");
+		lblUsername.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsername.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblUsername.setBounds(180, 388, 95, 16);
+		lblUsername.setVisible(false);
+		prefPane.add(lblUsername);
+		
+		txtUserName = new JTextField();
+		txtUserName.setBounds(285, 383, 130, 28);
+		txtUserName.setVisible(false);
+		prefPane.add(txtUserName);
+		txtUserName.setColumns(10);
+		
+		lblPassword = new JLabel("Password:");
+		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblPassword.setBounds(415, 388, 100, 16);
+		lblPassword.setVisible(false);
+		prefPane.add(lblPassword);
+		
+		txtPassword = new JTextField();
+		txtPassword.setBounds(525, 383, 134, 28);
+		txtPassword.setVisible(false);
+		txtPassword.setColumns(10);
+		prefPane.add(txtPassword);
 		
 		prefPane.setVisible(true);
 	}

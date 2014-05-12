@@ -9,6 +9,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 
 import java.awt.Component;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 public class Intake implements ActionListener
@@ -87,36 +91,69 @@ public class Intake implements ActionListener
 	private JTextField txtSubsFreq1;
 	private JTextField txtsubsAmount1;
 	private JTextField txtSubsMeth1;
-
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField txtActionsTaken;
+	private JCheckBox chckbxYesToAsam;
+	private JCheckBox chckbxJailprobationInLast;
+	private JCheckBox chckbxIvUsedIn;
+	private JCheckBox chckbxNewCheckBox;
+	private JTextField txtActionsTaken_1;
+	private JCheckBox chckbxYesToAsam_1;
+	private JCheckBox chckbxYesToAsam_2;
+	private JTextField txtActionsTaken_2;
+	private JCheckBox chckbxYesToAsam_3;
+	private JTextField txtActionsTaken_3;
+	private JCheckBox chckbxDoYouHave;
+	private JTextField txtDescribe;
+	private JTextField txtDiag1;
+	private JTextField txtDiag2;
+	private JTextField txtDiag3;
+	private JTextField txtMedName3;
+	private JTextField txtMedName2;
+	private JTextField txtMedName1;
+	private JTextField txtDosage1;
+	private JTextField txtDosage2;
+	private JTextField txtDosage3;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void BuildPanel() 
+	public void BuildPanel(int i)  //TODO add id field and a method to import the data
 	{
 		Intake = new JPanel();
-		Intake.setSize(665, 905);
+		Intake.setSize(665, 1350);
 		
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(this);
-		btnExit.setBounds(234, 870, 75, 29);
+		btnExit.setBounds(234, 1300, 75, 29);
 		
 		btnSubmit = new JButton("Continue");
 		btnSubmit.addActionListener(this);
-		btnSubmit.setBounds(339, 870, 101, 29);
+		btnSubmit.setBounds(339, 1300, 101, 29);
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtFirstName.setBounds(20, 80, 200, 28);
-		txtFirstName.setText("John");
 		txtFirstName.setColumns(10);
 		
 		txtLastName = new JTextField();
 		txtLastName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtLastName.setBounds(230, 80, 200, 28);
-		txtLastName.setText("Doe");
 		txtLastName.setColumns(10);
 		
 		txtDateOfBirth = new JTextField();
+		txtDateOfBirth.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtDateOfBirth.setText("");
+			}
+		});
 		txtDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDateOfBirth.setBounds(440, 80, 100, 28);
 		txtDateOfBirth.setText("1960-03-25");
@@ -125,10 +162,13 @@ public class Intake implements ActionListener
 		txtAge = new JTextField();
 		txtAge.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtAge.setBounds(550, 80, 40, 28);
-		txtAge.setText("54");
 		txtAge.setColumns(10);
 		
 		txtVet = new JTextField();
+		txtVet.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtVet.setText("");
+			}
+		});
 		txtVet.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtVet.setBounds(595, 80, 50, 28);
 		txtVet.setText("y/n?");
@@ -137,16 +177,18 @@ public class Intake implements ActionListener
 		txtAddress = new JTextField();
 		txtAddress.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtAddress.setBounds(20, 130, 280, 28);
-		txtAddress.setText("123 Default Ave");
 		txtAddress.setColumns(10);
 		
 		txtCity = new JTextField();
 		txtCity.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtCity.setBounds(310, 130, 160, 28);
-		txtCity.setText("Sacramento");
 		txtCity.setColumns(10);
 		
 		txtState = new JTextField();
+		txtState.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtState.setText("");
+			}
+		});
 		txtState.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtState.setBounds(480, 130, 80, 28);
 		txtState.setText("California");
@@ -264,28 +306,48 @@ public class Intake implements ActionListener
 		txtYears_1.setColumns(10);
 		
 		txtPhoneNumber_1 = new JTextField();
+		txtPhoneNumber_1.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtPhoneNumber_1.setText("");
+			}
+		});
 		txtPhoneNumber_1.setBounds(330, 180, 150, 28);
 		txtPhoneNumber_1.setText("916-555-5555");
 		txtPhoneNumber_1.setColumns(10);
 		
 		txtSecondaryPhone = new JTextField();
+		txtSecondaryPhone.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtSecondaryPhone.setText("");
+			}
+		});
 		txtSecondaryPhone.setBounds(490, 180, 155, 28);
 		txtSecondaryPhone.setText("916-555-5556");
 		txtSecondaryPhone.setColumns(10);
 		
 		txtSocialSecurityNumber = new JTextField();
+		txtSocialSecurityNumber.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtSocialSecurityNumber.setText("");
+			}
+		});
 		txtSocialSecurityNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtSocialSecurityNumber.setBounds(20, 230, 140, 28);
 		txtSocialSecurityNumber.setText("111-11-1111");
 		txtSocialSecurityNumber.setColumns(10);
 		
 		txtDriversLicense = new JTextField();
+		txtDriversLicense.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtDriversLicense.setText("");
+			}
+		});
 		txtDriversLicense.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDriversLicense.setBounds(170, 230, 120, 28);
 		txtDriversLicense.setText("D1234567");
 		txtDriversLicense.setColumns(10);
 		
 		txtDlState = new JTextField();
+		txtDlState.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {txtDlState.setText("");
+			}
+		});
 		txtDlState.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDlState.setBounds(300, 231, 70, 28);
 		txtDlState.setText("CA");
@@ -303,7 +365,21 @@ public class Intake implements ActionListener
 		txtName_1.setText("Jane Doe");
 		txtName_1.setColumns(10);
 		
-		JCheckBox chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
+		chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
+		chckbxJailprobationInLast.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{if(chckbxJailprobationInLast.isSelected())
+			{
+				chckbxOnProbation.setVisible(true);
+				txtWhy.setVisible(true);
+			}
+			if(!chckbxJailprobationInLast.isSelected())
+			{
+				chckbxOnProbation.setVisible(false);
+				txtWhy.setVisible(false);
+			}
+			}
+		});
 		chckbxJailprobationInLast.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxJailprobationInLast.setBounds(20, 566, 240, 23);
 		
@@ -314,11 +390,13 @@ public class Intake implements ActionListener
 		
 		chckbxOnProbation = new JCheckBox("On Probation?");
 		chckbxOnProbation.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxOnProbation.setVisible(false);
 		chckbxOnProbation.setBounds(260, 566, 135, 23);
 		
 		txtWhy = new JTextField();
 		txtWhy.setBounds(400, 566, 245, 28);
 		txtWhy.setText("Why:");
+		txtWhy.setVisible(false);
 		txtWhy.setColumns(10);
 		
 		txtNameOfOfficer = new JTextField();
@@ -340,50 +418,85 @@ public class Intake implements ActionListener
 		lblPhysicalAndMental.setBounds(235, 660, 205, 16);
 		
 		chckbxPhysicalHospitalizationIn = new JCheckBox("Physical Hospitalization in last 30 days?");
+		chckbxPhysicalHospitalizationIn.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxPhysicalHospitalizationIn.isSelected())
+					txtWhy_1.setVisible(true);
+				if(!chckbxPhysicalHospitalizationIn.isSelected())
+					txtWhy_1.setVisible(false);
+			}
+		});
 		chckbxPhysicalHospitalizationIn.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxPhysicalHospitalizationIn.setBounds(20, 688, 300, 23);
 		
 		chckbxMentalHospitalizationIn = new JCheckBox("Mental Hospitalization in last 30 days?");
 		chckbxMentalHospitalizationIn.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxMentalHospitalizationIn.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxMentalHospitalizationIn.isSelected())
+					txtWhy_2.setVisible(true);
+				if(!chckbxMentalHospitalizationIn.isSelected())
+					txtWhy_2.setVisible(false);
+			}
+		});
 		chckbxMentalHospitalizationIn.setBounds(20, 716, 290, 23);
-		
-		
-		
-		
-		
-		
+
 		
 		txtWhy_1 = new JTextField();
 		txtWhy_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtWhy_1.setBounds(320, 688, 325, 28);
 		txtWhy_1.setText("Why:");
+		txtWhy_1.setVisible(false);
 		txtWhy_1.setColumns(10);
 		
 		txtWhy_2 = new JTextField();
 		txtWhy_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtWhy_2.setBounds(320, 714, 325, 28);
 		txtWhy_2.setText("Why:");
+		txtWhy_2.setVisible(false);
 		txtWhy_2.setColumns(10);
 		
-		JCheckBox chckbxIvUsedIn = new JCheckBox("IV used in last 12 months");
-		chckbxIvUsedIn.setBounds(11, 779, 197, 23);
+		chckbxIvUsedIn = new JCheckBox("IV used in last 12 months");
+		chckbxIvUsedIn.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxIvUsedIn.isSelected())
+					txtHowMany.setVisible(true);
+				if(!chckbxIvUsedIn.isSelected())
+					txtHowMany.setVisible(false);
+			}
+		});
+		chckbxIvUsedIn.setBounds(20, 861, 197, 23);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Prior treatment Plans");
-		chckbxNewCheckBox.setBounds(210, 779, 162, 23);
+		chckbxNewCheckBox = new JCheckBox("Prior treatment Plans");
+		chckbxNewCheckBox.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxNewCheckBox.isSelected())
+					txtWhereAndWhen.setVisible(true);
+				if(!chckbxNewCheckBox.isSelected())
+					txtWhereAndWhen.setVisible(false);
+			}
+		});
+		chckbxNewCheckBox.setBounds(210, 861, 162, 23);
 		
 		txtHowMany = new JTextField();
-		txtHowMany.setBounds(379, 777, 266, 28);
+		txtHowMany.setBounds(379, 859, 266, 28);
 		txtHowMany.setText("How Many");
+		txtHowMany.setVisible(false);
 		txtHowMany.setColumns(10);
 		
 		txtWhereAndWhen = new JTextField();
-		txtWhereAndWhen.setBounds(11, 809, 634, 28);
+		txtWhereAndWhen.setBounds(20, 885, 625, 28);
 		txtWhereAndWhen.setHorizontalAlignment(SwingConstants.LEFT);
 		txtWhereAndWhen.setText("Where and When");
+		txtWhereAndWhen.setVisible(false);
 		txtWhereAndWhen.setColumns(10);
 		
 		JLabel lblCompleteAsamBefore = new JLabel("COMPLETE ASAM BEFORE CONTINUING!!!");
-		lblCompleteAsamBefore.setBounds(210, 842, 255, 16);
+		lblCompleteAsamBefore.setBounds(205, 926, 255, 16);
 		Intake.setLayout(null);
 		Intake.add(txtAddress);
 		Intake.add(txtFirstName);
@@ -691,38 +804,306 @@ public class Intake implements ActionListener
 		
 		txtSubs1 = new JTextField();
 		txtSubs1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtSubs1.setText("Subs1");
-		txtSubs1.setBounds(20, 751, 125, 28);
+		txtSubs1.setBounds(20, 767, 125, 28);
 		Intake.add(txtSubs1);
 		txtSubs1.setColumns(10);
 		
 		txtSubsDate1 = new JTextField();
 		txtSubsDate1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtSubsDate1.setText("Date Last Used");
-		txtSubsDate1.setBounds(145, 751, 125, 28);
+		txtSubsDate1.setBounds(145, 767, 125, 28);
 		Intake.add(txtSubsDate1);
 		txtSubsDate1.setColumns(10);
 		
 		txtSubsFreq1 = new JTextField();
 		txtSubsFreq1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtSubsFreq1.setText("Frequency");
-		txtSubsFreq1.setBounds(270, 751, 125, 28);
+		txtSubsFreq1.setBounds(270, 767, 125, 28);
 		Intake.add(txtSubsFreq1);
 		txtSubsFreq1.setColumns(10);
 		
 		txtsubsAmount1 = new JTextField();
 		txtsubsAmount1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtsubsAmount1.setText("Amount of Use");
-		txtsubsAmount1.setBounds(395, 751, 125, 28);
+		txtsubsAmount1.setBounds(395, 767, 125, 28);
 		Intake.add(txtsubsAmount1);
 		txtsubsAmount1.setColumns(10);
 		
 		txtSubsMeth1 = new JTextField();
 		txtSubsMeth1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtSubsMeth1.setText("Method");
-		txtSubsMeth1.setBounds(520, 751, 125, 28);
+		txtSubsMeth1.setBounds(520, 767, 125, 28);
 		Intake.add(txtSubsMeth1);
 		txtSubsMeth1.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_1.setColumns(10);
+		textField_1.setBounds(20, 793, 125, 28);
+		Intake.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_2.setColumns(10);
+		textField_2.setBounds(145, 793, 125, 28);
+		Intake.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_3.setColumns(10);
+		textField_3.setBounds(270, 793, 125, 28);
+		Intake.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_4.setColumns(10);
+		textField_4.setBounds(395, 793, 125, 28);
+		Intake.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_5.setColumns(10);
+		textField_5.setBounds(520, 793, 125, 28);
+		Intake.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_6.setColumns(10);
+		textField_6.setBounds(20, 819, 125, 28);
+		Intake.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_7.setColumns(10);
+		textField_7.setBounds(145, 819, 125, 28);
+		Intake.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_8.setColumns(10);
+		textField_8.setBounds(270, 819, 125, 28);
+		Intake.add(textField_8);
+		
+		textField_9 = new JTextField();
+		textField_9.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_9.setColumns(10);
+		textField_9.setBounds(395, 819, 125, 28);
+		Intake.add(textField_9);
+		
+		textField_10 = new JTextField();
+		textField_10.setFont(new Font("Verdana", Font.PLAIN, 13));
+		textField_10.setColumns(10);
+		textField_10.setBounds(520, 819, 125, 28);
+		Intake.add(textField_10);
+		
+		JLabel lblSubstance = new JLabel("Substance");
+		lblSubstance.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSubstance.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSubstance.setBounds(20, 751, 125, 16);
+		Intake.add(lblSubstance);
+		
+		JLabel lblDateLastUsed = new JLabel("Date Last Used");
+		lblDateLastUsed.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDateLastUsed.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblDateLastUsed.setBounds(145, 751, 125, 16);
+		Intake.add(lblDateLastUsed);
+		
+		JLabel lblFrequency = new JLabel("Frequency");
+		lblFrequency.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFrequency.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblFrequency.setBounds(270, 751, 125, 16);
+		Intake.add(lblFrequency);
+		
+		JLabel lblAmountOfUse = new JLabel("Amount of Use");
+		lblAmountOfUse.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmountOfUse.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblAmountOfUse.setBounds(395, 751, 125, 16);
+		Intake.add(lblAmountOfUse);
+		
+		JLabel lblMethod = new JLabel("Method");
+		lblMethod.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMethod.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblMethod.setBounds(520, 751, 125, 16);
+		Intake.add(lblMethod);
+		
+		chckbxYesToAsam = new JCheckBox("Yes to ASAM 1a and 1b, or 2, or 3?");
+		chckbxYesToAsam.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(chckbxYesToAsam.isSelected())
+					txtActionsTaken.setVisible(true);
+				if(!chckbxYesToAsam.isSelected())
+					txtActionsTaken.setVisible(false);
+			}
+		});
+		chckbxYesToAsam.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxYesToAsam.setAutoscrolls(true);
+		chckbxYesToAsam.setBounds(20, 950, 270, 28);
+		Intake.add(chckbxYesToAsam);
+		
+		txtActionsTaken = new JTextField();
+		txtActionsTaken.setText("Actions Taken");
+		txtActionsTaken.setBounds(291, 950, 354, 28);
+		txtActionsTaken.setVisible(false);
+		Intake.add(txtActionsTaken);
+		txtActionsTaken.setColumns(10);
+		
+		chckbxYesToAsam_1 = new JCheckBox("Yes to ASAM 4a and/or 1b alone?");
+		chckbxYesToAsam_1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxYesToAsam_1.isSelected())
+					txtActionsTaken_1.setVisible(true);
+				if(!chckbxYesToAsam_1.isSelected())
+					txtActionsTaken_1.setVisible(false);
+			}
+		});
+		chckbxYesToAsam_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxYesToAsam_1.setAutoscrolls(true);
+		chckbxYesToAsam_1.setBounds(20, 980, 270, 28);
+		Intake.add(chckbxYesToAsam_1);
+		
+		txtActionsTaken_1 = new JTextField();
+		txtActionsTaken_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtActionsTaken_1.setText("Actions Taken");
+		txtActionsTaken_1.setBounds(290, 980, 354, 28);
+		txtActionsTaken_1.setVisible(false);
+		Intake.add(txtActionsTaken_1);
+		txtActionsTaken_1.setColumns(10);
+		
+		chckbxYesToAsam_2 = new JCheckBox("Yes to ASAM 5a Alone?");
+		chckbxYesToAsam_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxYesToAsam_2.setAutoscrolls(true);
+		chckbxYesToAsam_2.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxYesToAsam_2.isSelected())
+					txtActionsTaken_2.setVisible(true);
+				if(!chckbxYesToAsam_2.isSelected())
+					txtActionsTaken_2.setVisible(false);
+			}
+		});
+		chckbxYesToAsam_2.setBounds(20, 1010, 270, 28);
+		Intake.add(chckbxYesToAsam_2);
+		
+		txtActionsTaken_2 = new JTextField();
+		txtActionsTaken_2.setText("Actions Taken:");
+		txtActionsTaken_2.setBounds(290, 1010, 355, 28);
+		txtActionsTaken_2.setVisible(false);
+		Intake.add(txtActionsTaken_2);
+		
+		txtActionsTaken_2.setColumns(10);
+		
+		chckbxYesToAsam_3 = new JCheckBox("Yes to ASAM 5b and/or 6, no 1,2,3");
+		chckbxYesToAsam_3.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxYesToAsam_3.isSelected())
+					txtActionsTaken_3.setVisible(true);
+				if(!chckbxYesToAsam_3.isSelected())
+					txtActionsTaken_3.setVisible(false);
+			}
+		});
+		chckbxYesToAsam_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxYesToAsam_3.setAutoscrolls(true);
+		chckbxYesToAsam_3.setBounds(20, 1040, 270, 28);
+		Intake.add(chckbxYesToAsam_3);
+		
+		txtActionsTaken_3 = new JTextField();
+		txtActionsTaken_3.setText("Actions Taken");
+		txtActionsTaken_3.setBounds(290, 1040, 335, 28);
+		txtActionsTaken_3.setVisible(false);
+		Intake.add(txtActionsTaken_3);
+		txtActionsTaken_3.setColumns(10);
+		
+		chckbxDoYouHave = new JCheckBox("Do you have any Phyiscal limitations that may require assistance?");
+		chckbxDoYouHave.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				if(chckbxDoYouHave.isSelected())
+					txtDescribe.setVisible(true);
+				if(!chckbxDoYouHave.isSelected())
+					txtDescribe.setVisible(false);
+			}
+		});
+		chckbxDoYouHave.setFont(new Font("Verdana", Font.PLAIN, 13));
+		chckbxDoYouHave.setBounds(20, 1070, 625, 23);
+		Intake.add(chckbxDoYouHave);
+		
+		txtDescribe = new JTextField();
+		txtDescribe.setText("Describe:");
+		txtDescribe.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDescribe.setBounds(20, 1100, 625, 28);
+		txtDescribe.setVisible(false);
+		Intake.add(txtDescribe);
+		txtDescribe.setColumns(10);
+		
+		txtDiag1 = new JTextField();
+		txtDiag1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDiag1.setColumns(10);
+		txtDiag1.setBounds(20, 1173, 200, 28);
+		Intake.add(txtDiag1);
+		
+		txtDiag2 = new JTextField();
+		txtDiag2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDiag2.setColumns(10);
+		txtDiag2.setBounds(20, 1199, 200, 28);
+		Intake.add(txtDiag2);
+		
+		txtDiag3 = new JTextField();
+		txtDiag3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDiag3.setColumns(10);
+		txtDiag3.setBounds(20, 1225, 200, 28);
+		Intake.add(txtDiag3);
+		
+		txtMedName3 = new JTextField();
+		txtMedName3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtMedName3.setColumns(10);
+		txtMedName3.setBounds(234, 1225, 200, 28);
+		Intake.add(txtMedName3);
+		
+		txtMedName2 = new JTextField();
+		txtMedName2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtMedName2.setColumns(10);
+		txtMedName2.setBounds(234, 1199, 200, 28);
+		Intake.add(txtMedName2);
+		
+		txtMedName1 = new JTextField();
+		txtMedName1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtMedName1.setColumns(10);
+		txtMedName1.setBounds(234, 1173, 200, 28);
+		Intake.add(txtMedName1);
+		
+		txtDosage1 = new JTextField();
+		txtDosage1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDosage1.setColumns(10);
+		txtDosage1.setBounds(445, 1173, 200, 28);
+		Intake.add(txtDosage1);
+		
+		txtDosage2 = new JTextField();
+		txtDosage2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDosage2.setColumns(10);
+		txtDosage2.setBounds(445, 1199, 200, 28);
+		Intake.add(txtDosage2);
+		
+		txtDosage3 = new JTextField();
+		txtDosage3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDosage3.setColumns(10);
+		txtDosage3.setBounds(445, 1225, 200, 28);
+		Intake.add(txtDosage3);
+		
+		JLabel lblNewLabel_1 = new JLabel("Dosage");
+		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(445, 1145, 200, 16);
+		Intake.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Name of Medication");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(234, 1145, 200, 16);
+		Intake.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Diagnosis");
+		lblNewLabel_3.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(20, 1145, 200, 16);
+		Intake.add(lblNewLabel_3);
 		Intake.setVisible(true);
 	}
 	
@@ -737,7 +1118,7 @@ public class Intake implements ActionListener
 	{
 		if(e.getSource()==btnExit)
 		{
-			
+			IntakeForm.close();
 		}
 		if(e.getSource()==btnSubmit)
 		{
