@@ -95,7 +95,7 @@ public class ExistingClient
 		panel.add(sp);
 		
 		Object[][] data1 = getGroup();
-		String[] columnNames1 = {"Date","Counselor"};
+		String[] columnNames1 = {"Week Of","Counselor"};
 		groupTable = new JTable(data1, columnNames1);
 		groupTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		groupTable.setGridColor(Color.LIGHT_GRAY);

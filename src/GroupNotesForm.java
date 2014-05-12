@@ -15,7 +15,7 @@ public class GroupNotesForm extends JFrame
 	
 	public GroupNotesForm()
 	{
-		window = new JFrame("Intake");
+		window = new JFrame("View Group Notes");
 		GroupNotes = new GroupNotes();
 		GroupNotes.BuildPanel();
 		JPanel d = (JPanel) GroupNotes.getPanel();
@@ -23,7 +23,7 @@ public class GroupNotesForm extends JFrame
 		JPanel d3 = new JPanel();
 		d3.setLayout(null);
 		d3.add(d);;
-		d3.setPreferredSize(new Dimension(645, 1250));
+		d3.setPreferredSize(new Dimension(645, 1650));
 		
 		spInd = new JScrollPane(d3);
 		spInd.setBounds(0, 0, 665, 678);
