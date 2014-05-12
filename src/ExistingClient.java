@@ -140,7 +140,8 @@ public class ExistingClient
 		JButton btnViewGroup = new JButton("View");
 		btnViewGroup.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new GroupNotesForm();}});
+			{new GroupNotesForm();}
+		});
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(660, 520, 94, 29);
 		panel.add(btnViewGroup);
