@@ -206,14 +206,9 @@ public class ExistingClient
 		btnDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{ 
-				int i = table.getSelectedRow();
-				System.out.println(i);
-				Object x = table.getValueAt(i,  0);
-				System.out.println(x);
-				int s = (int)x;
-				System.out.println(s);
 				
-				new DischargeScroll(s);
+				
+				new DischargeScroll(id);
 			}
 		});
 		btnDischarge.setBounds(240, 520, 160, 29);
