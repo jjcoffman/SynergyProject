@@ -106,7 +106,7 @@ public class Intake implements ActionListener
 	private JCheckBox chckbxYesToAsam;
 	private JCheckBox chckbxJailprobationInLast;
 	private JCheckBox chckbxIvUsedIn;
-	private JCheckBox chckbxNewCheckBox;
+	private JCheckBox chckbxPriorTPlan;
 	private JTextField txtActionsTaken_1;
 	private JCheckBox chckbxYesToAsam_1;
 	private JCheckBox chckbxYesToAsam_2;
@@ -124,6 +124,8 @@ public class Intake implements ActionListener
 	private JTextField txtDosage1;
 	private JTextField txtDosage2;
 	private JTextField txtDosage3;
+	private JTextField txtMI;
+	private String strIntakeDate;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -145,12 +147,12 @@ public class Intake implements ActionListener
 
 		txtFirstName = new JTextField();
 		txtFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtFirstName.setBounds(20, 80, 200, 28);
+		txtFirstName.setBounds(20, 80, 180, 28);
 		txtFirstName.setColumns(10);
 
 		txtLastName = new JTextField();
 		txtLastName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtLastName.setBounds(230, 80, 200, 28);
+		txtLastName.setBounds(250, 80, 180, 28);
 		txtLastName.setColumns(10);
 
 		txtDateOfBirth = new JTextField();
@@ -476,17 +478,17 @@ public class Intake implements ActionListener
 		});
 		chckbxIvUsedIn.setBounds(20, 861, 197, 23);
 
-		chckbxNewCheckBox = new JCheckBox("Prior treatment Plans");
-		chckbxNewCheckBox.addChangeListener(new ChangeListener() {
+		chckbxPriorTPlan = new JCheckBox("Prior treatment Plans");
+		chckbxPriorTPlan.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxNewCheckBox.isSelected())
+				if(chckbxPriorTPlan.isSelected())
 					txtWhereAndWhen.setVisible(true);
-				if(!chckbxNewCheckBox.isSelected())
+				if(!chckbxPriorTPlan.isSelected())
 					txtWhereAndWhen.setVisible(false);
 			}
 		});
-		chckbxNewCheckBox.setBounds(210, 861, 162, 23);
+		chckbxPriorTPlan.setBounds(210, 861, 162, 23);
 
 		txtHowMany = new JTextField();
 		txtHowMany.setBounds(379, 859, 266, 28);
@@ -543,7 +545,7 @@ public class Intake implements ActionListener
 		Intake.add(chckbxMentalHospitalizationIn);
 		Intake.add(txtMentalHosp);
 		Intake.add(chckbxIvUsedIn);
-		Intake.add(chckbxNewCheckBox);
+		Intake.add(chckbxPriorTPlan);
 		Intake.add(txtHowMany);
 		Intake.add(txtWhereAndWhen);
 		Intake.add(chckbxJailprobationInLast);
@@ -573,14 +575,14 @@ public class Intake implements ActionListener
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblFirstName.setBounds(20, 60, 200, 20);
+		lblFirstName.setBounds(20, 60, 180, 20);
 		Intake.add(lblFirstName);
 
 		JLabel lblLastName = new JLabel("Last Name");
 		lblLastName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLastName.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblLastName.setBounds(230, 60, 200, 20);
+		lblLastName.setBounds(250, 60, 180, 20);
 		Intake.add(lblLastName);
 
 		JLabel lblDateOfBirth = new JLabel("Date of Birth");
@@ -1110,6 +1112,18 @@ public class Intake implements ActionListener
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(20, 1145, 200, 16);
 		Intake.add(lblNewLabel_3);
+		
+		txtMI = new JTextField();
+		txtMI.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtMI.setBounds(205, 80, 40, 28);
+		Intake.add(txtMI);
+		txtMI.setColumns(10);
+		
+		JLabel lblMi = new JLabel("MI");
+		lblMi.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblMi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMi.setBounds(205, 60, 40, 20);
+		Intake.add(lblMi);
 
 		if(j == 1)
 			importData(s);
@@ -1127,6 +1141,16 @@ public class Intake implements ActionListener
 
 		try 
 		{
+			txtLastName.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtLastName.setText(""); i++;
+		}
+
+		try 
+		{
 			txtFirstName.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
@@ -1134,15 +1158,36 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtFirstName.setText(""); i++;
 		}
-
 		try 
 		{
-			txtLastName.setText((String) data[i]);i++;
+			txtMI.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtLastName.setText(""); i++;
+			txtMI.setText(""); i++;
+		}
+		
+		i++; //Gender
+		
+		try 
+		{
+			txtPhoneNumber_1.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtPhoneNumber_1.setText(""); i++;
+		}
+
+		try 
+		{
+			txtSecondaryPhone.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtSecondaryPhone.setText(""); i++;
 		}
 		try 
 		{
@@ -1153,23 +1198,14 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtDateOfBirth.setText(""); i++;
 		}
-//		try 
-//		{
-//			txtAge.setText((String) data[i]);i++;
-//		}
-//		catch(NullPointerException e) 
-//		{
-//			System.out.println("Error Retrieving data in object array field " + i);
-//			txtAge.setText(""); i++;
-//		}
 		try 
 		{
-			txtVet.setText((String) data[i]);i++;
+			txtSocialSecurityNumber.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtVet.setText(""); i++;
+			txtSocialSecurityNumber.setText(""); i++;
 		}
 		try 
 		{
@@ -1200,6 +1236,15 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
+			txtZip.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtZip.setText(""); i++;
+		}
+		try 
+		{
 			txtCounty.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
@@ -1209,30 +1254,52 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtEmergencyAddress.setText((String) data[i]);i++;
+			txtYearsInCounty.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtEmergencyAddress.setText(""); i++;
+			txtYearsInCounty.setText(""); i++;
 		}
 		try 
 		{
-			txtEmergencyCity.setText((String) data[i]);i++;
+			txtVet.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtEmergencyCity.setText(""); i++;
+			txtVet.setText(""); i++;
 		}
 		try 
 		{
-			txtZip.setText((String) data[i]);i++;
+			txtDriversLicense.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtZip.setText(""); i++;
+			txtDriversLicense.setText(""); i++;
+		}
+		try 
+		{
+			txtDlState.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDlState.setText(""); i++;
+		}
+		
+		strIntakeDate = (String) data[i];i++;
+		
+		try 
+		{
+			String name = (String) data[i+1] + " " + (String) data[i]; i++; i++;
+			txtEmergencyName.setText(name);
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtEmergencyName.setText(""); i++;
 		}
 		try 
 		{
@@ -1263,6 +1330,24 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
+			txtEmergencyAddress.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtEmergencyAddress.setText(""); i++;
+		}
+		try 
+		{
+			txtEmergencyCity.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtEmergencyCity.setText(""); i++;
+		}
+		try 
+		{
 			textEmergencyState.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
@@ -1290,7 +1375,8 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtAgencyContact.setText((String) data[i]);i++;
+			String contact = (String) data[i+1] + " " + (String) data[i];
+			txtAgencyContact.setText(contact);i++;i++;
 		}
 		catch(NullPointerException e) 
 		{
@@ -1314,6 +1400,15 @@ public class Intake implements ActionListener
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtAgencyPhone.setText(""); i++;
+		}
+		try 
+		{
+			txtAgencyCell.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtAgencyCell.setText(""); i++;
 		}
 		try 
 		{
@@ -1351,87 +1446,25 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtAgencyZip.setText(""); i++;
 		}
-		try 
-		{
-			txtAgencyCell.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtAgencyCell.setText(""); i++;
-		}
-		try 
-		{
-			txtYearsInCounty.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtYearsInCounty.setText(""); i++;
-		}
-		try 
-		{
-			txtPhoneNumber_1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtPhoneNumber_1.setText(""); i++;
-		}
-		try 
-		{
-			txtSecondaryPhone.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSecondaryPhone.setText(""); i++;
-		}
-		try 
-		{
-			txtSocialSecurityNumber.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSocialSecurityNumber.setText(""); i++;
-		}
-		try 
-		{
-			txtDriversLicense.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDriversLicense.setText(""); i++;
-		}
-		try 
-		{
-			txtDlState.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDlState.setText(""); i++;
-		}
-		try 
-		{
-			txtMaritalStatus.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtMaritalStatus.setText(""); i++;
-		}
-		try 
-		{
-			txtSpouseName.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSpouseName.setText(""); i++;
-		}
+		
+//		try 
+//		{
+//			txtMaritalStatus.setText((String) data[i]);i++;
+//		}
+//		catch(NullPointerException e) 
+//		{
+//			System.out.println("Error Retrieving data in object array field " + i);
+//			txtMaritalStatus.setText(""); i++;
+//		}
+//		try 
+//		{
+//			txtSpouseName.setText((String) data[i]);i++;
+//		}
+//		catch(NullPointerException e) 
+//		{
+//			System.out.println("Error Retrieving data in object array field " + i);
+//			txtSpouseName.setText(""); i++;
+//		}
 		try 
 		{
 			if((int) data[i] == 0)
@@ -1466,12 +1499,13 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtOfficerAddress.setText((String) data[i]);i++;
+			String address = (String) data[i++] + " " + (String) data[i++] + " " + (String) data[i++] + " " + (String) data[i];
+			txtOfficerAddress.setText(address);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			txtOfficerAddress.setText(""); i++;
+			txtOfficerAddress.setText(""); i++; 
 		}
 		try 
 		{
@@ -1497,6 +1531,16 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
+
+			txtPhysicalHosp.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtPhysicalHosp.setText(""); i++;
+		}
+		try 
+		{
 			if((int) data[i] == 0)
 				chckbxMentalHospitalizationIn.setEnabled(false);
 			else
@@ -1510,22 +1554,38 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-
-			txtPhysicalHosp.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtPhysicalHosp.setText(""); i++;
-		}
-		try 
-		{
 			txtMentalHosp.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtMentalHosp.setText(""); i++;
+		}
+		try 
+		{
+			if((int) data[i] == 0)
+				chckbxIvUsedIn.setEnabled(false);
+			else
+				chckbxIvUsedIn.setEnabled(true);
+			i++;			
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			chckbxIvUsedIn.setEnabled(false);; i++;
+		}
+		try 
+		{
+			if((int) data[i] == 0)
+				chckbxPriorTPlan.setEnabled(false);
+			else
+				chckbxPriorTPlan.setEnabled(true);
+			i++;			
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			chckbxPriorTPlan.setEnabled(false);; i++;
 		}
 		try 
 		{
@@ -1545,15 +1605,11 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtWhereAndWhen.setText(""); i++;
 		}
-		try 
-		{
-			txtEmergencyName.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtEmergencyName.setText(""); i++;
-		}
+		
+		
+		//TODO Continue importing information form the Dbase here for substances etc.
+		//ALSO add Marital and spouse name
+		
 		try 
 		{
 			txtSubs1.setText((String) data[i]);i++;
@@ -1724,32 +1780,8 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			chckbxJailprobationInLast.setEnabled(false); i++;
 		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxIvUsedIn.setEnabled(false);
-			else
-				chckbxIvUsedIn.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxIvUsedIn.setEnabled(false);; i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxNewCheckBox.setEnabled(false);
-			else
-				chckbxNewCheckBox.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxNewCheckBox.setEnabled(false);; i++;
-		}
+		
+		
 		try 
 		{
 
