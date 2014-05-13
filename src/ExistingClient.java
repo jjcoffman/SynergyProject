@@ -105,12 +105,10 @@ public class ExistingClient
 		
 		Object[][] data = getExisting();
 		String[] columnNames = {"Client ID","Client Name"};
-		//existing = new DefaultTableModel(data, columnNames);
 		existing = new MyTableModel(data, columnNames);
 		table = new JTable(existing);
 		table.getModel().addTableModelListener(table);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		//table = new JTable(existing);
 		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
@@ -207,7 +205,15 @@ public class ExistingClient
 		btnDischarge.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{ new DischargeScroll();
+			{ 
+				int i = table.getSelectedRow();
+				System.out.println(i);
+				Object x = table.getValueAt(i,  0);
+				System.out.println(x);
+				String s = (String)x;
+				System.out.println(s);
+				
+				new DischargeScroll(s);
 			}
 		});
 		btnDischarge.setBounds(240, 520, 160, 29);

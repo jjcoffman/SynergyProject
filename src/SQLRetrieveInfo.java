@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLRetrieveInfo {
-	
+
 	// Returns array of strings for given column name
 	public Object[] getColumn(String s){
 		Object[] results = new Object[1000];
 		return results;
 	}
-	
+
 	// Returns array of strings for given Client Id
 	public Object[] getRows(int rowNum, int numRows){
 		Object[] results = new Object[297];
@@ -41,8 +41,8 @@ public class SQLRetrieveInfo {
 		System.out.println(results[0] + " " + results[1]);
 		return results;
 	}
-	
-	
+
+
 	//this is filling the data for the newClient class for phone interviews without intake interview
 	public Object[] getPendingRows(int rowNum, int numRows){
 		Object[] results = new Object[3];
@@ -74,27 +74,70 @@ public class SQLRetrieveInfo {
 		System.out.println(results[0] + " " + results[1]);
 		return results;
 	}
-	
-	
-	
-	//this is filling the data for the newClient class for phone interviews without intake interview
-		public Object[] getPendingClient(String s)
-		{
-			Object[] results = new Object[90];
-			ResultSet rs = null;
-			Connection connection = null;
-			Statement statement = null; 
 
-			String query = "SELECT * FROM Phone_Intake WHERE C_PrimPhone = " + "\"" + s + "\"";  
-			try { 
-				connection = SQLConnection.getConnection();
-				statement = connection.createStatement();
+	//this method is for pulling data for the client discharge form
+	public Object[] getClientDischarge(String s)
+	{
+		Object[] results = new Object[90];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + "\"" + s + "\"";  
+		
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			int i = 0;
+			while(rs.next())
+			{
+				
+				results[i] = (rs.getString("C_FirstName")); i++;
+				results[i] = (rs.getString("C_LastName")); i++;
+				results[i] = (rs.getString("C_ID")); i++;
+				results[i] = (rs.getString("C_AdmitDate")); i++;
+				
+				query = "SELECT * FROM ARC_Info WHERE C_ID = "+ s;
 				rs = statement.executeQuery(query);
-				int i = 0;
-				while(rs.next()){
+				results[i] = (rs.getString("ARC_Name")); i++;
+				
+			}
+			System.out.println("Number of fields for continue intake " + i);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
+
+	//this is filling the data for the newClient class for phone interviews without intake interview
+	public Object[] getPendingClient(String s)
+	{
+		Object[] results = new Object[90];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Phone_Intake WHERE C_PrimPhone = " + "\"" + s + "\"";  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			int i = 0;
+			while(rs.next()){
 				results[i] = (rs.getString("C_LastName")); i++;
 				results[i] = (rs.getString("C_FirstName")); i++; 
-				
+
 				results[i] = (rs.getString("C_MI")); i++;
 				results[i] = (rs.getString("C_Gender")); i++;
 				results[i] = (rs.getString("C_PrimPhone")); i++;
@@ -111,7 +154,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("C_DLNum")); i++;
 				results[i] = (rs.getString("C_DLState")); i++;
 				results[i] = (rs.getString("C_IntakeDate")); i++;
-
+				
 				query = "SELECT * FROM EMC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 
@@ -124,7 +167,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("EMC_City")); i++;
 				results[i] = (rs.getString("EMC_State")); i++;
 				results[i] = (rs.getString("EMC_ZIP")); i++;
-
+				
 				query = "SELECT * FROM ARC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 				results[i] = (rs.getString("ARC_Name")); i++;
@@ -160,10 +203,10 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
 				results[i] = (rs.getString("WhereANDWhen"));  
-				
+
 				query = "SELECT * FROM SUB_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
-				
+
 				results[i] = (rs.getString("SUB1_Name")); i++;
 				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
@@ -176,28 +219,26 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("SUB3_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB3_AmountUsed")); i++;
 				results[i] = (rs.getString("Sub3_Method")); i++;
-				
-				
-				
-				}
-				System.out.println("Number of fields for continue intake " + i);
-					
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+
+			}
+			System.out.println("Number of fields for continue intake " + i);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
-			System.out.println(results[0] + " " + results[1]);
-			return results;
 		}
-	
-	
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
+
+
 	public Object[] getUSERSRows(int rowNum, int numRows){
 		Object[] results = new Object[4];
 		ResultSet rs = null;
@@ -218,7 +259,7 @@ public class SQLRetrieveInfo {
 					results[3] = "yes";
 				}
 				else
-				results[3] = "no";
+					results[3] = "no";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -234,7 +275,7 @@ public class SQLRetrieveInfo {
 		System.out.println(results[0] + " " + results[1]);
 		return results;
 	}
-	
+
 	// Returns number of rows in given database
 	public int getSize(String s) {
 		int result = 0;
@@ -250,7 +291,7 @@ public class SQLRetrieveInfo {
 			while(rs.next()){
 				result = rs.getInt("COUNT(*)");
 			}
-				
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
