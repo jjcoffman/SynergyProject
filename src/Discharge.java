@@ -559,7 +559,7 @@ public class Discharge
 		
 		try 
 		{
-			lblPatientName.setText("CLient: " + (String) data[i++] + " " + (String) data[i++]);
+			lblPatientName.setText("Client: " + (String) data[i++] + " " + (String) data[i++]);
 		}
 		catch(NullPointerException e) 
 		{
@@ -568,7 +568,7 @@ public class Discharge
 		}
 		try 
 		{
-			lblClientId.setText((String) data[i]);i++;
+			lblClientId.setText("ID: " + (String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
