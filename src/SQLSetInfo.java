@@ -161,6 +161,35 @@ public class SQLSetInfo {
 		return result;
 	}
 	
+	public int getGroupSize(String s, int id){
+		int result = 0;
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT COUNT(*) FROM " + s + " Where C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = rs.getInt("COUNT(*)");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	
 	public Object[][] getIndRows(int size, int id) {
 		Object data[][] = new Object[size][2];
 		ResultSet rs = null;
@@ -176,6 +205,38 @@ public class SQLSetInfo {
 			while(rs.next()){
 					data[i][0] = rs.getString("NoteDate");
 					data[i][1] = rs.getString("Counselor");
+					i++;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return data;
+	}
+	
+	public Object[][] getGroupRows(int size, int id) {
+		Object data[][] = new Object[size][2];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM GRP_NOTES Where C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			int i = 0;
+			while(rs.next()){
+					data[i][0] = rs.getString("Start_Date");
+					data[i][1] = rs.getString("MONKO_Counselor");
 					i++;
 			}
 		} 

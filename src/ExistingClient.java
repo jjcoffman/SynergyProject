@@ -66,6 +66,8 @@ public class ExistingClient
 				lblECPhone.setText(getECPhone(id));
 				Object[][] data = getInd(id);
 				individual.update(data);
+				Object[][] data2 = getGroup(id);
+				group.update(data2);
 				System.out.println(id);
 				System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
 				}});
@@ -119,7 +121,7 @@ public class ExistingClient
 		sp.setVisible(true);
 		panel.add(sp);
 		
-		Object[][] data1 = getGroup();
+		Object[][] data1 = getGroup(id);
 		String[] columnNames1 = {"Week Of","Counselor"};
 		group = new MyTableModel(data1, columnNames1);
 		groupTable = new JTable(group);
@@ -274,10 +276,20 @@ public class ExistingClient
 	}
 	
 	//this gets the group notes
-	private Object[][] getGroup() 
-	{
-		Object[][] data = {{"1/12/14","Bootstrap Bill"}};
-		return data;
+	private Object[][] getGroup(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//return data;
+		try {
+			int size = test2.getGroupSize("GRP_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test2.getGroupRows(size, id);
+			return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}	
 	}
 
 	//This will fill the object array with the data from the the existing users

@@ -23,3 +23,6 @@ NITTY GRITTY
 
 link the data to the sql
 verify the data that is input
+
+
+fix program exit when clicking close on add individual note
