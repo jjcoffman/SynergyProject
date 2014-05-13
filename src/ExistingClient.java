@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -18,6 +20,7 @@ public class ExistingClient
 	private JTable groupTable;
 	private JTable IndividualTable;
 	private MyTableModel existing;
+	private int id;
 
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
@@ -44,6 +47,12 @@ public class ExistingClient
 		JButton btnSelect = new JButton("Select");
 		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnSelect.setBounds(20, 480, 160, 29);
+		btnSelect.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{	Object test = table.getValueAt(table.getSelectedRow(),0);
+				id = (int)test;
+				System.out.println(id);
+				}});
 		panel.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
@@ -131,7 +140,7 @@ public class ExistingClient
 		JButton btnAddInd = new JButton("Add");
 		btnAddInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new AddIndividualNote();}
+			{new AddIndividualNote(id);}
 		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(540, 520, 94, 29);
@@ -197,6 +206,31 @@ public class ExistingClient
 		btnRefresh.setBounds(240, 480, 160, 29);
 		panel.add(btnRefresh);
 		
+		JLabel lblCID = new JLabel("New label");
+		lblCID.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCID.setBounds(570, 40, 200, 16);
+		panel.add(lblCID);
+		
+		JLabel lblCName = new JLabel("New label");
+		lblCName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCName.setBounds(570, 70, 200, 16);
+		panel.add(lblCName);
+		
+		JLabel lblCPhone = new JLabel("New label");
+		lblCPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCPhone.setBounds(570, 100, 200, 16);
+		panel.add(lblCPhone);
+		
+		JLabel lblECName = new JLabel("New label");
+		lblECName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblECName.setBounds(570, 140, 200, 16);
+		panel.add(lblECName);
+		
+		JLabel lblECPhone = new JLabel("New label");
+		lblECPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblECPhone.setBounds(570, 170, 200, 16);
+		panel.add(lblECPhone);
+		
 		
 		
 		
@@ -235,8 +269,40 @@ public class ExistingClient
 			System.out.println("No database connected!");
 			Object[][] data = {{"No database", "Connected"}};
 			return data;
+		} 
+	}
+	/*private String getClientName(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
 		}
 	}
+	private String getClientPhone(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+	}
+	private String getECName(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+	}
+	private String getECPhone(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+	}*/
 	public JComponent getPanel()
 	{
 		return panel;

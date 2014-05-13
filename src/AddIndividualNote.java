@@ -23,18 +23,18 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
-	public AddIndividualNote()
+	SQLSetInfo test = new SQLSetInfo();
+	
+	public AddIndividualNote(int id)
 	{
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YY");
 		Date date = new Date();
-		System.out.println(dateFormat.format(date));
 		Calendar c = Calendar.getInstance();
 		c.setFirstDayOfWeek(Calendar.MONDAY);
 		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		Date mon = c.getTime();
 		c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		Date sun = c.getTime();
-		System.out.println("Date " + dateFormat.format(mon));
 		IndividualNotes = new JFrame("Patient Notes");
 		IndividualNotes.setTitle("Add Client Note");
 		IndividualNotes.getContentPane().setLayout(null);
@@ -150,6 +150,17 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		IndividualNotes.setVisible(true);
 		buttonGroup_1.add(radioButton_1);
 		
+		JLabel lblNewLabel = new JLabel(getClientName(id));
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel.setBounds(120, 20, 200, 16);
+		IndividualNotes.getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel();
+		lblNewLabel_1.setText(String.valueOf(id));
+		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(680, 20, 60, 16);
+		IndividualNotes.getContentPane().add(lblNewLabel_1);
+		
 	}
 
 
@@ -172,5 +183,14 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private String getClientName(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
 	}
 }
