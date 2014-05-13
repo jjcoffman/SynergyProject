@@ -1153,15 +1153,15 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtDateOfBirth.setText(""); i++;
 		}
-		try 
-		{
-			txtAge.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtAge.setText(""); i++;
-		}
+//		try 
+//		{
+//			txtAge.setText((String) data[i]);i++;
+//		}
+//		catch(NullPointerException e) 
+//		{
+//			System.out.println("Error Retrieving data in object array field " + i);
+//			txtAge.setText(""); i++;
+//		}
 		try 
 		{
 			txtVet.setText((String) data[i]);i++;

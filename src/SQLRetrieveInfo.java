@@ -90,12 +90,77 @@ public class SQLRetrieveInfo {
 				connection = SQLConnection.getConnection();
 				statement = connection.createStatement();
 				rs = statement.executeQuery(query);
-				while (rs.next()) 
-				{
-					results[1] = (rs.getString("C_PrimPhone"));
-					results[0] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
-					results[2] = (rs.getString("C_IntakeDate"));
-				}
+				int i = 0;
+				
+				results[i] = (rs.getString("C_LastName")); i++;
+				results[i] = (rs.getString("C_FirstName")); i++;
+				results[i] = (rs.getString("C_MI")); i++;
+				results[i] = (rs.getString("C_Gender")); i++;
+				results[i] = (rs.getString("C_PrimPhone")); i++;
+				results[i] = (rs.getString("C_SecondPhone")); i++;
+				results[i] = (rs.getString("C_DOB")); i++;
+				results[i] = (rs.getString("C_SSN")); i++;
+				results[i] = (rs.getString("C_Address")); i++;
+				results[i] = (rs.getString("C_City")); i++;
+				results[i] = (rs.getString("C_State")); i++;
+				results[i] = (rs.getString("C_ZIP")); i++;
+				results[i] = (rs.getString("C_County")); i++;
+				results[i] = (rs.getString("C_CONumYears")); i++;
+				results[i] = (rs.getString("C_Vet")); i++;
+				results[i] = (rs.getString("C_DLNum")); i++;
+				results[i] = (rs.getString("C_DLState")); i++;
+				results[i] = (rs.getString("C_IntakeDate")); i++;
+
+				query = "SELECT * FROM EMC_Info limit WHERE C_PrimPhone = " + s;
+				rs = statement.executeQuery(query);
+
+				results[i] = (rs.getString("EMC_LName")); i++;
+				results[i] = (rs.getString("EMC_FName")); i++;
+				results[i] = (rs.getString("EMC_Relation")); i++;
+				results[i] = (rs.getString("EMC_PrimPhone")); i++;
+				results[i] = (rs.getString("EMC_SecondPhone")); i++;
+				results[i] = (rs.getString("EMC_Address")); i++;
+				results[i] = (rs.getString("EMC_City")); i++;
+				results[i] = (rs.getString("EMC_State")); i++;
+				results[i] = (rs.getString("EMC_ZIP")); i++;
+
+				query = "SELECT * FROM ARC_Info limit WHERE C_PrimPhone = " + s;
+				rs = statement.executeQuery(query);
+				results[i] = (rs.getString("ARC_Name")); i++;
+				results[i] = (rs.getString("ARC_ContactLN")); i++;
+				results[i] = (rs.getString("ARC_ContactFN")); i++;
+				results[i] = (rs.getString("ARC_County")); i++;
+				results[i] = (rs.getString("ARC_Phone")); i++;
+				results[i] = (rs.getString("ARC_Cell")); i++;
+				results[i] = (rs.getString("ARC_Address")); i++;
+				results[i] = (rs.getString("ARC_City")); i++;
+				results[i] = (rs.getString("ARC_State")); i++;
+				results[i] = (rs.getString("ARC_ZIP")); i++;
+
+				query = "SELECT * FROM LEG_Info limit WHERE C_PrimPhone = " + s;
+				rs = statement.executeQuery(query);
+				results[i] = (rs.getString("LEG_JPLast30")); i++;
+				results[i] = (rs.getString("LEG_JPWhy")); i++;
+				results[i] = (rs.getString("LEG_OName")); i++;
+				results[i] = (rs.getString("LEG_Address")); i++;
+				results[i] = (rs.getString("LEG_City")); i++;
+				results[i] = (rs.getString("LEG_State")); i++;
+				results[i] = (rs.getString("LEG_ZIP")); i++;
+				results[i] = (rs.getString("LEG_Phone")); i++;
+
+				query = "SELECT * FROM HEALTH_Info limit WHERE C_PrimPhone = " + s;
+				rs = statement.executeQuery(query);
+
+				results[i] = (rs.getString("PHYS_Hospital")); i++;
+				results[i] = (rs.getString("PHYS_HospWhy")); i++;
+				results[i] = (rs.getString("MENT_Hospital")); i++;
+				results[i] = (rs.getString("MENT_HospWhy")); i++;
+				results[i] = (rs.getString("IV_Use")); i++;
+				results[i] = (rs.getString("PRIOR_TPlan")); i++;
+				results[i] = (rs.getString("How_Many")); i++;
+				results[i] = (rs.getString("WhereANDWhen")); 
+				System.out.println("Number of fields for continue intake " + i);
+					
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
