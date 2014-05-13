@@ -94,7 +94,7 @@ public class SQLRetrieveInfo {
 				while(rs.next()){
 				results[i] = (rs.getString("C_LastName")); i++;
 				results[i] = (rs.getString("C_FirstName")); i++; 
-				}/*
+				
 				results[i] = (rs.getString("C_MI")); i++;
 				results[i] = (rs.getString("C_Gender")); i++;
 				results[i] = (rs.getString("C_PrimPhone")); i++;
@@ -159,7 +159,8 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("IV_Use")); i++;
 				results[i] = (rs.getString("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
-				results[i] = (rs.getString("WhereANDWhen"));  */
+				results[i] = (rs.getString("WhereANDWhen"));  
+				}
 				System.out.println("Number of fields for continue intake " + i);
 					
 			} catch (SQLException e) {
