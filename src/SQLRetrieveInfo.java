@@ -80,7 +80,7 @@ public class SQLRetrieveInfo {
 	//this is filling the data for the newClient class for phone interviews without intake interview
 		public Object[] getPendingClient(String s)
 		{
-			Object[] results = new Object[96];
+			Object[] results = new Object[90];
 			ResultSet rs = null;
 			Connection connection = null;
 			Statement statement = null; 
@@ -112,7 +112,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("C_DLState")); i++;
 				results[i] = (rs.getString("C_IntakeDate")); i++;
 
-				query = "SELECT * FROM EMC_Info limit WHERE C_PrimPhone = " + s;
+				query = "SELECT * FROM EMC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 
 				results[i] = (rs.getString("EMC_LName")); i++;
@@ -125,7 +125,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("EMC_State")); i++;
 				results[i] = (rs.getString("EMC_ZIP")); i++;
 
-				query = "SELECT * FROM ARC_Info limit WHERE C_PrimPhone = " + s;
+				query = "SELECT * FROM ARC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 				results[i] = (rs.getString("ARC_Name")); i++;
 				results[i] = (rs.getString("ARC_ContactLN")); i++;
@@ -138,7 +138,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("ARC_State")); i++;
 				results[i] = (rs.getString("ARC_ZIP")); i++;
 
-				query = "SELECT * FROM LEG_Info limit WHERE C_PrimPhone = " + s;
+				query = "SELECT * FROM LEG_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 				results[i] = (rs.getString("LEG_JPLast30")); i++;
 				results[i] = (rs.getString("LEG_JPWhy")); i++;
@@ -149,7 +149,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("LEG_ZIP")); i++;
 				results[i] = (rs.getString("LEG_Phone")); i++;
 
-				query = "SELECT * FROM HEALTH_Info limit WHERE C_PrimPhone = " + s;
+				query = "SELECT * FROM HEALTH_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 				rs = statement.executeQuery(query);
 
 				results[i] = (rs.getString("PHYS_Hospital")); i++;
@@ -160,6 +160,25 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
 				results[i] = (rs.getString("WhereANDWhen"));  
+				
+				query = "SELECT * FROM SUB_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+				rs = statement.executeQuery(query);
+				
+				results[i] = (rs.getString("SUB1_Name")); i++;
+				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub1_Method")); i++;
+				results[i] = (rs.getString("SUB2_Name")); i++;
+				results[i] = (rs.getString("SUB2_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB2_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub2_Method")); i++;
+				results[i] = (rs.getString("SUB3_Name")); i++;
+				results[i] = (rs.getString("SUB3_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB3_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub3_Method")); i++;
+				
+				
+				
 				}
 				System.out.println("Number of fields for continue intake " + i);
 					

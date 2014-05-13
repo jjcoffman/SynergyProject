@@ -377,15 +377,7 @@ public class Intake implements ActionListener
 		chckbxJailprobationInLast.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{if(chckbxJailprobationInLast.isSelected())
-			{
-				chckbxOnProbation.setVisible(true);
 				txtProbationWhy.setVisible(true);
-			}
-			if(!chckbxJailprobationInLast.isSelected())
-			{
-				chckbxOnProbation.setVisible(false);
-				txtProbationWhy.setVisible(false);
-			}
 			}
 		});
 		chckbxJailprobationInLast.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -398,7 +390,13 @@ public class Intake implements ActionListener
 
 		chckbxOnProbation = new JCheckBox("On Probation?");
 		chckbxOnProbation.setFont(new Font("Verdana", Font.PLAIN, 13));
-		chckbxOnProbation.setVisible(false);
+		chckbxOnProbation.setVisible(true);
+		chckbxOnProbation.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{if(chckbxJailprobationInLast.isSelected())
+				txtProbationWhy.setVisible(true);
+			}
+		});
 		chckbxOnProbation.setBounds(260, 566, 135, 23);
 
 		txtProbationWhy = new JTextField();
@@ -476,7 +474,7 @@ public class Intake implements ActionListener
 					txtHowMany.setVisible(false);
 			}
 		});
-		chckbxIvUsedIn.setBounds(20, 861, 197, 23);
+		chckbxIvUsedIn.setBounds(20, 861, 200, 23);
 
 		chckbxPriorTPlan = new JCheckBox("Prior treatment Plans");
 		chckbxPriorTPlan.addChangeListener(new ChangeListener() {
@@ -488,16 +486,16 @@ public class Intake implements ActionListener
 					txtWhereAndWhen.setVisible(false);
 			}
 		});
-		chckbxPriorTPlan.setBounds(210, 861, 162, 23);
+		chckbxPriorTPlan.setBounds(20, 890, 180, 23);
 
 		txtHowMany = new JTextField();
-		txtHowMany.setBounds(379, 859, 266, 28);
+		txtHowMany.setBounds(230, 859, 415, 28);
 		txtHowMany.setText("How Many");
 		txtHowMany.setVisible(false);
 		txtHowMany.setColumns(10);
 
 		txtWhereAndWhen = new JTextField();
-		txtWhereAndWhen.setBounds(20, 885, 625, 28);
+		txtWhereAndWhen.setBounds(230, 885, 415, 28);
 		txtWhereAndWhen.setHorizontalAlignment(SwingConstants.LEFT);
 		txtWhereAndWhen.setText("Where and When");
 		txtWhereAndWhen.setVisible(false);
@@ -1112,18 +1110,26 @@ public class Intake implements ActionListener
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(20, 1145, 200, 16);
 		Intake.add(lblNewLabel_3);
-		
+
 		txtMI = new JTextField();
 		txtMI.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtMI.setBounds(205, 80, 40, 28);
 		Intake.add(txtMI);
 		txtMI.setColumns(10);
-		
+
 		JLabel lblMi = new JLabel("MI");
 		lblMi.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblMi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMi.setBounds(205, 60, 40, 20);
 		Intake.add(lblMi);
+
+		JCheckBox chckbxHaveYouEver = new JCheckBox("Have you ever been convicted of a sex crime?");
+		chckbxHaveYouEver.setBounds(20, 1265, 320, 23);
+		Intake.add(chckbxHaveYouEver);
+
+		JCheckBox chckbxHaveYouEver_1 = new JCheckBox("Have you ever been convicted of Arson?");
+		chckbxHaveYouEver_1.setBounds(350, 1265, 295, 23);
+		Intake.add(chckbxHaveYouEver_1);
 
 		if(j == 1)
 			importData(s);
@@ -1133,11 +1139,10 @@ public class Intake implements ActionListener
 
 	private void importData(String s) 
 	{
-		int size = dBase.getSize("Phone_Intake");
-		Object[] data = new Object[96];
+		Object[] data = new Object[90];
 		data = dBase.getPendingClient(s);
 		int i = 0;
-		
+
 
 		try 
 		{
@@ -1167,9 +1172,9 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtMI.setText(""); i++;
 		}
-		
+
 		i++; //Gender
-		
+
 		try 
 		{
 			txtPhoneNumber_1.setText((String) data[i]);i++;
@@ -1288,9 +1293,9 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtDlState.setText(""); i++;
 		}
-		
+
 		strIntakeDate = (String) data[i];i++;
-		
+
 		try 
 		{
 			String name = (String) data[i+1] + " " + (String) data[i]; i++; i++;
@@ -1446,25 +1451,25 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtAgencyZip.setText(""); i++;
 		}
-		
-//		try 
-//		{
-//			txtMaritalStatus.setText((String) data[i]);i++;
-//		}
-//		catch(NullPointerException e) 
-//		{
-//			System.out.println("Error Retrieving data in object array field " + i);
-//			txtMaritalStatus.setText(""); i++;
-//		}
-//		try 
-//		{
-//			txtSpouseName.setText((String) data[i]);i++;
-//		}
-//		catch(NullPointerException e) 
-//		{
-//			System.out.println("Error Retrieving data in object array field " + i);
-//			txtSpouseName.setText(""); i++;
-//		}
+
+		//		try 
+		//		{
+		//			txtMaritalStatus.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtMaritalStatus.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtSpouseName.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtSpouseName.setText(""); i++;
+		//		}
 		try 
 		{
 			if((int) data[i] == 0)
@@ -1605,11 +1610,7 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtWhereAndWhen.setText(""); i++;
 		}
-		
-		
-		//TODO Continue importing information form the Dbase here for substances etc.
-		//ALSO add Marital and spouse name
-		
+
 		try 
 		{
 			txtSubs1.setText((String) data[i]);i++;
@@ -1630,21 +1631,21 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtSubsFreq1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSubsFreq1.setText(""); i++;
-		}
-		try 
-		{
 			txtsubsAmount1.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtsubsAmount1.setText(""); i++;
+		}
+		try 
+		{
+			txtSubsFreq1.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtSubsFreq1.setText(""); i++;
 		}
 		try 
 		{
@@ -1675,21 +1676,21 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtSubsFreq2.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSubsFreq2.setText(""); i++;
-		}
-		try 
-		{
 			txtSubsAmount2.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtSubsAmount2.setText(""); i++;
+		}
+		try 
+		{
+			txtSubsFreq2.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtSubsFreq2.setText(""); i++;
 		}
 		try 
 		{
@@ -1720,21 +1721,21 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtSubsFreq3.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtSubsFreq3.setText(""); i++;
-		}
-		try 
-		{
 			txtSubsAmount3.setText((String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtSubsAmount3.setText(""); i++;
+		}
+		try 
+		{
+			txtSubsFreq3.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtSubsFreq3.setText(""); i++;
 		}
 		try 
 		{
@@ -1745,356 +1746,236 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtSubsMethod3.setText(""); i++;
 		}
-		try 
-		{
-			txtActionsTaken.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtActionsTaken.setText(""); i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxYesToAsam.setEnabled(false);
-			else
-				chckbxYesToAsam.setEnabled(true);
-			i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxYesToAsam.setEnabled(false); i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxJailprobationInLast.setEnabled(false);
-			else
-				chckbxJailprobationInLast.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxJailprobationInLast.setEnabled(false); i++;
-		}
-		
-		
-		try 
-		{
 
-			txtActionsTaken_1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtActionsTaken_1.setText(""); i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxYesToAsam_1.setEnabled(false);
-			else
-				chckbxYesToAsam_1.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxYesToAsam_1.setEnabled(false);; i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxYesToAsam_2.setEnabled(false);
-			else
-				chckbxYesToAsam_2.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxYesToAsam_2.setEnabled(false); i++;
-		}
-		try 
-		{
-			txtActionsTaken_2.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtActionsTaken_2.setText(""); i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxYesToAsam_3.setEnabled(false);
-			else
-				chckbxYesToAsam_3.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxYesToAsam_3.setEnabled(false); i++;
-		}
-		try 
-		{
 
-			txtActionsTaken_3.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtActionsTaken_3.setText(""); i++;
-		}
-		try 
-		{
-			if((int) data[i] == 0)
-				chckbxDoYouHave.setEnabled(false);
-			else
-				chckbxDoYouHave.setEnabled(true);
-			i++;			
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxDoYouHave.setEnabled(false);; i++;
-		}
-		try 
-		{
 
-			txtDescribe.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDescribe.setText(""); i++;
-		}
-		try 
-		{
-			txtDiag1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDiag1.setText(""); i++;
-		}
-		try 
-		{
-			txtDiag2.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDiag2.setText(""); i++;
-		}
-		try 
-		{
-			txtDiag3.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDiag3.setText(""); i++;
-		}
-		try 
-		{
-			txtMedName3.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtMedName3.setText(""); i++;
-		}
-		try 
-		{
-			txtMedName2.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtMedName2.setText(""); i++;
-		}
-		try 
-		{
-			txtMedName1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtMedName1.setText(""); i++;
-		}
-		try 
-		{
-			txtDosage1.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDosage1.setText(""); i++;
-		}
-		try 
-		{
-			txtDosage2.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDosage2.setText(""); i++;
-		}
-		try 
-		{
-			txtDosage3.setText((String) data[i]);i++;
-		}
-		catch(NullPointerException e) 
-		{
-			System.out.println("Error Retrieving data in object array field " + i);
-			txtDosage3.setText("");
-		}
+
+		//		try 
+		//		{
+		//			txtDiag1.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDiag1.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtMedName1.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtMedName1.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtDosage1.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDosage1.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtDiag2.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDiag2.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtMedName2.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtMedName2.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtDosage2.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDosage2.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtDiag3.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDiag3.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtMedName3.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtMedName3.setText(""); i++;
+		//		}
+		//		try 
+		//		{
+		//			txtDosage3.setText((String) data[i]);i++;
+		//		}
+		//		catch(NullPointerException e) 
+		//		{
+		//			System.out.println("Error Retrieving data in object array field " + i);
+		//			txtDosage3.setText("");
+		//		}
 	}
-		public JComponent getPanel()
-		{
-			return Intake;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
-			if(e.getSource()==btnExit)
-			{
-				IntakeForm.close();
-			}
-			if(e.getSource()==btnSubmit)
-			{
-
-				new Admin();
-			}
-
-		}
-
-		private boolean validateInput()
-		{
-			boolean valid = true;
-
-			if(!txtDateOfBirth.getText().matches("\\d{4}-\\d{2}-\\d{2}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format YYYY-MM-DD");
-			}
-			if(!txtFirstName.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The First Name must have letters only");
-
-			}
-			if(!txtLastName.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Last Name must have letters only");
-
-			}
-			if(!txtAge.getText().matches("[0-9]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The clients age must have numbers only");
-			}
-			if(!txtVet.getText().matches("[ynYN]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "Vet must be a Y or N");
-			}
-
-			//not checking address due to high variation in input
-
-			if(!txtCity.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The City must have letters only");
-			}
-			if(!txtState.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The State must have letters only");
-			}
-			if(!txtCounty.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The County must have letters only");
-			}
-			if(!txtName.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Emergency Contact Name must have letters only");
-			}
-
-			//not checking emergency address due to high variation in input
-
-			if(!txtEmergencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Emergency Contact City must have letters only");
-			}
-			if(!txtZip.getText().matches("\\d{5}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Zip Code must have 5 numbers only");
-			}
-			if(!textEmergencyState.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Emergency Contact State must have letters only");
-			}
-			if(!textEmergencyZip.getText().matches("\\d{5}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Emergency Contact zip must have 5 numbers only");
-			}
-			if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Emergency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
-			}
-			if(!txtAgencyState.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Contact State must have letters only");
-			}
-			if(!txtAgencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Contact city must have letters only");
-			}
-			if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
-			}
-			if(!txtAgencyZip.getText().matches("\\d{5}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Zip Code must have 5 numbers only");
-			}
-			if(!txtAgencyCell.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Contact Cell Phone must have numbers only in the format XXX-XXX-XXXX");
-			}
-			if(!txtPhoneNumber_1.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Agency Contact Phone Number must have numbers only in the format XXX-XXX-XXXX");
-			}
-			if(!txtOfficerPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Probation Contact number must have numbers only in the format XXX-XXX-XXXX");
-			}
-
-
-
-			return valid;
-		}
+	
+	public JComponent getPanel()
+	{
+		return Intake;
 	}
+
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getSource()==btnExit)
+		{
+			IntakeForm.close(); //This exits the form and doesnt save anything
+		}
+		if(e.getSource()==btnSubmit)
+		{
+			sendData(); //this sends the data to the database
+		}
+
+	}
+
+	private void sendData() 
+	{
+		validateInput();
+		
+
+	}
+
+
+	private boolean validateInput()
+	{
+		boolean valid = true;
+
+		if(!txtDateOfBirth.getText().matches("\\d{4}-\\d{2}-\\d{2}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format YYYY-MM-DD");
+		}
+		if(!txtFirstName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The First Name must have letters only");
+
+		}
+		if(!txtLastName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Last Name must have letters only");
+
+		}
+		if(!txtAge.getText().matches("[0-9]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The clients age must have numbers only");
+		}
+		if(!txtVet.getText().matches("[ynYN]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Vet must be a Y or N");
+		}
+
+		//not checking address due to high variation in input
+
+		if(!txtCity.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The City must have letters only");
+		}
+		if(!txtState.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The State must have letters only");
+		}
+		if(!txtCounty.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The County must have letters only");
+		}
+		if(!txtName.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact Name must have letters only");
+		}
+
+		//not checking emergency address due to high variation in input
+
+		if(!txtEmergencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact City must have letters only");
+		}
+		if(!txtZip.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Zip Code must have 5 numbers only");
+		}
+		if(!textEmergencyState.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact State must have letters only");
+		}
+		if(!textEmergencyZip.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact zip must have 5 numbers only");
+		}
+		if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtAgencyState.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact State must have letters only");
+		}
+		if(!txtAgencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact city must have letters only");
+		}
+		if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtAgencyZip.getText().matches("\\d{5}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Zip Code must have 5 numbers only");
+		}
+		if(!txtAgencyCell.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact Cell Phone must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtPhoneNumber_1.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Agency Contact Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtOfficerPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Probation Contact number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		return valid;
+	}
+}
