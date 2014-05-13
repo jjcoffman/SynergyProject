@@ -126,6 +126,8 @@ public class Intake implements ActionListener
 	private JTextField txtDosage3;
 	private JTextField txtMI;
 	private String strIntakeDate;
+	private JCheckBox chckbxHaveYouEver;
+	private JCheckBox chckbxHaveYouEver_1;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -137,10 +139,12 @@ public class Intake implements ActionListener
 
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(this);
+		btnExit.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnExit.setBounds(234, 1300, 75, 29);
 
 		btnSubmit = new JButton("Continue");
 		btnSubmit.addActionListener(this);
+		btnSubmit.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnSubmit.setBounds(339, 1300, 101, 29);
 
 
@@ -205,6 +209,7 @@ public class Intake implements ActionListener
 		txtCounty = new JTextField();
 		txtCounty.setBounds(20, 180, 180, 28);
 		txtCounty.setText("Sacramento");
+		txtCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtCounty.setColumns(10);
 
 		JLabel lblEmergencyContact = new JLabel("EMERGENCY CONTACT");
@@ -311,6 +316,7 @@ public class Intake implements ActionListener
 		txtYearsInCounty = new JTextField();
 		txtYearsInCounty.setBounds(210, 180, 110, 28);
 		txtYearsInCounty.setText("2");
+		txtYearsInCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtYearsInCounty.setColumns(10);
 
 		txtPhoneNumber_1 = new JTextField();
@@ -320,6 +326,7 @@ public class Intake implements ActionListener
 		});
 		txtPhoneNumber_1.setBounds(330, 180, 150, 28);
 		txtPhoneNumber_1.setText("916-555-5555");
+		txtPhoneNumber_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtPhoneNumber_1.setColumns(10);
 
 		txtSecondaryPhone = new JTextField();
@@ -328,6 +335,7 @@ public class Intake implements ActionListener
 			}
 		});
 		txtSecondaryPhone.setBounds(490, 180, 155, 28);
+		txtSecondaryPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtSecondaryPhone.setText("916-555-5556");
 		txtSecondaryPhone.setColumns(10);
 
@@ -402,6 +410,7 @@ public class Intake implements ActionListener
 		txtProbationWhy = new JTextField();
 		txtProbationWhy.setBounds(400, 566, 245, 28);
 		txtProbationWhy.setText("Why:");
+		txtProbationWhy.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtProbationWhy.setVisible(false);
 		txtProbationWhy.setColumns(10);
 
@@ -474,6 +483,7 @@ public class Intake implements ActionListener
 					txtHowMany.setVisible(false);
 			}
 		});
+		chckbxIvUsedIn.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxIvUsedIn.setBounds(20, 861, 200, 23);
 
 		chckbxPriorTPlan = new JCheckBox("Prior treatment Plans");
@@ -486,11 +496,13 @@ public class Intake implements ActionListener
 					txtWhereAndWhen.setVisible(false);
 			}
 		});
+		chckbxPriorTPlan.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxPriorTPlan.setBounds(20, 890, 180, 23);
 
 		txtHowMany = new JTextField();
 		txtHowMany.setBounds(230, 859, 415, 28);
 		txtHowMany.setText("How Many");
+		txtHowMany.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtHowMany.setVisible(false);
 		txtHowMany.setColumns(10);
 
@@ -498,11 +510,13 @@ public class Intake implements ActionListener
 		txtWhereAndWhen.setBounds(230, 885, 415, 28);
 		txtWhereAndWhen.setHorizontalAlignment(SwingConstants.LEFT);
 		txtWhereAndWhen.setText("Where and When");
+		txtWhereAndWhen.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtWhereAndWhen.setVisible(false);
 		txtWhereAndWhen.setColumns(10);
 
 		JLabel lblCompleteAsamBefore = new JLabel("COMPLETE ASAM BEFORE CONTINUING!!!");
 		lblCompleteAsamBefore.setBounds(205, 926, 255, 16);
+		lblCompleteAsamBefore.setFont(new Font("Verdana", Font.PLAIN, 13));
 		Intake.setLayout(null);
 		Intake.add(txtAddress);
 		Intake.add(txtFirstName);
@@ -945,6 +959,7 @@ public class Intake implements ActionListener
 		txtActionsTaken = new JTextField();
 		txtActionsTaken.setText("Actions Taken");
 		txtActionsTaken.setBounds(291, 950, 354, 28);
+		txtActionsTaken.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken.setVisible(false);
 		Intake.add(txtActionsTaken);
 		txtActionsTaken.setColumns(10);
@@ -989,6 +1004,7 @@ public class Intake implements ActionListener
 
 		txtActionsTaken_2 = new JTextField();
 		txtActionsTaken_2.setText("Actions Taken:");
+		txtActionsTaken_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken_2.setBounds(290, 1010, 355, 28);
 		txtActionsTaken_2.setVisible(false);
 		Intake.add(txtActionsTaken_2);
@@ -1013,6 +1029,7 @@ public class Intake implements ActionListener
 		txtActionsTaken_3 = new JTextField();
 		txtActionsTaken_3.setText("Actions Taken");
 		txtActionsTaken_3.setBounds(290, 1040, 335, 28);
+		txtActionsTaken_3.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken_3.setVisible(false);
 		Intake.add(txtActionsTaken_3);
 		txtActionsTaken_3.setColumns(10);
@@ -1123,11 +1140,13 @@ public class Intake implements ActionListener
 		lblMi.setBounds(205, 60, 40, 20);
 		Intake.add(lblMi);
 
-		JCheckBox chckbxHaveYouEver = new JCheckBox("Have you ever been convicted of a sex crime?");
+		chckbxHaveYouEver = new JCheckBox("Have you ever been convicted of a sex crime?");
+		chckbxHaveYouEver.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxHaveYouEver.setBounds(20, 1265, 320, 23);
 		Intake.add(chckbxHaveYouEver);
 
-		JCheckBox chckbxHaveYouEver_1 = new JCheckBox("Have you ever been convicted of Arson?");
+		chckbxHaveYouEver_1 = new JCheckBox("Have you ever been convicted of Arson?");
+		chckbxHaveYouEver_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxHaveYouEver_1.setBounds(350, 1265, 295, 23);
 		Intake.add(chckbxHaveYouEver_1);
 
