@@ -85,15 +85,16 @@ public class SQLRetrieveInfo {
 			Connection connection = null;
 			Statement statement = null; 
 
-			String query = "SELECT * FROM Phone_Intake WHERE C_PrimPhone = " + s;  
+			String query = "SELECT * FROM Phone_Intake WHERE C_PrimPhone = " + "\"" + s + "\"";  
 			try { 
 				connection = SQLConnection.getConnection();
 				statement = connection.createStatement();
 				rs = statement.executeQuery(query);
 				int i = 0;
-				
+				while(rs.next()){
 				results[i] = (rs.getString("C_LastName")); i++;
-				results[i] = (rs.getString("C_FirstName")); i++; /*
+				results[i] = (rs.getString("C_FirstName")); i++; 
+				}/*
 				results[i] = (rs.getString("C_MI")); i++;
 				results[i] = (rs.getString("C_Gender")); i++;
 				results[i] = (rs.getString("C_PrimPhone")); i++;
