@@ -62,7 +62,7 @@ public class Discharge
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildGUI(String s)
+	public void buildGUI(int s)
 	{
 		Discharge = new JPanel();
 		Discharge.setSize(665, 1250);
@@ -551,7 +551,7 @@ public class Discharge
 		
 	}
 	
-	private void importData(String s)
+	private void importData(int s)
 	{
 		Object[] data = new Object[90];
 		data = dBase.getClientDischarge(s);

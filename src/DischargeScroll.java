@@ -13,7 +13,7 @@ public class DischargeScroll
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public DischargeScroll(String s)
+	public DischargeScroll(int s)
 	{
 		window = new JFrame("Discharge");
 		DischargeS = new Discharge();

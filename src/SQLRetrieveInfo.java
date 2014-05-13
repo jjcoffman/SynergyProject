@@ -76,14 +76,14 @@ public class SQLRetrieveInfo {
 	}
 
 	//this method is for pulling data for the client discharge form
-	public Object[] getClientDischarge(String s)
+	public Object[] getClientDischarge(int s)
 	{
 		Object[] results = new Object[90];
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
 
-		String query = "SELECT * FROM Client_Record WHERE C_ID = " + "\"" + s + "\"";  
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + s;  
 		
 		try { 
 			connection = SQLConnection.getConnection();

@@ -210,7 +210,7 @@ public class ExistingClient
 				System.out.println(i);
 				Object x = table.getValueAt(i,  0);
 				System.out.println(x);
-				String s = (String)x;
+				int s = (int)x;
 				System.out.println(s);
 				
 				new DischargeScroll(s);
