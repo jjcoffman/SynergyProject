@@ -20,6 +20,8 @@ public class ExistingClient
 	private JTable groupTable;
 	private JTable IndividualTable;
 	private MyTableModel existing;
+	private MyTableModel individual;
+	private MyTableModel group;
 	private int id;
 	private JLabel lblCID;
 	private JLabel lblCName;
@@ -62,7 +64,10 @@ public class ExistingClient
 				lblCPhone.setText(getClientPhone(id));
 				lblECName.setText(getECName(id));
 				lblECPhone.setText(getECPhone(id));
+				Object[][] data = getInd(id);
+				individual.update(data);
 				System.out.println(id);
+				System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
 				}});
 		panel.add(btnSelect);
 		
@@ -116,7 +121,8 @@ public class ExistingClient
 		
 		Object[][] data1 = getGroup();
 		String[] columnNames1 = {"Week Of","Counselor"};
-		groupTable = new JTable(data1, columnNames1);
+		group = new MyTableModel(data1, columnNames1);
+		groupTable = new JTable(group);
 		groupTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		groupTable.setGridColor(Color.LIGHT_GRAY);
 		groupTable.setFillsViewportHeight(true);
@@ -129,7 +135,8 @@ public class ExistingClient
 		
 		Object[][] data2 = getInd(id);
 		String[] columnNames2 = {"Date","Counselor"};
-		IndividualTable = new JTable(data2, columnNames2);
+		individual = new MyTableModel(data2, columnNames2);
+		IndividualTable = new JTable(individual);
 		IndividualTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		IndividualTable.setGridColor(Color.LIGHT_GRAY);
 		IndividualTable.setFillsViewportHeight(true);
@@ -249,27 +256,23 @@ public class ExistingClient
 		
 	}
 	//this gets the individual notes
-	private Object[][] getInd(int id) 
-	{
-		Object[][] data = {{"1/12/14","Bootstrap Bill"}};
-		System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
-		return data;
-		//try {
-		//	int size = test2.getEMCSize("EMC_info", id);
-		
-		/*Object[][] data = new Object[size][2];
-		for (int i = 1; i <= size; i++){
-			data[i-1] = test2.getEMCRows(i - 1, 1, id);
-		}
-		//System.out.println("rows in client_record: " + test2.getSize("Client_Record"));
-		return data;
+	private Object[][] getInd(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+		//return data;
+		try {
+			int size = test2.getIndSize("IND_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test2.getIndRows(size, id);
+			return data;
 		}
 		catch(NullPointerException e) {
 			System.out.println("No database connected!");
 			Object[][] data = {{"No database", "Connected"}};
 			return data;
-		} */
+		}	
 	}
+	
 	//this gets the group notes
 	private Object[][] getGroup() 
 	{

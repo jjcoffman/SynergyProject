@@ -161,4 +161,36 @@ public class SQLSetInfo {
 		return result;
 	}
 	
+	public Object[][] getIndRows(int size, int id) {
+		Object data[][] = new Object[size][2];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT COUNT(*) FROM IND_NOTES Where C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				for (int i = 0; i < size; i++) {
+					data[i][0] = rs.getString("NoteDate");
+					data[i][1] = rs.getString("Counselor");
+				}
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return data;
+	}
+	
 }
