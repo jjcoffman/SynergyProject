@@ -22,7 +22,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	AddNote.getContentPane().setLayout(null);
 	AddNote.setSize(450, 300);
 	AddNote.setLocationRelativeTo(null);
-	AddNote.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	//AddNote.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	JLabel lblClientName = new JLabel("Client Name:");
 	lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));

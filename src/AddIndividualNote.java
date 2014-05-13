@@ -40,7 +40,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		IndividualNotes.getContentPane().setLayout(null);
 		IndividualNotes.setSize(760, 540);
 		IndividualNotes.setLocationRelativeTo(null);
-		IndividualNotes.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//IndividualNotes.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
 		lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -168,7 +168,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	{
 		if(e.getSource()==btnSubmit)
 		{
-			returnInfo();
+			//returnInfo();
 			IndividualNotes.dispose();
 		}
 		else if(e.getSource()==btnCancel)
