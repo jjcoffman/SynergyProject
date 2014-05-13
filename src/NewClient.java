@@ -88,7 +88,7 @@ public class NewClient
 			System.out.println(j);
 			Object x = table.getValueAt(i,  1);
 			System.out.println(x);
-			String s = String.valueOf(x);
+			String s = (String)x;
 			System.out.println(s);
 
 			new IntakeForm(s, 1);

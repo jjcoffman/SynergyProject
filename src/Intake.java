@@ -127,7 +127,7 @@ public class Intake implements ActionListener
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void BuildPanel(String s, int i)
+	public void BuildPanel(String s, int j)
 	{
 
 		Intake = new JPanel();
@@ -1111,7 +1111,7 @@ public class Intake implements ActionListener
 		lblNewLabel_3.setBounds(20, 1145, 200, 16);
 		Intake.add(lblNewLabel_3);
 
-		if(i == 1)
+		if(j == 1)
 			importData(s);
 		Intake.setVisible(true);
 	}
@@ -1120,7 +1120,7 @@ public class Intake implements ActionListener
 	private void importData(String s) 
 	{
 		int size = dBase.getSize("Phone_Intake");
-		Object[] data = new Object[size];
+		Object[] data = new Object[96];
 		data = dBase.getPendingClient(s);
 		int i = 0;
 		

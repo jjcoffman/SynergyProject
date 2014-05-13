@@ -21,9 +21,15 @@ public class ExistingClient
 	private JTable IndividualTable;
 	private MyTableModel existing;
 	private int id;
+	private JLabel lblCID;
+	private JLabel lblCName;
+	private JLabel lblCPhone;
+	private JLabel lblECName;
+	private JLabel lblECPhone;
 
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
+	SQLSetInfo test2 = new SQLSetInfo();
 	
 	
 	/**
@@ -51,6 +57,11 @@ public class ExistingClient
 			public void mouseClicked(MouseEvent e) 
 			{	Object test = table.getValueAt(table.getSelectedRow(),0);
 				id = (int)test;
+				lblCID.setText(String.valueOf(id));
+				lblCName.setText(getClientName(id));
+				lblCPhone.setText(getClientPhone(id));
+				lblECName.setText(getECName(id));
+				lblECPhone.setText(getECPhone(id));
 				System.out.println(id);
 				}});
 		panel.add(btnSelect);
@@ -116,7 +127,7 @@ public class ExistingClient
 		spGroup.setVisible(true);
 		panel.add(spGroup);
 		
-		Object[][] data2 = getInd();
+		Object[][] data2 = getInd(id);
 		String[] columnNames2 = {"Date","Counselor"};
 		IndividualTable = new JTable(data2, columnNames2);
 		IndividualTable.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -206,27 +217,27 @@ public class ExistingClient
 		btnRefresh.setBounds(240, 480, 160, 29);
 		panel.add(btnRefresh);
 		
-		JLabel lblCID = new JLabel("New label");
+		lblCID = new JLabel();
 		lblCID.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblCID.setBounds(570, 40, 200, 16);
 		panel.add(lblCID);
 		
-		JLabel lblCName = new JLabel("New label");
+		lblCName = new JLabel();
 		lblCName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblCName.setBounds(570, 70, 200, 16);
 		panel.add(lblCName);
 		
-		JLabel lblCPhone = new JLabel("New label");
+		lblCPhone = new JLabel();
 		lblCPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblCPhone.setBounds(570, 100, 200, 16);
 		panel.add(lblCPhone);
 		
-		JLabel lblECName = new JLabel("New label");
+		lblECName = new JLabel();
 		lblECName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblECName.setBounds(570, 140, 200, 16);
 		panel.add(lblECName);
 		
-		JLabel lblECPhone = new JLabel("New label");
+		lblECPhone = new JLabel();
 		lblECPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblECPhone.setBounds(570, 170, 200, 16);
 		panel.add(lblECPhone);
@@ -238,10 +249,26 @@ public class ExistingClient
 		
 	}
 	//this gets the individual notes
-	private Object[][] getInd() 
+	private Object[][] getInd(int id) 
 	{
 		Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
 		return data;
+		//try {
+		//	int size = test2.getEMCSize("EMC_info", id);
+		
+		/*Object[][] data = new Object[size][2];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test2.getEMCRows(i - 1, 1, id);
+		}
+		//System.out.println("rows in client_record: " + test2.getSize("Client_Record"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		} */
 	}
 	//this gets the group notes
 	private Object[][] getGroup() 
@@ -271,9 +298,9 @@ public class ExistingClient
 			return data;
 		} 
 	}
-	/*private String getClientName(int id){
+	private String getClientName(int id){
 		try {
-		return test.getName(id);
+		return test2.getName(id);
 		}
 		catch(NullPointerException e) {
 			return "";
@@ -281,7 +308,7 @@ public class ExistingClient
 	}
 	private String getClientPhone(int id){
 		try {
-		return test.getName(id);
+		return test2.getPhone(id);
 		}
 		catch(NullPointerException e) {
 			return "";
@@ -289,20 +316,20 @@ public class ExistingClient
 	}
 	private String getECName(int id){
 		try {
-		return test.getName(id);
+		return test2.getECName(id);
 		}
 		catch(NullPointerException e) {
-			return "";
+			return "N/A";
 		}
 	}
 	private String getECPhone(int id){
 		try {
-		return test.getName(id);
+		return test2.getECPhone(id);
 		}
 		catch(NullPointerException e) {
-			return "";
+			return "N/A";
 		}
-	}*/
+	}
 	public JComponent getPanel()
 	{
 		return panel;
