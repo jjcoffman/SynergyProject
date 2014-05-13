@@ -13,7 +13,7 @@ public class SQLRetrieveInfo {
 	
 	// Returns array of strings for given Client Id
 	public Object[] getRows(int rowNum, int numRows){
-		Object[] results = new Object[2];
+		Object[] results = new Object[297];
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
@@ -42,6 +42,8 @@ public class SQLRetrieveInfo {
 		return results;
 	}
 	
+	
+	//this is filling the data for the newClient class for phone interviews without intake interview
 	public Object[] getPendingRows(int rowNum, int numRows){
 		Object[] results = new Object[3];
 		ResultSet rs = null;
@@ -72,6 +74,43 @@ public class SQLRetrieveInfo {
 		System.out.println(results[0] + " " + results[1]);
 		return results;
 	}
+	
+	
+	
+	//this is filling the data for the newClient class for phone interviews without intake interview
+		public Object[] getPendingClient(String s)
+		{
+			Object[] results = new Object[96];
+			ResultSet rs = null;
+			Connection connection = null;
+			Statement statement = null; 
+
+			String query = "SELECT * FROM Phone_Intake limit WHERE C_PrimPhone = " + s;  
+			try { 
+				connection = SQLConnection.getConnection();
+				statement = connection.createStatement();
+				rs = statement.executeQuery(query);
+				while (rs.next()) 
+				{
+					results[1] = (rs.getString("C_PrimPhone"));
+					results[0] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+					results[2] = (rs.getString("C_IntakeDate"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			System.out.println(results[0] + " " + results[1]);
+			return results;
+		}
+	
 	
 	public Object[] getUSERSRows(int rowNum, int numRows){
 		Object[] results = new Object[4];

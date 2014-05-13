@@ -52,7 +52,7 @@ public class NewClient
 			
 			 //TODO add id identifier for no existing user
 			
-			{new IntakeForm(0);} 
+			{new IntakeForm("", 0);} 
 		});
 		btnNewPhoneInterview.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnNewPhoneInterview.setBounds(192, 452, 200, 29);
@@ -61,10 +61,9 @@ public class NewClient
 		JButton button = new JButton("Proceed to Initial Intake");
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			 //TODO add id identifier for no existing user
-			
-			
-			{new IntakeForm(1);} //TODO add id identifier for the existing client we are passing
+			{
+				continueIntake();
+			} //TODO add id identifier for the existing client we are passing
 		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));
 		button.setBounds(482, 452, 200, 29);
@@ -74,6 +73,40 @@ public class NewClient
 		newClient.setVisible(true);
 	}
 	
+
+	
+	
+	
+	
+	protected void continueIntake() 
+	{
+		try
+		{
+			int i = table.getSelectedRow();
+			System.out.println(i);
+			int j = table.getSelectedColumn();
+			System.out.println(j);
+			Object x = table.getValueAt(i,  1);
+			System.out.println(x);
+			String s = String.valueOf(x);
+			System.out.println(s);
+
+			new IntakeForm(s, 1);
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "You must select an existing phone interview");
+		}
+		
+		
+		
+	}
+
+
+
+
+
+
 	private Object[][] getExisting() 
 	{
 		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
