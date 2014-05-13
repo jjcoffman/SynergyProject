@@ -172,11 +172,11 @@ public class SQLSetInfo {
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
+			int i = 0;
 			while(rs.next()){
-				for (int i = 0; i < size; i++) {
 					data[i][0] = rs.getString("NoteDate");
 					data[i][1] = rs.getString("Counselor");
-				}
+					i++;
 			}
 		} 
 		catch (SQLException e) {
