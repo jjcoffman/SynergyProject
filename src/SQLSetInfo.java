@@ -167,7 +167,7 @@ public class SQLSetInfo {
 		Connection connection = null;
 		Statement statement = null; 
 
-		String query = "SELECT COUNT(*) FROM IND_NOTES Where C_ID = " + id;
+		String query = "SELECT * FROM IND_NOTES Where C_ID = " + id;
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
