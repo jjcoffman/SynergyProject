@@ -155,8 +155,8 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		lblNewLabel.setBounds(120, 20, 200, 16);
 		IndividualNotes.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel();
-		lblNewLabel_1.setText(String.valueOf(id));
+		JLabel lblNewLabel_1 = new JLabel(String.valueOf(id));
+		//lblNewLabel_1.setText(String.valueOf(id));
 		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(680, 20, 60, 16);
 		IndividualNotes.getContentPane().add(lblNewLabel_1);

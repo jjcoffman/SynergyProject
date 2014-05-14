@@ -177,7 +177,7 @@ public class ExistingClient
 		btnAddGroup.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
-			{new newGroupNote();}
+			{new newGroupNote(id);}
 		});
 		btnAddGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddGroup.setBounds(770, 520, 94, 29);
