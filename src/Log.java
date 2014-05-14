@@ -587,7 +587,7 @@ public class Log
 		lblDrugCourt.setText(String.valueOf(drugCourt));
 		lblCPS.setText(String.valueOf(cps));
 		
-		
+		//
 	}
 	
 	//days between returns
