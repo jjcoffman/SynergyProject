@@ -20,6 +20,9 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private JButton btnSubmit;
 	private JButton btnCancel;
 	private JTextField textField_6;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JTextArea textArea;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
@@ -122,7 +125,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		textField_6.setBounds(640, 50, 60, 28);
 		IndividualNotes.getContentPane().add(textField_6);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
@@ -150,12 +153,12 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		IndividualNotes.setVisible(true);
 		buttonGroup_1.add(radioButton_1);
 		
-		JLabel lblNewLabel = new JLabel(getClientName(id));
+		lblNewLabel = new JLabel(getClientName(id));
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblNewLabel.setBounds(120, 20, 200, 16);
 		IndividualNotes.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(String.valueOf(id));
+		lblNewLabel_1 = new JLabel(String.valueOf(id));
 		//lblNewLabel_1.setText(String.valueOf(id));
 		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(680, 20, 60, 16);
@@ -168,20 +171,23 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	{
 		if(e.getSource()==btnSubmit)
 		{
-			//returnInfo();
+			Object[] data = new Object[11];
+			data[0] = lblNewLabel.getText();
+			data[1] = Integer.parseInt(lblNewLabel_1.getText());
+			data[2] = textField.getText();
+			data[3] = txtT.getText();
+			data[4] = textField_2.getText();
+			data[5] = "Default";
+			data[6] = txtHhmm.getText();
+			data[8] = textField_6.getText();
+			data[10] = textArea.getText();
+			test.sendIndInfo(data);
 			IndividualNotes.dispose();
 		}
 		else if(e.getSource()==btnCancel)
 		{
 			IndividualNotes.dispose();
 		}
-		
-	}
-
-
-	private void returnInfo() 
-	{
-		// TODO Auto-generated method stub
 		
 	}
 	

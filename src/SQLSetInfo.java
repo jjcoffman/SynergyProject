@@ -254,4 +254,40 @@ public class SQLSetInfo {
 		return data;
 	}
 	
+	public void sendIndInfo(Object[] data){
+		Connection connection = null;
+		Statement statement = null; 
+		int id = (int)data[1];
+		//String id = String.valueOf(data[1]);
+		String weekStart = (String)data[2];
+		String weekEnd = (String)data[3];
+		String dateOf = (String)data[4];
+		String counselor = (String)data[5];
+		String note = (String)data[10];
+		String start = (String)data[6];
+		String end = (String)data[8];
+		int amorpm1 = 0;
+		int amorpm2 = 1;
+		int signature = 0;
+
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO IND_NOTES (C_ID, WeekStart, WeekEnd, NoteDate, Counselor, Note, StartTime, EndTime, ST_AMPM, ET_AMPM, Signature) " + "VALUES (" + id + ", \"" + weekStart + "\", \"" + weekEnd + "\", \"" + dateOf + "\", \"" + counselor + "\", \"" + note + "\", \"" + start + "\", \"" + end + "\", " + amorpm1 + ", " + amorpm2 + ", " + signature + ")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 }
