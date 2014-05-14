@@ -523,7 +523,8 @@ public class SQLRetrieveInfo {
 				result = rs.getInt("COUNT(*)");
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException e) 
+		{
 			e.printStackTrace();
 		} finally {
 			if (connection != null) {
