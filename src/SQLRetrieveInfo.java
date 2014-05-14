@@ -21,7 +21,7 @@ public class SQLRetrieveInfo {
 	}
 
 	public Object[] getArchiveRows(int rowNum, int numRows){
-		Object[] results = new Object[297];
+		Object[] results = new Object[11];
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
@@ -31,7 +31,8 @@ public class SQLRetrieveInfo {
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 				
 				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
 				results[i] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName")); i++;
@@ -57,13 +58,14 @@ public class SQLRetrieveInfo {
 					e.printStackTrace();
 				}
 				cal2.setTime(date);
-				results[i] = daysBetween(cal1.getTime(),cal2.getTime());i++;	
+				results[i] = daysBetween(cal1.getTime(),cal2.getTime());i++;
 				
 				results[i] = (rs.getString("C_DOB"));String strDOB = (String) results[i];i++;
 				
 				Calendar cal3 = new GregorianCalendar();
+				Date date1 = new Date();
 				try {
-					Date date1 = sdf.parse(strDOB);
+					date1 = sdf.parse(strDOB);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -75,9 +77,8 @@ public class SQLRetrieveInfo {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				int intAgeDays = daysBetween(cal1.getTime(),cal2.getTime());
+				int intAgeDays = daysBetween(date1,date2);
 				intAgeDays = intAgeDays/365;
-				
 				results[i] = intAgeDays; 
 						i++;
 				
@@ -96,7 +97,15 @@ public class SQLRetrieveInfo {
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
 				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
-				results[i] = (rs.getInt("DIS_Success"));i++;
+				String succ = "";
+				if(rs.getInt("DIS_Success")==0)
+						succ = "Fail";
+				else
+					succ = "Success";
+						
+				
+				
+				results[i] = succ;i++;
 				
 			}
 		} catch (SQLException e) {
@@ -111,7 +120,8 @@ public class SQLRetrieveInfo {
 			}
 		}
 
-		System.out.println(results[0] + " " + results[1]);
+		for(int f = 0; f < results.length; f++)
+			System.out.println(results[f]);
 		return results;
 	}
 	
