@@ -158,7 +158,7 @@ public class Admin
 		JButton btnViewInd = new JButton("View");
 		btnViewInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new ViewIndividualNote();}});
+			{new ViewIndividualNote(2);}});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(450, 500, 100, 29);
 		Archive.add(btnViewInd);
