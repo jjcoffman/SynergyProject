@@ -566,18 +566,13 @@ public class Log
 				cps++;
 		}
 		
-		try {
+		try 
+		{
 			intakes = size + test.getSize("Phone_Intake") + test.getSize("Client_Record");
-		
-		Object[][] data = new Object[size][2];
-		for (int i = 1; i <= size; i++){
-			data[i-1] = test.getPendingRows(i - 1, 1);
-		}
 		System.out.println("rows in Phone_Intake: " + test.getSize("Phone_Intake"));
 		}
 		catch(NullPointerException e) {
 			System.out.println("No database connected!");
-			Object[][] data = {{"No data", "base", "Connected"}};
 		}
 		
 		

@@ -254,6 +254,7 @@ public class SQLSetInfo {
 		return data;
 	}
 	
+	//This is for individual Notes
 	public void sendIndInfo(Object[] data){
 		Connection connection = null;
 		Statement statement = null; 
