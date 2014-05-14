@@ -529,7 +529,7 @@ public class Discharge
 		btnCompleteDischarge.setFont(text);
 		btnCompleteDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{ complete();}
+			{ sendData();}
 		});
 		Discharge.add(btnCompleteDischarge);
 		
@@ -593,13 +593,19 @@ public class Discharge
 			System.out.println("Error Retrieving data in object array field " + i);
 			lblContactName.setText(""); i++;
 		}
-		
-		
-		
 	}
-	private void complete() 
+	
+	private void sendData() 
 	{
 		//TODO handle the data that has been imported
+		
+		
+		
+		
+		
+		
+		
+		
 		DischargeScroll.closeWindow();
 		
 	}	

@@ -3,6 +3,7 @@ import java.awt.Font;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -10,6 +11,7 @@ import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
 
 
@@ -19,6 +21,9 @@ public class Log
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	private MyTableModel existing;
+	SQLRetrieveInfo test = new SQLRetrieveInfo();
+	SQLSetInfo test2 = new SQLSetInfo();
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	/**							
@@ -374,47 +379,35 @@ public class Log
 		client_Log.add(spinner);
 		
 		
-		table_2 = new JTable();
+		
+		
+//		existing = new MyTableModel(data, columnNames);
+//		table = new JTable(existing);
+//		table.getModel().addTableModelListener(table);
+//		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+//		table.setFont(new Font("Verdana", Font.PLAIN, 13));
+//		table.setGridColor(Color.LIGHT_GRAY);
+//		table.setFillsViewportHeight(true);
+//		table.getColumnModel().getColumn(0).setMinWidth(60);
+//		table.getColumnModel().getColumn(1).setMinWidth(320);
+//		JScrollPane sp = new JScrollPane(table);
+//		sp.setBounds(20, 50, 380, 420);
+//		sp.setVisible(true);
+//		panel.add(sp);
+		
+		Object[][] data = getExisting();
+		String[] columnNames = {"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"};
+		existing = new MyTableModel(data, columnNames);
+		table_2 = new JTable(existing);
+		table_2.getModel().addTableModelListener(table);
+		table_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table_2.setGridColor(Color.LIGHT_GRAY);
 		table_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table_2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		table_2.setBounds(16, 109, 720, 352);
-		client_Log.add(table_2);
+		table_2.setFillsViewportHeight(true);
+		JScrollPane sp = new JScrollPane(table_2);
+		sp.setBounds(16, 109, 720, 352);
+		sp.setVisible(true);
+		client_Log.add(sp);
 		
 		JLabel label_43 = new JLabel("Name");
 		label_43.setHorizontalAlignment(SwingConstants.CENTER);
@@ -516,6 +509,26 @@ public class Log
 		
 		
 		Log.setVisible(true);
+	}
+
+	private Object[][] getExisting()
+	{
+		//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
+				try {
+					int size = test.getSize("Archived_Records");
+				
+				Object[][] data = new Object[size][12];
+				for (int i = 1; i <= size; i++){
+					data[i-1] = test.getArchiveRows(i - 1, 1);
+				}
+				System.out.println("rows in Archived_Records: " + test.getSize("Archived_Records"));
+				return data;
+				}
+				catch(NullPointerException e) {
+					System.out.println("No database connected!");
+					Object[][] data = {{"No database", "Connected"}};
+					return data;
+				} 
 	}
 
 	public JComponent getPanel() //RETURNS A JCOMPONENT OBJECT, NOT A JPANEL

@@ -46,12 +46,21 @@ public class NewClient
 		lblClientsPendingIntake.setBounds(350, 20, 200, 20);
 		newClient.add(lblClientsPendingIntake);
 		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 	
+			{
+				Object[][] data = getExisting();
+				pending.update(data);
+			} 
+		});
+		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnRefresh.setBounds(20, 452, 100, 29);
+		newClient.add(btnRefresh);
+		
 		JButton btnNewPhoneInterview = new JButton("New Phone Interview");
 		btnNewPhoneInterview.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) 
-			
-			 //TODO add id identifier for no existing user
-			
+			public void mouseClicked(MouseEvent e) 	
 			{new IntakeForm("", 0);} 
 		});
 		btnNewPhoneInterview.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -72,10 +81,6 @@ public class NewClient
 
 		newClient.setVisible(true);
 	}
-	
-
-	
-	
 	
 	
 	protected void continueIntake() 

@@ -2,13 +2,123 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class SQLRetrieveInfo {
 
+	DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+	Date date = new Date();
+	Calendar c = Calendar.getInstance();
 	// Returns array of strings for given column name
 	public Object[] getColumn(String s){
 		Object[] results = new Object[1000];
 		return results;
+	}
+
+	public Object[] getArchiveRows(int rowNum, int numRows){
+		Object[] results = new Object[297];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+		int i = 0;
+		String query = "SELECT * FROM Archived_Records limit " + rowNum + "," + numRows;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				
+				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
+				results[i] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName")); i++;
+				results[i] = (rs.getString("C_ID"));i++;
+				results[i] = (rs.getString("C_AdmitDate"));String strAdmit = (String) results[i];i++;
+				results[i] = (rs.getString("C_DischargeDate"));String strDischarge = (String) results[i];i++;
+
+				Calendar cal1 = new GregorianCalendar();
+				Calendar cal2 = new GregorianCalendar();
+				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = null;
+				try {
+					date = sdf.parse(strAdmit);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cal1.setTime(date);
+				try {
+					date = sdf.parse(strDischarge);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cal2.setTime(date);
+				results[i] = daysBetween(cal1.getTime(),cal2.getTime());i++;	
+				
+				results[i] = (rs.getString("C_DOB"));String strDOB = (String) results[i];i++;
+				
+				Calendar cal3 = new GregorianCalendar();
+				try {
+					Date date1 = sdf.parse(strDOB);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Date date2 = new Date();
+				try {
+					date2 = sdf.parse(sdf.format(date2));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				int intAgeDays = daysBetween(cal1.getTime(),cal2.getTime());
+				intAgeDays = intAgeDays/365;
+				
+				results[i] = intAgeDays; 
+						i++;
+				
+				
+				results[i] = (rs.getString("C_Gender"));i++;
+				//results[i] = (rs.getInt("C_Funder"));i++;
+				results[i] = "RICH";i++;
+				results[i] = (rs.getString("C_County"));i++;
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		try { 
+			query = "SELECT * FROM Client_Discharge limit " + rowNum + "," + numRows;
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
+				results[i] = (rs.getInt("DIS_Success"));i++;
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
+	
+	
+	private int daysBetween(Date time, Date time2) 
+	{
+		return (int)( (time2.getTime() - time.getTime()) / (1000 * 60 * 60 * 24));
 	}
 
 	// Returns array of strings for given Client Id
@@ -82,32 +192,50 @@ public class SQLRetrieveInfo {
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
-
+		int i = 0;
 		String query = "SELECT * FROM Client_Record WHERE C_ID = " + s;  
-		
+
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-			int i = 0;
+
 			while(rs.next())
 			{
-				
+
 				results[i] = (rs.getString("C_FirstName")); i++;
 				results[i] = (rs.getString("C_LastName")); i++;
 				results[i] = (rs.getString("C_ID")); i++;
 				results[i] = (rs.getString("C_AdmitDate")); i++;
-				
-				query = "SELECT * FROM ARC_Info WHERE C_ID = "+ s;
-				rs = statement.executeQuery(query);
-				results[i] = (rs.getString("ARC_Name")); i++;
-				
-			}
-			System.out.println("Number of fields for continue intake " + i);
 
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("Number of fields for continue intake " + i);
+		try
+		{
+			query = "SELECT * FROM ARC_Info WHERE C_ID = "+ s;
+			rs = statement.executeQuery(query);
+			while(rs.next())
+			{
+			results[i] = (rs.getString("ARC_Name")); i++;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
 			if (connection != null) {
 				try {
 					connection.close();
@@ -127,13 +255,13 @@ public class SQLRetrieveInfo {
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
-
+		int i = 0;
 		String query = "SELECT * FROM Phone_Intake WHERE C_PrimPhone = " + "\"" + s + "\"";  
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
-			int i = 0;
+
 			while(rs.next()){
 				results[i] = (rs.getString("C_LastName")); i++;
 				results[i] = (rs.getString("C_FirstName")); i++; 
@@ -154,10 +282,24 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("C_DLNum")); i++;
 				results[i] = (rs.getString("C_DLState")); i++;
 				results[i] = (rs.getString("C_IntakeDate")); i++;
-				
-				query = "SELECT * FROM EMC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
-				rs = statement.executeQuery(query);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
+		try { 
+			query = "SELECT * FROM EMC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
 				results[i] = (rs.getString("EMC_LName")); i++;
 				results[i] = (rs.getString("EMC_FName")); i++;
 				results[i] = (rs.getString("EMC_Relation")); i++;
@@ -167,9 +309,22 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("EMC_City")); i++;
 				results[i] = (rs.getString("EMC_State")); i++;
 				results[i] = (rs.getString("EMC_ZIP")); i++;
-				
-				query = "SELECT * FROM ARC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
-				rs = statement.executeQuery(query);
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+		try{
+			query = "SELECT * FROM ARC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
 				results[i] = (rs.getString("ARC_Name")); i++;
 				results[i] = (rs.getString("ARC_ContactLN")); i++;
 				results[i] = (rs.getString("ARC_ContactFN")); i++;
@@ -180,9 +335,22 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("ARC_City")); i++;
 				results[i] = (rs.getString("ARC_State")); i++;
 				results[i] = (rs.getString("ARC_ZIP")); i++;
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 
-				query = "SELECT * FROM LEG_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
-				rs = statement.executeQuery(query);
+		try{
+			query = "SELECT * FROM LEG_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
 				results[i] = (rs.getString("LEG_JPLast30")); i++;
 				results[i] = (rs.getString("LEG_JPWhy")); i++;
 				results[i] = (rs.getString("LEG_OName")); i++;
@@ -191,10 +359,22 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("LEG_State")); i++;
 				results[i] = (rs.getString("LEG_ZIP")); i++;
 				results[i] = (rs.getString("LEG_Phone")); i++;
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 
-				query = "SELECT * FROM HEALTH_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
-				rs = statement.executeQuery(query);
-
+		try{
+			query = "SELECT * FROM HEALTH_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
 				results[i] = (rs.getString("PHYS_Hospital")); i++;
 				results[i] = (rs.getString("PHYS_HospWhy")); i++;
 				results[i] = (rs.getString("MENT_Hospital")); i++;
@@ -203,10 +383,22 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
 				results[i] = (rs.getString("WhereANDWhen"));  
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 
-				query = "SELECT * FROM SUB_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
-				rs = statement.executeQuery(query);
-
+		try{
+			query = "SELECT * FROM SUB_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
 				results[i] = (rs.getString("SUB1_Name")); i++;
 				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
@@ -221,6 +413,34 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("Sub3_Method")); i++;
 
 			}
+			try{
+				query = "SELECT * FROM ASAM WHERE C_PrimPhone = " + "\"" + s + "\"";
+				rs = statement.executeQuery(query);
+				while(rs.next()){
+					results[i] = (rs.getString("Med1_Diag")); i++;
+					results[i] = (rs.getString("Med1_Name")); i++;
+					results[i] = (rs.getString("Med1_Dosage")); i++;
+					results[i] = (rs.getString("Med2_Diag")); i++;
+					results[i] = (rs.getString("Med2_Name")); i++;
+					results[i] = (rs.getString("Med2_Dosage")); i++;
+					results[i] = (rs.getString("Med3_Diag")); i++;
+					results[i] = (rs.getString("Med3_Name")); i++;
+					results[i] = (rs.getString("Med3_Dosage")); i++;
+				} }catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					if (connection != null) {
+						try {
+							connection.close();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+
+
+
 			System.out.println("Number of fields for continue intake " + i);
 
 		} catch (SQLException e) {

@@ -11,6 +11,9 @@ import javax.swing.text.JTextComponent;
 import java.awt.Component;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -131,9 +134,11 @@ public class Intake implements ActionListener
 	/**
 	 * @wbp.parser.entryPoint
 	 */
+
 	public void BuildPanel(String s, int j)
 	{
-
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+		Date date = new Date();
 		Intake = new JPanel();
 		Intake.setSize(665, 1350);
 
@@ -1150,6 +1155,10 @@ public class Intake implements ActionListener
 		chckbxHaveYouEver_1.setBounds(350, 1265, 295, 23);
 		Intake.add(chckbxHaveYouEver_1);
 
+		//here we set todays d
+		strIntakeDate = dateFormat.format(date);
+
+
 		if(j == 1)
 			importData(s);
 		Intake.setVisible(true);
@@ -1765,93 +1774,89 @@ public class Intake implements ActionListener
 			System.out.println("Error Retrieving data in object array field " + i);
 			txtSubsMethod3.setText(""); i++;
 		}
-
-
-
-
-		//		try 
-		//		{
-		//			txtDiag1.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDiag1.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtMedName1.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtMedName1.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtDosage1.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDosage1.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtDiag2.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDiag2.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtMedName2.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtMedName2.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtDosage2.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDosage2.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtDiag3.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDiag3.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtMedName3.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtMedName3.setText(""); i++;
-		//		}
-		//		try 
-		//		{
-		//			txtDosage3.setText((String) data[i]);i++;
-		//		}
-		//		catch(NullPointerException e) 
-		//		{
-		//			System.out.println("Error Retrieving data in object array field " + i);
-		//			txtDosage3.setText("");
-		//		}
+		try 
+		{
+			txtDiag1.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDiag1.setText(""); i++;
+		}
+		try 
+		{
+			txtMedName1.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtMedName1.setText(""); i++;
+		}
+		try 
+		{
+			txtDosage1.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDosage1.setText(""); i++;
+		}
+		try 
+		{
+			txtDiag2.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDiag2.setText(""); i++;
+		}
+		try 
+		{
+			txtMedName2.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtMedName2.setText(""); i++;
+		}
+		try 
+		{
+			txtDosage2.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDosage2.setText(""); i++;
+		}
+		try 
+		{
+			txtDiag3.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDiag3.setText(""); i++;
+		}
+		try 
+		{
+			txtMedName3.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtMedName3.setText(""); i++;
+		}
+		try 
+		{
+			txtDosage3.setText((String) data[i]);i++;
+		}
+		catch(NullPointerException e) 
+		{
+			System.out.println("Error Retrieving data in object array field " + i);
+			txtDosage3.setText("");
+		}
 	}
-	
+
 	public JComponent getPanel()
 	{
 		return Intake;
@@ -1873,7 +1878,7 @@ public class Intake implements ActionListener
 	private void sendData() 
 	{
 		validateInput();
-		
+
 
 	}
 
@@ -1882,10 +1887,10 @@ public class Intake implements ActionListener
 	{
 		boolean valid = true;
 
-		if(!txtDateOfBirth.getText().matches("\\d{4}-\\d{2}-\\d{2}") && valid == true)
+		if(!txtDateOfBirth.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format YYYY-MM-DD");
+			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format DD/MM/YYYY");
 		}
 		if(!txtFirstName.getText().matches("[a-zA-Z ]+") && valid == true)
 		{

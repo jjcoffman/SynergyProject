@@ -206,9 +206,10 @@ public class ExistingClient
 		btnDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{ 
-				
-				
-				new DischargeScroll(id);
+				if(id == 0)
+					JOptionPane.showMessageDialog(null, "Please select a client first");
+				else
+					new DischargeScroll(id);
 			}
 		});
 		btnDischarge.setBounds(240, 520, 160, 29);
