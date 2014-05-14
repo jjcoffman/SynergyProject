@@ -26,6 +26,7 @@ public class SQLRetrieveInfo {
 		Connection connection = null;
 		Statement statement = null; 
 		int i = 0;
+		String clientID = "";
 		String query = "SELECT * FROM Archived_Records limit " + rowNum + "," + numRows;  
 		try { 
 			connection = SQLConnection.getConnection();
@@ -34,12 +35,12 @@ public class SQLRetrieveInfo {
 			while (rs.next()) 
 			{
 				
-				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
+				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Funder", "County", "S/U"
 				results[i] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName")); i++;
 				results[i] = (rs.getString("C_ID"));i++;
 				results[i] = (rs.getString("C_AdmitDate"));String strAdmit = (String) results[i];i++;
 				results[i] = (rs.getString("C_DischargeDate"));String strDischarge = (String) results[i];i++;
-
+				clientID = (rs.getString("C_ID"));
 				Calendar cal1 = new GregorianCalendar();
 				Calendar cal2 = new GregorianCalendar();
 				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -93,7 +94,7 @@ public class SQLRetrieveInfo {
 			e.printStackTrace();
 		} 
 		try { 
-			query = "SELECT * FROM Client_Discharge limit " + rowNum + "," + numRows;
+			query = "SELECT * FROM Client_Discharge WHERE C_ID = " + Integer.valueOf(clientID);
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
 				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"

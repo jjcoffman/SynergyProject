@@ -2,8 +2,6 @@ import java.awt.Font;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.table.DefaultTableModel;
-
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,7 +16,6 @@ public class Log
 {
 	private JPanel Log;
 	private JTable table;
-	private JTable table_1;
 	private JTable table_2;
 	private MyTableModel existing;
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
@@ -31,6 +28,24 @@ public class Log
 	protected Date dateEnd;
 	private int tableSize;
 	private Object[][] data;
+	private JLabel lblIntakes;
+	private JLabel lblDischarge;
+	private JLabel lblSuccessful;
+	private JLabel lblUnsuccessful;
+	private JLabel lblClientsServed;
+	private JLabel lblAvgDays;
+	private JLabel lblCurrentTotal;
+	private JLabel lbl18to25;
+	private JLabel lbl26to35;
+	private JLabel lbl46to55;
+	private JLabel lbl56to65;
+	private JLabel lbl66up;
+	private JLabel lbl36to45;
+	private JLabel lblPrivate;
+	private JLabel lblIndigent;
+	private JLabel lblDrugCourt;
+	private JLabel lblAB109;
+	private JLabel lblCPS;
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	/**							
 	 * @wbp.parser.entryPoint
@@ -122,43 +137,43 @@ public class Log
 		currentTotal.setBounds(10, 280, 290, 20);
 		clinicTraffic.add(currentTotal);
 
-		JLabel lblIntakes = new JLabel("30");
+		lblIntakes = new JLabel("30");
 		lblIntakes.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIntakes.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblIntakes.setBounds(310, 40, 50, 20);
 		clinicTraffic.add(lblIntakes);
 
-		JLabel lblDischarge = new JLabel("17");
+		lblDischarge = new JLabel("17");
 		lblDischarge.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDischarge.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblDischarge.setBounds(310, 80, 50, 20);
 		clinicTraffic.add(lblDischarge);
 
-		JLabel lblSuccessful = new JLabel("17");
+		lblSuccessful = new JLabel("17");
 		lblSuccessful.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSuccessful.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblSuccessful.setBounds(310, 120, 50, 20);
 		clinicTraffic.add(lblSuccessful);
 
-		JLabel lblUnsuccessful = new JLabel("0");
+		lblUnsuccessful = new JLabel("0");
 		lblUnsuccessful.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUnsuccessful.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblUnsuccessful.setBounds(310, 160, 50, 20);
 		clinicTraffic.add(lblUnsuccessful);
 
-		JLabel lblClientsServed = new JLabel("30");
+		lblClientsServed = new JLabel("30");
 		lblClientsServed.setHorizontalAlignment(SwingConstants.LEFT);
 		lblClientsServed.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblClientsServed.setBounds(310, 200, 50, 20);
 		clinicTraffic.add(lblClientsServed);
 
-		JLabel lblAvgDays = new JLabel("23");
+		lblAvgDays = new JLabel("23");
 		lblAvgDays.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAvgDays.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblAvgDays.setBounds(310, 240, 50, 20);
 		clinicTraffic.add(lblAvgDays);
 
-		JLabel lblCurrentTotal = new JLabel("54");
+		lblCurrentTotal = new JLabel("54");
 		lblCurrentTotal.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCurrentTotal.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblCurrentTotal.setBounds(310, 280, 50, 20);
@@ -168,11 +183,11 @@ public class Log
 		demographics.addTab("Age", null, age, null);
 		age.setLayout(null);
 
-		JLabel label = new JLabel("18-25:\r\n");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Verdana", Font.PLAIN, 13));
-		label.setBounds(10, 40, 290, 20);
-		age.add(label);
+		JLabel label_0 = new JLabel("18-25:");
+		label_0.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_0.setFont(new Font("Verdana", Font.PLAIN, 13));
+		label_0.setBounds(132, 40, 168, 20);
+		age.add(label_0);
 
 		JLabel label_1 = new JLabel("26-35:");
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -204,37 +219,37 @@ public class Log
 		label_6.setBounds(10, 240, 290, 20);
 		age.add(label_6);
 
-		JLabel lbl18to25 = new JLabel("51");
+		lbl18to25 = new JLabel("51");
 		lbl18to25.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl18to25.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl18to25.setBounds(310, 40, 30, 20);
 		age.add(lbl18to25);
 
-		JLabel lbl26to35 = new JLabel("51");
+		lbl26to35 = new JLabel("51");
 		lbl26to35.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl26to35.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl26to35.setBounds(310, 80, 30, 20);
 		age.add(lbl26to35);
 
-		JLabel lbl36to45 = new JLabel("51");
+		lbl36to45 = new JLabel("51");
 		lbl36to45.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl36to45.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl36to45.setBounds(310, 120, 30, 20);
 		age.add(lbl36to45);
 
-		JLabel lbl46to55 = new JLabel("51");
+		lbl46to55 = new JLabel("51");
 		lbl46to55.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl46to55.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl46to55.setBounds(310, 160, 30, 20);
 		age.add(lbl46to55);
 
-		JLabel lbl56to65 = new JLabel("51");
+		lbl56to65 = new JLabel("51");
 		lbl56to65.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl56to65.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl56to65.setBounds(310, 200, 30, 20);
 		age.add(lbl56to65);
 
-		JLabel lbl66up = new JLabel("51");
+		lbl66up = new JLabel("51");
 		lbl66up.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl66up.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lbl66up.setBounds(310, 240, 30, 20);
@@ -280,27 +295,27 @@ public class Log
 		label_18.setBounds(10, 200, 290, 20);
 		financial.add(label_18);
 
-		JLabel lblPrivate = new JLabel("72");
+		lblPrivate = new JLabel("72");
 		lblPrivate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblPrivate.setBounds(310, 40, 30, 20);
 		financial.add(lblPrivate);
 
-		JLabel lblIndigent = new JLabel("72");
+		lblIndigent = new JLabel("72");
 		lblIndigent.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblIndigent.setBounds(310, 80, 30, 20);
 		financial.add(lblIndigent);
 
-		JLabel lblDrugCourt = new JLabel("72");
+		lblDrugCourt = new JLabel("72");
 		lblDrugCourt.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblDrugCourt.setBounds(310, 120, 30, 20);
 		financial.add(lblDrugCourt);
 
-		JLabel lblAB109 = new JLabel("72");
+		lblAB109 = new JLabel("72");
 		lblAB109.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblAB109.setBounds(310, 160, 30, 20);
 		financial.add(lblAB109);
 
-		JLabel lblCPS = new JLabel("72");
+		lblCPS = new JLabel("72");
 		lblCPS.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblCPS.setBounds(310, 200, 30, 20);
 		financial.add(lblCPS);
@@ -329,111 +344,7 @@ public class Log
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				int deletedRows = 0;
-				if(txtStart.getText().equals("") && txtEnd.getText().equals(""))
-				{
-					data = getExisting();
-					existing.update(data);
-					
-					demographicsUpdate(data);
-					
-				}
-				else
-				{
-
-					Calendar cal1 = new GregorianCalendar();
-					Calendar cal2 = new GregorianCalendar();
-					SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-					Date date = null;
-					Date date2 = null;
-					try {
-						date = sdf.parse(txtStart.getText());
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					cal1.setTime(date);
-					try {
-						date2 = sdf.parse(txtEnd.getText());
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					cal2.setTime(date);
-
-					for(int i = 0; i < tableSize-deletedRows; i++)
-					{
-						Date comp = null;
-						Date comp2 = null;
-						try {
-							comp = sdf.parse(data[i][2].toString());
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						try {
-							comp2 = sdf.parse(data[i][3].toString());
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						int q = i;
-						if(daysBetween(cal2.getTime(),comp) > 0)
-						{
-							for( ; q < tableSize-1; q++)
-							{
-								data[q][0] = data[q+1][0];
-								data[q][1] = data[q+1][1];
-								data[q][2] = data[q+1][2];
-								data[q][3] = data[q+1][3];
-								data[q][4] = data[q+1][4];
-								data[q][5] = data[q+1][5];
-								data[q][6] = data[q+1][6];
-								data[q][7] = data[q+1][7];
-								data[q][8] = data[q+1][8];
-								data[q][9] = data[q+1][9];
-								data[q][10] = data[q+1][10];
-							}
-							deletedRows++;
-						}
-						else if(daysBetween(cal2.getTime(),comp2) > 0)
-						{
-							for( ; q < tableSize-1; q++)
-							{
-								data[q][0] = data[q+1][0];
-								data[q][1] = data[q+1][1];
-								data[q][2] = data[q+1][2];
-								data[q][3] = data[q+1][3];
-								data[q][4] = data[q+1][4];
-								data[q][5] = data[q+1][5];
-								data[q][6] = data[q+1][6];
-								data[q][7] = data[q+1][7];
-								data[q][8] = data[q+1][8];
-								data[q][9] = data[q+1][9];
-								data[q][10] = data[q+1][10];						
-							}
-							deletedRows++;
-						}
-					}
-					deletedRows = tableSize - deletedRows;
-					Object[][] newData = new Object[deletedRows][11];
-					for(int r = 0; r < deletedRows;r++)
-					{
-						newData[r][0] = data[r][0];
-						newData[r][1] = data[r][1];
-						newData[r][2] = data[r][2];
-						newData[r][3] = data[r][3];
-						newData[r][4] = data[r][4];
-						newData[r][5] = data[r][5];
-						newData[r][6] = data[r][6];
-						newData[r][7] = data[r][7];
-						newData[r][8] = data[r][8];
-						newData[r][9] = data[r][9];
-						newData[r][10] = data[r][10];
-					}
-					existing.update(newData);
-					demographicsUpdate(newData);
-				}
+				updateTable();
 
 
 			}
@@ -446,7 +357,7 @@ public class Log
 
 
 
-		/*data = getExisting();
+		data = getExisting();
 		String[] columnNames = {"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Funder", "County", "S/U"};
 		existing = new MyTableModel(data, columnNames);
 		table_2 = new JTable(existing);
@@ -466,15 +377,16 @@ public class Log
 		table_2.getColumnModel().getColumn(8).setMinWidth(50);
 		table_2.getColumnModel().getColumn(9).setMinWidth(50);
 		table_2.getColumnModel().getColumn(10).setMinWidth(50);
+		
 		table_2.setFillsViewportHeight(true);
 		JScrollPane sp = new JScrollPane(table_2);
 		sp.setBounds(16, 20, 800, 450);
 		sp.setVisible(true);
-		client_Log.add(sp);*/
+		client_Log.add(sp);
 
 
 
-
+		demographicsUpdate(data, tableSize);
 
 
 
@@ -484,19 +396,201 @@ public class Log
 		Log.setVisible(true);
 	}
 
-	protected void demographicsUpdate(Object[][] data2) 
-	{
-		
-
-		
-	}
-
 	protected void updateTable() 
 	{
-		
+		int deletedRows = 0;
+		if(txtStart.getText().equals("") && txtEnd.getText().equals(""))
+		{
+			data = getExisting();
+			existing.update(data);
+			
+			demographicsUpdate(data, tableSize);
+			
+		}
+		else
+		{
 
+			Calendar cal1 = new GregorianCalendar();
+			Calendar cal2 = new GregorianCalendar();
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+			Date date = null;
+			Date date2 = null;
+			try {
+				date = sdf.parse(txtStart.getText());
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			cal1.setTime(date);
+			try {
+				date2 = sdf.parse(txtEnd.getText());
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			cal2.setTime(date2);
+
+			for(int i = 0; i < tableSize-deletedRows; i++)
+			{
+				Date comp = null;
+				Date comp2 = null;
+				try {
+					comp = sdf.parse(data[i][2].toString());
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					comp2 = sdf.parse(data[i][3].toString());
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				int q = i;
+				//comp is the intake date
+				if(daysBetween(cal2.getTime(),comp) > 0)
+				{
+					for( ; q < tableSize-1; q++)
+					{
+						data[q][0] = data[q+1][0];
+						data[q][1] = data[q+1][1];
+						data[q][2] = data[q+1][2];
+						data[q][3] = data[q+1][3];
+						data[q][4] = data[q+1][4];
+						data[q][5] = data[q+1][5];
+						data[q][6] = data[q+1][6];
+						data[q][7] = data[q+1][7];
+						data[q][8] = data[q+1][8];
+						data[q][9] = data[q+1][9];
+						data[q][10] = data[q+1][10];
+					}
+					deletedRows++;
+				}
+				//comp2 is the discharge date
+				
+				else if(daysBetween(cal1.getTime(),comp2) < 0)
+				{
+					for( ; q < tableSize-1; q++)
+					{
+						data[q][0] = data[q+1][0];
+						data[q][1] = data[q+1][1];
+						data[q][2] = data[q+1][2];
+						data[q][3] = data[q+1][3];
+						data[q][4] = data[q+1][4];
+						data[q][5] = data[q+1][5];
+						data[q][6] = data[q+1][6];
+						data[q][7] = data[q+1][7];
+						data[q][8] = data[q+1][8];
+						data[q][9] = data[q+1][9];
+						data[q][10] = data[q+1][10];						
+					}
+					deletedRows++;
+				}
+			}
+			deletedRows = tableSize - deletedRows;
+			Object[][] newData = new Object[deletedRows][11];
+			for(int r = 0; r < deletedRows;r++)
+			{
+				newData[r][0] = data[r][0];
+				newData[r][1] = data[r][1];
+				newData[r][2] = data[r][2];
+				newData[r][3] = data[r][3];
+				newData[r][4] = data[r][4];
+				newData[r][5] = data[r][5];
+				newData[r][6] = data[r][6];
+				newData[r][7] = data[r][7];
+				newData[r][8] = data[r][8];
+				newData[r][9] = data[r][9];
+				newData[r][10] = data[r][10];
+			}
+			existing.update(newData);
+			demographicsUpdate(newData, deletedRows);
+		}
+		
 	}
 
+	protected void demographicsUpdate(Object[][] d, int size) 
+	{
+		
+		//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Funder", "County", "S/U"
+		int intakes = 0;
+		int discharge = 0;
+		int success = 0;
+		int unsuccess = 0;
+		int avgDays = 0;
+		int currentTotal = 0;
+		int to25 = 0;
+		int to35 = 0;
+		int to45 = 0;
+		int to55 = 0;
+		int to65 = 0;
+		int plus = 0;
+		int priv = 0;
+		int indigent = 0;
+		int drugCourt = 0;
+		int ab109 = 0;
+		int cps = 0;
+		
+		lblClientsServed.setText(String.valueOf(size)); 
+		for(int i = 0; i < size; i++)
+		{
+			//intakes will have to be archive + current + pending
+			
+			if(!(d[i][3] == null))
+				discharge++;
+			if((d[i][10].equals("Success")))
+				success++;
+			else
+				unsuccess++;
+			int x = (int) d[i][4];
+			avgDays = avgDays + x;
+			if((Integer)d[i][6] < 25)
+				to25++;
+			else if((Integer)d[i][6] < 35)
+				to35++;
+			else if((Integer)d[i][6] < 45)
+				to45++;
+			else if((Integer)d[i][6] < 55)
+				to55++;
+			else if((Integer)d[i][6] < 65)
+				to65++;
+			else
+				plus++;
+			currentTotal = intakes;
+			
+			if(String.valueOf(d[i][8]).equals("Private"))
+				priv++;
+			else if(String.valueOf(d[i][8]).equals("Indigent"))
+				indigent++;
+			else if(String.valueOf(d[i][8]).equals("DrugCourt"))
+				drugCourt++;
+			else if(String.valueOf(d[i][8]).equals("AB109"))
+				ab109++;
+			else if(String.valueOf(d[i][8]).equals("CPS"))
+				cps++;
+		}
+		intakes = size + test.getSize("Phone_Intake") + test.getSize("Client_Record");
+		
+		
+		avgDays = avgDays/size;
+		lblIntakes.setText(String.valueOf(intakes));
+		lblDischarge.setText(String.valueOf(discharge));
+		lblSuccessful.setText(String.valueOf(success));
+		lblUnsuccessful.setText(String.valueOf(unsuccess));
+		lblAvgDays.setText(String.valueOf(avgDays));
+		lblCurrentTotal.setText(String.valueOf(currentTotal));
+		lbl18to25.setText(String.valueOf(to25));
+		lbl26to35.setText(String.valueOf(to35));
+		lbl36to45.setText(String.valueOf(to45));
+		lbl46to55.setText(String.valueOf(to55));
+		lbl56to65.setText(String.valueOf(to65));
+		lbl66up.setText(String.valueOf(plus));
+		lblPrivate.setText(String.valueOf(priv));
+		lblIndigent.setText(String.valueOf(indigent));
+		lblAB109.setText(String.valueOf(ab109));
+		lblDrugCourt.setText(String.valueOf(drugCourt));
+		lblCPS.setText(String.valueOf(cps));
+		
+		
+	}
+	
+	//days between returns
 	private int daysBetween(Date time, Date time2) 
 	{
 		return (int)( (time2.getTime() - time.getTime()) / (1000 * 60 * 60 * 24));
