@@ -23,6 +23,7 @@ public class ExistingClient
 	private MyTableModel individual;
 	private MyTableModel group;
 	private int id;
+	private String selectedDate = "";
 	private JLabel lblCID;
 	private JLabel lblCName;
 	private JLabel lblCPhone;
@@ -150,7 +151,12 @@ public class ExistingClient
 		JButton btnViewInd = new JButton("View");
 		btnViewInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new ViewIndividualNote(id);}});
+			{
+				selectedDate = (String)individual.getValueAt(IndividualTable.getSelectedRow(),0);
+				System.out.println(selectedDate);
+				new ViewIndividualNote(id);
+				}
+			});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(430, 520, 94, 29);
 		panel.add(btnViewInd);
