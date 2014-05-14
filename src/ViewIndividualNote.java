@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,13 +15,15 @@ public class ViewIndividualNote extends JFrame
 	private JFrame viewNote;
 	private JTextArea txtNote;
 	private JButton btnCancel;
-	private JLabel lblTimeField;
+	private JLabel lblDateField;
 	private JLabel lblCounselor;
 	private JLabel lblNewLabel;
 	private JLabel lblLblclientid;
 	private JLabel lblLblclientname;
 	
-	public ViewIndividualNote()
+	SQLSetInfo test = new SQLSetInfo();
+	
+	public ViewIndividualNote(int id)
 	{
 	viewNote = new JFrame("View Individual Note");
 	viewNote.getContentPane().setLayout(null);
@@ -31,21 +34,22 @@ public class ViewIndividualNote extends JFrame
 	JLabel lblClientName = new JLabel("Client Name:");
 	lblClientName.setHorizontalAlignment(SwingConstants.RIGHT);
 	lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblClientName.setBounds(8, 28, 93, 16);
+	lblClientName.setBounds(20, 20, 90, 16);
 	viewNote.getContentPane().add(lblClientName);
 	
 	JLabel lblClientId = new JLabel("Client ID:");
 	lblClientId.setHorizontalAlignment(SwingConstants.RIGHT);
 	lblClientId.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblClientId.setBounds(22, 56, 79, 16);
+	lblClientId.setBounds(20, 40, 90, 16);
 	viewNote.getContentPane().add(lblClientId);
 	
 	txtNote = new JTextArea();
+	txtNote.setLineWrap(true);
 	txtNote.setWrapStyleWord(true);
 	txtNote.setEditable(false);
 	txtNote.setFont(new Font("Verdana", Font.PLAIN, 13));
 	txtNote.setBackground(Color.WHITE);
-	txtNote.setBounds(8, 117, 434, 107);
+	txtNote.setBounds(20, 120, 410, 107);
 	viewNote.getContentPane().add(txtNote);
 	
 	btnCancel = new JButton("Close");
@@ -53,42 +57,51 @@ public class ViewIndividualNote extends JFrame
 		public void mouseClicked(MouseEvent e) 
 		{viewNote.dispose();}});
 	btnCancel.setFont(new Font("Verdana", Font.PLAIN, 13));
-	btnCancel.setBounds(6, 236, 117, 29);
+	btnCancel.setBounds(20, 240, 120, 29);
 	viewNote.getContentPane().add(btnCancel);
 	
-	JLabel lblTime = new JLabel("Time:");
+	JLabel lblTime = new JLabel("Date:");
 	lblTime.setFont(new Font("Verdana", Font.PLAIN, 13));
 	lblTime.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblTime.setBounds(249, 236, 79, 16);
+	lblTime.setBounds(20, 90, 90, 16);
 	viewNote.getContentPane().add(lblTime);
 	
-	lblTimeField = new JLabel("lblTimeField");
-	lblTimeField.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblTimeField.setBounds(340, 236, 104, 16);
-	viewNote.getContentPane().add(lblTimeField);
+	lblDateField = new JLabel("lblDateField");
+	lblDateField.setFont(new Font("Verdana", Font.PLAIN, 13));
+	lblDateField.setBounds(110, 90, 104, 16);
+	viewNote.getContentPane().add(lblDateField);
 	
 	lblCounselor = new JLabel("Counselor:");
 	lblCounselor.setFont(new Font("Verdana", Font.PLAIN, 13));
 	lblCounselor.setHorizontalAlignment(SwingConstants.RIGHT);
-	lblCounselor.setBounds(22, 84, 79, 16);
+	lblCounselor.setBounds(20, 60, 90, 16);
 	viewNote.getContentPane().add(lblCounselor);
 	
 	lblNewLabel = new JLabel("lblCounselorField");
 	lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblNewLabel.setBounds(113, 84, 151, 16);
+	lblNewLabel.setBounds(110, 60, 200, 16);
 	viewNote.getContentPane().add(lblNewLabel);
 	
-	lblLblclientid = new JLabel("lblClientID");
+	lblLblclientid = new JLabel(String.valueOf(id));
 	lblLblclientid.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblLblclientid.setBounds(113, 57, 93, 16);
+	lblLblclientid.setBounds(110, 40, 200, 16);
 	viewNote.getContentPane().add(lblLblclientid);
 	
-	lblLblclientname = new JLabel("lblClientName");
+	lblLblclientname = new JLabel(getClientName(id));
 	lblLblclientname.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblLblclientname.setBounds(113, 29, 117, 16);
+	lblLblclientname.setBounds(110, 20, 200, 16);
 	viewNote.getContentPane().add(lblLblclientname);
 	
 	
 	viewNote.setVisible(true);
+	}
+	
+	private String getClientName(int id){
+		try {
+		return test.getName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
 	}
 }

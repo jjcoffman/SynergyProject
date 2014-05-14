@@ -150,7 +150,7 @@ public class ExistingClient
 		JButton btnViewInd = new JButton("View");
 		btnViewInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new ViewIndividualNote();}});
+			{new ViewIndividualNote(id);}});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(430, 520, 94, 29);
 		panel.add(btnViewInd);
