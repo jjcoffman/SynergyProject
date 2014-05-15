@@ -290,5 +290,235 @@ public class SQLSetInfo {
 			}
 		}
 	}
+
+	public void sendNewInfo(Object[] newData) 
+	{
+		Connection connection = null;
+		Statement statement = null; 
+		int i = 0;
+		String first = (String) newData[i]; i++;
+		String middle = (String) newData[i]; i++;
+		String last = (String) newData[i]; i++;
+		String dOB = (String) newData[i]; i++;
+		int vet = Integer.valueOf((String)newData[i]); i++;
+		String address = (String) newData[i]; i++;
+		String city = (String) newData[i]; i++;
+		String state = (String) newData[i]; i++;
+		int zip = (int) newData[i]; i++;
+		String county = (String) newData[i]; i++;
+		int years = (int) newData[i]; i++;
+		String phone  = (String) newData[i]; i++;
+		String secPhone = (String) newData[i]; i++;
+		String social = (String) newData[i]; i++;
+		String dL = (String) newData[i]; i++;
+		String dLState = (String) newData[i]; i++;
+		String marital = (String) newData[i]; i++;
+		String spouse = (String) newData[i]; i++;
+		String eName = (String) newData[i]; i++;
+		String eRelation = (String) newData[i]; i++;
+		String ePhone = (String) newData[i]; i++;
+		String eSecondary = (String) newData[i]; i++;
+		String eAddress = (String) newData[i]; i++;
+		String eCity = (String) newData[i]; i++;
+		String eState = (String) newData[i]; i++;
+		int eZip = (int) newData[i]; i++;
+		String aName = (String) newData[i]; i++;
+		String aContact = (String) newData[i]; i++;
+		String aCounty = (String) newData[i]; i++;
+		String aPhone = (String) newData[i]; i++;
+		String aAddress = (String) newData[i]; i++;
+		String aCity = (String) newData[i]; i++;
+		String aState = (String) newData[i]; i++;
+		String aZip  = (String) newData[i]; i++;
+		String aCell = (String) newData[i]; i++;
+		int jail30 = (int) newData[i]; i++;
+		int prob = (int) newData[i]; i++;
+		String probWhy = (String) newData[i]; i++;
+		String oName = (String) newData[i]; i++;
+		String oAddress = (String) newData[i]; i++;
+		String oPhone = (String) newData[i]; i++;
+		int intPHosp = (int) newData[i]; i++;
+		String strPHosp = (String) newData[i]; i++;
+		int intMHosp  = (int) newData[i]; i++;
+		String strMHosp = (String) newData[i]; i++;
+		String subs1 = (String) newData[i]; i++;
+		String subs1Date = (String) newData[i]; i++;
+		String subs1Freq = (String) newData[i]; i++;
+		String subs1Amount = (String) newData[i]; i++;
+		String subs1Meth = (String) newData[i]; i++;
+		String subs2 = (String) newData[i]; i++;
+		String subs2Date = (String) newData[i]; i++;
+		String subs2Freq = (String) newData[i]; i++;
+		String subs2Amount = (String) newData[i]; i++;
+		String subs2Meth = (String) newData[i]; i++;
+		String subs3 = (String) newData[i]; i++;
+		String subs3Date = (String) newData[i]; i++;
+		String subs3Freq = (String) newData[i]; i++;
+		String subs3Amount = (String) newData[i]; i++;
+		String subs3Meth = (String) newData[i]; i++;
+		int ivUse = (int) newData[i]; i++;
+		String ivMany = (String) newData[i]; i++;
+		int tPlan = (int) newData[i]; i++;
+		String where = (String) newData[i]; i++;
+		int asam1 = (int) newData[i]; i++;
+		String act1 = (String) newData[i]; i++;
+		int asam2 = (int) newData[i]; i++;
+		String act2 = (String) newData[i]; i++;
+		int asam3 = (int) newData[i]; i++;
+		String act3 = (String) newData[i]; i++;
+		int asam4 = (int) newData[i]; i++;
+		String act4 = (String) newData[i]; i++;
+		int condition = (int) newData[i]; i++;
+		String condDesc = (String) newData[i]; i++;
+		String diag1 = (String) newData[i]; i++;
+		String med1 = (String) newData[i]; i++;
+		String dose1 = (String) newData[i]; i++;
+		String diag2 = (String) newData[i]; i++;
+		String med2 = (String) newData[i]; i++;
+		String dose2 = (String) newData[i]; i++;
+		String diag3 = (String) newData[i]; i++;
+		String med3 = (String) newData[i]; i++;
+		String dose3 = (String) newData[i]; i++;
+		int sexCrime = (int) newData[i]; i++;
+		int arson = (int) newData[i]; i++;
+		String intakeDate = (String) newData[i]; i++;
+		String dsm = (String) newData[i]; i++;
+		String counselor = (String) newData[i]; i++;
+		String fund = (String) newData[i]; i++;
+		String other = (String) newData[i]; i++;
+		String fCounty = (String) newData[i]; i++;
+		String privateCharges = (String) newData[i]; i++;
+		String fStartDate = (String) newData[i]; i++;
+		String fEndDate = (String) newData[i]; i++;
+		int signature = 0;
+
+
+		
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO Client_Record (C_FirstName, C_MI, C_LastName, C_DOB, C_Vet, C_Address, C_City, C_State, C_ZIP, C_County, "
+					+ "C_CONumYears, C_PrimPhone, C_SecondPhone, C_SSN, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, C_Gender, "
+					+ "C_Signature, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, C_AuthEndDate) " + 
+					"VALUES (\"" + first + "\", \"" + middle + "\", \"" + last + "\", \"" + dOB + 
+					"\", " + vet + ", \"" + address + "\", \"" + city + "\", \"" + state + "\", " + zip + ", \"" + county + "\", " + years + 
+					", \"" + phone + "\", \"" + secPhone + "\", \"" + social + "\", \"" + dL + "\", \"" + dLState + "\", \"" + marital + 
+					"\", \"" + spouse + "\", \"" + intakeDate + "\", \"" + "M" + "\", " + signature + ", \"" + fund + "\", \"" + fCounty + 
+					"\", \"" + dsm + "\", \"" + counselor + "\", \"" + other + "\", " + privateCharges + ", \"" + fStartDate + "\", \"" + fEndDate + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to Client_Record");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to Client_Record");
+				}
+			}
+		}
+		
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO ARC_Info (C_PrimPhone, ARC_Name, ARC_Contact, ARC_County, ARC_Phone, ARC_Cell, ARC_Address, ARC_City, ARC_State, ARC_ZIP) " + 
+					"VALUES (\"" + phone + "\", \"" + aName + "\", \"" + aContact + "\", \"" + aCounty + 
+					"\", \"" + aPhone + "\", \"" + aCell + "\", \"" + aAddress + "\", \"" + aState + "\", \"" + aZip + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to ARC_Info");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to ARC_Info");
+				}
+			}
+		}
+
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO EMC_Info (C_PrimPhone, EMC_Name, EMC_Relation, EMC_PrimPhone, EMC_SecondPhone, EMC_Address, EMC_City, EMC_State, EMC_ZIP) " + 
+					"VALUES (\"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
+					"\", \"" + eSecondary + "\", \"" + eAddress + "\", \"" + eCity + "\", \"" + eState + "\", \"" + eZip + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to EMC_Info");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to EMC_Info");
+				}
+			}
+		}
+		
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO SUB_Info (C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
+					+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
+					+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
+					"VALUES (\"" + phone + "\", \"" 
+					+ subs1 + "\", \"" + subs1Date + "\", \"" + subs1Amount + "\", \"" + subs1Freq + "\", \"" + subs1Meth + "\", \""
+					+ subs2 + "\", \"" + subs2Date + "\", \"" + subs2Amount + "\", \"" + subs2Freq + "\", \"" + subs2Meth + "\", \""
+					+ subs3 + "\", \"" + subs3Date + "\", \"" + subs3Amount + "\", \"" + subs3Freq + "\", \"" + subs3Meth + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to SUB_Info");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to SUB_Info");
+				}
+			}
+		}
+		
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO SUB_Info (C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
+					+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
+					+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
+					"VALUES (\"" + phone + "\", \"" 
+					+ subs1 + "\", \"" + subs1Date + "\", \"" + subs1Amount + "\", \"" + subs1Freq + "\", \"" + subs1Meth + "\", \""
+					+ subs2 + "\", \"" + subs2Date + "\", \"" + subs2Amount + "\", \"" + subs2Freq + "\", \"" + subs2Meth + "\", \""
+					+ subs3 + "\", \"" + subs3Date + "\", \"" + subs3Amount + "\", \"" + subs3Freq + "\", \"" + subs3Meth + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to SUB_Info");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to SUB_Info");
+				}
+			}
+		}
+		
+		
+		
+	}
 	
 }

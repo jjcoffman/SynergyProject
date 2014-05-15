@@ -1310,7 +1310,12 @@ public class Intake implements ActionListener
 		}
 		try 
 		{
-			txtVet.setText((String) data[i]);i++;
+			if((int) data[i] == 1)
+				txtVet.setText("Y");
+			else
+				txtVet.setText("N");
+			
+			i++;
 		}
 		catch(NullPointerException e) 
 		{
@@ -1901,7 +1906,13 @@ public class Intake implements ActionListener
 			data[i] = txtMI.getText();i++;
 			data[i] = txtLastName.getText();i++;
 			data[i] = txtDateOfBirth.getText();i++;
-			data[i] = txtVet.getText();i++;
+			
+			if(txtVet.getText().matches("[yY]"))
+					data[i] = 1;
+			else
+				data[i] = 0;
+			i++;
+					
 			data[i] = txtAddress.getText();i++;
 			data[i] = txtCity.getText();i++;
 			data[i] = txtState.getText();i++;
@@ -2077,6 +2088,12 @@ public class Intake implements ActionListener
 	{
 		boolean valid = true;
 
+		if(!txtMI.getText().matches("[a-zA-Z]{1}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Middle initial must be 1 letter only");
+		}
+		
 		if(!txtDateOfBirth.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;

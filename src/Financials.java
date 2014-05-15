@@ -315,7 +315,7 @@ public class Financials extends JFrame implements ActionListener
 		newData[i] = txtStartDate.getText(); i++;
 		newData[i] = txtEndDate.getText(); i++;
 		
-		
+		send.sendNewInfo(newData);
 		
 		
 	}
