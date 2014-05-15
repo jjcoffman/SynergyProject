@@ -81,8 +81,15 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while(rs.next()){
+				try
+				{
 				ecName = (rs.getString("EMC_FName") + " " + rs.getString("EMC_LName"));
 				System.out.println("got phone");
+				}
+				catch(Exception e)
+				{
+				ecName = (rs.getString("EMC_Name"));
+				}
 			}
 				
 		} catch (SQLException e) {

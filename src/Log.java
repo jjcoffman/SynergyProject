@@ -568,7 +568,7 @@ public class Log
 			}
 			catch(ArrayIndexOutOfBoundsException e)
 			{
-				System.out.println("Missing Database Info");
+				System.out.println("ARRAY SIZE ERROR");
 			}
 			
 		}
@@ -579,7 +579,7 @@ public class Log
 		System.out.println("rows in Phone_Intake: " + test.getSize("Phone_Intake"));
 		}
 		catch(NullPointerException e) {
-			System.out.println("No database connected!");
+			System.out.println("No database connected!!!!");
 		}
 		
 		
