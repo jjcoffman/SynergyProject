@@ -464,7 +464,7 @@ public class SQLSetInfo {
 				}
 			}
 		}
-		
+		//
 		//TODO add CLient ID to all the tables too
 		try { 
 			connection = SQLConnection.getConnection();

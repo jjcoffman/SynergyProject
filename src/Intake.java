@@ -1875,7 +1875,7 @@ public class Intake implements ActionListener
 			txtDosage3.setText("");
 		}
 	}
-
+//
 	public JComponent getPanel()
 	{
 		return Intake;
