@@ -85,7 +85,6 @@ public class SQLRetrieveInfo {
 				
 				
 				results[i] = (rs.getString("C_Gender"));i++;
-				//results[i] = (rs.getInt("C_Funder"));i++;
 				results[i] = "RICH";i++;
 				results[i] = (rs.getString("C_County"));i++;
 				
@@ -93,6 +92,7 @@ public class SQLRetrieveInfo {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
+		results[i] = "ERROR";i++;
 		try { 
 			query = "SELECT * FROM Client_Discharge WHERE C_ID = " + Integer.valueOf(clientID);
 			rs = statement.executeQuery(query);
@@ -102,17 +102,21 @@ public class SQLRetrieveInfo {
 				if(rs.getInt("DIS_Success")==0)
 						succ = "Fail";
 				else
-					succ = "Success";
-						
-				
-				
-				results[i] = succ;i++;
+					succ = "Success";	
+				results[i-1] = succ;
 				
 			}
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
+			results[i-1] = "ERROR";
 			e.printStackTrace();
-		} finally {
-			if (connection != null) {
+		} 
+		finally 
+		{
+			if (connection != null) 
+			{
+				results[i-1] = "ERROR";
 				try {
 					connection.close();
 				} catch (SQLException e) {

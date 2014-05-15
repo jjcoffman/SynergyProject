@@ -531,12 +531,13 @@ public class Log
 		for(int i = 0; i < size; i++)
 		{
 			//intakes will have to be archive + current + pending
-			
-			if(!(d[i][3] == null))
+			try
+			{
+			if(!(d[i][3] == ""))
 				discharge++;
 			if((d[i][10].equals("Success")))
 				success++;
-			else
+			else if((d[i][10].equals("Fail")))
 				unsuccess++;
 			int x = (int) d[i][4];
 			avgDays = avgDays + x;
@@ -564,6 +565,12 @@ public class Log
 				ab109++;
 			else if(String.valueOf(d[i][8]).equals("CPS"))
 				cps++;
+			}
+			catch(ArrayIndexOutOfBoundsException e)
+			{
+				System.out.println("Missing Database Info");
+			}
+			
 		}
 		
 		try 
@@ -637,6 +644,7 @@ public class Log
 		catch(NullPointerException e) {
 			System.out.println("No database connected!");
 			Object[][] data = {{"No Data", 0, "", "", 0, "", 0, "", "", "", ""}};
+			tableSize = 1;
 			return data;
 		} 
 	}

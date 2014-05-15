@@ -87,9 +87,6 @@ public class Intake implements ActionListener
 	private JLabel lblSpouseName;
 	private JTextField txtEmergencyName;
 	private JLabel lblSecondaryPhone_1;
-	private JTable table;
-	private MyTableModel model;
-	private JTextComponent txtName;
 	private JTextField txtSubs1;
 	private JTextField txtSubsDate1;
 	private JTextField txtSubsFreq1;
@@ -135,7 +132,7 @@ public class Intake implements ActionListener
 	 * @wbp.parser.entryPoint
 	 */
 
-	public void BuildPanel(String s, int j)
+	public void BuildPanel(String s, final int j)
 	{
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
@@ -168,12 +165,13 @@ public class Intake implements ActionListener
 		txtDateOfBirth.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent e) 
 			{
-				txtDateOfBirth.setText("");
+				if(j == 0)
+					txtDateOfBirth.setText("");
 			}
 		});
 		txtDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDateOfBirth.setBounds(440, 80, 100, 28);
-		txtDateOfBirth.setText("1960-03-25");
+		txtDateOfBirth.setText("MM/DD/YYYY");
 		txtDateOfBirth.setColumns(10);
 
 		txtAge = new JTextField();
@@ -183,12 +181,15 @@ public class Intake implements ActionListener
 
 		txtVet = new JTextField();
 		txtVet.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {txtVet.setText("");
+			public void focusGained(FocusEvent e) 
+			{
+				if(j == 1)
+				txtVet.setText("");
 			}
 		});
 		txtVet.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtVet.setBounds(595, 80, 50, 28);
-		txtVet.setText("y/n?");
+		txtVet.setText("y/n");
 		txtVet.setColumns(10);
 
 		txtAddress = new JTextField();
@@ -203,7 +204,10 @@ public class Intake implements ActionListener
 
 		txtState = new JTextField();
 		txtState.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {txtState.setText("");
+			public void focusGained(FocusEvent e) 
+			{
+				if(j == 1)
+					txtState.setText("");
 			}
 		});
 		txtState.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -213,7 +217,6 @@ public class Intake implements ActionListener
 
 		txtCounty = new JTextField();
 		txtCounty.setBounds(20, 180, 180, 28);
-		txtCounty.setText("Sacramento");
 		txtCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtCounty.setColumns(10);
 
@@ -233,6 +236,13 @@ public class Intake implements ActionListener
 		txtEmergencyCity.setColumns(10);
 
 		txtZip = new JTextField();
+		txtZip.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) 
+			{
+				if(j == 1)
+					txtZip.setText("");
+			}
+		});
 		txtZip.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtZip.setBounds(570, 130, 75, 28);
 		txtZip.setText("95819");
@@ -320,17 +330,19 @@ public class Intake implements ActionListener
 
 		txtYearsInCounty = new JTextField();
 		txtYearsInCounty.setBounds(210, 180, 110, 28);
-		txtYearsInCounty.setText("2");
 		txtYearsInCounty.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtYearsInCounty.setColumns(10);
 
 		txtPhoneNumber_1 = new JTextField();
 		txtPhoneNumber_1.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {txtPhoneNumber_1.setText("");
+			public void focusGained(FocusEvent e) 
+			{
+				if(j == 1)
+					txtPhoneNumber_1.setText("");
 			}
 		});
 		txtPhoneNumber_1.setBounds(330, 180, 150, 28);
-		txtPhoneNumber_1.setText("916-555-5555");
+		txtPhoneNumber_1.setText("XXX-XXX-XXXX");
 		txtPhoneNumber_1.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtPhoneNumber_1.setColumns(10);
 
@@ -341,17 +353,19 @@ public class Intake implements ActionListener
 		});
 		txtSecondaryPhone.setBounds(490, 180, 155, 28);
 		txtSecondaryPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtSecondaryPhone.setText("916-555-5556");
 		txtSecondaryPhone.setColumns(10);
 
 		txtSocialSecurityNumber = new JTextField();
 		txtSocialSecurityNumber.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {txtSocialSecurityNumber.setText("");
+			public void focusGained(FocusEvent e) 
+			{
+				if(j == 1)
+					txtSocialSecurityNumber.setText("");
 			}
 		});
 		txtSocialSecurityNumber.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtSocialSecurityNumber.setBounds(20, 230, 140, 28);
-		txtSocialSecurityNumber.setText("111-11-1111");
+		txtSocialSecurityNumber.setText("XXX-XX-XXXX");
 		txtSocialSecurityNumber.setColumns(10);
 
 		txtDriversLicense = new JTextField();
@@ -361,12 +375,14 @@ public class Intake implements ActionListener
 		});
 		txtDriversLicense.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDriversLicense.setBounds(170, 230, 120, 28);
-		txtDriversLicense.setText("D1234567");
 		txtDriversLicense.setColumns(10);
 
 		txtDlState = new JTextField();
 		txtDlState.addFocusListener(new FocusAdapter() {
-			public void focusGained(FocusEvent e) {txtDlState.setText("");
+			public void focusGained(FocusEvent e) 
+			{	
+				if(j == 1)
+					txtDlState.setText("");
 			}
 		});
 		txtDlState.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -377,13 +393,11 @@ public class Intake implements ActionListener
 		txtMaritalStatus = new JTextField();
 		txtMaritalStatus.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtMaritalStatus.setBounds(380, 230, 110, 28);
-		txtMaritalStatus.setText("Married");
 		txtMaritalStatus.setColumns(10);
 
 		txtSpouseName = new JTextField();
 		txtSpouseName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtSpouseName.setBounds(500, 230, 145, 28);
-		txtSpouseName.setText("Jane Doe");
 		txtSpouseName.setColumns(10);
 
 		chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
@@ -489,7 +503,7 @@ public class Intake implements ActionListener
 			}
 		});
 		chckbxIvUsedIn.setFont(new Font("Verdana", Font.PLAIN, 13));
-		chckbxIvUsedIn.setBounds(20, 861, 200, 23);
+		chckbxIvUsedIn.setBounds(20, 861, 212, 23);
 
 		chckbxPriorTPlan = new JCheckBox("Prior treatment Plans");
 		chckbxPriorTPlan.addChangeListener(new ChangeListener() {
@@ -1877,9 +1891,185 @@ public class Intake implements ActionListener
 
 	private void sendData() 
 	{
-		validateInput();
+		Object[] data;
+		boolean cont = validateInput();
+		if(cont == true)
+		{
+			data = new Object[95];
+			int i = 0;
+			data[i] = txtFirstName.getText();i++;
+			data[i] = txtMI.getText();i++;
+			data[i] = txtLastName.getText();i++;
+			data[i] = txtDateOfBirth.getText();i++;
+			data[i] = txtVet.getText();i++;
+			data[i] = txtAddress.getText();i++;
+			data[i] = txtCity.getText();i++;
+			data[i] = txtState.getText();i++;
+			data[i] = txtZip.getText();i++;
+			data[i] = txtCounty.getText();i++;
+			data[i] = txtYearsInCounty.getText();i++;
+			data[i] = txtPhoneNumber_1.getText();i++;
+			data[i] = txtSecondaryPhone.getText();i++;
+			data[i] = txtSocialSecurityNumber.getText();i++;
+			data[i] = txtDriversLicense.getText();i++;
+			data[i] = txtDlState.getText();i++;
+			data[i] = txtMaritalStatus.getText();i++;
+			data[i] = txtSpouseName.getText();i++;
+			data[i] = txtEmergencyName.getText();i++;
+			data[i] = textEmergencyRelationship.getText();i++;
+			data[i] = textEmergencyPhone.getText();i++;
+			data[i] = txtEmergencySecondary.getText();i++;
+			data[i] = txtEmergencyAddress.getText();i++;
+			data[i] = txtEmergencyCity.getText();i++;
+			data[i] = textEmergencyState.getText();i++;
+			data[i] = textEmergencyZip.getText();i++;
+			data[i] = txtAgencyName.getText();i++;
+			data[i] = txtAgencyContact.getText();i++;
+			data[i] = txtAgencyCounty.getText();i++;
+			data[i] = txtAgencyPhone.getText();i++;
+			data[i] = txtAgencyAddress.getText();i++;
+			data[i] = txtAgencyCity.getText();i++;
+			data[i] = txtAgencyState.getText();i++;
+			data[i] = txtAgencyZip.getText();i++;
+			data[i] = txtAgencyCell.getText();i++;
+			if(chckbxJailprobationInLast.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
 
-
+			if(chckbxOnProbation.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtProbationWhy.getText();i++;
+			data[i] = txtNameOfOfficer.getText();i++;
+			data[i] = txtOfficerAddress.getText();i++;
+			data[i] = txtOfficerPhone.getText();i++;
+			if(chckbxPhysicalHospitalizationIn.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtPhysicalHosp.getText();i++;
+			if(chckbxMentalHospitalizationIn.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtMentalHosp.getText();i++;
+			data[i] = txtSubs1.getText();i++;
+			data[i] = txtSubsDate1.getText();i++;
+			data[i] = txtSubsFreq1.getText();i++;
+			data[i] = txtsubsAmount1.getText();i++;
+			data[i] = txtSubsMeth1.getText();i++;
+			data[i] = txtSubs2.getText();i++;
+			data[i] = txtSubsDate2.getText();i++;
+			data[i] = txtSubsFreq2.getText();i++;
+			data[i] = txtSubsAmount2.getText();i++;
+			data[i] = txtSubsMethod2.getText();i++;
+			data[i] = txtSubs3.getText();i++;
+			data[i] = txtSubsDate3.getText();i++;
+			data[i] = txtSubsFreq3.getText();i++;
+			data[i] = txtSubsAmount3.getText();i++;
+			data[i] = txtSubsMethod3.getText();i++;
+			if(chckbxIvUsedIn.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtHowMany.getText();i++;
+			if(chckbxPriorTPlan.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtWhereAndWhen.getText();i++;
+			if(chckbxYesToAsam.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtActionsTaken.getText();i++;
+			if(chckbxYesToAsam_1.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtActionsTaken_1.getText();i++;
+			if(chckbxYesToAsam_2.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtActionsTaken_2.getText();i++;
+			if(chckbxYesToAsam_3.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtActionsTaken_3.getText();i++;
+			if(chckbxDoYouHave.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = txtDescribe.getText();i++;
+			data[i] = txtDiag1.getText();i++;
+			data[i] = txtMedName1.getText();i++;
+			data[i] = txtDosage1.getText();i++;
+			data[i] = txtDiag2.getText();i++;
+			data[i] = txtMedName2.getText();i++;
+			data[i] = txtDosage2.getText();i++;
+			data[i] = txtDiag3.getText();i++;
+			data[i] = txtMedName3.getText();i++;
+			data[i] = txtDosage3.getText();i++;
+			if(chckbxHaveYouEver.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			if(chckbxHaveYouEver_1.isSelected())
+			{
+				data[i] = 1;
+			}
+			else
+				data[i] = 0;
+			i++;
+			data[i] = strIntakeDate;i++;
+			
+			new Financials(data);
+			IntakeForm.close();
+			
+		}
+		
+		
+		
 	}
 
 
@@ -1890,111 +2080,90 @@ public class Intake implements ActionListener
 		if(!txtDateOfBirth.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format DD/MM/YYYY");
-		}
-		if(!txtFirstName.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The First Name must have letters only");
-
-		}
-		if(!txtLastName.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Last Name must have letters only");
-
+			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format MM/DD/YYYY");
 		}
 		if(!txtAge.getText().matches("[0-9]+") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The clients age must have numbers only");
 		}
-		if(!txtVet.getText().matches("[ynYN]+") && valid == true)
+		if(!txtVet.getText().matches("[ynYN]") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "Vet must be a Y or N");
-		}
-
-		//not checking address due to high variation in input
-
-		if(!txtCity.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The City must have letters only");
-		}
-		if(!txtState.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The State must have letters only");
-		}
-		if(!txtCounty.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The County must have letters only");
-		}
-		if(!txtName.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Emergency Contact Name must have letters only");
-		}
-
-		//not checking emergency address due to high variation in input
-
-		if(!txtEmergencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Emergency Contact City must have letters only");
 		}
 		if(!txtZip.getText().matches("\\d{5}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Zip Code must have 5 numbers only");
 		}
-		if(!textEmergencyState.getText().matches("[a-zA-Z ]+") && valid == true)
+		if(!txtYearsInCounty.getText().matches("[0-9]+") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "The Emergency Contact State must have letters only");
+			JOptionPane.showMessageDialog(null, "The Years in county must be a number");
+		}
+		if(!txtPhoneNumber_1.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtSecondaryPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Secondary Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtSocialSecurityNumber.getText().matches("\\d{3}-\\d{2}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Social Security Number must have numbers only in the format XXX-XX-XXXX");
+		}
+		if(!txtDlState.getText().matches("[A-Za-z]{2}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The DL State must have two letters only");
+		}
+		if(!textEmergencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!txtEmergencySecondary.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Phone Number must have numbers only in the format XXX-XXX-XXXX");
+		}
+		if(!textEmergencyState.getText().matches("[A-Za-z]{2}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Emergency Contact's State must have two letters only");
 		}
 		if(!textEmergencyZip.getText().matches("\\d{5}") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "The Emergency Contact zip must have 5 numbers only");
+			JOptionPane.showMessageDialog(null, "The Emergency Contact's Zip Code must have 5 numbers only");
 		}
 		if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
 		}
-		if(!txtAgencyState.getText().matches("[a-zA-Z ]+") && valid == true)
+		if(!txtAgencyState.getText().matches("[A-Za-z]{2}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Agency Contact State must have letters only");
-		}
-		if(!txtAgencyCity.getText().matches("[a-zA-Z ]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Agency Contact city must have letters only");
-		}
-		if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Agency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
 		}
 		if(!txtAgencyZip.getText().matches("\\d{5}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Agency Zip Code must have 5 numbers only");
 		}
+		
 		if(!txtAgencyCell.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Agency Contact Cell Phone must have numbers only in the format XXX-XXX-XXXX");
 		}
-		if(!txtPhoneNumber_1.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Agency Contact Phone Number must have numbers only in the format XXX-XXX-XXXX");
-		}
+
 		if(!txtOfficerPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
