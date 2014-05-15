@@ -152,7 +152,21 @@ public class SQLRetrieveInfo {
 				} catch (Exception e1) {
 					results[i] = "";i++;
 				}
-				results[i] = "RICH";i++;
+				results[i] = "RICH";
+				try {
+					
+					if(!rs.getString("C_Funder").equals(null))
+					results[i] = (rs.getString("C_Funder"));i++;
+				} catch (Exception e1) {
+					results[i] = "RICH";i++;
+				}
+				
+				
+				
+				
+				
+				
+				
 				try {
 					results[i] = "";
 					if(!rs.getString("C_County").equals(null))
@@ -205,7 +219,7 @@ public class SQLRetrieveInfo {
 				}
 			}
 		}
-
+		
 		for(int f = 0; f < results.length; f++)
 			System.out.println(results[f]);
 		return results;
