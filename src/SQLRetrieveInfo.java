@@ -14,6 +14,7 @@ public class SQLRetrieveInfo {
 	DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 	Date date = new Date();
 	Calendar c = Calendar.getInstance();
+	private ResultSet rs1;
 	// Returns array of strings for given column name
 	public Object[] getColumn(String s){
 		Object[] results = new Object[1000];
@@ -36,87 +37,167 @@ public class SQLRetrieveInfo {
 			{
 				
 				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Funder", "County", "S/U"
-				results[i] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName")); i++;
-				results[i] = (rs.getString("C_ID"));i++;
-				results[i] = (rs.getString("C_AdmitDate"));String strAdmit = (String) results[i];i++;
-				results[i] = (rs.getString("C_DischargeDate"));String strDischarge = (String) results[i];i++;
-				clientID = (rs.getString("C_ID"));
+				try {
+					results[i] = "";
+					if(!rs.getString("C_FirstName").equals(null) || !rs.getString("C_LastName").equals(null))
+					results[i] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName")); i++;
+				} catch (Exception e2) {
+					results[i] = "";i++;
+				}
+				
+				try {results[i] = "";
+				if(!rs.getString("C_ID").equals(null))
+					results[i] = (rs.getString("C_ID"));
+					clientID = (String) results[i];
+					i++;
+				} catch (Exception e2) {
+					results[i] = "";
+					clientID = (String) results[i];
+					i++;
+				}
+				
+				String strAdmit;
+				try {
+					results[i] = "";
+					if(!rs.getString("C_AdmitDate").equals(null))
+						results[i] = (rs.getString("C_AdmitDate"));
+						
+				} catch (Exception e2) {
+					results[i] = "";
+				}
+				strAdmit = (String) results[i];
+				i++;
+				
+				
+				String strDischarge;
+				try {
+					results[i] = "";
+					if(!rs.getString("C_DischargeDate").equals(null))
+					results[i] = (rs.getString("C_DischargeDate"));
+					if(results[i].equals(null))
+						results[i] = "";
+				} catch (Exception e2) {
+					results[i] = "";
+				}
+				strDischarge = (String) results[i];i++;
+				
+				
+				
+				
 				Calendar cal1 = new GregorianCalendar();
 				Calendar cal2 = new GregorianCalendar();
 				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-				Date date = null;
+				Date date = new Date();
 				try {
 					date = sdf.parse(strAdmit);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
 				cal1.setTime(date);
 				try {
 					date = sdf.parse(strDischarge);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
 				cal2.setTime(date);
-				results[i] = daysBetween(cal1.getTime(),cal2.getTime());i++;
+				try {
+					results[i] = daysBetween(cal1.getTime(),cal2.getTime());i++;
+				} catch (Exception e2) {
+					results[i] = "";i++;
+				}
 				
-				results[i] = (rs.getString("C_DOB"));String strDOB = (String) results[i];i++;
+				String strDOB;
+				try {
+					results[i] = "";
+					if(!rs.getString("C_DOB").equals(null))
+					results[i] = (rs.getString("C_DOB"));
+				} catch (Exception e2) {
+					results[i] = "";
+				}
+				strDOB = (String) results[i];i++;
 				
 				Calendar cal3 = new GregorianCalendar();
 				Date date1 = new Date();
 				try {
 					date1 = sdf.parse(strDOB);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (ParseException e) 
+				{
+					
 				}
 				Date date2 = new Date();
-				try {
+				try 
+				{
 					date2 = sdf.parse(sdf.format(date2));
-				} catch (ParseException e) {
+				} catch (ParseException e) 
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				int intAgeDays = daysBetween(date1,date2);
-				intAgeDays = intAgeDays/365;
-				results[i] = intAgeDays; 
-						i++;
+				try {
+					int intAgeDays = daysBetween(date1,date2);
+					intAgeDays = intAgeDays/365;
+					results[i] = intAgeDays; 
+							i++;
+				} catch (Exception e2) 
+				{
+					results[i] = 0; 
+					i++;
+				}
 				
 				
-				results[i] = (rs.getString("C_Gender"));i++;
+				try {
+					results[i] = "";
+					if(!rs.getString("C_Gender").equals(null))
+					results[i] = (rs.getString("C_Gender"));i++;
+				} catch (Exception e1) {
+					results[i] = "";i++;
+				}
 				results[i] = "RICH";i++;
-				results[i] = (rs.getString("C_County"));i++;
+				try {
+					results[i] = "";
+					if(!rs.getString("C_County").equals(null))
+					results[i] = (rs.getString("C_County"));i++;
+				} catch (Exception e) {
+					results[i] = "ERROR";i++;
+				}
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-		results[i] = "ERROR";i++;
+		
 		try { 
 			query = "SELECT * FROM Client_Discharge WHERE C_ID = " + Integer.valueOf(clientID);
-			rs = statement.executeQuery(query);
-			while (rs.next()) {
+			rs1 = statement.executeQuery(query);
+			while (rs.next()) 
+			{
 				//"Name", "ID #", "Intake Date", "Exit Date", "# of Days", "DOB", "Age", "Gender", "Race", "Funder", "County", "S/U"
 				String succ = "";
-				if(rs.getInt("DIS_Success")==0)
-						succ = "Fail";
-				else
-					succ = "Success";	
-				results[i-1] = succ;
+				try {
+					
+					if(!rs.getString("DIS_Success").equals(null)){
+						if(rs1.getInt("DIS_Success")==0)
+							succ = "Fail";
+						else
+							succ = "Success";}
+				} catch (Exception e) 
+				{
+					succ = "";
+				}	
+				results[i] = succ;
 				
 			}
 		} 
 		catch (SQLException e) 
 		{
-			results[i-1] = "ERROR";
-			e.printStackTrace();
+			results[i] = "ERROR";
+			//e.printStackTrace();
 		} 
 		finally 
 		{
 			if (connection != null) 
 			{
-				results[i-1] = "ERROR";
+				results[i] = "ERROR";
 				try {
 					connection.close();
 				} catch (SQLException e) {
@@ -231,7 +312,7 @@ public class SQLRetrieveInfo {
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		}
@@ -240,14 +321,16 @@ public class SQLRetrieveInfo {
 		{
 			query = "SELECT * FROM ARC_Info WHERE C_ID = "+ s;
 			rs = statement.executeQuery(query);
+			results[i] = "";
 			while(rs.next())
 			{
-			results[i] = (rs.getString("ARC_Name")); i++;
+				if(!rs.getString("ARC_Name").equals(null))
+					results[i] = (rs.getString("ARC_Name")); i++;
 			}
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		} 
 		finally 
 		{
@@ -255,7 +338,7 @@ public class SQLRetrieveInfo {
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		}

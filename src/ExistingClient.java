@@ -281,6 +281,7 @@ public class ExistingClient
 		panel.setVisible(true);
 		
 	}
+
 	//this gets the individual notes
 	private Object[][] getInd(int id) {
 		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
@@ -317,7 +318,7 @@ public class ExistingClient
 	}
 
 	//This will fill the object array with the data from the the existing users
-	private Object[][] getExisting()
+	public Object[][] getExisting()
 	{
 		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
 		//return data;
@@ -373,4 +374,5 @@ public class ExistingClient
 	{
 		return panel;
 	}
+	
 }

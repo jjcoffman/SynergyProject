@@ -183,6 +183,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 			data[10] = textArea.getText();
 			test.sendIndInfo(data);
 			IndividualNotes.dispose();
+			
 		}
 		else if(e.getSource()==btnCancel)
 		{
