@@ -23,7 +23,7 @@ public class ViewIndividualNote extends JFrame
 	
 	SQLSetInfo test = new SQLSetInfo();
 	
-	public ViewIndividualNote(int id)
+	public ViewIndividualNote(int id, String date)
 	{
 	viewNote = new JFrame("View Individual Note");
 	viewNote.getContentPane().setLayout(null);
@@ -66,7 +66,7 @@ public class ViewIndividualNote extends JFrame
 	lblTime.setBounds(20, 90, 90, 16);
 	viewNote.getContentPane().add(lblTime);
 	
-	lblDateField = new JLabel("lblDateField");
+	lblDateField = new JLabel(date);
 	lblDateField.setFont(new Font("Verdana", Font.PLAIN, 13));
 	lblDateField.setBounds(110, 90, 104, 16);
 	viewNote.getContentPane().add(lblDateField);

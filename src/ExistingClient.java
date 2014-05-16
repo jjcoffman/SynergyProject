@@ -170,7 +170,7 @@ public class ExistingClient
 			{
 				selectedDate = (String)individual.getValueAt(IndividualTable.getSelectedRow(),0);
 				System.out.println(selectedDate);
-				new ViewIndividualNote(id);
+				new ViewIndividualNote(id, selectedDate);
 				}
 			});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
