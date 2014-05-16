@@ -736,4 +736,8 @@ public class SQLRetrieveInfo {
 		System.out.println("Got ID: " + result);
 		return result;
 	}
+	
+	public void sendGroupNote(Object[] data){
+		
+	}
 }
