@@ -85,22 +85,25 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		IndividualNotes.getContentPane().add(lblTo);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setText(dateFormat.format(mon));
 		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
-		textField.setBounds(80, 50, 80, 28);
+		textField.setBounds(80, 50, 90, 28);
 		IndividualNotes.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		txtT = new JTextField();
+		txtT.setEditable(false);
 		txtT.setText(dateFormat.format(sun));
 		txtT.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtT.setBounds(210, 50, 80, 28);
+		txtT.setBounds(210, 50, 90, 28);
 		IndividualNotes.getContentPane().add(txtT);
 		txtT.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
 		textField_2.setFont(new Font("Verdana", Font.PLAIN, 13));
-		textField_2.setBounds(360, 50, 80, 28);
+		textField_2.setBounds(360, 50, 90, 28);
 		IndividualNotes.getContentPane().add(textField_2);
 		textField_2.setText(dateFormat.format(date));
 		textField_2.setColumns(10);

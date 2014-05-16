@@ -144,18 +144,60 @@ public class newGroupNote extends JFrame implements ActionListener
 	rdbtnKickoff.setBounds(20, 80, 90, 20);
 	AddNote.getContentPane().add(rdbtnKickoff);
 	buttonGroup_3.add(rdbtnKickoff);
+	rdbtnKickoff.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    }
+	});
 	
 	rdbtnAm = new JRadioButton("AM");
 	rdbtnAm.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnAm.setBounds(110, 80, 60, 20);
 	AddNote.getContentPane().add(rdbtnAm);
 	buttonGroup_3.add(rdbtnAm);
+	rdbtnAm.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	textStartTime.setText("10:00");
+	    	textStartTime.setEditable(false);
+	    	textEndTime.setText("12:00");
+	    	textEndTime.setEditable(false);
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndPM.setSelected(true);
+	    	rdbtnStartAM.setEnabled(false);
+	    	rdbtnStartPM.setEnabled(false);
+	    	rdbtnEndAM.setEnabled(false);
+	    	rdbtnEndPM.setEnabled(false);
+	    }
+	});
 	
 	rdbtnPm = new JRadioButton("PM");
 	rdbtnPm.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnPm.setBounds(170, 80, 60, 20);
 	AddNote.getContentPane().add(rdbtnPm);
 	buttonGroup_3.add(rdbtnPm);
+	rdbtnPm.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	textStartTime.setText("02:00");
+	    	textEndTime.setText("04:00");
+	    	textStartTime.setEditable(false);
+	    	textEndTime.setEditable(false);
+	    	rdbtnStartPM.setSelected(true);
+	    	rdbtnEndPM.setSelected(true);
+	    	rdbtnStartAM.setEnabled(false);
+	    	rdbtnStartPM.setEnabled(false);
+	    	rdbtnEndAM.setEnabled(false);
+	    	rdbtnEndPM.setEnabled(false);
+	    }
+	});
 	
 	textNotes = new JTextArea();
 	textNotes.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -235,15 +277,18 @@ public class newGroupNote extends JFrame implements ActionListener
 			return "";
 		}
 	}
-
-	public void actionPerformed(ActionEvent e) 
-	{
-		if(e.getSource()==btnCancel)
-		{
-			AddNote.dispose();
+	
+	private void validateInfo(){
+		Boolean valid = true;
+		if (!textStartTime.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
 		}
-		else if(e.getSource()==btnSubmit)
-		{
+		if (!textEndTime.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
+		}
+		if (valid) {
 			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
 			Object[] data = new Object[9];
 			data[0] = lblID.getText();
@@ -285,7 +330,7 @@ public class newGroupNote extends JFrame implements ActionListener
 			else{
 				data[5] = 1;
 			}
-			data[6] = textStartTime.getText();
+			data[6] = textEndTime.getText();
 			if (rdbtnEndAM.isSelected()){
 				data[7] = 0;
 			}
@@ -294,7 +339,25 @@ public class newGroupNote extends JFrame implements ActionListener
 			}
 			data[8] = textNotes.getText();
 			
+			for(int i = 0; i < 9; i++){
+				System.out.println("Test Value new Group:" + i + ", " + data[i]);
+			}
+			
 			AddNote.dispose();
+
+		}
+		
+	}
+
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(e.getSource()==btnCancel)
+		{
+			AddNote.dispose();
+		}
+		else if(e.getSource()==btnSubmit)
+		{
+			validateInfo();
 		}
 		
 	}
