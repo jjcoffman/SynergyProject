@@ -34,7 +34,7 @@ public class Financials extends JFrame implements ActionListener
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public Financials(Object data[])
+	public Financials(Object data[], int j)
 	{
 		newData = data;
 		
@@ -242,7 +242,7 @@ public class Financials extends JFrame implements ActionListener
 		{
 			public void run()
 			{
-				new Financials(null);
+				new Financials(null, 0);
 			}
 		});
 		
@@ -318,7 +318,7 @@ public class Financials extends JFrame implements ActionListener
 		newData[i] = txtEndDate.getText(); i++;
 		
 		
-		for(int x = 0; x < newData.length; x++)
+		for(int x = 0; x < 86; x++)
 		{
 			if(newData[x].equals(""))
 				newData[x] = " ";
@@ -326,7 +326,7 @@ public class Financials extends JFrame implements ActionListener
 		
 		
 		
-		send.sendNewInfo(newData);
+		send.sendNewInfo(newData, 1);
 		
 		
 	}

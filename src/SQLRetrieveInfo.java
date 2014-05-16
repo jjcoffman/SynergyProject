@@ -670,4 +670,70 @@ public class SQLRetrieveInfo {
 		System.out.println("Got Note: " + result);
 		return result;
 	}
+	
+	public int getLastID()
+	{
+		int result = 0;
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM  WHERE Last_ID limit = " + 0;
+		System.out.println(query);
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = (int) rs.getInt("C_ID");
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("Got ID: " + result);
+		return result;
+	}
+
+	public int getlastPhone() 
+	{
+		int result = 0;
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+		int size = getSize("Phone_Intake");
+		String query = "SELECT * FROM  WHERE Phone_Intake limit = " + size;
+		System.out.println(query);
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = (int) rs.getInt("C_ID");
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("Got ID: " + result);
+		return result;
+	}
 }

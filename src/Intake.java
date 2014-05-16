@@ -128,12 +128,15 @@ public class Intake implements ActionListener
 	private String strIntakeDate;
 	private JCheckBox chckbxHaveYouEver;
 	private JCheckBox chckbxHaveYouEver_1;
+	private int type;
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 
 	public void BuildPanel(final String s, final int j)
 	{
+		type = j;
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
 		Intake = new JPanel();
@@ -1167,7 +1170,10 @@ public class Intake implements ActionListener
 				if(j == 0)
 					IntakeForm.close();
 				if(j == 1)
-					SQLSetInfo.deletePending(s);
+				{
+					String t = "Phone_Intake";
+					SQLSetInfo.deleteRow(t, s);
+				}
 				IntakeForm.close();
 			}
 		});
@@ -1900,12 +1906,12 @@ public class Intake implements ActionListener
 		}
 		if(e.getSource()==btnSubmit)
 		{
-			sendData(); //this sends the data to the database
+			sendData(type); //this sends the data to the database
 		}
 
 	}
 
-	private void sendData() 
+	private void sendData(int j) 
 	{
 		Object[] data;
 		boolean cont = validateInput();
@@ -2085,7 +2091,7 @@ public class Intake implements ActionListener
 			i++;
 			data[i] = strIntakeDate;i++;
 			
-			new Financials(data);
+			new Financials(data, j);
 			IntakeForm.close();
 			
 		}
