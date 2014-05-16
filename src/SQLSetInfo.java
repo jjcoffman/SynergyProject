@@ -472,13 +472,13 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			if(j == 1)
 			{
+				deleteRow("ARC_Info", phone);
 				query = "INSERT INTO ARC_Info (C_ID, C_PrimPhone, ARC_Name, ARC_ContactName, ARC_County, ARC_Phone, ARC_Cell, ARC_Address, ARC_City, ARC_State, ARC_ZIP) " + 
 						"VALUES ("+  ID + ", \"" + phone + "\", \"" + aName + "\", \"" + aContact + "\", \"" + aCounty + 
 						"\", \"" + aPhone + "\", \"" + aCell + "\", \"" + aAddress + "\", \""+ aCity + "\", \"" + aState + "\", \"" + aZip + "\")";
 			}
 			else
 			{
-				//TODO update not insert
 				query = "INSERT INTO ARC_Info (C_PrimPhone, ARC_Name, ARC_ContactName, ARC_County, ARC_Phone, ARC_Cell, ARC_Address, ARC_City, ARC_State, ARC_ZIP) " + 
 						"VALUES (\"" + phone + "\", \"" + aName + "\", \"" + aContact + "\", \"" + aCounty + 
 						"\", \"" + aPhone + "\", \"" + aCell + "\", \"" + aAddress + "\", \""+ aCity + "\", \"" + aState + "\", \"" + aZip + "\")";
@@ -506,15 +506,15 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			if(j==1)
 			{
+				deleteRow("EMC_Info", phone);
 				query = "INSERT INTO EMC_Info (C_ID, C_PrimPhone, EMC_Name, EMC_Relation, EMC_PrimPhone, EMC_SecondPhone, EMC_Address, EMC_City, EMC_State, EMC_ZIP) " + 
 						"VALUES ("+  ID + ", \"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
 						"\", \"" + eSecondary + "\", \"" + eAddress + "\", \"" + eCity + "\", \"" + eState + "\", \"" + eZip + "\")";
 			}
 			else
 			{
-				//TODO update not insert
 				query = "INSERT INTO EMC_Info (C_PrimPhone, EMC_Name, EMC_Relation, EMC_PrimPhone, EMC_SecondPhone, EMC_Address, EMC_City, EMC_State, EMC_ZIP) " + 
-						"VALUES ("+  ID + ", \"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
+						"VALUES (\"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
 						"\", \"" + eSecondary + "\", \"" + eAddress + "\", \"" + eCity + "\", \"" + eState + "\", \"" + eZip + "\")";
 			}
 			
@@ -540,6 +540,7 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			if(j==1)
 			{
+				deleteRow("SUB_Info", phone);
 			query = "INSERT INTO SUB_Info (C_ID, C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
 					+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
 					+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
@@ -550,7 +551,6 @@ public class SQLSetInfo {
 			}
 			else
 			{
-				//TODO update not insert
 				query = "INSERT INTO SUB_Info (C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
 						+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
 						+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
@@ -583,19 +583,20 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			if(j==1)
 			{
-			query = "INSERT INTO ASAM (C_ID, C_PrimPhone, ASAM1, ASAM1_Actions, ASAM2, ASAM2_Actions, ASAM3, "
-					+ "ASAM3_Actions, ASAM4, ASAM4_Actions, PhysLimits, PhysLimits_Actions, "
-					+ "Med1_Diag, Med1_Name, Med1_Dosage, "
-					+ "Med2_Diag, Med2_Name, Med2_Dosage, "
-					+ "Med3_Diag, Med3_Name, Med3_Dosage) " + 
-					"VALUES ("+  ID + ", \"" + phone + "\", " + asam1 + ", \"" + act1 + "\", " + asam2 + ", \"" + act2 + "\", " + asam3 + ", \""
-					+ act3 + "\", " + asam4 + ", \"" + act4 + "\", " + condition + ", \"" + condDesc + "\", \"" + diag1 + "\", \""
-					+ med1 + "\", \"" + dose1 + "\", \"" + diag2 + "\", \"" + med2 + "\", \"" + dose2 + "\""
-					+ ", \"" + diag3 + "\", \"" + med3 + "\", \"" + dose3 + "\")";
+				deleteRow("ASAM", phone);
+				query = "INSERT INTO ASAM (C_ID, C_PrimPhone, ASAM1, ASAM1_Actions, ASAM2, ASAM2_Actions, ASAM3, "
+						+ "ASAM3_Actions, ASAM4, ASAM4_Actions, PhysLimits, PhysLimits_Actions, "
+						+ "Med1_Diag, Med1_Name, Med1_Dosage, "
+						+ "Med2_Diag, Med2_Name, Med2_Dosage, "
+						+ "Med3_Diag, Med3_Name, Med3_Dosage) " + 
+						"VALUES ("+  ID + ", \"" + phone + "\", " + asam1 + ", \"" + act1 + "\", " + asam2 + ", \"" + act2 + "\", " + asam3 + ", \""
+						+ act3 + "\", " + asam4 + ", \"" + act4 + "\", " + condition + ", \"" + condDesc + "\", \"" + diag1 + "\", \""
+						+ med1 + "\", \"" + dose1 + "\", \"" + diag2 + "\", \"" + med2 + "\", \"" + dose2 + "\""
+						+ ", \"" + diag3 + "\", \"" + med3 + "\", \"" + dose3 + "\")";
 			}
 			else
 			{
-				deleteRow("ASAM", phone);
+
 				query = "INSERT INTO ASAM (C_PrimPhone, ASAM1, ASAM1_Actions, ASAM2, ASAM2_Actions, ASAM3, "
 						+ "ASAM3_Actions, ASAM4, ASAM4_Actions, PhysLimits, PhysLimits_Actions, "
 						+ "Med1_Diag, Med1_Name, Med1_Dosage, "
@@ -628,14 +629,15 @@ public class SQLSetInfo {
 			statement = connection.createStatement();
 			if(j==1)
 			{
-			query = "INSERT INTO HEALTH_Info (C_ID, C_PrimPhone, PHYS_Hospital, PHYS_HospWhy, MENT_Hospital, MENT_HospWhy, IV_Use, "
-					+ "PRIOR_TPlan, How_Many, WhereANDWhen) " + 
-					"VALUES ("+  ID + ", \"" + phone + "\", " + intPHosp + ", \"" + strPHosp + "\", " + intMHosp + ", \"" + strMHosp + "\", " + ivUse + ", "
-					+ tPlan + ", \"" + ivMany + "\", \"" + where + "\")";
+				deleteRow("HEALTH_INFO", phone);
+				query = "INSERT INTO HEALTH_Info (C_ID, C_PrimPhone, PHYS_Hospital, PHYS_HospWhy, MENT_Hospital, MENT_HospWhy, IV_Use, "
+						+ "PRIOR_TPlan, How_Many, WhereANDWhen) " + 
+						"VALUES ("+  ID + ", \"" + phone + "\", " + intPHosp + ", \"" + strPHosp + "\", " + intMHosp + ", \"" + strMHosp + "\", " + ivUse + ", "
+						+ tPlan + ", \"" + ivMany + "\", \"" + where + "\")";
 			}
 			else
 			{
-				deleteRow("HEALTH_INFO", phone);
+
 				query = "INSERT INTO HEALTH_Info (C_PrimPhone, PHYS_Hospital, PHYS_HospWhy, MENT_Hospital, MENT_HospWhy, IV_Use, "
 						+ "PRIOR_TPlan, How_Many, WhereANDWhen) " + 
 						"VALUES (\"" + phone + "\", " + intPHosp + ", \"" + strPHosp + "\", " + intMHosp + ", \"" + strMHosp + "\", " + ivUse + ", "
@@ -662,12 +664,12 @@ public class SQLSetInfo {
 					statement = connection.createStatement();
 					if(j==1)
 					{
+						deleteRow("Leg_Info", phone);
 					query = "INSERT INTO LEG_Info (C_ID, C_PrimPhone, LEG_JPLast30, LEG_JPWhy, LEG_OName, LEG_Address, LEG_Phone) " + 
 							"VALUES ("+  ID + ", \"" + phone + "\", " + jail30 + ", \"" + probWhy + "\", \"" + oName + "\", \"" + oAddress + "\", \"" + oPhone + "\")";
 					}
 					else
 					{
-						deleteRow("Leg_Info", phone);
 						query = "INSERT INTO LEG_Info (C_PrimPhone, LEG_JPLast30, LEG_JPWhy, LEG_OName, LEG_Address, LEG_Phone) " + 
 								"VALUES (\"" + phone + "\", " + jail30 + ", \"" + probWhy + "\", \"" + oName + "\", \"" + oAddress + "\", \"" + oPhone + "\")";
 
@@ -706,13 +708,13 @@ public class SQLSetInfo {
 			statement.executeUpdate(query);
 		} 
 		catch (SQLException e) {
-			System.out.println("Error Connecting to " + table);
+			System.out.println("Error Deleting from " + table);
 		} finally {
 			if (connection != null) {
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					System.out.println("Error Deleting from " + table);
+					System.out.println("Error Connecting to " + table);
 				}
 			}
 		}

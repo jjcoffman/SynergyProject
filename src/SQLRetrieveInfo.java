@@ -677,15 +677,27 @@ public class SQLRetrieveInfo {
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
-
-		String query = "SELECT * FROM  WHERE Last_ID limit = " + 0;
+		try{
+			result = getSize("Last_ID");
+		}
+		catch(Exception e)
+		{
+			result = 1;
+		}
+		
+		String query = "SELECT * FROM  WHERE Last_ID limit = " + result;
 		System.out.println(query);
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				result = (int) rs.getInt("C_ID");
+				try{
+				result = (int) rs.getInt("C_ID");}
+				catch(Exception e)
+				{
+					result = 1;
+				}
 			}
 
 		} catch (SQLException e) 
@@ -718,7 +730,14 @@ public class SQLRetrieveInfo {
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				result = (int) rs.getInt("C_ID");
+				try{
+				result = (int) rs.getInt("C_ID");}
+				catch(Exception e)
+				{
+					result = 1;
+				}
+				
+						
 			}
 
 		} catch (SQLException e) 
