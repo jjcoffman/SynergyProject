@@ -307,13 +307,13 @@ public class SQLSetInfo {
 		String middle = (String) newData[i]; i++;
 		String last = (String) newData[i]; i++;
 		String dOB = (String) newData[i]; i++;
-		int vet = Integer.valueOf((String)newData[i]); i++;
+		int vet = (int) newData[i]; i++;
 		String address = (String) newData[i]; i++;
 		String city = (String) newData[i]; i++;
 		String state = (String) newData[i]; i++;
-		int zip = (int) newData[i]; i++;
+		int zip = Integer.valueOf((String) newData[i]); i++;
 		String county = (String) newData[i]; i++;
-		int years = (int) newData[i]; i++;
+		int years = Integer.valueOf((String) newData[i]); i++;
 		String phone  = (String) newData[i]; i++;
 		String secPhone = (String) newData[i]; i++;
 		String social = (String) newData[i]; i++;
@@ -328,7 +328,7 @@ public class SQLSetInfo {
 		String eAddress = (String) newData[i]; i++;
 		String eCity = (String) newData[i]; i++;
 		String eState = (String) newData[i]; i++;
-		int eZip = (int) newData[i]; i++;
+		int eZip = Integer.valueOf((String) newData[i]); i++;
 		String aName = (String) newData[i]; i++;
 		String aContact = (String) newData[i]; i++;
 		String aCounty = (String) newData[i]; i++;
@@ -399,16 +399,20 @@ public class SQLSetInfo {
 		String fEndDate = (String) newData[i]; i++;
 		int signature = 0;
 
+		//TODO get client ID
+		
+		
+		
 
 		
 		//TODO add CLient ID to all the tables too
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO Client_Record (C_FirstName, C_MI, C_LastName, C_DOB, C_Vet, C_Address, C_City, C_State, C_ZIP, C_County, "
+			String query = "INSERT INTO Client_Record (C_ID, C_FirstName, C_MI, C_LastName, C_DOB, C_Vet, C_Address, C_City, C_State, C_ZIP, C_County, "
 					+ "C_CONumYears, C_PrimPhone, C_SecondPhone, C_SSN, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, C_Gender, "
 					+ "C_Signature, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, C_AuthEndDate) " + 
-					"VALUES (\"" + first + "\", \"" + middle + "\", \"" + last + "\", \"" + dOB + 
+					"VALUES ("+  99999 + ", \""+ first + "\", \"" + middle + "\", \"" + last + "\", \"" + dOB + 
 					"\", " + vet + ", \"" + address + "\", \"" + city + "\", \"" + state + "\", " + zip + ", \"" + county + "\", " + years + 
 					", \"" + phone + "\", \"" + secPhone + "\", \"" + social + "\", \"" + dL + "\", \"" + dLState + "\", \"" + marital + 
 					"\", \"" + spouse + "\", \"" + intakeDate + "\", \"" + "M" + "\", " + signature + ", \"" + fund + "\", \"" + fCounty + 
@@ -432,8 +436,8 @@ public class SQLSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO ARC_Info (C_PrimPhone, ARC_Name, ARC_Contact, ARC_County, ARC_Phone, ARC_Cell, ARC_Address, ARC_City, ARC_State, ARC_ZIP) " + 
-					"VALUES (\"" + phone + "\", \"" + aName + "\", \"" + aContact + "\", \"" + aCounty + 
+			String query = "INSERT INTO ARC_Info (C_ID, C_PrimPhone, ARC_Name, ARC_Contact, ARC_County, ARC_Phone, ARC_Cell, ARC_Address, ARC_City, ARC_State, ARC_ZIP) " + 
+					"VALUES ("+  99999 + ", \"" + phone + "\", \"" + aName + "\", \"" + aContact + "\", \"" + aCounty + 
 					"\", \"" + aPhone + "\", \"" + aCell + "\", \"" + aAddress + "\", \"" + aState + "\", \"" + aZip + "\")";
 			System.out.println(query);
 			statement.executeUpdate(query);
@@ -454,8 +458,8 @@ public class SQLSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO EMC_Info (C_PrimPhone, EMC_Name, EMC_Relation, EMC_PrimPhone, EMC_SecondPhone, EMC_Address, EMC_City, EMC_State, EMC_ZIP) " + 
-					"VALUES (\"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
+			String query = "INSERT INTO EMC_Info (C_ID, C_PrimPhone, EMC_Name, EMC_Relation, EMC_PrimPhone, EMC_SecondPhone, EMC_Address, EMC_City, EMC_State, EMC_ZIP) " + 
+					"VALUES ("+  99999 + ", \"" + phone + "\", \"" + eName + "\", \"" + eRelation + "\", \"" + ePhone + 
 					"\", \"" + eSecondary + "\", \"" + eAddress + "\", \"" + eCity + "\", \"" + eState + "\", \"" + eZip + "\")";
 			System.out.println(query);
 			statement.executeUpdate(query);
@@ -476,10 +480,10 @@ public class SQLSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO SUB_Info (C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
+			String query = "INSERT INTO SUB_Info (C_ID, C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
 					+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
 					+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
-					"VALUES (\"" + phone + "\", \"" 
+					"VALUES ("+  99999 + ", \"" + phone + "\", \"" 
 					+ subs1 + "\", \"" + subs1Date + "\", \"" + subs1Amount + "\", \"" + subs1Freq + "\", \"" + subs1Meth + "\", \""
 					+ subs2 + "\", \"" + subs2Date + "\", \"" + subs2Amount + "\", \"" + subs2Freq + "\", \"" + subs2Meth + "\", \""
 					+ subs3 + "\", \"" + subs3Date + "\", \"" + subs3Amount + "\", \"" + subs3Freq + "\", \"" + subs3Meth + "\")";
@@ -494,37 +498,111 @@ public class SQLSetInfo {
 					connection.close();
 				} catch (SQLException e) {
 					System.out.println("Error Connecting to SUB_Info");
+				}
+			}
+		}
+
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO ASAM (C_ID, C_PrimPhone, ASAM1, ASAM1_Actions, ASAM2, ASAM2_Actions, ASAM3, "
+					+ "ASAM3_Actions, ASAM4, ASAM4_Actions, PhysLimits, PhysLimits_Actions, "
+					+ "Med1_Diag, Med1_Name, Med1_Dosage, "
+					+ "Med2_Diag, Med2_Name, Med2_Dosage, "
+					+ "Med3_Diag, Med3_Name, Med3_Dosage) " + 
+					"VALUES ("+  99999 + ", \"" + phone + "\", " + asam1 + ", \"" + act1 + "\", " + asam2 + ", \"" + act2 + "\", " + asam3 + ", \""
+					+ act3 + "\", " + asam4 + ", \"" + act4 + "\", " + condition + ", \"" + condDesc + "\", \"" + diag1 + "\", \""
+					+ med1 + "\", \"" + dose1 + "\", \"" + diag2 + "\", \"" + med2 + "\", \"" + dose2 + "\""
+					+ ", \"" + diag3 + "\", \"" + med3 + "\", \"" + dose3 + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to ASAM");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to ASAM");
+				}
+			}
+		}
+
+		//TODO add CLient ID to all the tables too
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO HEALTH_Info (C_ID, C_PrimPhone, PHYS_Hospital, PHYS_HospWhy, MENT_Hospital, MENT_HospWhy, IV_Use, "
+					+ "PRIOR_TPlan, How_Many, WhereANDWhen) " + 
+					"VALUES ("+  99999 + ", \"" + phone + "\", " + intPHosp + ", \"" + strPHosp + "\", " + intMHosp + ", \"" + strMHosp + "\", " + ivUse + ", "
+					+ tPlan + ", \"" + ivMany + "\", \"" + where + "\")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to HEALTH_Info");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to HEALTH_Info");
 				}
 			}
 		}
 		
 		//TODO add CLient ID to all the tables too
+				try { 
+					connection = SQLConnection.getConnection();
+					statement = connection.createStatement();
+					String query = "INSERT INTO LEG_Info (C_ID, C_PrimPhone, LEG_JPLast30, LEG_JPWhy, LEG_OName, LEG_Address, LEG_Phone) " + 
+							"VALUES ("+  99999 + ", \"" + phone + "\", " + jail30 + ", \"" + probWhy + "\", \"" + oName + "\", \"" + oAddress + "\", \"" + oPhone + "\")";
+					System.out.println(query);
+					statement.executeUpdate(query);
+				} 
+				catch (SQLException e) {
+					System.out.println("Error sending data to LEG_Info");
+				} finally {
+					if (connection != null) {
+						try {
+							connection.close();
+						} catch (SQLException e) {
+							System.out.println("Error Connecting to LEG_Info");
+						}
+					}
+				}
+				
+				
+				
+		
+		
+	}
+
+	public static void deletePending(String s) 
+	{
+		Connection connection = null;
+		Statement statement = null; 
+		
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO SUB_Info (C_PrimPhone, SUB1_Name, SUB1_DateLastUsed, SUB1_AmountUsed, SUB1_Frequency, SUB1_Method, "
-					+ "SUB2_Name, SUB2_DateLastUsed, SUB2_AmountUsed, SUB2_Frequency, SUB2_Method, "
-					+ "SUB3_Name, SUB3_DateLastUsed, SUB3_AmountUsed, SUB3_Frequency, SUB3_Method) " + 
-					"VALUES (\"" + phone + "\", \"" 
-					+ subs1 + "\", \"" + subs1Date + "\", \"" + subs1Amount + "\", \"" + subs1Freq + "\", \"" + subs1Meth + "\", \""
-					+ subs2 + "\", \"" + subs2Date + "\", \"" + subs2Amount + "\", \"" + subs2Freq + "\", \"" + subs2Meth + "\", \""
-					+ subs3 + "\", \"" + subs3Date + "\", \"" + subs3Amount + "\", \"" + subs3Freq + "\", \"" + subs3Meth + "\")";
+			String query = "DELETE FROM Phone_Intake WHERE C_PrimPhone = " + "\"" + s +"\")";
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 
 		catch (SQLException e) {
-			System.out.println("Error sending data to SUB_Info");
+			System.out.println("Error Connecting to Phone_Intake");
 		} finally {
 			if (connection != null) {
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					System.out.println("Error Connecting to SUB_Info");
+					System.out.println("Error Deleting from Phone_Intake");
 				}
 			}
 		}
-		
-		
 		
 	}
 	

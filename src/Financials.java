@@ -143,9 +143,10 @@ public class Financials extends JFrame implements ActionListener
 		lblPrivateCharges = new JLabel("Private Charges:");
 		lblPrivateCharges.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblPrivateCharges.setBounds(305, 140, 116, 16);
+		lblPrivateCharges.setVisible(true);
 		fin.add(lblPrivateCharges);
 		
-		txtCharges = new JTextField();
+		txtCharges = new JTextField("$0.00");
 		txtCharges.setBounds(425, 134, 207, 28);
 		fin.add(txtCharges);
 		txtCharges.setColumns(10);
@@ -209,13 +210,14 @@ public class Financials extends JFrame implements ActionListener
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Date must be in numbers in the format DD/MM/YYYY");
 		}
-		if(!txtCharges.getText().matches("[0-9.]+ ") && valid == true)
+		if (comboBox.getSelectedItem().equals("Private")) 
 		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Private Charges must be numbers only");
+			if (!txtCharges.getText().matches("[0-9 ]+ ") && valid == true) 
+			{
+				valid = false;
+				JOptionPane.showMessageDialog(null, "The Private Charges must be numbers only");
+			}
 		}
-		
-		
 		return valid;
 	}
 	
@@ -314,6 +316,15 @@ public class Financials extends JFrame implements ActionListener
 		newData[i] = txtCharges.getText(); i++;
 		newData[i] = txtStartDate.getText(); i++;
 		newData[i] = txtEndDate.getText(); i++;
+		
+		
+		for(int x = 0; x < newData.length; x++)
+		{
+			if(newData[x].equals(""))
+				newData[x] = " ";
+		}
+		
+		
 		
 		send.sendNewInfo(newData);
 		

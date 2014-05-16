@@ -132,7 +132,7 @@ public class Intake implements ActionListener
 	 * @wbp.parser.entryPoint
 	 */
 
-	public void BuildPanel(String s, final int j)
+	public void BuildPanel(final String s, final int j)
 	{
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
@@ -1160,6 +1160,17 @@ public class Intake implements ActionListener
 		Intake.add(lblMi);
 
 		chckbxHaveYouEver = new JCheckBox("Have you ever been convicted of a sex crime?");
+		chckbxHaveYouEver.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				JOptionPane.showMessageDialog(null, "Cannot intake this client");
+				if(j == 0)
+					IntakeForm.close();
+				if(j == 1)
+					SQLSetInfo.deletePending(s);
+				IntakeForm.close();
+			}
+		});
 		chckbxHaveYouEver.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxHaveYouEver.setBounds(20, 1265, 320, 23);
 		Intake.add(chckbxHaveYouEver);
@@ -2088,6 +2099,21 @@ public class Intake implements ActionListener
 	{
 		boolean valid = true;
 
+		if(!txtFirstName.getText().matches("[a-zA-Z ]+ ") && valid == true && !txtLastName.getText().matches("[a-zA-Z ]+")
+				&& !txtAddress.getText().matches("[a-zA-Z0-9 ]+") && !txtCity.getText().matches("[a-zA-Z0-9 ]+")
+				&& !txtCity.getText().matches("[a-zA-Z0-9 ]+")&& !txtCounty.getText().matches("[a-zA-Z0-9 ]+")
+				&& !txtDriversLicense.getText().matches("[a-zA-Z0-9 ]+")&& !txtMaritalStatus.getText().matches("[a-zA-Z0-9 ]+")
+				&& !txtSpouseName.getText().matches("[a-zA-Z0-9 ]+") && !txtEmergencyName.getText().matches("[a-zA-Z0-9 ]+")
+				&& !textEmergencyRelationship.getText().matches("[a-zA-Z0-9 ]+")&& !txtEmergencyAddress.getText().matches("[a-zA-Z0-9 ]+")
+				&& !txtEmergencyCity.getText().matches("[a-zA-Z0-9 ]+") && !txtAgencyName.getText().matches("[a-zA-Z0-9 ]+")
+				&& !txtAgencyAddress.getText().matches("[a-zA-Z0-9 ]+")&& !txtAgencyCity.getText().matches("[a-zA-Z0-9 ]+"))
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Client, Emergency Contact and Agency are required fields!");
+		}
+		
+		
+		
 		if(!txtMI.getText().matches("[a-zA-Z]{1}") && valid == true)
 		{
 			valid = false;
@@ -2181,10 +2207,16 @@ public class Intake implements ActionListener
 			JOptionPane.showMessageDialog(null, "The Agency Contact Cell Phone must have numbers only in the format XXX-XXX-XXXX");
 		}
 
-		if(!txtOfficerPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
+		if (chckbxJailprobationInLast.isSelected() || chckbxOnProbation.isSelected()) 
 		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The Probation Contact number must have numbers only in the format XXX-XXX-XXXX");
+			if (!txtOfficerPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true) 
+			{
+				valid = false;
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"The Probation Contact number must have numbers only in the format XXX-XXX-XXXX");
+			}
 		}
 		return valid;
 	}
