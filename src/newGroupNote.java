@@ -1,12 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-
 import java.awt.Font;
-import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,7 +13,6 @@ public class newGroupNote extends JFrame implements ActionListener
 	private JFrame AddNote;
 	private JButton btnSubmit;
 	private JButton btnCancel;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JLabel lblID;
 	private JLabel labelName;
 	private JRadioButton rdbtnMonday;
@@ -61,7 +55,6 @@ public class newGroupNote extends JFrame implements ActionListener
 	AddNote.getContentPane().setLayout(null);
 	AddNote.setSize(800, 400);
 	AddNote.setLocationRelativeTo(null);
-	//AddNote.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	JLabel lblClientName = new JLabel("Client Name:");
 	lblClientName.setFont(new Font("Verdana", Font.PLAIN, 13));
