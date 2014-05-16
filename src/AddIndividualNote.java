@@ -23,6 +23,10 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JTextArea textArea;
+	JRadioButton rdbtnStartAM;
+	JRadioButton rdbtnStartPM;
+	JRadioButton rdbtnEndAM;
+	JRadioButton rdbtnEndPM;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
@@ -30,7 +34,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	
 	public AddIndividualNote(int id)
 	{
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YY");
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -132,26 +136,28 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		textArea.setBounds(20, 90, 720, 360);
 		IndividualNotes.getContentPane().add(textArea);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("AM");
-		rdbtnNewRadioButton.setBounds(550, 40, 60, 20);
-		IndividualNotes.getContentPane().add(rdbtnNewRadioButton);
-		buttonGroup.add(rdbtnNewRadioButton);
+		rdbtnStartAM = new JRadioButton("AM");
+		rdbtnStartAM.setSelected(true);
+		rdbtnStartAM.setBounds(550, 40, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnStartAM);
+		buttonGroup.add(rdbtnStartAM);
 		
-		JRadioButton rdbtnPm = new JRadioButton("PM");
-		rdbtnPm.setBounds(550, 60, 60, 20);
-		IndividualNotes.getContentPane().add(rdbtnPm);
-		buttonGroup.add(rdbtnPm);
+		rdbtnStartPM = new JRadioButton("PM");
+		rdbtnStartPM.setBounds(550, 60, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnStartPM);
+		buttonGroup.add(rdbtnStartPM);
 		
-		JRadioButton radioButton = new JRadioButton("AM");
-		radioButton.setBounds(700, 40, 60, 20);
-		IndividualNotes.getContentPane().add(radioButton);
-		buttonGroup_1.add(radioButton);
+		rdbtnEndAM = new JRadioButton("AM");
+		rdbtnEndAM.setSelected(true);
+		rdbtnEndAM.setBounds(700, 40, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnEndAM);
+		buttonGroup_1.add(rdbtnEndAM);
 		
-		JRadioButton radioButton_1 = new JRadioButton("PM");
-		radioButton_1.setBounds(700, 60, 60, 20);
-		IndividualNotes.getContentPane().add(radioButton_1);
+		rdbtnEndPM = new JRadioButton("PM");
+		rdbtnEndPM.setBounds(700, 60, 60, 20);
+		IndividualNotes.getContentPane().add(rdbtnEndPM);
 		IndividualNotes.setVisible(true);
-		buttonGroup_1.add(radioButton_1);
+		buttonGroup_1.add(rdbtnEndPM);
 		
 		lblNewLabel = new JLabel(getClientName(id));
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -171,6 +177,27 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	{
 		if(e.getSource()==btnSubmit)
 		{
+			validateInfo();
+			
+		}
+		else if(e.getSource()==btnCancel)
+		{
+			IndividualNotes.dispose();
+		}
+		
+	}
+	
+	private void validateInfo(){
+		Boolean valid = true;
+		if (!txtHhmm.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time");
+		}
+		if (!textField_6.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time");
+		}
+		if (valid) {
 			Object[] data = new Object[11];
 			data[0] = lblNewLabel.getText();
 			data[1] = Integer.parseInt(lblNewLabel_1.getText());
@@ -181,12 +208,19 @@ public class AddIndividualNote extends JFrame implements ActionListener
 			data[6] = txtHhmm.getText();
 			data[8] = textField_6.getText();
 			data[10] = textArea.getText();
+			if (rdbtnStartAM.isSelected()){
+				data[7] = 0;
+			}
+			else{
+				data[7] = 1;
+			}
+			if (rdbtnEndAM.isSelected()){
+				data[9] = 0;
+			}
+			else{
+				data[9] = 1;
+			}
 			test.sendIndInfo(data);
-			IndividualNotes.dispose();
-			
-		}
-		else if(e.getSource()==btnCancel)
-		{
 			IndividualNotes.dispose();
 		}
 		

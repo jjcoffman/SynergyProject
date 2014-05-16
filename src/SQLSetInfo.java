@@ -274,8 +274,8 @@ public class SQLSetInfo {
 		String note = (String)data[10];
 		String start = (String)data[6];
 		String end = (String)data[8];
-		int amorpm1 = 0;
-		int amorpm2 = 1;
+		int amorpm1 = (int)data[7];
+		int amorpm2 = (int)(data[9]);
 		int signature = 0;
 
 		try { 

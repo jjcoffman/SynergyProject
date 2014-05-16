@@ -44,7 +44,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	public newGroupNote(int id) {
 		
-	DateFormat dateFormat = new SimpleDateFormat("MM/dd/YY");
+	DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 	Calendar c = Calendar.getInstance();
 	c.setFirstDayOfWeek(Calendar.MONDAY);
 	c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
