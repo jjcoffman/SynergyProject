@@ -22,6 +22,7 @@ public class ViewIndividualNote extends JFrame
 	private JLabel lblLblclientname;
 	
 	SQLSetInfo test = new SQLSetInfo();
+	SQLRetrieveInfo test2 = new SQLRetrieveInfo();
 	
 	public ViewIndividualNote(int id, String date)
 	{
@@ -43,7 +44,7 @@ public class ViewIndividualNote extends JFrame
 	lblClientId.setBounds(20, 40, 90, 16);
 	viewNote.getContentPane().add(lblClientId);
 	
-	txtNote = new JTextArea();
+	txtNote = new JTextArea(getNoteText(id, date));
 	txtNote.setLineWrap(true);
 	txtNote.setWrapStyleWord(true);
 	txtNote.setEditable(false);
@@ -103,5 +104,14 @@ public class ViewIndividualNote extends JFrame
 		catch(NullPointerException e) {
 			return "";
 		}
+	}
+	
+	private String getNoteText(int id,String date) {
+		try {
+			return test2.getIndNote(id, date);
+			}
+			catch(NullPointerException e) {
+				return "";
+			}
 	}
 }

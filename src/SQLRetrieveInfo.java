@@ -638,4 +638,36 @@ public class SQLRetrieveInfo {
 		}
 		return result;
 	}
+	
+	public String getIndNote(int id, String date){
+		String result = null;
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM IND_NOTES WHERE C_ID = " + id + " AND NoteDate = " + "\"" + date + "\"";
+		System.out.println(query);
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = rs.getString("Note");
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("Got Note: " + result);
+		return result;
+	}
 }
