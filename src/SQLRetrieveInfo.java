@@ -757,6 +757,7 @@ public class SQLRetrieveInfo {
 	}
 	
 	public void sendGroupNote(Object[] data){
+		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
 		if (((String)data[2]).equals("Monday")) {
 			
 		}
