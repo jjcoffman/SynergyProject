@@ -191,11 +191,11 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		Boolean valid = true;
 		if (!txtHhmm.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
 			valid = false;
-			JOptionPane.showMessageDialog(null, "Please Enter a valid time");
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
 		}
 		if (!textField_6.getText().matches("[0-1][0-9][:][0-5][0-9]") && valid == true) {
 			valid = false;
-			JOptionPane.showMessageDialog(null, "Please Enter a valid time");
+			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
 		}
 		if (valid) {
 			Object[] data = new Object[11];
