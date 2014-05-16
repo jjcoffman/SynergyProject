@@ -46,6 +46,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	private final ButtonGroup buttonGroup_5 = new ButtonGroup();
 	
 	SQLSetInfo test = new SQLSetInfo();
+	SQLRetrieveInfo test2 = new SQLRetrieveInfo();
 	
 	public newGroupNote(int id) {
 		

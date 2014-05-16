@@ -757,6 +757,9 @@ public class SQLRetrieveInfo {
 	}
 	
 	public void sendGroupNote(Object[] data){
+		if (((String)data[2]).equals("Monday")) {
+			
+		}
 		
 	}
 }
