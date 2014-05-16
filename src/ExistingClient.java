@@ -9,6 +9,8 @@ import javax.swing.event.TableModelListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ExistingClient
@@ -237,14 +239,22 @@ public class ExistingClient
 		btnDischarge.setBounds(240, 520, 160, 29);
 		panel.add(btnDischarge);
 		
-		JButton btnRefresh = new JButton("Refresh");
+		JButton btnRefresh = new JButton("Export Table");
 		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnRefresh.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				Object[][] data = getExisting();
-				existing.update(data);
+				
+				try {
+					ExcelExporter export = new ExcelExporter();
+					export.exportTable(table, new File("CurrentTable.xls"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				/*Object[][] data = getExisting();
+				existing.update(data);*/
 				}
 		});
 		btnRefresh.setBounds(240, 480, 160, 29);
