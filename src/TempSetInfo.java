@@ -342,11 +342,12 @@ public class TempSetInfo {
 			String startTime = (String)data[4] + (String)data[5];
 			String endTime = (String)data[6] + (String)data[7];
 			String note = (String)data[8];
+			String counselor = "default";
 			String query;
 			if (day.equals("Monday")){
 				if (session.equals("KickOff")){
 					//System.out.println("MONDAY KICKOFF");
-					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, MON_KO, MONKO_StartTime, MONKO_EndTime) " + "VALUES ()";
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date MON_KO, MONKO_StartTime, MONKO_EndTime) " + "VALUES ()";
 				}
 				else if(session.equals("AM")){
 					//System.out.println("MONDAY AM");
@@ -355,7 +356,84 @@ public class TempSetInfo {
 					//System.out.println("MONDAY PM");
 				}
 			}
-
+			else if (day.equals("Tuesday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Tuesday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Wendesday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Thursday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Friday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Saturday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			else if (day.equals("Sunday")){
+				if (session.equals("KickOff")){
+					
+				}
+				else if(session.equals("AM")){
+					
+				}
+				else {
+					
+				}
+			}
+			
 		}
 	}
 	

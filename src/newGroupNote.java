@@ -44,6 +44,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	SQLSetInfo test = new SQLSetInfo();
 	SQLRetrieveInfo test2 = new SQLRetrieveInfo();
 	TempSetInfo temp = new TempSetInfo();
+	private JTextField textField;
 	
 	public newGroupNote(int id) {
 		
@@ -52,6 +53,8 @@ public class newGroupNote extends JFrame implements ActionListener
 	c.setFirstDayOfWeek(Calendar.MONDAY);
 	c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 	Date mon = c.getTime();
+	c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+	Date sun = c.getTime();
 	System.out.println(mon);
 		
 	AddNote = new JFrame("New Group Note");
@@ -94,7 +97,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	rdbtnMonday = new JRadioButton("Monday");
 	rdbtnMonday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnMonday.setSelected(true);
-	rdbtnMonday.setBounds(20, 50, 110, 20);
+	rdbtnMonday.setBounds(20, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnMonday);
 	buttonGroup_2.add(rdbtnMonday);
 	rdbtnMonday.addActionListener(new ActionListener(){
@@ -117,7 +120,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnTuesday = new JRadioButton("Tuesday");
 	rdbtnTuesday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnTuesday.setBounds(130, 50, 110, 20);
+	rdbtnTuesday.setBounds(130, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnTuesday);
 	buttonGroup_2.add(rdbtnTuesday);
 	rdbtnTuesday.addActionListener(new ActionListener(){
@@ -140,7 +143,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnThursday = new JRadioButton("Thursday");
 	rdbtnThursday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnThursday.setBounds(350, 50, 110, 20);
+	rdbtnThursday.setBounds(350, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnThursday);
 	buttonGroup_2.add(rdbtnThursday);
 	rdbtnThursday.addActionListener(new ActionListener(){
@@ -163,7 +166,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnWednesday = new JRadioButton("Wednesday");
 	rdbtnWednesday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnWednesday.setBounds(240, 50, 110, 20);
+	rdbtnWednesday.setBounds(240, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnWednesday);
 	buttonGroup_2.add(rdbtnWednesday);
 	rdbtnWednesday.addActionListener(new ActionListener(){
@@ -186,7 +189,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnSaturday = new JRadioButton("Saturday");
 	rdbtnSaturday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnSaturday.setBounds(570, 50, 110, 20);
+	rdbtnSaturday.setBounds(570, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnSaturday);
 	buttonGroup_2.add(rdbtnSaturday);
 	rdbtnSaturday.addActionListener(new ActionListener(){
@@ -209,7 +212,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnFriday = new JRadioButton("Friday");
 	rdbtnFriday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnFriday.setBounds(460, 50, 110, 20);
+	rdbtnFriday.setBounds(460, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnFriday);
 	buttonGroup_2.add(rdbtnFriday);
 	rdbtnFriday.addActionListener(new ActionListener(){
@@ -232,7 +235,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnSunday = new JRadioButton("Sunday");
 	rdbtnSunday.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnSunday.setBounds(680, 50, 110, 20);
+	rdbtnSunday.setBounds(680, 50, 110, 30);
 	AddNote.getContentPane().add(rdbtnSunday);
 	buttonGroup_2.add(rdbtnSunday);
 	rdbtnSunday.addActionListener(new ActionListener(){
@@ -256,7 +259,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	rdbtnKickoff = new JRadioButton("Kick/Off");
 	rdbtnKickoff.setSelected(true);
 	rdbtnKickoff.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnKickoff.setBounds(20, 80, 90, 20);
+	rdbtnKickoff.setBounds(20, 90, 90, 30);
 	AddNote.getContentPane().add(rdbtnKickoff);
 	buttonGroup_3.add(rdbtnKickoff);
 	rdbtnKickoff.addActionListener(new ActionListener(){
@@ -276,7 +279,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnAm = new JRadioButton("AM");
 	rdbtnAm.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnAm.setBounds(110, 80, 60, 20);
+	rdbtnAm.setBounds(110, 90, 60, 30);
 	AddNote.getContentPane().add(rdbtnAm);
 	buttonGroup_3.add(rdbtnAm);
 	rdbtnAm.addActionListener(new ActionListener(){
@@ -296,7 +299,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	rdbtnPm = new JRadioButton("PM");
 	rdbtnPm.setFont(new Font("Verdana", Font.PLAIN, 13));
-	rdbtnPm.setBounds(170, 80, 60, 20);
+	rdbtnPm.setBounds(170, 90, 60, 30);
 	AddNote.getContentPane().add(rdbtnPm);
 	buttonGroup_3.add(rdbtnPm);
 	rdbtnPm.addActionListener(new ActionListener(){
@@ -323,13 +326,13 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	lblWeekOf = new JLabel("Week Of:");
 	lblWeekOf.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblWeekOf.setBounds(630, 20, 70, 16);
+	lblWeekOf.setBounds(520, 20, 70, 16);
 	AddNote.getContentPane().add(lblWeekOf);
 	
 	lblMmddyy = new JLabel(dateFormat.format(mon));
 	lblMmddyy.setHorizontalAlignment(SwingConstants.CENTER);
 	lblMmddyy.setFont(new Font("Verdana", Font.PLAIN, 13));
-	lblMmddyy.setBounds(700, 20, 80, 16);
+	lblMmddyy.setBounds(590, 20, 80, 16);
 	AddNote.getContentPane().add(lblMmddyy);
 	
 	JLabel label_1 = new JLabel("Time:");
@@ -338,13 +341,14 @@ public class newGroupNote extends JFrame implements ActionListener
 	AddNote.getContentPane().add(label_1);
 	
 	textStartTime = new JTextField();
+	textStartTime.setFont(new Font("Verdana", Font.PLAIN, 13));
 	textStartTime.setText("HH:MM");
 	textStartTime.setColumns(10);
-	textStartTime.setBounds(510, 90, 60, 28);
+	textStartTime.setBounds(510, 90, 65, 28);
 	AddNote.getContentPane().add(textStartTime);
 	
 	rdbtnStartPM = new JRadioButton("PM");
-	rdbtnStartPM.setBounds(570, 100, 60, 20);
+	rdbtnStartPM.setBounds(575, 110, 60, 20);
 	AddNote.getContentPane().add(rdbtnStartPM);
 	buttonGroup_4.add(rdbtnStartPM);
 	
@@ -354,31 +358,55 @@ public class newGroupNote extends JFrame implements ActionListener
 	AddNote.getContentPane().add(label);
 	
 	textEndTime = new JTextField();
+	textEndTime.setFont(new Font("Verdana", Font.PLAIN, 13));
 	textEndTime.setText("HH:MM");
 	textEndTime.setColumns(10);
-	textEndTime.setBounds(660, 90, 60, 28);
+	textEndTime.setBounds(660, 90, 65, 28);
 	AddNote.getContentPane().add(textEndTime);
 	
 	rdbtnEndAM = new JRadioButton("AM");
 	rdbtnEndAM.setSelected(true);
-	rdbtnEndAM.setBounds(720, 80, 60, 20);
+	rdbtnEndAM.setBounds(725, 90, 60, 20);
 	AddNote.getContentPane().add(rdbtnEndAM);
 	buttonGroup_5.add(rdbtnEndAM);
 	
 	rdbtnEndPM = new JRadioButton("PM");
-	rdbtnEndPM.setBounds(720, 100, 60, 20);
+	rdbtnEndPM.setBounds(725, 110, 60, 20);
 	AddNote.getContentPane().add(rdbtnEndPM);
 	buttonGroup_5.add(rdbtnEndPM);
 	
 	rdbtnStartAM = new JRadioButton("AM");
 	rdbtnStartAM.setSelected(true);
-	rdbtnStartAM.setBounds(570, 80, 60, 20);
+	rdbtnStartAM.setBounds(575, 90, 60, 20);
 	AddNote.getContentPane().add(rdbtnStartAM);
 	buttonGroup_4.add(rdbtnStartAM);
 	
 	JSeparator separator = new JSeparator();
-	separator.setBounds(0, 70, 800, 12);
+	separator.setBounds(0, 80, 800, 12);
 	AddNote.getContentPane().add(separator);
+	
+	JLabel lblTopic = new JLabel("Topic:");
+	lblTopic.setFont(new Font("Verdana", Font.PLAIN, 13));
+	lblTopic.setBounds(250, 90, 45, 28);
+	AddNote.getContentPane().add(lblTopic);
+	
+	textField = new JTextField();
+	textField.setFont(new Font("Verdana", Font.PLAIN, 13));
+	textField.setColumns(10);
+	textField.setBounds(295, 90, 160, 28);
+	AddNote.getContentPane().add(textField);
+	
+	JLabel lblNewLabel = new JLabel("-");
+	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
+	lblNewLabel.setBounds(670, 20, 10, 16);
+	AddNote.getContentPane().add(lblNewLabel);
+	
+	JLabel label_2 = new JLabel(dateFormat.format(sun));
+	label_2.setHorizontalAlignment(SwingConstants.CENTER);
+	label_2.setFont(new Font("Verdana", Font.PLAIN, 13));
+	label_2.setBounds(680, 20, 80, 16);
+	AddNote.getContentPane().add(label_2);
 	
 	
 	AddNote.setVisible(true);
@@ -404,8 +432,8 @@ public class newGroupNote extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
 		}
 		if (valid) {
-			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
-			Object[] data = new Object[9];
+			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note, 9: endDate;
+			Object[] data = new Object[10];
 			data[0] = Integer.parseInt(lblID.getText());
 			data[1] = lblMmddyy.getText();
 			if (rdbtnMonday.isSelected()){
