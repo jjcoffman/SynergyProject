@@ -72,12 +72,12 @@ public class NewClient
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				
+				if(table.getSelectedRow() != -1){
 				Object i = table.getValueAt(table.getSelectedRow(),1);
 				String s = (String)i;
 				System.out.println(s);
 
-				new IntakeForm(s, 1);
+				new IntakeForm(s, 1);}
 			} //TODO add id identifier for the existing client we are passing
 		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));

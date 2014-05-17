@@ -390,122 +390,79 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("C_ZIP")); i++;
 				results[i] = (rs.getString("C_County")); i++;
 				results[i] = (rs.getString("C_CONumYears")); i++;
-				results[i] = (rs.getString("C_Vet")); i++;
+				results[i] = (rs.getInt("C_Vet")); i++;
 				results[i] = (rs.getString("C_DLNum")); i++;
 				results[i] = (rs.getString("C_DLState")); i++;
-				results[i] = (rs.getString("C_IntakeDate")); i++;
+				results[i] = (rs.getString("C_MaritalStatus")); i++;
+				results[i] = (rs.getString("C_SpouseName")); i++;
+				results[i] = (rs.getString("C_IntakeDate")); i++; //19
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+		} 
 
 		try { 
 			query = "SELECT * FROM EMC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				results[i] = (rs.getString("EMC_LName")); i++;
-				results[i] = (rs.getString("EMC_FName")); i++;
+				results[i] = (rs.getString("EMC_Name")); i++;
 				results[i] = (rs.getString("EMC_Relation")); i++;
 				results[i] = (rs.getString("EMC_PrimPhone")); i++;
 				results[i] = (rs.getString("EMC_SecondPhone")); i++;
 				results[i] = (rs.getString("EMC_Address")); i++;
 				results[i] = (rs.getString("EMC_City")); i++;
 				results[i] = (rs.getString("EMC_State")); i++;
-				results[i] = (rs.getString("EMC_ZIP")); i++;
+				results[i] = (rs.getString("EMC_ZIP")); i++; //27
 			} }catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			} 
 
 		try{
 			query = "SELECT * FROM ARC_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 			rs = statement.executeQuery(query);
 			while(rs.next()){
 				results[i] = (rs.getString("ARC_Name")); i++;
-				results[i] = (rs.getString("ARC_ContactLN")); i++;
-				results[i] = (rs.getString("ARC_ContactFN")); i++;
+				results[i] = (rs.getString("ARC_ContactName")); i++;
 				results[i] = (rs.getString("ARC_County")); i++;
 				results[i] = (rs.getString("ARC_Phone")); i++;
 				results[i] = (rs.getString("ARC_Cell")); i++;
 				results[i] = (rs.getString("ARC_Address")); i++;
 				results[i] = (rs.getString("ARC_City")); i++;
 				results[i] = (rs.getString("ARC_State")); i++;
-				results[i] = (rs.getString("ARC_ZIP")); i++;
+				results[i] = (rs.getString("ARC_ZIP")); i++; //36
 			} }catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			} 
 
 		try{
 			query = "SELECT * FROM LEG_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				results[i] = (rs.getString("LEG_JPLast30")); i++;
+				results[i] = (rs.getInt("LEG_JPLast30")); i++;
 				results[i] = (rs.getString("LEG_JPWhy")); i++;
 				results[i] = (rs.getString("LEG_OName")); i++;
 				results[i] = (rs.getString("LEG_Address")); i++;
-				results[i] = (rs.getString("LEG_City")); i++;
-				results[i] = (rs.getString("LEG_State")); i++;
-				results[i] = (rs.getString("LEG_ZIP")); i++;
 				results[i] = (rs.getString("LEG_Phone")); i++;
 			} }catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			} 
 
 		try{
 			query = "SELECT * FROM HEALTH_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				results[i] = (rs.getString("PHYS_Hospital")); i++;
+				results[i] = (rs.getInt("PHYS_Hospital")); i++;
 				results[i] = (rs.getString("PHYS_HospWhy")); i++;
-				results[i] = (rs.getString("MENT_Hospital")); i++;
+				results[i] = (rs.getInt("MENT_Hospital")); i++;
 				results[i] = (rs.getString("MENT_HospWhy")); i++;
-				results[i] = (rs.getString("IV_Use")); i++;
-				results[i] = (rs.getString("PRIOR_TPlan")); i++;
+				results[i] = (rs.getInt("IV_Use")); i++;
+				results[i] = (rs.getInt("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
 				results[i] = (rs.getString("WhereANDWhen"));  
 			} }catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			} 
 
 		try{
 			query = "SELECT * FROM SUB_Info WHERE C_PrimPhone = " + "\"" + s + "\"";
@@ -514,14 +471,17 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("SUB1_Name")); i++;
 				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub1_Frequency")); i++;
 				results[i] = (rs.getString("Sub1_Method")); i++;
 				results[i] = (rs.getString("SUB2_Name")); i++;
 				results[i] = (rs.getString("SUB2_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB2_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub2_Frequency")); i++;
 				results[i] = (rs.getString("Sub2_Method")); i++;
 				results[i] = (rs.getString("SUB3_Name")); i++;
 				results[i] = (rs.getString("SUB3_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB3_AmountUsed")); i++;
+				results[i] = (rs.getString("Sub3_Frequency")); i++;
 				results[i] = (rs.getString("Sub3_Method")); i++;
 
 			}
@@ -540,15 +500,7 @@ public class SQLRetrieveInfo {
 					results[i] = (rs.getString("Med3_Dosage")); i++;
 				} }catch (SQLException e) {
 					e.printStackTrace();
-				} finally {
-					if (connection != null) {
-						try {
-							connection.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
+				} 
 
 
 
