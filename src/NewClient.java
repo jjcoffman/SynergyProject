@@ -30,6 +30,7 @@ public class NewClient
 		String[] columnNames = {"Name", "Phone Number", "Date"};
 		pending = new MyTableModel(data, columnNames);
 		table = new JTable(pending);
+		table.getModel().addTableModelListener(table);
 		table.setFont(new Font("Verdana", Font.PLAIN, 13));
 		table.setGridColor(Color.LIGHT_GRAY);
 		table.setFillsViewportHeight(true);
@@ -71,7 +72,12 @@ public class NewClient
 		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				continueIntake();
+				
+				Object i = table.getValueAt(table.getSelectedRow(),1);
+				String s = (String)i;
+				System.out.println(s);
+
+				new IntakeForm(s, 1);
 			} //TODO add id identifier for the existing client we are passing
 		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -81,36 +87,6 @@ public class NewClient
 
 		newClient.setVisible(true);
 	}
-	
-	
-	protected void continueIntake() 
-	{
-		try
-		{
-			int i = table.getSelectedRow();
-			System.out.println(i);
-			int j = table.getSelectedColumn();
-			System.out.println(j);
-			Object x = table.getValueAt(i,  1);
-			System.out.println(x);
-			String s = (String)x;
-			System.out.println(s);
-
-			new IntakeForm(s, 1);
-		}
-		catch(Exception e)
-		{
-			JOptionPane.showMessageDialog(null, "You must select an existing phone interview");
-		}
-		
-		
-		
-	}
-
-
-
-
-
 
 	private Object[][] getExisting() 
 	{

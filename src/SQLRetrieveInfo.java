@@ -570,6 +570,9 @@ public class SQLRetrieveInfo {
 		return results;
 	}
 
+	
+	
+	
 
 	public Object[] getUSERSRows(int rowNum, int numRows){
 		Object[] results = new Object[4];
@@ -607,7 +610,7 @@ public class SQLRetrieveInfo {
 		System.out.println(results[0] + " " + results[1]);
 		return results;
 	}
-
+	
 	// Returns number of rows in given database
 	public int getSize(String s) {
 		int result = 0;
@@ -679,13 +682,15 @@ public class SQLRetrieveInfo {
 		Statement statement = null; 
 		try{
 			result = getSize("Last_ID");
+			if(result == 0)
+				result = 1;
 		}
 		catch(Exception e)
 		{
 			result = 1;
 		}
 		
-		String query = "SELECT * FROM  WHERE Last_ID limit = " + result;
+		String query = "SELECT * FROM Last_ID WHERE C_ID = " + result;
 		System.out.println(query);
 		try { 
 			connection = SQLConnection.getConnection();

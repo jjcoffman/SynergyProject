@@ -21,6 +21,7 @@ import javax.swing.event.ChangeEvent;
 
 public class Intake implements ActionListener
 {
+	SQLSetInfo send = new SQLSetInfo();
 	SQLRetrieveInfo dBase = new SQLRetrieveInfo();
 	private JPanel Intake;
 	private JTextField txtFirstName;
@@ -2090,8 +2091,10 @@ public class Intake implements ActionListener
 				data[i] = 0;
 			i++;
 			data[i] = strIntakeDate;i++;
-			
-			new Financials(data, j);
+			if(j==1)
+				new Financials(data, j);
+			else
+				sendData(data);
 			IntakeForm.close();
 			
 		}
@@ -2166,47 +2169,59 @@ public class Intake implements ActionListener
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Social Security Number must have numbers only in the format XXX-XX-XXXX");
 		}
+		if(!txtDriversLicense.getText().matches("[A-Za-z0-9]{10}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The DL must be only 10 characters long");
+		}
 		if(!txtDlState.getText().matches("[A-Za-z]{2}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The DL State must have two letters only");
 		}
+		if(!textEmergencyPhone.getText().matches("") && valid == true)
 		if(!textEmergencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Phone Number must have numbers only in the format XXX-XXX-XXXX");
 		}
+		if(!txtEmergencySecondary.getText().matches("") && valid == true)
 		if(!txtEmergencySecondary.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Phone Number must have numbers only in the format XXX-XXX-XXXX");
 		}
+		if(!textEmergencyState.getText().matches("") && valid == true)
 		if(!textEmergencyState.getText().matches("[A-Za-z]{2}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Contact's State must have two letters only");
 		}
+		if(!textEmergencyZip.getText().matches("") && valid == true)
 		if(!textEmergencyZip.getText().matches("\\d{5}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Contact's Zip Code must have 5 numbers only");
 		}
+		if(!txtAgencyPhone.getText().matches("") && valid == true)
 		if(!txtAgencyPhone.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Emergency Contact phone number must have numbers only in the format XXX-XXX-XXXX");
 		}
+		if(!txtAgencyState.getText().matches("") && valid == true)
 		if(!txtAgencyState.getText().matches("[A-Za-z]{2}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Agency Contact State must have letters only");
 		}
+		if(!txtAgencyZip.getText().matches("") && valid == true)
 		if(!txtAgencyZip.getText().matches("\\d{5}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Agency Zip Code must have 5 numbers only");
 		}
-		
+		if(!txtAgencyCell.getText().matches("") && valid == true)
 		if(!txtAgencyCell.getText().matches("\\d{3}-\\d{3}-\\d{4}") && valid == true)
 		{
 			valid = false;
@@ -2225,5 +2240,67 @@ public class Intake implements ActionListener
 			}
 		}
 		return valid;
+	}
+	
+	private void sendData(Object[] data) 
+	{
+		int i = 86;
+		data[i] = ""; i++;
+		data[i] = ""; i++;
+		
+		data[i] = "Other"; i++;
+		
+		data[i] = ""; i++;
+		data[i] = ""; i++;
+		data[i] = ""; i++;
+		data[i] = ""; i++;
+		data[i] = ""; i++;
+		
+		if(data[4].equals(""))
+			data[4] = 0;
+		if(data[8].equals(""))
+			data[8] = 0;
+		if(data[10].equals(""))
+			data[10] = 0;
+		if(data[25].equals(""))
+			data[25] = "00000";
+		if(data[35].equals(""))
+			data[35] = 0;
+		if(data[36].equals(""))
+			data[36] = 0;
+		if(data[41].equals(""))
+			data[41] = 0;
+		if(data[43].equals(""))
+			data[43] = 0;
+		if(data[60].equals(""))
+			data[60] = 0;
+		if(data[62].equals(""))
+			data[62] = 0;
+		if(data[64].equals(""))
+			data[64] = 0;
+		if(data[66].equals(""))
+			data[66] = 0;
+		if(data[68].equals(""))
+			data[68] = 0;
+		if(data[70].equals(""))
+			data[70] = 0;
+		if(data[72].equals(""))
+			data[72] = 0;
+		if(data[83].equals(""))
+			data[83] = 0;
+		if(data[84].equals(""))
+			data[84] = 0;
+		
+		
+		for(int x = 0; x < 86; x++)
+		{
+			if(data[x].equals(""))
+				data[x] = " ";
+		}
+		
+		
+		send.sendNewInfo(data, type);
+		
+		
 	}
 }

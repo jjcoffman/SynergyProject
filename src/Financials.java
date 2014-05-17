@@ -30,6 +30,7 @@ public class Financials extends JFrame implements ActionListener
 	private JLabel lblPrivateCharges;
 	private JButton btnContinue;
 	Object[] newData;
+	int type;
 	
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
@@ -37,7 +38,7 @@ public class Financials extends JFrame implements ActionListener
 	public Financials(Object data[], int j)
 	{
 		newData = data;
-		
+		type = j;
 		window = new JFrame("Financials");
 		window.setResizable(false);
 		
@@ -192,6 +193,14 @@ public class Financials extends JFrame implements ActionListener
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.getContentPane().add(spFin);
 		window.pack();
+		
+		if(type == 0)
+		{
+			window.dispose();
+			sendData();
+		}
+		
+		
 		window.setVisible(true);
 
 	}
@@ -235,18 +244,7 @@ public class Financials extends JFrame implements ActionListener
 	        return text;
 	    }
 	}
-	//main for testing purposes
-	public static void main(String[] args) 
-	{
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				new Financials(null, 0);
-			}
-		});
-		
-	}
+
 	
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -298,6 +296,7 @@ public class Financials extends JFrame implements ActionListener
 			if(cont == true)
 				sendData();
 			
+			window.dispose();
 			
 		}
 	}
@@ -317,6 +316,41 @@ public class Financials extends JFrame implements ActionListener
 		newData[i] = txtStartDate.getText(); i++;
 		newData[i] = txtEndDate.getText(); i++;
 		
+		if(newData[4].equals(""))
+			newData[4] = 0;
+		if(newData[8].equals(""))
+			newData[8] = 0;
+		if(newData[10].equals(""))
+			newData[10] = 0;
+		if(newData[25].equals(""))
+			newData[25] = "00000";
+		if(newData[35].equals(""))
+			newData[35] = 0;
+		if(newData[36].equals(""))
+			newData[36] = 0;
+		if(newData[41].equals(""))
+			newData[41] = 0;
+		if(newData[43].equals(""))
+			newData[43] = 0;
+		if(newData[60].equals(""))
+			newData[60] = 0;
+		if(newData[62].equals(""))
+			newData[62] = 0;
+		if(newData[64].equals(""))
+			newData[64] = 0;
+		if(newData[66].equals(""))
+			newData[66] = 0;
+		if(newData[68].equals(""))
+			newData[68] = 0;
+		if(newData[70].equals(""))
+			newData[70] = 0;
+		if(newData[72].equals(""))
+			newData[72] = 0;
+		if(newData[83].equals(""))
+			newData[83] = 0;
+		if(newData[84].equals(""))
+			newData[84] = 0;
+		
 		
 		for(int x = 0; x < 86; x++)
 		{
@@ -325,8 +359,7 @@ public class Financials extends JFrame implements ActionListener
 		}
 		
 		
-		
-		send.sendNewInfo(newData, 1);
+		send.sendNewInfo(newData, type);
 		
 		
 	}
