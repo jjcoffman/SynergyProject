@@ -34,8 +34,6 @@ public class Discharge
 	private JTextField txtDrug;
 	private JTextField txtCrim;
 	private JTextField txtContactDate;
-	private JTextField txtDrugUsage;
-	private JTextField txtCriminal;
 	private JTextField txtAxis1;
 	private JTextField txtAxis2;
 	private JTextField txtAxis3;
@@ -636,130 +634,146 @@ public class Discharge
 		{
 			data = new Object[95];
 			int i = 0;
-			data[i] = lblClientId.getText();i++; 			
-			data[i] = txtDischargeDate.getText();i++;
+			data[i] = lblClientId.getText();i++; 
+			
+			
+			if(chckbxSuccessfulCompletion.isSelected())
+			{
+				data[1] = "Successful Program Completion";
+				data[2] = 1;
+			}
+			else if(chckbxDisciplinaryruleViolation.isSelected())
+			{
+				data[1] = "Disciplinary/Rule Violation";
+				data[2] = 0;
+			}
+			else if(chckbxNeedReferralFor.isSelected())
+			{
+				data[1] = "Refer. for Additional Care";
+				data[2] = 0;
+			}
+			else if(chckbxDroppedOut.isSelected())
+			{
+				data[1] = "Dropped Out";
+				data[2] = 0;
+			}
+			else if(chckbxHealthComplications.isSelected())
+			{
+				data[1] = "Health Complications";
+				data[2] = 0;
+			}
+			else if(chckbxFailToProgress.isSelected())
+			{
+				data[1] = "Failed to Progress";
+				data[2] = 0;
+			}
+			else if(chckbxLeftAgainstStaff.isSelected())
+			{
+				data[1] = "Left Against Staff Recommendation";
+				data[2] = 0;
+			}
+			else if(chckbxIncarcerated.isSelected())
+			{
+				data[1] = "Incarcerated";
+				data[2] = 0;
+			}
+			else if(chckbxDeathOfClient.isSelected())
+			{
+				data[1] = "Death of Client";
+				data[2] = 0;
+			}
+			i = 3; //update for the next values
+			
+			if(chckbxGood.isSelected())
+			{
+				data[i] = "Good";i++;
+			}
+			else if(chckbxFair.isSelected())
+			{
+				data[i] = "Fair";i++;
+			}
+			else if(chckbxPoor.isSelected())
+			{
+				data[i] = "Poor";i++;
+			}
+			else
+				data[i] = "NONE";i++;
+			
 			data[i] = txtTreatment.getText();i++;
 			data[i] = txtGoal1.getText();i++;
+			if(radY1.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}
 			data[i] = txtGoal2.getText();i++;
+			if(radY2.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}	
 			data[i] = txtGoal3.getText();i++;
+			if(radY3.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}	
 			data[i] = txtGoal4.getText();i++;
+			if(radY4.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}	
 			data[i] = txtGoal5.getText();i++;
+			if(radY5.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}	
 			data[i] = txtGoal6.getText();i++;
+			if(radY6.isSelected()){
+				data[i] = 1;i++;}
+			else{
+				data[i] = 1;i++;}	
+			
+			if(chckbxCurrentDrugUsage.isSelected())
+			{
+				data[i] = 1;i++;
+			}
+			else
+			{data[i] = 0;i++;}
 			data[i] = txtDrug.getText();i++;
+			
+			if(chckbxCriminalInvolvement.isSelected())
+			{
+				data[i] = 1;i++;
+			}
+			else
+			{data[i] = 0;i++;}
 			data[i] = txtCrim.getText();i++;
-			data[i] = txtContactDate.getText();i++;
-			data[i] = txtDrugUsage.getText();i++;
-			data[i] = txtCriminal.getText();i++;
+			
+			if(chckbxPersonagencyNotified.isSelected())
+			{
+				data[i] = 1;i++;
+			}
+			else
+			{data[i] = 0;i++;}
+			data[i] = txtContactDate.getText();i++; //17
+			
 			data[i] = txtAxis1.getText();i++;
 			data[i] = txtAxis2.getText();i++;
+			data[i] = txtAxis3.getText();i++;
 			data[i] = txtAxis4.getText();i++;
 			data[i] = txtAxis5.getText();i++;
+			
 			data[i] = txtAxisPost1.getText();i++;
 			data[i] = txtAxisPost2.getText();i++;
 			data[i] = txtAxisPost3.getText();i++;
 			data[i] = txtAxisPost4.getText();i++;
-			data[i] = txtAxisPost5.getText();i++;
+			data[i] = txtAxisPost5.getText();i++; //27
+			
 			data[i] = txtTransPlans.getText();i++;
 			data[i] = txtRecommendation.getText();i++;
 			data[i] = txtClientComment.getText();i++;
 			
-			if(chckbxY.isSelected())
-			{
-				
-			}
-			if(chckbxN.isSelected())
-			{
-				
-			}
-			if(chckbxSuccessfulCompletion.isSelected())
-			{
-				
-			}
-			if(chckbxDisciplinaryruleViolation.isSelected())
-			{
-				
-			}
-			if(chckbxNeedReferralFor.isSelected())
-			{
-				
-			}
-			if(chckbxDroppedOut.isSelected())
-			{
-				
-			}
-			if(chckbxHealthComplications.isSelected())
-			{
-				
-			}
-			if(chckbxFailToProgress.isSelected())
-			{
-				
-			}
-			if(chckbxLeftAgainstStaff.isSelected())
-			{
-				
-			}
-			if(chckbxIncarcerated.isSelected())
-			{
-				
-			}
-			if(chckbxDeathOfClient.isSelected())
-			{
-				
-			}
-			if(chckbxGood.isSelected())
-			{
-				
-			}
-			else if(chckbxFair.isSelected())
-			{
-				
-			}
-			else if(chckbxPoor.isSelected())
-			{
-				
-			}
-			if(radY1.isSelected())
-			{
-				
-			}
-			if(radY2.isSelected())
-			{
-				
-			}
-			if(radY3.isSelected())
-			{
-				
-			}
-			if(radY4.isSelected())
-			{
-				
-			}
-			if(radY5.isSelected())
-			{
-				
-			}
-			if(radY6.isSelected())
-			{
-				
-			}
-			if(chckbxCurrentDrugUsage.isSelected())
-			{
-				
-			}
-			if(chckbxCriminalInvolvement.isSelected())
-			{
-				
-			}
-			if(chckbxPersonagencyNotified.isSelected())
-			{
-				
-			}
-			
+			data[i] = txtDischargeDate.getText(); //31 starting from 0
+			 
 
-			
-
-		
 		new FinancialsDischarge(data, passed);
 		Object[][] tData = getExisting();
 		table.update(tData);
@@ -769,6 +783,7 @@ public class Discharge
 		DischargeScroll.closeWindow();
 		}
 	}	
+
 	private boolean validateInput() 
 	{
 		Boolean valid = true;
