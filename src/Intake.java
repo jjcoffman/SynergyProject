@@ -129,13 +129,14 @@ public class Intake implements ActionListener
 	private JCheckBox chckbxHaveYouEver;
 	private JCheckBox chckbxHaveYouEver_1;
 	private int type;
-
+	private MyTableModel passed;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
 
-	public void BuildPanel(final String s, final int j)
+	public void BuildPanel(final String s, final int j, MyTableModel table)
 	{
+		passed = table;
 		type = j;
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
@@ -2081,9 +2082,13 @@ public class Intake implements ActionListener
 			i++;
 			data[i] = strIntakeDate;i++;
 			if(j==1)
-				new Financials(data, j);
+				new Financials(data, j, passed);
 			else
+			{
 				sendData(data);
+				Object[][] datas = getExisting();
+				passed.update(datas);
+			}
 			IntakeForm.close();
 			
 		}
@@ -2091,7 +2096,26 @@ public class Intake implements ActionListener
 		
 		
 	}
-
+	private Object[][] getExisting() 
+	{
+		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		//return data;
+		try {
+			int size = dBase.getSize("Phone_Intake");
+		
+		Object[][] data = new Object[size][2];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = dBase.getPendingRows(i - 1, 1);
+		}
+		System.out.println("rows in Phone_Intake: " + dBase.getSize("Phone_Intake"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No data", "base", "Connected"}};
+			return data;
+		}
+	}
 
 	private boolean validateInput()
 	{
@@ -2221,7 +2245,7 @@ public class Intake implements ActionListener
 		return valid;
 	}
 	
-	private void sendData(Object[] data) 
+	private Object[] sendData(Object[] data) 
 	{
 		int i = 86;
 		data[i] = ""; i++;
@@ -2280,6 +2304,6 @@ public class Intake implements ActionListener
 		
 		send.sendNewInfo(data, type);
 		
-		
+		return data;
 	}
 }

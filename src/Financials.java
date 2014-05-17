@@ -21,6 +21,7 @@ public class Financials extends JFrame implements ActionListener
 	private JTextField txtDSM;
 	private JTextField textCounselor;
 	SQLSetInfo send = new SQLSetInfo();
+	SQLRetrieveInfo test = new SQLRetrieveInfo();
 	private JComboBox<Object> comboBox;
 	private JTextField txtOther;
 	private JTextField txtCounty;
@@ -31,12 +32,14 @@ public class Financials extends JFrame implements ActionListener
 	private JButton btnContinue;
 	Object[] newData;
 	int type;
+	private MyTableModel passed;
 	
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public Financials(Object data[], int j)
+	public Financials(Object data[], int j, MyTableModel table)
 	{
+		passed = table;
 		newData = data;
 		type = j;
 		window = new JFrame("Financials");
@@ -292,9 +295,31 @@ public class Financials extends JFrame implements ActionListener
 			Boolean cont = validateInput();
 			if(cont == true)
 				sendData();
-			
+			Object[][] datas = getExisting();
+			passed.update(datas);
 			window.dispose();
 			
+		}
+	}
+	
+	private Object[][] getExisting() 
+	{
+		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+		//return data;
+		try {
+			int size = test.getSize("Phone_Intake");
+		
+		Object[][] data = new Object[size][2];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test.getPendingRows(i - 1, 1);
+		}
+		System.out.println("rows in Phone_Intake: " + test.getSize("Phone_Intake"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No data", "base", "Connected"}};
+			return data;
 		}
 	}
 	private void sendData() 

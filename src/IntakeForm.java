@@ -13,11 +13,12 @@ public class IntakeForm extends JFrame
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public IntakeForm(String s, int i) //TODO add id field to identify which user info to populate
+	public IntakeForm(String s, int i, MyTableModel table) //TODO add id field to identify which user info to populate
 	{
+		
 		window = new JFrame("Intake");
 		Intake = new Intake();
-		Intake.BuildPanel(s, i);  //TODO add id field
+		Intake.BuildPanel(s, i, table);  //TODO add id field
 		JPanel d = (JPanel) Intake.getPanel();
 		
 		JPanel d3 = new JPanel();

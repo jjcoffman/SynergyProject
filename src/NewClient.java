@@ -62,7 +62,7 @@ public class NewClient
 		JButton btnNewPhoneInterview = new JButton("New Phone Interview");
 		btnNewPhoneInterview.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 	
-			{new IntakeForm("", 0);} 
+			{new IntakeForm("", 0, pending);} 
 		});
 		btnNewPhoneInterview.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnNewPhoneInterview.setBounds(192, 452, 200, 29);
@@ -77,7 +77,7 @@ public class NewClient
 				String s = (String)i;
 				System.out.println(s);
 
-				new IntakeForm(s, 1);}
+				new IntakeForm(s, 1, pending);}
 			} //TODO add id identifier for the existing client we are passing
 		});
 		button.setFont(new Font("Verdana", Font.PLAIN, 13));
