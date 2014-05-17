@@ -301,7 +301,7 @@ public class TempSetInfo {
 	}
 
 	public void sendGroupInfo(Object[] data){
-		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
+		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note, 9: endDate, 10: topic
 		Connection connection = null;
 		Statement statement = null; 
 		String weekOf = (String)data[1];
@@ -310,11 +310,10 @@ public class TempSetInfo {
 			ResultSet rs = null;
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "SELECT EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\")";
-			System.out.println(query);
+			String query = "SELECT EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\"" + "AND" + " C_ID = " + (int)data[0]+ ")";
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				exists = rs.getInt("EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\")");
+				exists = rs.getInt("EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\"" + "AND" + " C_ID = " + (int)data[0] + ")");
 			}
 		} 
 		catch (SQLException e) {
@@ -337,17 +336,19 @@ public class TempSetInfo {
 			Statement statement1 = null;
 			int id = (int)data[0];
 			// already have data[1] in weekOf
+			String weekEnd = (String)data[9];
 			String day = (String)data[2];
 			String session = (String)data[3];
+			String topic = (String)data[10];
 			String startTime = (String)data[4] + (String)data[5];
 			String endTime = (String)data[6] + (String)data[7];
 			String note = (String)data[8];
 			String counselor = "default";
-			String query;
+			String query = null;
 			if (day.equals("Monday")){
 				if (session.equals("KickOff")){
 					//System.out.println("MONDAY KICKOFF");
-					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date MON_KO, MONKO_StartTime, MONKO_EndTime) " + "VALUES ()";
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, MON_KO, MONKO_Topic, MONKO_StartTime, MONKO_EndTime, MONKO_SIG, MONKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
 				}
 				else if(session.equals("AM")){
 					//System.out.println("MONDAY AM");
@@ -433,7 +434,22 @@ public class TempSetInfo {
 					
 				}
 			}
-			
+			try { 
+				connection1 = SQLConnection.getConnection();
+				statement1 = connection1.createStatement();
+				statement1.executeUpdate(query);
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 	

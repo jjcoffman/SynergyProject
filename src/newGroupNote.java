@@ -33,6 +33,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	private JRadioButton rdbtnEndPM;
 	private JLabel lblWeekOf;
 	private JLabel lblMmddyy;
+	private JLabel label_2;
 	private JTextField textStartTime;
 	private JTextField textEndTime;
 	private JTextArea textNotes;
@@ -44,7 +45,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	SQLSetInfo test = new SQLSetInfo();
 	SQLRetrieveInfo test2 = new SQLRetrieveInfo();
 	TempSetInfo temp = new TempSetInfo();
-	private JTextField textField;
+	private JTextField topic;
 	
 	public newGroupNote(int id) {
 		
@@ -390,11 +391,11 @@ public class newGroupNote extends JFrame implements ActionListener
 	lblTopic.setBounds(250, 90, 45, 28);
 	AddNote.getContentPane().add(lblTopic);
 	
-	textField = new JTextField();
-	textField.setFont(new Font("Verdana", Font.PLAIN, 13));
-	textField.setColumns(10);
-	textField.setBounds(295, 90, 160, 28);
-	AddNote.getContentPane().add(textField);
+	topic = new JTextField();
+	topic.setFont(new Font("Verdana", Font.PLAIN, 13));
+	topic.setColumns(10);
+	topic.setBounds(295, 90, 160, 28);
+	AddNote.getContentPane().add(topic);
 	
 	JLabel lblNewLabel = new JLabel("-");
 	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -402,7 +403,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	lblNewLabel.setBounds(670, 20, 10, 16);
 	AddNote.getContentPane().add(lblNewLabel);
 	
-	JLabel label_2 = new JLabel(dateFormat.format(sun));
+	label_2 = new JLabel(dateFormat.format(sun));
 	label_2.setHorizontalAlignment(SwingConstants.CENTER);
 	label_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 	label_2.setBounds(680, 20, 80, 16);
@@ -432,10 +433,12 @@ public class newGroupNote extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog(null, "Please Enter a valid time in format: HH:MM");
 		}
 		if (valid) {
-			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note, 9: endDate;
-			Object[] data = new Object[10];
+			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note, 9: endDate, 10: topic
+			Object[] data = new Object[11];
 			data[0] = Integer.parseInt(lblID.getText());
 			data[1] = lblMmddyy.getText();
+			data[9] = label_2.getText();
+			data[10] = topic.getText();
 			if (rdbtnMonday.isSelected()){
 				data[2] = "Monday";
 			}
@@ -482,9 +485,9 @@ public class newGroupNote extends JFrame implements ActionListener
 			}
 			data[8] = textNotes.getText();
 			
-			for(int i = 0; i < 9; i++){
+		/*	for(int i = 0; i < 9; i++){
 				System.out.println("Test Value new Group:" + i + ", " + data[i]);
-			}
+			} */
 			
 			temp.sendGroupInfo(data);
 			
