@@ -180,9 +180,6 @@ public class Financials extends JFrame implements ActionListener
 		fin.add(btnContinue);
 		txtOther.setVisible(false);
 		
-		txtCharges.setVisible(false);
-		lblPrivateCharges.setVisible(false);
-		
 		spFin.setBounds(0, 0, 665, 350);
 		spFin.setVisible(true);
 		

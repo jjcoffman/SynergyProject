@@ -27,7 +27,6 @@ public class Intake implements ActionListener
 	private JTextField txtFirstName;
 	private JTextField txtLastName;
 	private JTextField txtDateOfBirth;
-	private JTextField txtAge;
 	private JTextField txtVet;
 	private JTextField txtAddress;
 	private JTextField txtCity;
@@ -174,14 +173,9 @@ public class Intake implements ActionListener
 			}
 		});
 		txtDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtDateOfBirth.setBounds(440, 80, 100, 28);
+		txtDateOfBirth.setBounds(440, 80, 120, 28);
 		txtDateOfBirth.setText("MM/DD/YYYY");
 		txtDateOfBirth.setColumns(10);
-
-		txtAge = new JTextField();
-		txtAge.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtAge.setBounds(550, 80, 40, 28);
-		txtAge.setColumns(10);
 
 		txtVet = new JTextField();
 		txtVet.addFocusListener(new FocusAdapter() {
@@ -192,7 +186,7 @@ public class Intake implements ActionListener
 			}
 		});
 		txtVet.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtVet.setBounds(595, 80, 50, 28);
+		txtVet.setBounds(570, 80, 75, 28);
 		txtVet.setText("y/n");
 		txtVet.setColumns(10);
 
@@ -549,7 +543,6 @@ public class Intake implements ActionListener
 		Intake.add(txtCity);
 		Intake.add(txtPhoneNumber_1);
 		Intake.add(txtDateOfBirth);
-		Intake.add(txtAge);
 		Intake.add(txtVet);
 		Intake.add(txtSecondaryPhone);
 		Intake.add(txtState);
@@ -624,21 +617,14 @@ public class Intake implements ActionListener
 		lblDateOfBirth.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblDateOfBirth.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDateOfBirth.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblDateOfBirth.setBounds(440, 60, 100, 20);
+		lblDateOfBirth.setBounds(440, 60, 120, 20);
 		Intake.add(lblDateOfBirth);
-
-		JLabel lblAge = new JLabel("Age");
-		lblAge.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblAge.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAge.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblAge.setBounds(550, 60, 40, 20);
-		Intake.add(lblAge);
 
 		JLabel lblVet = new JLabel("Vet?");
 		lblVet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVet.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblVet.setAlignmentX(0.5f);
-		lblVet.setBounds(595, 60, 50, 20);
+		lblVet.setBounds(570, 60, 75, 20);
 		Intake.add(lblVet);
 
 		JLabel lblAddress = new JLabel("Address");
@@ -1202,7 +1188,13 @@ public class Intake implements ActionListener
 		Object[] data = new Object[90];
 		data = dBase.getPendingClient(s);
 		int i = 0;
-
+		
+		for(int w = 0; w < 73; w++)
+		{
+			if(data[w].equals(" "))
+				data[w] = "";
+		}
+		
 
 		try 
 		{
@@ -1536,15 +1528,15 @@ public class Intake implements ActionListener
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxOnProbation.setEnabled(false);
+				chckbxOnProbation.setSelected(false);
 			else
-				chckbxOnProbation.setEnabled(true);
+				chckbxOnProbation.setSelected(true);
 			i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxOnProbation.setEnabled(false);; i++;
+			chckbxOnProbation.setSelected(false);; i++;
 		}
 		try 
 		{
@@ -1586,15 +1578,15 @@ public class Intake implements ActionListener
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxPhysicalHospitalizationIn.setEnabled(false);
+				chckbxPhysicalHospitalizationIn.setSelected(false);
 			else
-				chckbxPhysicalHospitalizationIn.setEnabled(true);
+				chckbxPhysicalHospitalizationIn.setSelected(true);
 			i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxPhysicalHospitalizationIn.setEnabled(false); i++;
+			chckbxPhysicalHospitalizationIn.setSelected(false); i++;
 		}
 		try 
 		{
@@ -1609,15 +1601,15 @@ public class Intake implements ActionListener
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxMentalHospitalizationIn.setEnabled(false);
+				chckbxMentalHospitalizationIn.setSelected(false);
 			else
-				chckbxMentalHospitalizationIn.setEnabled(true);
+				chckbxMentalHospitalizationIn.setSelected(true);
 			i++;
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxMentalHospitalizationIn.setEnabled(false); i++;
+			chckbxMentalHospitalizationIn.setSelected(false); i++;
 		}
 		try 
 		{
@@ -1631,28 +1623,28 @@ public class Intake implements ActionListener
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxIvUsedIn.setEnabled(false);
+				chckbxIvUsedIn.setSelected(false);
 			else
-				chckbxIvUsedIn.setEnabled(true);
+				chckbxIvUsedIn.setSelected(true);
 			i++;			
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxIvUsedIn.setEnabled(false);; i++;
+			chckbxIvUsedIn.setSelected(false);; i++;
 		}
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxPriorTPlan.setEnabled(false);
+				chckbxPriorTPlan.setSelected(false);
 			else
-				chckbxPriorTPlan.setEnabled(true);
+				chckbxPriorTPlan.setSelected(true);
 			i++;			
 		}
 		catch(NullPointerException e) 
 		{
 			System.out.println("Error Retrieving data in object array field " + i);
-			chckbxPriorTPlan.setEnabled(false);; i++;
+			chckbxPriorTPlan.setSelected(false);; i++;
 		}
 		try 
 		{
@@ -2107,15 +2099,10 @@ public class Intake implements ActionListener
 
 		if(!txtFirstName.getText().matches("[a-zA-Z ]+ ") && valid == true && !txtLastName.getText().matches("[a-zA-Z ]+")
 				&& !txtAddress.getText().matches("[a-zA-Z0-9 ]+") && !txtCity.getText().matches("[a-zA-Z0-9 ]+")
-				&& !txtCity.getText().matches("[a-zA-Z0-9 ]+")&& !txtCounty.getText().matches("[a-zA-Z0-9 ]+")
-				&& !txtDriversLicense.getText().matches("[a-zA-Z0-9 ]+")&& !txtMaritalStatus.getText().matches("[a-zA-Z0-9 ]+")
-				&& !txtSpouseName.getText().matches("[a-zA-Z0-9 ]+") && !txtEmergencyName.getText().matches("[a-zA-Z0-9 ]+")
-				&& !textEmergencyRelationship.getText().matches("[a-zA-Z0-9 ]+")&& !txtEmergencyAddress.getText().matches("[a-zA-Z0-9 ]+")
-				&& !txtEmergencyCity.getText().matches("[a-zA-Z0-9 ]+") && !txtAgencyName.getText().matches("[a-zA-Z0-9 ]+")
-				&& !txtAgencyAddress.getText().matches("[a-zA-Z0-9 ]+")&& !txtAgencyCity.getText().matches("[a-zA-Z0-9 ]+"))
+				&& !txtCity.getText().matches("[a-zA-Z0-9 ]+")&& !txtCounty.getText().matches("[a-zA-Z0-9 ]+"))
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "Client, Emergency Contact and Agency are required fields!");
+			JOptionPane.showMessageDialog(null, "Clients basic information is required to continue!");
 		}
 		
 		
@@ -2130,11 +2117,6 @@ public class Intake implements ActionListener
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Date of Birth must be in numbers in the format MM/DD/YYYY");
-		}
-		if(!txtAge.getText().matches("[0-9]+") && valid == true)
-		{
-			valid = false;
-			JOptionPane.showMessageDialog(null, "The clients age must have numbers only");
 		}
 		if(!txtVet.getText().matches("[ynYN]") && valid == true)
 		{

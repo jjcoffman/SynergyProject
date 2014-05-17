@@ -411,6 +411,7 @@ public class SQLSetInfo {
 			try { 
 				connection = SQLConnection.getConnection();
 				statement = connection.createStatement();
+				deleteRow("Phone_Intake", phone);
 				query = "INSERT INTO Client_Record (C_ID, C_FirstName, C_MI, C_LastName, C_DOB, C_Vet, C_Address, C_City, C_State, C_ZIP, C_County, "
 						+ "C_CONumYears, C_PrimPhone, C_SecondPhone, C_SSN, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, C_Gender, "
 						+ "C_Signature, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, C_AuthEndDate) " + 
@@ -770,12 +771,11 @@ public class SQLSetInfo {
 		Connection connection = null;
 		Statement statement = null; 
 		int old = ID;
-		if(old != 1)
-			ID++;
+		old = ID-1;
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "UPDATE Last_ID SET C_ID = "+ ID +" WHERE C_ID = " + old +")";
+			String query = "UPDATE Last_ID SET C_ID = "+ ID +" WHERE C_ID = " + old;
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 
@@ -803,7 +803,7 @@ public class SQLSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "DELETE FROM "+ table + " WHERE C_PrimPhone = " + "\'" + s +"\')";
+			String query = "DELETE FROM "+ table + " WHERE C_PrimPhone = " + "\'" + s +"\'";
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 

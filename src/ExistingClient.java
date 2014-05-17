@@ -55,25 +55,17 @@ public class ExistingClient
 		lblpanels.setBounds(20, 20, 356, 20);
 		panel.add(lblpanels);
 		
-		JButton btnSelect = new JButton("Select");
+		JButton btnSelect = new JButton("Refresh");
 		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnSelect.setBounds(20, 480, 160, 29);
-		btnSelect.addMouseListener(new MouseAdapter() {
+		btnSelect.addMouseListener(new MouseAdapter() 
+		{
 			public void mouseClicked(MouseEvent e) 
-			{	Object test = table.getValueAt(table.getSelectedRow(),0);
-				id = (int)test;
-				lblCID.setText(String.valueOf(id));
-				lblCName.setText(getClientName(id));
-				lblCPhone.setText(getClientPhone(id));
-				lblECName.setText(getECName(id));
-				lblECPhone.setText(getECPhone(id));
-				Object[][] data = getInd(id);
-				individual.update(data);
-				Object[][] data2 = getGroup(id);
-				group.update(data2);
-				System.out.println(id);
-				System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
-				}});
+			{	
+				Object[][] data = getExisting();
+				existing.update(data);
+			}
+		});
 		panel.add(btnSelect);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
@@ -119,20 +111,25 @@ public class ExistingClient
 		table.getColumnModel().getColumn(1).setMinWidth(320);
 		table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{	Object test = table.getValueAt(table.getSelectedRow(),0);
-				id = (int)test;
-				lblCID.setText(String.valueOf(id));
-				lblCName.setText(getClientName(id));
-				lblCPhone.setText(getClientPhone(id));
-				lblECName.setText(getECName(id));
-				lblECPhone.setText(getECPhone(id));
-				Object[][] data = getInd(id);
-				individual.update(data);
-				Object[][] data2 = getGroup(id);
-				group.update(data2);
-				System.out.println(id);
-				System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
-				}});
+			{	
+				if(table.getSelectedRow() != -1)
+				{
+					Object test = table.getValueAt(table.getSelectedRow(),0);
+					id = (int)test;
+					lblCID.setText(String.valueOf(id));
+					lblCName.setText(getClientName(id));
+					lblCPhone.setText(getClientPhone(id));
+					lblECName.setText(getECName(id));
+					lblECPhone.setText(getECPhone(id));
+					Object[][] data = getInd(id);
+					individual.update(data);
+					Object[][] data2 = getGroup(id);
+					group.update(data2);
+					System.out.println(id);
+					System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+				}
+			}
+		});
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(20, 50, 380, 420);
 		sp.setVisible(true);
