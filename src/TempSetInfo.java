@@ -329,7 +329,115 @@ public class TempSetInfo {
 		}
 		System.out.println("Group found: " + exists);
 		if (exists == 1) {
+			//UPDATE GRP_NOTES SET MON_AM = "01:33" WHERE C_ID = 3 AND Start_Date = "05/12/2014"
+			Connection connection1 = null;
+			Statement statement1 = null;
+			int id = (int)data[0];
+			// already have data[1] in weekOf
+			String weekEnd = (String)data[9];
+			String day = (String)data[2];
+			String session = (String)data[3];
+			String topic = (String)data[10];
+			String startTime = (String)data[4] + (String)data[5];
+			String endTime = (String)data[6] + (String)data[7];
+			String note = (String)data[8];
+			String counselor = "default";
+			String query = null;
 			
+			if (day.equals("Monday")){
+				if (session.equals("KickOff")){
+					//System.out.println("MONDAY KICKOFF");
+					query = "UPDATE GRP_NOTES SET MON_KO = '" + note + "', MONKO_Topic = '" + topic +  "', MONKO_StartTime = '" + startTime + "', MONKO_EndTime = '" + endTime + "', MONKO_SIG = " + 0 + ", MONKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					//System.out.println("MONDAY AM");
+					query = "UPDATE GRP_NOTES SET MON_AM = '" + note + "', MONAM_Topic = '" + topic +  "', MONAM_SIG = " + 0 + ", MONAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+					//System.out.println("QUERY: " + query);
+				}
+				else {
+					//System.out.println("MONDAY PM");
+					query = "UPDATE GRP_NOTES SET MON_PM = '" + note + "', MONPM_Topic = '" + topic +  "', MONPM_SIG = " + 0 + ", MONPM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+					//System.out.println("QUERY: " + query);
+				}
+			}
+			else if (day.equals("Tuesday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET TUES_KO = '" + note + "', TUESKO_Topic = '" + topic +  "', TUESKO_StartTime = '" + startTime + "', TUESKO_EndTime = '" + endTime + "', TUESKO_SIG = " + 0 + ", TUESKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					query = "UPDATE GRP_NOTES SET TUES_AM = '" + note + "', TUESAM_Topic = '" + topic +  "', TUESAM_SIG = " + 0 + ", TUESAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+
+				}
+				else {
+					query = "UPDATE GRP_NOTES SET TUES_PM = '" + note + "', TUESPM_Topic = '" + topic +  "', TUESPM_SIG = " + 0 + ", TUESPM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+
+				}
+			}
+			else if (day.equals("Wednesday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET WED_KO = '" + note + "', WEDKO_Topic = '" + topic +  "', WEDKO_StartTime = '" + startTime + "', WEDKO_EndTime = '" + endTime + "', WEDKO_SIG = " + 0 + ", WEDKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					query = "UPDATE GRP_NOTES SET WED_AM = '" + note + "', WEDAM_Topic = '" + topic +  "', WEDAM_SIG = " + 0 + ", WEDAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+
+				}
+				else {
+					query = "UPDATE GRP_NOTES SET WED_PM = '" + note + "', WEDPM_Topic = '" + topic +  "', WEDPM_SIG = " + 0 + ", WEDPM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+
+				}
+			}
+			else if (day.equals("Thursday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET THURS_KO = '" + note + "', THURSKO_Topic = '" + topic +  "', THURSKO_StartTime = '" + startTime + "', THURSKO_EndTime = '" + endTime + "', THURSKO_SIG = " + 0 + ", THURSKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					query = "UPDATE GRP_NOTES SET THURS_AM = '" + note + "', THURSAM_Topic = '" + topic +  "', THURSAM_SIG = " + 0 + ", THURSAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+
+				}
+				else {
+					query = "UPDATE GRP_NOTES SET THURS_PM = '" + note + "', THURSPM_Topic = '" + topic +  "', THURSPM_SIG = " + 0 + ", THURSPM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+			}
+			else if (day.equals("Friday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET FRI_KO = '" + note + "', FRIKO_Topic = '" + topic +  "', FRIKO_StartTime = '" + startTime + "', FRIKO_EndTime = '" + endTime + "', FRIKO_SIG = " + 0 + ", FRIKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					query = "UPDATE GRP_NOTES SET FRI_AM = '" + note + "', FRIAM_Topic = '" + topic +  "', FRIAM_SIG = " + 0 + ", FRIAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else {
+					query = "UPDATE GRP_NOTES SET FRI_PM = '" + note + "', FRIPM_Topic = '" + topic +  "', FRIPM_SIG = " + 0 + ", FRIPM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+			}
+			else if (day.equals("Saturday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET FRI_KO = '" + note + "', FRIKO_Topic = '" + topic +  "', FRIKO_StartTime = '" + startTime + "', FRIKO_EndTime = '" + endTime + "', FRIKO_SIG = " + 0 + ", FRIKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+				else if(session.equals("AM")){
+					query = "UPDATE GRP_NOTES SET SAT_AM = '" + note + "', SATAM_Topic = '" + topic +  "', SATAM_SIG = " + 0 + ", SATAM_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+			}
+			else if (day.equals("Sunday")){
+				if (session.equals("KickOff")){
+					query = "UPDATE GRP_NOTES SET FRI_KO = '" + note + "', FRIKO_Topic = '" + topic +  "', FRIKO_StartTime = '" + startTime + "', FRIKO_EndTime = '" + endTime + "', FRIKO_SIG = " + 0 + ", FRIKO_Counselor = '" + counselor + "' WHERE C_ID = " + id + " AND Start_Date = '" + weekOf + "'";
+				}
+			}
+			try { 
+				connection1 = SQLConnection.getConnection();
+				statement1 = connection1.createStatement();
+				statement1.executeUpdate(query);
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 		else {
 			Connection connection1 = null;
@@ -352,72 +460,79 @@ public class TempSetInfo {
 				}
 				else if(session.equals("AM")){
 					//System.out.println("MONDAY AM");
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, MON_AM, MONAM_Topic, MONAM_SIG, MONAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
 					//System.out.println("MONDAY PM");
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, MON_PM, MONPM_Topic, MONPM_SIG, MONPM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 			}
 			else if (day.equals("Tuesday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, TUES_KO, TUESKO_Topic, TUESKO_StartTime, TUESKO_EndTime, TUESKO_SIG, TUESKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, TUES_AM, TUESAM_Topic, TUESAM_SIG, TUESAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
-					
-				}
-			}
-			else if (day.equals("Tuesday")){
-				if (session.equals("KickOff")){
-					
-				}
-				else if(session.equals("AM")){
-					
-				}
-				else {
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, TUES_PM, TUESPM_Topic, TUESPM_SIG, TUESPM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 			}
 			else if (day.equals("Wendesday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, WED_KO, WEDKO_Topic, WEDKO_StartTime, WEDKO_EndTime, WEDKO_SIG, WEDKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, WED_AM, WEDAM_Topic, WEDAM_SIG, WEDAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, WED_PM, WEDPM_Topic, WEDPM_SIG, WEDPM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 			}
 			else if (day.equals("Thursday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, THURS_KO, THURSKO_Topic, THURSKO_StartTime, THURSKO_EndTime, THURSKO_SIG, THURSKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, THURS_AM, THURSAM_Topic, THURSAM_SIG, THURSAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, THURS_PM, THURSPM_Topic, THURSPM_SIG, THURSPM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 			}
 			else if (day.equals("Friday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, FRI_KO, FRIKO_Topic, FRIKO_StartTime, FRIKO_EndTime, FRIKO_SIG, FRIKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, FRI_AM, FRIAM_Topic, FRIAM_SIG, FRIAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, FRI_PM, FRIPM_Topic, FRIPM_SIG, FRIPM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 			}
 			else if (day.equals("Saturday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, SAT_KO, SATKO_Topic, SATKO_StartTime, SATKO_EndTime, SATKO_SIG, SATKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, SAT_AM, SATAM_Topic, SATAM_SIG, SATAM_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else {
 					
@@ -425,7 +540,8 @@ public class TempSetInfo {
 			}
 			else if (day.equals("Sunday")){
 				if (session.equals("KickOff")){
-					
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, End_Date, SUN_KO, SUNKO_Topic, SUNKO_StartTime, SUNKO_EndTime, SUNKO_SIG, SUNKO_Counselor) " + "VALUES (" + id + ", \"" + weekOf + "\", \"" + weekEnd + "\", \"" + note + "\", \"" + topic + "\", \"" + startTime + "\", \"" + endTime + "\", " + 0 + ", \"" + counselor + "\"" + ")";
+
 				}
 				else if(session.equals("AM")){
 					
