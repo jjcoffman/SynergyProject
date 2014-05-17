@@ -721,4 +721,10 @@ public class SQLRetrieveInfo {
 		
 	}
 
+	public String getFinDischarge(int id) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

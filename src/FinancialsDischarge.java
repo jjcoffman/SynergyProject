@@ -34,7 +34,8 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 	private MyTableModel passed;
 	private JTextField txtDischarge;
 	private JTextField txtOwed;
-	
+	private int intClientID;
+
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
@@ -59,7 +60,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		String s = "";
 		try {
-			s = (String) data[87];
+			//TODO s = (String) data[87];
 		} catch (Exception e) 
 		{
 			s = "ERROR";
@@ -93,6 +94,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		fin.add(lblDsmIvCode);
 		
 		txtDSM = new JTextField();
+		txtDSM.setDocument(new JTextFieldLimit(20));
 		txtDSM.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDSM.setBounds(142, 60, 109, 28);
 		fin.add(txtDSM);
@@ -173,7 +175,8 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		spFin.setBounds(0, 0, 665, 350);
 		spFin.setVisible(true);
-		
+		intClientID = (int) arcData[0];
+		getFinInfo(intClientID);
 		window.setPreferredSize(new Dimension(665, 350));
 		window.setSize(665, 700);
         window.setLocationRelativeTo(null);
@@ -196,23 +199,15 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 	{
 		Boolean valid = true;
 		
-		if(!txtStartDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
+		if(!txtDischarge.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Date must be in numbers in the format DD/MM/YYYY");
 		}
-		if(!txtEndDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
+		if(!txtDSM.getText().matches("[0-9A-Za-z ]{4}") && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Date must be in numbers in the format DD/MM/YYYY");
-		}
-		if (comboBox.getSelectedItem().equals("Private")) 
-		{
-			if (!txtCharges.getText().matches("[0-9 ]+ ") && valid == true) 
-			{
-				valid = false;
-				JOptionPane.showMessageDialog(null, "The Private Charges must be numbers only");
-			}
 		}
 		return valid;
 	}
@@ -242,39 +237,27 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 			if(s.equals("Private"))
 			{
 				txtOther.setVisible(false);
-				txtCharges.setVisible(true);
-				lblPrivateCharges.setVisible(true);
 				
 			}
 			else if(s.equals("Indigent"))
 			{
 				txtOther.setVisible(false);
-				txtCharges.setVisible(false);
-				lblPrivateCharges.setVisible(false);
 			}
 			else if(s.equals("Drug Court"))
 			{
 				txtOther.setVisible(false);
-				txtCharges.setVisible(false);
-				lblPrivateCharges.setVisible(false);
 			}
 			else if(s.equals("AB109"))
 			{
 				txtOther.setVisible(false);
-				txtCharges.setVisible(false);
-				lblPrivateCharges.setVisible(false);
 			}
 			else if(s.equals("CPS"))
 			{
 				txtOther.setVisible(false);
-				txtCharges.setVisible(false);
-				lblPrivateCharges.setVisible(false);
 			}
 			else if(s.equals("Other"))
 			{
 				txtOther.setVisible(true);
-				txtCharges.setVisible(false);
-				lblPrivateCharges.setVisible(false);
 			}
 		}
 		if(e.getSource() == btnContinue)
@@ -336,7 +319,15 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		//this is wrong, sendToArchive(arcData, type)
 		//send.sendNewInfo(arcData, type);
-		
-		
+
+	}
+	
+	private void getFinInfo(int id){
+		try {
+		test.getFinDischarge(id);
+		}
+		catch(NullPointerException e) {
+			System.out.print("ERROR retrieving Info");
+		}
 	}
 }
