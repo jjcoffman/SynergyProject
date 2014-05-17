@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
+
 import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,7 @@ public class newGroupNote extends JFrame implements ActionListener
 	
 	SQLSetInfo test = new SQLSetInfo();
 	SQLRetrieveInfo test2 = new SQLRetrieveInfo();
+	TempSetInfo temp = new TempSetInfo();
 	
 	public newGroupNote(int id) {
 		
@@ -403,7 +406,7 @@ public class newGroupNote extends JFrame implements ActionListener
 		if (valid) {
 			//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
 			Object[] data = new Object[9];
-			data[0] = lblID.getText();
+			data[0] = Integer.parseInt(lblID.getText());
 			data[1] = lblMmddyy.getText();
 			if (rdbtnMonday.isSelected()){
 				data[2] = "Monday";
@@ -437,23 +440,25 @@ public class newGroupNote extends JFrame implements ActionListener
 			}
 			data[4] = textStartTime.getText();
 			if (rdbtnStartAM.isSelected()){
-				data[5] = 0;
+				data[5] = "AM";
 			}
 			else{
-				data[5] = 1;
+				data[5] = "PM";
 			}
 			data[6] = textEndTime.getText();
 			if (rdbtnEndAM.isSelected()){
-				data[7] = 0;
+				data[7] = "AM";
 			}
 			else{
-				data[7] = 1;
+				data[7] = "PM";
 			}
 			data[8] = textNotes.getText();
 			
 			for(int i = 0; i < 9; i++){
 				System.out.println("Test Value new Group:" + i + ", " + data[i]);
 			}
+			
+			temp.sendGroupInfo(data);
 			
 			AddNote.dispose();
 

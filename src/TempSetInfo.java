@@ -300,6 +300,65 @@ public class TempSetInfo {
 		}
 	}
 
+	public void sendGroupInfo(Object[] data){
+		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
+		Connection connection = null;
+		Statement statement = null; 
+		String weekOf = (String)data[1];
+		int exists = -1;
+		try { 
+			ResultSet rs = null;
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "SELECT EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\")";
+			System.out.println(query);
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				exists = rs.getInt("EXISTS(SELECT 1 FROM GRP_NOTES WHERE Start_Date = \"" + weekOf + "\")");
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("Group found: " + exists);
+		if (exists == 1) {
+			
+		}
+		else {
+			Connection connection1 = null;
+			Statement statement1 = null;
+			int id = (int)data[0];
+			// already have data[1] in weekOf
+			String day = (String)data[2];
+			String session = (String)data[3];
+			String startTime = (String)data[4] + (String)data[5];
+			String endTime = (String)data[6] + (String)data[7];
+			String note = (String)data[8];
+			String query;
+			if (day.equals("Monday")){
+				if (session.equals("KickOff")){
+					//System.out.println("MONDAY KICKOFF");
+					query = "INSERT INTO GRP_NOTES (C_ID, Start_Date, MON_KO, MONKO_StartTime, MONKO_EndTime) " + "VALUES ()";
+				}
+				else if(session.equals("AM")){
+					//System.out.println("MONDAY AM");
+				}
+				else {
+					//System.out.println("MONDAY PM");
+				}
+			}
+
+		}
+	}
+	
 	public void sendNewInfo(Object[] newData, int j) 
 	{
 		Connection connection = null;
@@ -758,13 +817,9 @@ public class TempSetInfo {
 					System.out.println("Error Connecting to LEG_Info");
 				}
 			}
-		}
-				
-				
-				
-		
-		
+		}		
 	}
+	
 	public static void updateID(int ID)
 	{
 		Connection connection = null;
@@ -792,9 +847,7 @@ public class TempSetInfo {
 		}
 		
 	}
-	
-	
-	
+		
 	public static void deleteRow(String table, String s) 
 	{
 		Connection connection = null;
