@@ -94,42 +94,161 @@ public class newGroupNote extends JFrame implements ActionListener
 	rdbtnMonday.setBounds(20, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnMonday);
 	buttonGroup_2.add(rdbtnMonday);
+	rdbtnMonday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(true);
+	    }
+	});
 	
 	rdbtnTuesday = new JRadioButton("Tuesday");
 	rdbtnTuesday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnTuesday.setBounds(130, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnTuesday);
 	buttonGroup_2.add(rdbtnTuesday);
+	rdbtnTuesday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(true);
+	    }
+	});
 	
 	rdbtnThursday = new JRadioButton("Thursday");
 	rdbtnThursday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnThursday.setBounds(350, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnThursday);
 	buttonGroup_2.add(rdbtnThursday);
+	rdbtnThursday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(true);
+	    }
+	});
 	
 	rdbtnWednesday = new JRadioButton("Wednesday");
 	rdbtnWednesday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnWednesday.setBounds(240, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnWednesday);
 	buttonGroup_2.add(rdbtnWednesday);
+	rdbtnWednesday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(true);
+	    }
+	});
 	
 	rdbtnSaturday = new JRadioButton("Saturday");
 	rdbtnSaturday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnSaturday.setBounds(570, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnSaturday);
 	buttonGroup_2.add(rdbtnSaturday);
+	rdbtnSaturday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(false);
+	    }
+	});
 	
 	rdbtnFriday = new JRadioButton("Friday");
 	rdbtnFriday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnFriday.setBounds(460, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnFriday);
 	buttonGroup_2.add(rdbtnFriday);
+	rdbtnFriday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(true);
+	    	rdbtnPm.setEnabled(true);
+	    }
+	});
 	
 	rdbtnSunday = new JRadioButton("Sunday");
 	rdbtnSunday.setFont(new Font("Verdana", Font.PLAIN, 13));
 	rdbtnSunday.setBounds(680, 50, 110, 20);
 	AddNote.getContentPane().add(rdbtnSunday);
 	buttonGroup_2.add(rdbtnSunday);
+	rdbtnSunday.addActionListener(new ActionListener(){
+	    public void actionPerformed(ActionEvent e) {
+	    	rdbtnKickoff.setSelected(true);
+	    	textStartTime.setText("HH:MM");
+	    	textEndTime.setText("HH:MM");
+	    	rdbtnStartAM.setSelected(true);
+	    	rdbtnEndAM.setSelected(true);
+	    	textStartTime.setEditable(true);
+	    	textEndTime.setEditable(true);
+	    	rdbtnStartAM.setEnabled(true);
+	    	rdbtnStartPM.setEnabled(true);
+	    	rdbtnEndAM.setEnabled(true);
+	    	rdbtnEndPM.setEnabled(true);
+	    	rdbtnAm.setEnabled(false);
+	    	rdbtnPm.setEnabled(false);
+	    }
+	});
 	
 	rdbtnKickoff = new JRadioButton("Kick/Off");
 	rdbtnKickoff.setSelected(true);
