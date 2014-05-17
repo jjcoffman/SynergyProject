@@ -14,14 +14,14 @@ public class Discharge
 	SQLRetrieveInfo dBase = new SQLRetrieveInfo();
 	private static final long serialVersionUID = 1L;
 	private JPanel Discharge;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtDischargeDate;
+	private JTextField txtTreatment;
+	private JTextField txtGoal1;
+	private JTextField txtGoal2;
+	private JTextField txtGoal3;
+	private JTextField txtGoal4;
+	private JTextField txtGoal5;
+	private JTextField txtGoal6;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
@@ -31,9 +31,9 @@ public class Discharge
 	private final ButtonGroup buttonGroup_6 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_7 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_8 = new ButtonGroup();
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField txtDrug;
+	private JTextField txtCrim;
+	private JTextField txtContactDate;
 	private JTextField txtDrugUsage;
 	private JTextField txtCriminal;
 	private JTextField txtAxis1;
@@ -57,13 +57,44 @@ public class Discharge
 	private JLabel lblAdmittanceDate;
 	private JLabel lblContactName;
 	private JLabel lblMmddyyyy;
+	private JRadioButton chckbxY;
+	private JRadioButton chckbxN;
+	private JRadioButton chckbxSuccessfulCompletion;
+	private JRadioButton chckbxDisciplinaryruleViolation;
+	private JRadioButton chckbxNeedReferralFor;
+	private JRadioButton chckbxDroppedOut;
+	private JRadioButton chckbxHealthComplications;
+	private JRadioButton chckbxFailToProgress;
+	private JRadioButton chckbxLeftAgainstStaff;
+	private JRadioButton chckbxIncarcerated;
+	private JRadioButton chckbxDeathOfClient;
+	private JRadioButton chckbxGood;
+	private JRadioButton chckbxFair;
+	private JRadioButton chckbxPoor;
+	private JRadioButton radY1;
+	private JRadioButton radY2;
+	private JRadioButton radY3;
+	private JRadioButton radY4;
+	private JRadioButton radY5;
+	private JRadioButton radY6;
+	private JRadioButton radN1;
+	private JRadioButton radN2;
+	private JRadioButton radN3;
+	private JRadioButton radN4;
+	private JRadioButton radnN5;
+	private JRadioButton radN6;
+	private JCheckBox chckbxCurrentDrugUsage;
+	private JCheckBox chckbxCriminalInvolvement;
+	private JCheckBox chckbxPersonagencyNotified;
+	private MyTableModel passed;
 	
 	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildGUI(int s)
+	public void buildGUI(int s, final MyTableModel table)
 	{
+		passed = table;
 		Discharge = new JPanel();
 		Discharge.setSize(665, 1250);
 		Discharge.setLayout(null);
@@ -83,13 +114,13 @@ public class Discharge
 		lblPresent.setFont(text);
 		Discharge.add(lblPresent);
 		
-		JRadioButton chckbxY = new JRadioButton("Y");
+		chckbxY = new JRadioButton("Y");
 		chckbxY.setFont(text);
 		buttonGroup.add(chckbxY);
 		chckbxY.setBounds(515, 20, 40, 23);
 		Discharge.add(chckbxY);
 		
-		JRadioButton chckbxN = new JRadioButton("N");
+		chckbxN = new JRadioButton("N");
 		chckbxN.setFont(text);
 		buttonGroup.add(chckbxN);
 		chckbxN.setBounds(561, 20, 61, 23);
@@ -110,11 +141,11 @@ public class Discharge
 		lblDischargeDate.setBounds(366, 55, 123, 16);
 		Discharge.add(lblDischargeDate);
 		
-		textField = new JTextField();
-		textField.setFont(text);
-		textField.setBounds(501, 51, 134, 28);
-		Discharge.add(textField);
-		textField.setColumns(10);
+		txtDischargeDate = new JTextField();
+		txtDischargeDate.setFont(text);
+		txtDischargeDate.setBounds(501, 51, 134, 28);
+		Discharge.add(txtDischargeDate);
+		txtDischargeDate.setColumns(10);
 		
 		JLabel lblReasonForDischarge = new JLabel("Reason for Discharge");
 		lblReasonForDischarge.setHorizontalAlignment(SwingConstants.CENTER);
@@ -122,55 +153,55 @@ public class Discharge
 		lblReasonForDischarge.setBounds(250, 85, 164, 16);
 		Discharge.add(lblReasonForDischarge);
 		
-		JRadioButton chckbxSuccessfulCompletion = new JRadioButton("Successful Completion");
+		chckbxSuccessfulCompletion = new JRadioButton("Successful Completion");
 		chckbxSuccessfulCompletion.setFont(text);
 		buttonGroup_1.add(chckbxSuccessfulCompletion);
 		chckbxSuccessfulCompletion.setBounds(19, 113, 237, 23);
 		Discharge.add(chckbxSuccessfulCompletion);
 		
-		JRadioButton chckbxDisciplinaryruleViolation = new JRadioButton("Disciplinary/Rule Violation");
+		chckbxDisciplinaryruleViolation = new JRadioButton("Disciplinary/Rule Violation");
 		chckbxDisciplinaryruleViolation.setFont(text);
 		buttonGroup_1.add(chckbxDisciplinaryruleViolation);
 		chckbxDisciplinaryruleViolation.setBounds(19, 148, 211, 23);
 		Discharge.add(chckbxDisciplinaryruleViolation);
 		
-		JRadioButton chckbxNeedReferralFor = new JRadioButton("Need Referral for add. care");
+		chckbxNeedReferralFor = new JRadioButton("Need Referral for add. care");
 		chckbxNeedReferralFor.setFont(text);
 		buttonGroup_1.add(chckbxNeedReferralFor);
 		chckbxNeedReferralFor.setBounds(19, 183, 254, 23);
 		Discharge.add(chckbxNeedReferralFor);
 		
-		JRadioButton chckbxDroppedOut = new JRadioButton("Dropped Out");
+		chckbxDroppedOut = new JRadioButton("Dropped Out");
 		chckbxDroppedOut.setFont(text);
 		buttonGroup_1.add(chckbxDroppedOut);
 		chckbxDroppedOut.setBounds(261, 113, 128, 23);
 		Discharge.add(chckbxDroppedOut);
 		
-		JRadioButton chckbxHealthComplications = new JRadioButton("Health Complications");
+		chckbxHealthComplications = new JRadioButton("Health Complications");
 		chckbxHealthComplications.setFont(text);
 		buttonGroup_1.add(chckbxHealthComplications);
 		chckbxHealthComplications.setBounds(261, 148, 183, 23);
 		Discharge.add(chckbxHealthComplications);
 		
-		JRadioButton chckbxFailToProgress = new JRadioButton("Fail to Progress");
+		chckbxFailToProgress = new JRadioButton("Fail to Progress");
 		chckbxFailToProgress.setFont(text);
 		buttonGroup_1.add(chckbxFailToProgress);
 		chckbxFailToProgress.setBounds(261, 183, 145, 23);
 		Discharge.add(chckbxFailToProgress);
 		
-		JRadioButton chckbxLeftAgainstStaff = new JRadioButton("Left against staff advice");
+		chckbxLeftAgainstStaff = new JRadioButton("Left against staff advice");
 		chckbxLeftAgainstStaff.setFont(text);
 		buttonGroup_1.add(chckbxLeftAgainstStaff);
 		chckbxLeftAgainstStaff.setBounds(443, 113, 216, 23);
 		Discharge.add(chckbxLeftAgainstStaff);
 		
-		JRadioButton chckbxIncarcerated = new JRadioButton("Incarcerated");
+		chckbxIncarcerated = new JRadioButton("Incarcerated");
 		chckbxIncarcerated.setFont(text);
 		buttonGroup_1.add(chckbxIncarcerated);
 		chckbxIncarcerated.setBounds(443, 148, 128, 23);
 		Discharge.add(chckbxIncarcerated);
 		
-		JRadioButton chckbxDeathOfClient = new JRadioButton("Death of client");
+		chckbxDeathOfClient = new JRadioButton("Death of client");
 		chckbxDeathOfClient.setFont(text);
 		buttonGroup_1.add(chckbxDeathOfClient);
 		chckbxDeathOfClient.setBounds(443, 183, 164, 23);
@@ -181,19 +212,19 @@ public class Discharge
 		lblPrognosis.setBounds(191, 226, 71, 16);
 		Discharge.add(lblPrognosis);
 		
-		JRadioButton chckbxGood = new JRadioButton("Good");
+		chckbxGood = new JRadioButton("Good");
 		chckbxGood.setFont(text);
 		buttonGroup_2.add(chckbxGood);
 		chckbxGood.setBounds(263, 222, 71, 23);
 		Discharge.add(chckbxGood);
 		
-		JRadioButton chckbxFair = new JRadioButton("Fair");
+		chckbxFair = new JRadioButton("Fair");
 		chckbxFair.setFont(text);
 		buttonGroup_2.add(chckbxFair);
 		chckbxFair.setBounds(332, 222, 61, 23);
 		Discharge.add(chckbxFair);
 		
-		JRadioButton chckbxPoor = new JRadioButton("Poor");
+		chckbxPoor = new JRadioButton("Poor");
 		chckbxPoor.setFont(text);
 		buttonGroup_2.add(chckbxPoor);
 		chckbxPoor.setBounds(393, 222, 67, 23);
@@ -204,11 +235,11 @@ public class Discharge
 		lblTreatmentSummary.setBounds(21, 257, 152, 16);
 		Discharge.add(lblTreatmentSummary);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(text);
-		textField_1.setBounds(21, 292, 606, 109);
-		Discharge.add(textField_1);
-		textField_1.setColumns(10);
+		txtTreatment = new JTextField();
+		txtTreatment.setFont(text);
+		txtTreatment.setBounds(21, 292, 606, 109);
+		Discharge.add(txtTreatment);
+		txtTreatment.setColumns(10);
 		
 		JLabel lblTreatmentPlanGoals = new JLabel("Treatment Plan Goals");
 		lblTreatmentPlanGoals.setFont(text);
@@ -244,41 +275,41 @@ public class Discharge
 		label_6.setBounds(31, 612, 21, 16);
 		Discharge.add(label_6);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(text);
-		textField_2.setBounds(49, 441, 352, 28);
-		Discharge.add(textField_2);
-		textField_2.setColumns(10);
+		txtGoal1 = new JTextField();
+		txtGoal1.setFont(text);
+		txtGoal1.setBounds(49, 441, 352, 28);
+		Discharge.add(txtGoal1);
+		txtGoal1.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setFont(text);
-		textField_3.setBounds(49, 474, 352, 28);
-		Discharge.add(textField_3);
+		txtGoal2 = new JTextField();
+		txtGoal2.setColumns(10);
+		txtGoal2.setFont(text);
+		txtGoal2.setBounds(49, 474, 352, 28);
+		Discharge.add(txtGoal2);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(text);
-		textField_4.setColumns(10);
-		textField_4.setBounds(49, 507, 352, 28);
-		Discharge.add(textField_4);
+		txtGoal3 = new JTextField();
+		txtGoal3.setFont(text);
+		txtGoal3.setColumns(10);
+		txtGoal3.setBounds(49, 507, 352, 28);
+		Discharge.add(txtGoal3);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(text);
-		textField_5.setColumns(10);
-		textField_5.setBounds(49, 540, 352, 28);
-		Discharge.add(textField_5);
+		txtGoal4 = new JTextField();
+		txtGoal4.setFont(text);
+		txtGoal4.setColumns(10);
+		txtGoal4.setBounds(49, 540, 352, 28);
+		Discharge.add(txtGoal4);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setFont(text);
-		textField_6.setBounds(49, 573, 352, 28);
-		Discharge.add(textField_6);
+		txtGoal5 = new JTextField();
+		txtGoal5.setColumns(10);
+		txtGoal5.setFont(text);
+		txtGoal5.setBounds(49, 573, 352, 28);
+		Discharge.add(txtGoal5);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setFont(text);
-		textField_7.setBounds(49, 606, 352, 28);
-		Discharge.add(textField_7);
+		txtGoal6 = new JTextField();
+		txtGoal6.setColumns(10);
+		txtGoal6.setFont(text);
+		txtGoal6.setBounds(49, 606, 352, 28);
+		Discharge.add(txtGoal6);
 		
 		JLabel lblGoalsMet = new JLabel("Goals Met:");
 		lblGoalsMet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -286,110 +317,112 @@ public class Discharge
 		lblGoalsMet.setFont(text);
 		Discharge.add(lblGoalsMet);
 		
-		JRadioButton rdbtnY = new JRadioButton("Y");
-		buttonGroup_3.add(rdbtnY);
-		rdbtnY.setFont(text);
-		rdbtnY.setBounds(456, 443, 47, 23);
-		Discharge.add(rdbtnY);
+		radY1 = new JRadioButton("Y");
+		buttonGroup_3.add(radY1);
+		radY1.setFont(text);
+		radY1.setBounds(456, 443, 47, 23);
+		Discharge.add(radY1);
 		
-		JRadioButton radioButton = new JRadioButton("Y");
-		radioButton.setFont(text);
-		buttonGroup_4.add(radioButton);
-		radioButton.setBounds(456, 476, 47, 23);
-		Discharge.add(radioButton);
+		radY2 = new JRadioButton("Y");
+		radY2.setFont(text);
+		buttonGroup_4.add(radY2);
+		radY2.setBounds(456, 476, 47, 23);
+		Discharge.add(radY2);
 		
-		JRadioButton radioButton_1 = new JRadioButton("Y");
-		radioButton_1.setFont(text);
-		buttonGroup_5.add(radioButton_1);
-		radioButton_1.setBounds(456, 509, 47, 23);
-		Discharge.add(radioButton_1);
+		radY3 = new JRadioButton("Y");
+		radY3.setFont(text);
+		buttonGroup_5.add(radY3);
+		radY3.setBounds(456, 509, 47, 23);
+		Discharge.add(radY3);
 		
-		JRadioButton radioButton_2 = new JRadioButton("Y");
-		radioButton_2.setFont(text);
-		buttonGroup_6.add(radioButton_2);
-		radioButton_2.setBounds(456, 542, 47, 23);
-		Discharge.add(radioButton_2);
+		radY4 = new JRadioButton("Y");
+		radY4.setFont(text);
+		buttonGroup_6.add(radY4);
+		radY4.setBounds(456, 542, 47, 23);
+		Discharge.add(radY4);
 		
-		JRadioButton radioButton_3 = new JRadioButton("Y");
-		radioButton_3.setFont(text);
-		buttonGroup_7.add(radioButton_3);
-		radioButton_3.setBounds(456, 575, 47, 23);
-		Discharge.add(radioButton_3);
+		radY5 = new JRadioButton("Y");
+		radY5.setFont(text);
+		buttonGroup_7.add(radY5);
+		radY5.setBounds(456, 575, 47, 23);
+		Discharge.add(radY5);
 		
-		JRadioButton radioButton_4 = new JRadioButton("Y");
-		radioButton_4.setFont(text);
-		buttonGroup_8.add(radioButton_4);
-		radioButton_4.setBounds(456, 608, 47, 23);
-		Discharge.add(radioButton_4);
+		radY6 = new JRadioButton("Y");
+		radY6.setFont(text);
+		buttonGroup_8.add(radY6);
+		radY6.setBounds(456, 608, 47, 23);
+		Discharge.add(radY6);
 		
-		JRadioButton rdbtnN = new JRadioButton("N");
-		rdbtnN.setFont(text);
-		buttonGroup_3.add(rdbtnN);
-		rdbtnN.setBounds(518, 443, 47, 23);
-		Discharge.add(rdbtnN);
+		radN1 = new JRadioButton("N");
+		radN1.setFont(text);
+		buttonGroup_3.add(radN1);
+		radN1.setBounds(518, 443, 47, 23);
+		Discharge.add(radN1);
 		
-		JRadioButton radioButton_5 = new JRadioButton("N");
-		radioButton_5.setFont(text);
-		buttonGroup_4.add(radioButton_5);
-		radioButton_5.setBounds(518, 476, 47, 23);
-		Discharge.add(radioButton_5);
+		radN2 = new JRadioButton("N");
+		radN2.setFont(text);
+		buttonGroup_4.add(radN2);
+		radN2.setBounds(518, 476, 47, 23);
+		Discharge.add(radN2);
 		
-		JRadioButton radioButton_6 = new JRadioButton("N");
-		radioButton_6.setFont(text);
-		buttonGroup_5.add(radioButton_6);
-		radioButton_6.setBounds(518, 509, 47, 23);
-		Discharge.add(radioButton_6);
+		radN3 = new JRadioButton("N");
+		radN3.setFont(text);
+		buttonGroup_5.add(radN3);
+		radN3.setBounds(518, 509, 47, 23);
+		Discharge.add(radN3);
 		
-		JRadioButton radioButton_7 = new JRadioButton("N");
-		radioButton_6.setFont(text);
-		buttonGroup_6.add(radioButton_7);
-		radioButton_7.setBounds(518, 542, 47, 23);
-		Discharge.add(radioButton_7);
+		radN4 = new JRadioButton("N");
+		radN4.setFont(text);
+		buttonGroup_6.add(radN4);
+		radN4.setBounds(518, 542, 47, 23);
+		Discharge.add(radN4);
 		
-		JRadioButton radioButton_8 = new JRadioButton("N");
-		radioButton_8.setFont(text);
-		buttonGroup_7.add(radioButton_8);
-		radioButton_8.setBounds(518, 575, 47, 23);
-		Discharge.add(radioButton_8);
+		radnN5 = new JRadioButton("N");
+		radnN5.setFont(text);
+		buttonGroup_7.add(radnN5);
+		radnN5.setBounds(518, 575, 47, 23);
+		Discharge.add(radnN5);
 		
-		JRadioButton radioButton_9 = new JRadioButton("N");
-		radioButton_9.setFont(text);
-		buttonGroup_8.add(radioButton_9);
-		radioButton_9.setBounds(518, 608, 47, 23);
-		Discharge.add(radioButton_9);
-		
-		JCheckBox chckbxCurrentDrugUsage = new JCheckBox("Current Drug Usage:");
+		radN6 = new JRadioButton("N");
+		radN6.setFont(text);
+		buttonGroup_8.add(radN6);
+		radN6.setBounds(518, 608, 47, 23);
+		Discharge.add(radN6);
+
+		chckbxCurrentDrugUsage = new JCheckBox("Current Drug Usage:");
 		chckbxCurrentDrugUsage.setFont(text);
 		chckbxCurrentDrugUsage.setBounds(21, 656, 176, 23);
 		Discharge.add(chckbxCurrentDrugUsage);
 		
-		textField_8 = new JTextField();
-		textField_8.setFont(text);
-		textField_8.setBounds(231, 654, 391, 28);
-		Discharge.add(textField_8);
-		textField_8.setColumns(10);
+		txtDrug = new JTextField();
+		txtDrug.setFont(text);
+		txtDrug.setBounds(231, 654, 391, 28);
+		Discharge.add(txtDrug);
+		txtDrug.setColumns(10);
 		
-		JCheckBox chckbxCriminalInvolvement = new JCheckBox("Criminal Involvement");
+		chckbxCriminalInvolvement = new JCheckBox("Criminal Involvement");
 		chckbxCriminalInvolvement.setFont(text);
 		chckbxCriminalInvolvement.setBounds(21, 691, 176, 23);
 		Discharge.add(chckbxCriminalInvolvement);
 		
-		textField_9 = new JTextField();
-		textField_9.setFont(text);
-		textField_9.setBounds(231, 688, 391, 28);
-		Discharge.add(textField_9);
-		textField_9.setColumns(10);
+		txtCrim = new JTextField();
+		txtCrim.setFont(text);
+		txtCrim.setBounds(231, 688, 391, 28);
+		Discharge.add(txtCrim);
+		txtCrim.setColumns(10);
 		
-		JCheckBox chckbxPersonagencyNotified = new JCheckBox("Person/Agency Notified");
+		chckbxPersonagencyNotified = new JCheckBox("Person/Agency Notified");
 		chckbxPersonagencyNotified.setFont(text);
 		chckbxPersonagencyNotified.setBounds(21, 725, 192, 23);
 		Discharge.add(chckbxPersonagencyNotified);
+
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setFont(text);
-		textField_10.setBounds(458, 723, 164, 28);
-		Discharge.add(textField_10);
+		
+		txtContactDate = new JTextField();
+		txtContactDate.setColumns(10);
+		txtContactDate.setFont(text);
+		txtContactDate.setBounds(458, 723, 164, 28);
+		Discharge.add(txtContactDate);
 		
 		JLabel lblContactDate = new JLabel("Contact Date");
 		lblContactDate.setFont(text);
@@ -529,7 +562,7 @@ public class Discharge
 		btnCompleteDischarge.setFont(text);
 		btnCompleteDischarge.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{ sendData();}
+			{ sendData(passed);}
 		});
 		Discharge.add(btnCompleteDischarge);
 		
@@ -595,22 +628,187 @@ public class Discharge
 		}
 	}
 	
-	private void sendData() 
+	private void sendData(MyTableModel table) 
 	{
-		//TODO handle the data that has been imported
+		Object[] data;
+		boolean cont = validateInput();
+		if(cont == true)
+		{
+			data = new Object[95];
+			int i = 0;
+			data[i] = lblClientId.getText();i++; 			
+			data[i] = txtDischargeDate.getText();i++;
+			data[i] = txtTreatment.getText();i++;
+			data[i] = txtGoal1.getText();i++;
+			data[i] = txtGoal2.getText();i++;
+			data[i] = txtGoal3.getText();i++;
+			data[i] = txtGoal4.getText();i++;
+			data[i] = txtGoal5.getText();i++;
+			data[i] = txtGoal6.getText();i++;
+			data[i] = txtDrug.getText();i++;
+			data[i] = txtCrim.getText();i++;
+			data[i] = txtContactDate.getText();i++;
+			data[i] = txtDrugUsage.getText();i++;
+			data[i] = txtCriminal.getText();i++;
+			data[i] = txtAxis1.getText();i++;
+			data[i] = txtAxis2.getText();i++;
+			data[i] = txtAxis4.getText();i++;
+			data[i] = txtAxis5.getText();i++;
+			data[i] = txtAxisPost1.getText();i++;
+			data[i] = txtAxisPost2.getText();i++;
+			data[i] = txtAxisPost3.getText();i++;
+			data[i] = txtAxisPost4.getText();i++;
+			data[i] = txtAxisPost5.getText();i++;
+			data[i] = txtTransPlans.getText();i++;
+			data[i] = txtRecommendation.getText();i++;
+			data[i] = txtClientComment.getText();i++;
+			
+			if(chckbxY.isSelected())
+			{
+				
+			}
+			if(chckbxN.isSelected())
+			{
+				
+			}
+			if(chckbxSuccessfulCompletion.isSelected())
+			{
+				
+			}
+			if(chckbxDisciplinaryruleViolation.isSelected())
+			{
+				
+			}
+			if(chckbxNeedReferralFor.isSelected())
+			{
+				
+			}
+			if(chckbxDroppedOut.isSelected())
+			{
+				
+			}
+			if(chckbxHealthComplications.isSelected())
+			{
+				
+			}
+			if(chckbxFailToProgress.isSelected())
+			{
+				
+			}
+			if(chckbxLeftAgainstStaff.isSelected())
+			{
+				
+			}
+			if(chckbxIncarcerated.isSelected())
+			{
+				
+			}
+			if(chckbxDeathOfClient.isSelected())
+			{
+				
+			}
+			if(chckbxGood.isSelected())
+			{
+				
+			}
+			else if(chckbxFair.isSelected())
+			{
+				
+			}
+			else if(chckbxPoor.isSelected())
+			{
+				
+			}
+			if(radY1.isSelected())
+			{
+				
+			}
+			if(radY2.isSelected())
+			{
+				
+			}
+			if(radY3.isSelected())
+			{
+				
+			}
+			if(radY4.isSelected())
+			{
+				
+			}
+			if(radY5.isSelected())
+			{
+				
+			}
+			if(radY6.isSelected())
+			{
+				
+			}
+			if(chckbxCurrentDrugUsage.isSelected())
+			{
+				
+			}
+			if(chckbxCriminalInvolvement.isSelected())
+			{
+				
+			}
+			if(chckbxPersonagencyNotified.isSelected())
+			{
+				
+			}
+			
+
+			
+
 		
-		
-		
-		
-		
+		new FinancialsDischarge(data, passed);
+		Object[][] tData = getExisting();
+		table.update(tData);
 		
 		
 		
 		DischargeScroll.closeWindow();
-		
+		}
 	}	
+	private boolean validateInput() 
+	{
+		Boolean valid = true;
+		
+		if(!txtDischargeDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Middle initial must be 1 letter only");
+		}
+		if(!txtContactDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Middle initial must be 1 letter only");
+		}
+		return valid;
+	}
+
 	public JComponent getPanel()
 	{
 		return Discharge;
 	}
+	//This will fill the object array with the data from the the existing users
+		public Object[][] getExisting()
+		{
+			//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
+			//return data;
+			try {
+				int size = dBase.getSize("Client_Record");
+			
+			Object[][] data = new Object[size][2];
+			for (int i = 1; i <= size; i++){
+				data[i-1] = dBase.getRows(i - 1, 1);
+			}
+			System.out.println("rows in client_record: " + dBase.getSize("Client_Record"));
+			return data;
+			}
+			catch(NullPointerException e) {
+				System.out.println("No database connected!");
+				Object[][] data = {{"No database", "Connected"}};
+				return data;
+			} 
+		}
 }

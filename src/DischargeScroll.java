@@ -13,11 +13,11 @@ public class DischargeScroll
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public DischargeScroll(int s)
+	public DischargeScroll(int s, MyTableModel table)
 	{
 		window = new JFrame("Discharge");
 		DischargeS = new Discharge();
-		DischargeS.buildGUI(s);
+		DischargeS.buildGUI(s, table);
 		JPanel d = (JPanel) DischargeS.getPanel();
 		
 		JPanel d3 = new JPanel();

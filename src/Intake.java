@@ -2245,7 +2245,7 @@ public class Intake implements ActionListener
 		return valid;
 	}
 	
-	private Object[] sendData(Object[] data) 
+	private void sendData(Object[] data) 
 	{
 		int i = 86;
 		data[i] = ""; i++;
@@ -2303,7 +2303,5 @@ public class Intake implements ActionListener
 		
 		
 		send.sendNewInfo(data, type);
-		
-		return data;
 	}
 }
