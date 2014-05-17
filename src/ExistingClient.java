@@ -179,7 +179,7 @@ public class ExistingClient
 		JButton btnAddInd = new JButton("Add");
 		btnAddInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new AddIndividualNote(id);}
+			{new AddIndividualNote(id, individual);}
 		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(540, 520, 94, 29);

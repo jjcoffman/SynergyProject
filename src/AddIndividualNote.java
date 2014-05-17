@@ -23,6 +23,8 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JTextArea textArea;
+	private MyTableModel passedtable;
+	private int CID;
 	JRadioButton rdbtnStartAM;
 	JRadioButton rdbtnStartPM;
 	JRadioButton rdbtnEndAM;
@@ -32,8 +34,10 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	
 	SQLSetInfo test = new SQLSetInfo();
 	
-	public AddIndividualNote(int id)
+	public AddIndividualNote(int id, MyTableModel table)
 	{
+		passedtable = table;
+		CID = id;
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 		Date date = new Date();
 		Calendar c = Calendar.getInstance();
@@ -224,6 +228,8 @@ public class AddIndividualNote extends JFrame implements ActionListener
 				data[9] = 1;
 			}
 			test.sendIndInfo(data);
+			Object[][] data2 = getInd(CID);
+			passedtable.update(data2);
 			IndividualNotes.dispose();
 		}
 		
@@ -236,5 +242,23 @@ public class AddIndividualNote extends JFrame implements ActionListener
 		catch(NullPointerException e) {
 			return "";
 		}
+	}
+	
+	//this gets the individual notes
+	private Object[][] getInd(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+		//return data;
+		try {
+			int size = test.getIndSize("IND_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test.getIndRows(size, id);
+			return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}	
 	}
 }
