@@ -230,7 +230,7 @@ public class ExistingClient
 				if(id == 0)
 					JOptionPane.showMessageDialog(null, "Please select a client first");
 				else
-					new DischargeScroll(id);
+					new DischargeScroll(id, group);
 			}
 		});
 		btnDischarge.setBounds(240, 520, 160, 29);
