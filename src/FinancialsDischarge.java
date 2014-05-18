@@ -20,6 +20,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.text.Document;
+import java.awt.Component;
+import javax.swing.JTextArea;
+import javax.swing.border.BevelBorder;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JEditorPane;
 
 
 public class FinancialsDischarge extends JFrame implements ActionListener
@@ -38,7 +45,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 	Object[] arcData;
 	private MyTableModel passed;
 	private JTextField txtDischarge;
-	private JTextField txtOwed;
+	private JEditorPane txtOwed;
 	private int intClientID;
 
 	
@@ -101,7 +108,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		txtDSM = new JTextField();
 		txtDSM.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtDSM.setBounds(142, 60, 109, 28);
+		txtDSM.setBounds(142, 60, 134, 28);
 		fin.add(txtDSM);
 		txtDSM.setColumns(10);
 		
@@ -124,6 +131,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		fin.add(lblPaymentMethod);
 		
 		comboBox = new JComboBox<Object>();
+		comboBox.setFont(new Font("Verdana", Font.PLAIN, 13));
 		comboBox.addItem(new AnyObject("1", "Private"));
 		comboBox.addItem(new AnyObject("2", "Indigent"));
 		comboBox.addItem(new AnyObject("3", "Drug Court"));
@@ -163,6 +171,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		txtDischarge = new JTextField();
 		txtDischarge.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtDischarge.setText((String) arcData[31]);
 		txtDischarge.setBounds(536, 20, 96, 28);
 		fin.add(txtDischarge);
 		txtDischarge.setColumns(10);
@@ -172,10 +181,11 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		lblMoneyOwedAt.setBounds(20, 172, 169, 16);
 		fin.add(lblMoneyOwedAt);
 		
-		txtOwed = new JTextField();
+		txtOwed = new JEditorPane();
+		txtOwed.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		txtOwed.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtOwed.setBounds(0, 200, 661, 63);
 		fin.add(txtOwed);
-		txtOwed.setColumns(10);
 		txtOther.setVisible(false);
 		
 		spFin.setBounds(0, 0, 665, 350);
@@ -406,11 +416,11 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 			arcData[i] = s; i++;}
 			else
 				{arcData[i] = txtOther.getText(); i++;}
-		arcData[i] = txtCounty.getText(); i++;
-		arcData[i] = txtOwed.getText(); i++;
+		arcData[i] = txtCounty.getText(); i++;i++;
 		
 		arcData[i] = test.getFunder(intClientID);i++;
 		
+		//TODO it keeps giving issues here about null pointers
 		System.out.println("arcData size " + i);
 		for(int x = 0; x < 38; x++)
 		{
