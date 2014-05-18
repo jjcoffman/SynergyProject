@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import java.awt.event.MouseAdapter;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 
@@ -434,7 +436,7 @@ public class Discharge
 		
 		txtAxis1 = new JTextField();
 		txtAxis1.setFont(text);
-		txtAxis1.setBounds(163, 788, 163, 28);
+		txtAxis1.setBounds(163, 784, 163, 28);
 		Discharge.add(txtAxis1);
 		txtAxis1.setColumns(10);
 		
@@ -446,7 +448,7 @@ public class Discharge
 		txtAxis2 = new JTextField();
 		txtAxis2.setFont(text);
 		txtAxis2.setColumns(10);
-		txtAxis2.setBounds(163, 820, 163, 28);
+		txtAxis2.setBounds(163, 816, 163, 28);
 		Discharge.add(txtAxis2);
 		
 		JLabel lblAxis_3 = new JLabel("AXIS 3:");
@@ -457,7 +459,7 @@ public class Discharge
 		txtAxis3 = new JTextField();
 		txtAxis3.setColumns(10);
 		txtAxis3.setFont(text);
-		txtAxis3.setBounds(163, 852, 163, 28);
+		txtAxis3.setBounds(163, 848, 163, 28);
 		Discharge.add(txtAxis3);
 		
 		JLabel lblAxis_4 = new JLabel("AXIS 4:");
@@ -468,7 +470,7 @@ public class Discharge
 		txtAxis4 = new JTextField();
 		txtAxis4.setFont(text);
 		txtAxis4.setColumns(10);
-		txtAxis4.setBounds(163, 884, 163, 28);
+		txtAxis4.setBounds(163, 880, 163, 28);
 		Discharge.add(txtAxis4);
 		
 		JLabel lblAxis_5 = new JLabel("AXIS 5/GAF Score:");
@@ -479,7 +481,7 @@ public class Discharge
 		txtAxis5 = new JTextField();
 		txtAxis5.setColumns(10);
 		txtAxis5.setFont(text);
-		txtAxis5.setBounds(163, 916, 163, 28);
+		txtAxis5.setBounds(163, 912, 163, 28);
 		Discharge.add(txtAxis5);
 		
 		txtAxisPost1 = new JTextField();
@@ -578,6 +580,7 @@ public class Discharge
 		lblContactName.setFont(text);
 		lblContactName.setBounds(228, 728, 106, 16);
 		Discharge.add(lblContactName);	
+		Discharge.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblPatientName, lblClientId, lblPresent, chckbxY, chckbxN, lblAdmittanceDate, lblMmddyyyy, lblDischargeDate, txtDischargeDate, lblReasonForDischarge, chckbxSuccessfulCompletion, chckbxDisciplinaryruleViolation, chckbxNeedReferralFor, chckbxDroppedOut, chckbxHealthComplications, chckbxFailToProgress, chckbxLeftAgainstStaff, chckbxIncarcerated, chckbxDeathOfClient, lblPrognosis, chckbxGood, chckbxFair, chckbxPoor, lblTreatmentSummary, txtTreatment, lblTreatmentPlanGoals, label_1, label_2, label_3, label_4, label_5, label_6, txtGoal1, txtGoal2, txtGoal3, txtGoal4, txtGoal5, txtGoal6, lblGoalsMet, radY1, radY2, radY3, radY4, radY5, radY6, radN1, radN2, radN3, radN4, radnN5, radN6, chckbxCurrentDrugUsage, txtDrug, chckbxCriminalInvolvement, txtCrim, chckbxPersonagencyNotified, txtContactDate, lblContactDate, lblAxis, txtAxis1, txtAxisPost1, lblAxis_2, txtAxis2, txtAxisPost2, lblAxis_3, txtAxis3, txtAxisPost3, lblAxis_4, txtAxis4, txtAxisPost4, lblAxis_5, txtAxis5, txtAxisPost5, lblAtIntake, lblAtDischarge, lblTransitionalPlanAnd, txtTransPlans, lblRecommendationClientShould, txtRecommendation, lblClientsComments, txtClientComment, btnCompleteDischarge, btnCancel, lblContactName}));
 		importData(s);
 		
 	}

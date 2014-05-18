@@ -2173,7 +2173,7 @@ public class Intake implements ActionListener
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Social Security Number must have numbers only in the format XXX-XX-XXXX");
 		}
-		if(!txtDriversLicense.getText().matches("[A-Za-z0-9]{10}") && valid == true)
+		if(!(txtDriversLicense.getText().length() < 11) && valid == true)
 		{
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The DL must be only 10 characters long");

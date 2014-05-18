@@ -804,7 +804,7 @@ public class SQLSetInfo {
 		String field = "";
 		if(s.matches("\\d{5}"))
 			field = "C_ID";
-		else if(s.matches("\\d{2}\\/\\d{2}\\/\\d{4}"))
+		else if(s.matches("\\d{3}-\\d{3}-\\d{4}"))
 			field = "C_PrimPhone";
 		try { 
 			connection = SQLConnection.getConnection();
@@ -948,13 +948,13 @@ public class SQLSetInfo {
 			success = true;
 		} 
 		catch (SQLException e) {
-			System.out.println("Error sending data to Client_Record");
+			System.out.println("Error sending data to Archived Records");
 		} finally {
 			if (connection != null) {
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					System.out.println("Error Connecting to Client_Record");
+					System.out.println("Error Connecting to Archived_Records");
 				}
 			}
 		}

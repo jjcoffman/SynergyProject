@@ -71,7 +71,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 			s = "ERROR";
 		}
 		
-		s = getName((int)data[0]);
+		s = getName(Integer.getInteger((String) data[0]));
 		JLabel lblintakedate = new JLabel(s);
 		lblintakedate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblintakedate.setBounds(142, 22, 96, 16);
