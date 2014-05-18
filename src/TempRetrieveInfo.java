@@ -672,6 +672,107 @@ public class TempRetrieveInfo {
 	
 	public Object[] getGroupData(int id, String date){
 		Object[] data = new Object[100];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM GRP_NOTES WHERE C_ID = " + id + " AND Start_Date = " + "\"" + date + "\"";
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				data[0] = rs.getString("Start_Date");
+				data[1] = rs.getString("End_Date");
+				
+				data[2] = rs.getString("MON_KO");
+				data[3] = rs.getString("MONKO_Topic");
+				data[4] = rs.getString("MONKO_StartTime");
+				data[5] = rs.getString("MONKO_EndTime");
+				data[6] = rs.getString("MONKO_Counselor");
+				data[7] = rs.getString("MON_AM");
+				data[8] = rs.getString("MONAM_Topic");
+				data[9] = rs.getString("MONAM_Counselor");
+				data[10] = rs.getString("MON_PM");
+				data[11] = rs.getString("MONPM_Topic");
+				data[12] = rs.getString("MONPM_Counselor");
+				
+				data[13] = rs.getString("TUES_KO");
+				data[14] = rs.getString("TUESKO_Topic");
+				data[15] = rs.getString("TUESKO_StartTime");
+				data[16] = rs.getString("TUESKO_EndTime");
+				data[17] = rs.getString("TUESKO_Counselor");
+				data[18] = rs.getString("TUES_AM");
+				data[19] = rs.getString("TUESAM_Topic");
+				data[20] = rs.getString("TUESAM_Counselor");
+				data[21] = rs.getString("TUES_PM");
+				data[22] = rs.getString("TUESPM_Topic");
+				data[23] = rs.getString("TUESPM_Counselor");
+				
+				data[24] = rs.getString("WED_KO");
+				data[25] = rs.getString("WEDKO_Topic");
+				data[26] = rs.getString("WEDKO_StartTime");
+				data[27] = rs.getString("WEDKO_EndTime");
+				data[28] = rs.getString("WEDKO_Counselor");
+				data[29] = rs.getString("WED_AM");
+				data[30] = rs.getString("WEDAM_Topic");
+				data[31] = rs.getString("WEDAM_Counselor");
+				data[32] = rs.getString("WED_PM");
+				data[33] = rs.getString("WEDPM_Topic");
+				data[34] = rs.getString("WEDPM_Counselor");
+				
+				data[35] = rs.getString("THURS_KO");
+				data[36] = rs.getString("THURSKO_Topic");
+				data[37] = rs.getString("THURSKO_StartTime");
+				data[38] = rs.getString("THURSKO_EndTime");
+				data[39] = rs.getString("THURSKO_Counselor");
+				data[40] = rs.getString("THURS_AM");
+				data[41] = rs.getString("THURSAM_Topic");
+				data[42] = rs.getString("THURSAM_Counselor");
+				data[43] = rs.getString("THURS_PM");
+				data[44] = rs.getString("THURSPM_Topic");
+				data[45] = rs.getString("THURSPM_Counselor");
+				
+				data[46] = rs.getString("FRI_KO");
+				data[47] = rs.getString("FRIKO_Topic");
+				data[48] = rs.getString("FRIKO_StartTime");
+				data[49] = rs.getString("FRIKO_EndTime");
+				data[50] = rs.getString("FRIKO_Counselor");
+				data[51] = rs.getString("FRI_AM");
+				data[52] = rs.getString("FRIAM_Topic");
+				data[53] = rs.getString("FRIAM_Counselor");
+				data[54] = rs.getString("FRI_PM");
+				data[55] = rs.getString("FRIPM_Topic");
+				data[56] = rs.getString("FRIPM_Counselor");
+				
+				data[57] = rs.getString("SAT_KO");
+				data[58] = rs.getString("SATKO_Topic");
+				data[59] = rs.getString("SATKO_StartTime");
+				data[60] = rs.getString("SATKO_EndTime");
+				data[61] = rs.getString("SATKO_Counselor");
+				data[62] = rs.getString("SAT_AM");
+				data[63] = rs.getString("SATAM_Topic");
+				data[64] = rs.getString("SATAM_Counselor");
+				
+				data[65] = rs.getString("SUN");
+				data[66] = rs.getString("SUN_Topic");
+				data[67] = rs.getString("SUN_Counselor");
+				data[68] = rs.getString("SUN_StartTime");
+				data[69] = rs.getString("SUN_EndTime");
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return data;
 	}
 	
