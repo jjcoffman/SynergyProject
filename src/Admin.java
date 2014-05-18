@@ -103,6 +103,14 @@ public class Admin
 		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnRefresh.setBounds(20, 420, 160, 29);
 		Archive.add(btnRefresh);
+		btnRefresh.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{	
+				Object[][] data = getExisting();
+				clients.update(data);
+			}
+		});
 		
 		JLabel lblClientName = new JLabel("Client Name:");
 		lblClientName.setHorizontalAlignment(SwingConstants.TRAILING);
