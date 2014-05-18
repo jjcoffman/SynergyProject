@@ -10,6 +10,14 @@ import java.awt.event.MouseAdapter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 
@@ -90,6 +98,7 @@ public class Discharge
 	private JCheckBox chckbxPersonagencyNotified;
 	private MyTableModel passed;
 	private String ID;
+	private JLabel lblContactDate;
 	
 	
 	/**
@@ -139,6 +148,12 @@ public class Discharge
 		lblMmddyyyy.setBounds(232, 55, 94, 16);
 		Discharge.add(lblMmddyyyy);
 		
+		Calendar cal2 = new GregorianCalendar();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = new Date();
+		String today = "";
+		today =sdf.format(date);
+		
 		JLabel lblDischargeDate = new JLabel("Discharge Date:");
 		lblDischargeDate.setFont(text);
 		lblDischargeDate.setBounds(366, 55, 123, 16);
@@ -146,6 +161,7 @@ public class Discharge
 		
 		txtDischargeDate = new JTextField();
 		txtDischargeDate.setFont(text);
+		txtDischargeDate.setText(today);
 		txtDischargeDate.setBounds(501, 51, 134, 28);
 		Discharge.add(txtDischargeDate);
 		txtDischargeDate.setColumns(10);
@@ -393,6 +409,12 @@ public class Discharge
 		Discharge.add(radN6);
 
 		chckbxCurrentDrugUsage = new JCheckBox("Current Drug Usage:");
+		chckbxCurrentDrugUsage.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				txtDrug.setVisible(true);
+			}
+		});
 		chckbxCurrentDrugUsage.setFont(text);
 		chckbxCurrentDrugUsage.setBounds(21, 656, 176, 23);
 		Discharge.add(chckbxCurrentDrugUsage);
@@ -401,10 +423,17 @@ public class Discharge
 		txtDrug.setFont(text);
 		txtDrug.setBounds(231, 654, 391, 28);
 		Discharge.add(txtDrug);
+		txtDrug.setVisible(false);
 		txtDrug.setColumns(10);
 		
 		chckbxCriminalInvolvement = new JCheckBox("Criminal Involvement");
 		chckbxCriminalInvolvement.setFont(text);
+		chckbxCriminalInvolvement.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				txtCrim.setVisible(true);
+			}
+		});
 		chckbxCriminalInvolvement.setBounds(21, 691, 176, 23);
 		Discharge.add(chckbxCriminalInvolvement);
 		
@@ -416,6 +445,13 @@ public class Discharge
 		
 		chckbxPersonagencyNotified = new JCheckBox("Person/Agency Notified");
 		chckbxPersonagencyNotified.setFont(text);
+		chckbxPersonagencyNotified.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				txtContactDate.setVisible(true);
+				lblContactDate.setVisible(true);
+			}
+		});
 		chckbxPersonagencyNotified.setBounds(21, 725, 192, 23);
 		Discharge.add(chckbxPersonagencyNotified);
 
@@ -423,12 +459,15 @@ public class Discharge
 		
 		txtContactDate = new JTextField();
 		txtContactDate.setColumns(10);
+		txtContactDate.setText(today);
 		txtContactDate.setFont(text);
+		txtContactDate.setVisible(false);
 		txtContactDate.setBounds(458, 723, 164, 28);
 		Discharge.add(txtContactDate);
 		
-		JLabel lblContactDate = new JLabel("Contact Date");
+		lblContactDate = new JLabel("Contact Date");
 		lblContactDate.setFont(text);
+		lblContactDate.setVisible(false);
 		lblContactDate.setBounds(366, 728, 94, 16);
 		Discharge.add(lblContactDate);
 		

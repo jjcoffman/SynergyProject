@@ -1085,7 +1085,7 @@ public class Intake implements ActionListener
 
 		txtActionsTaken_3 = new JTextField();
 		//txtActionsTaken_3.setText("Actions Taken");
-		txtActionsTaken_3.setBounds(290, 1040, 335, 28);
+		txtActionsTaken_3.setBounds(290, 1040, 355, 28);
 		txtActionsTaken_3.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken_3.setVisible(false);
 		Intake.add(txtActionsTaken_3);

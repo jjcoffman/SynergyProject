@@ -803,7 +803,7 @@ public class SQLSetInfo {
 		Statement statement = null; 
 		String field = "";
 		String query = "";
-		if(s.matches("\\d{5}"))
+		if(s.matches("\\d{5}") || s.matches("\\d{4}") || s.matches("\\d{3}") || s.matches("\\d{2}")  || s.matches("\\d{1}"))
 		{
 			field = "C_ID";
 			int f = Integer.parseInt(s);
@@ -902,7 +902,7 @@ public class SQLSetInfo {
 				query = "INSERT Client_Discharge (C_ID, DIS_Reason, DIS_Success, DIS_Prognosis, DIS_TRMTSummary, DIS_TransitionPlan, DIS_TGoal1, DIS_TGoal1Met"
 						+ ", DIS_TGoal2, DIS_TGoal2Met, DIS_TGoal3, DIS_TGoal3Met, DIS_TGoal4, DIS_TGoal4Met, DIS_TGoal5, DIS_TGoal5Met"
 						+ ", DIS_TGoal6, DIS_TGoal6Met, DIS_CDUse, DIS_CDUseTxt, DIS_Criminal, DIS_CriminalTxt, DIS_PANotified, DIS_PAContactDate"
-						+ ", DIS_AXIS1, DIS_AXIS2, DIS_AXIS3, DIS_AXIS4, DIS_AXIS5GAF, IN_AXIS1, IN_AXIS2, IN_AXIS3, IN_AXIS4, IN_AXIS5"
+						+ ", DIS_AXIS1, DIS_AXIS2, DIS_AXIS3, DIS_AXIS4, DIS_AXIS5GAF, IN_AXIS1, IN_AXIS2, IN_AXIS3, IN_AXIS4, IN_AXIS5GAF"
 						+ ", DIS_CounselorRec, DIS_ReturnRec, DIS_ClientComment, DIS_FCounty, DIS_DSMIVCode, DIS_PrimCounselor"
 						+ ", DIS_PayMethod, DIS_PayNotes, DIS_Funder) "
 						+ "VALUES (" + ClientID + ", \"" + completion + "\", " + comp + ", \"" + prognosis + "\", \"" + treatment  + ""
