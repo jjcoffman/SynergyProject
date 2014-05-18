@@ -879,6 +879,7 @@ public class SQLSetInfo {
 		String payment = (String) arcData[i];i++;
 		String county = (String) arcData[i];i++;
 		String owed = (String) arcData[i];i++;
+		String funder = (String) arcData[i]; i++;
 		Object[] nameArray = getNameArray(ClientID);
 		String first = (String) nameArray[0];
 		String last = (String) nameArray[2];
@@ -891,23 +892,33 @@ public class SQLSetInfo {
 			try { 
 				connection = SQLConnection.getConnection();
 				statement = connection.createStatement();
-				query = "INSERT Archived_Records ( ) "
-						+ "SELECT C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, C_DOB, C_SSN, C_Address, "
-						+ "C_City, C_State, C_Zip, C_County, C_CONumYears, C_Vet, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, "
-						+ "C_DischargeDate, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, "
-						+ "C_AuthEndDate, EMC_ID, ARC_ID, LEG_ID, DIS_ID, HEALTH_ID, ASAM_ID FROM Client_Record WHERE C_ID = " + ClientID+ ";";
+				query = "INSERT Client_Discharge (C_ID, DIS_Reason, DIS_Success, DIS_Prognosis, DIS_TRMTSummary, DIS_TransitionPlan, DIS_TGoal1"
+						+ ", DIS_TGoal2, DIS_TGoal2Met, DIS_TGoal3, DIS_TGoal3Met, DIS_TGoal4, DIS_TGoal4Met, DIS_TGoal5, DIS_TGoal5Met"
+						+ ", DIS_TGoal6, DIS_TGoal6Met, DIS_CDUse, DIS_CDUseText, DIS_Criminal, DIS_CriminalText, DIS_PANotified, DIS_PAContactDate"
+						+ ", DIS_AXIS1, DIS_AXIS2, DIS_AXIS3, DIS_AXIS4, DIS_AXIS5GAF, IN_AXIS1, IN_AXIS2, IN_AXIS3, IN_AXIS4, IN_AXIS5/GAF"
+						+ ", DIS_CounselorRec, DIS_ReturnRec, DIS_ClientComment, DIS_FCounty, DIS_DSMIVCode, DIS_PrimCounselor"
+						+ ", DIS_PayMethod, DIS_PayNotes, DIS_Funder) "
+						+ "VALUES (" + ClientID + ", \"" + completion + "\", " + comp + ", \"" + prognosis + "\", \"" + treatment  + ""
+						+ "\", \"" + TransPlan + "\", \"" + goal1 + "\", " + intgoal1 + ", \"" + goal2 + "\", " + intgoal2 + ", \""
+						+ goal3 + "\", " + intgoal3 + ", \"" + goal4 + "\", " + intgoal4 + ", \"" + goal5 + "\", "
+						+ intgoal5 + ", \"" + goal6 + "\", " + intgoal6 + "\", " + intDrug + ", \"" + drug + "\""
+						+ ", " + intCrim + ", \"" + crim + "\", \"" + aNotified + "\", \"" + contactDate + "\", "
+						+ "\"" + axis1 + "\", \"" + axis2 + "\", \"" + axis3 + "\", "
+						+ "\"" + axis4 + "\", \"" + axis5 + "\", \"" + preaxis1 + "\", \"" + preaxis2 + "\", \"" + preaxis3 + "\", "
+						+ "\"" + preaxis4 + "\", \"" + preaxis5 + "\", \"" + counselor + "\", \"" + rec + "\", \"" + comment + "\", "
+						+ "\"" + county + "\", \"" + dsm + "\", \"" + counselor + "\", \"" + payment + "\", \"" + owed +"\", \"" + funder + "\")";
 				System.out.println(query);
 				statement.executeUpdate(query);
 				deleteRow("Client_Record", String.valueOf(ClientID));
 			} 
 			catch (SQLException e) {
-				System.out.println("Error sending data to Client_Record");
+				System.out.println("Error sending data to Client_Discharge");
 			} finally {
 				if (connection != null) {
 					try {
 						connection.close();
 					} catch (SQLException e) {
-						System.out.println("Error Connecting to Client_Record");
+						System.out.println("Error Connecting to Client_Discharge");
 					}
 				}
 			}
@@ -924,7 +935,7 @@ public class SQLSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			query = "INSERT Archived_Records (C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, "
+			query = "INSERT into Archived_Records (C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, "
 					+ "C_DOB, C_SSN, C_Address, C_City, C_State, C_Zip, C_County, C_CONumYears, C_Vet, C_DLNum, C_DLState, "
 					+ "C_MaritalStatus, C_SpouseName, C_AdmitDate, C_DischargeDate, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, "
 					+ "C_PayMethod, C_PrivateCharges, C_AuthStartDate, C_AuthEndDate, EMC_ID, ARC_ID, LEG_ID, DIS_ID, HEALTH_ID, ASAM_ID) "

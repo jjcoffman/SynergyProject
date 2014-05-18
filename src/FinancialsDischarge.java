@@ -407,13 +407,19 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 				{arcData[i] = txtOther.getText(); i++;}
 		arcData[i] = txtCounty.getText(); i++;
 		arcData[i] = txtOwed.getText(); i++;
-		for(int x = 0; x < 86; x++)
+		
+		arcData[i] = test.getFunder(intClientID);i++;
+		
+		
+		for(int x = 0; x < 37; x++)
 		{
 			if(arcData[x].equals(""))
 				arcData[x] = " ";
 		}
 		send.sendDischarge(arcData);
 	}
+
+	
 	
 	
 }

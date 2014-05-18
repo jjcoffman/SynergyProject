@@ -721,10 +721,39 @@ public class SQLRetrieveInfo {
 		
 	}
 
-	public String getFinDischarge(int id) 
+
+
+	public String getFunder(int intClientID) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String funder = null;
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + intClientID;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				funder = rs.getString("C_Funder");
+				System.out.println("got funder");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return funder;
 	}
 
 }
