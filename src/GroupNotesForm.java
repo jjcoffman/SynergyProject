@@ -13,17 +13,17 @@ public class GroupNotesForm extends JFrame
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	
-	public GroupNotesForm()
+	public GroupNotesForm(int id, String date)
 	{
 		window = new JFrame("View Group Notes");
 		GroupNotes = new GroupNotes();
-		GroupNotes.BuildPanel();
+		GroupNotes.BuildPanel(id, date);
 		JPanel d = (JPanel) GroupNotes.getPanel();
 		
 		JPanel d3 = new JPanel();
 		d3.setLayout(null);
 		d3.add(d);;
-		d3.setPreferredSize(new Dimension(645, 2400));
+		d3.setPreferredSize(new Dimension(645, 2200));
 		
 		spInd = new JScrollPane(d3);
 		spInd.setBounds(0, 0, 665, 678);

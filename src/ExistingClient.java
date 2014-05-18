@@ -168,7 +168,6 @@ public class ExistingClient
 			public void mouseClicked(MouseEvent e) 
 			{
 				selectedDate = (String)individual.getValueAt(IndividualTable.getSelectedRow(),0);
-				System.out.println(selectedDate);
 				new ViewIndividualNote(id, selectedDate);
 				}
 			});
@@ -188,7 +187,9 @@ public class ExistingClient
 		JButton btnViewGroup = new JButton("View");
 		btnViewGroup.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new GroupNotesForm();}
+			{
+				selectedDate = (String)group.getValueAt(groupTable.getSelectedRow(),0);
+				new GroupNotesForm(id, selectedDate);}
 		});
 		btnViewGroup.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewGroup.setBounds(660, 520, 94, 29);

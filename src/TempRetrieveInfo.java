@@ -570,10 +570,6 @@ public class TempRetrieveInfo {
 		return results;
 	}
 
-	
-	
-	
-
 	public Object[] getUSERSRows(int rowNum, int numRows){
 		Object[] results = new Object[4];
 		ResultSet rs = null;
@@ -672,6 +668,11 @@ public class TempRetrieveInfo {
 		}
 		System.out.println("Got Note: " + result);
 		return result;
+	}
+	
+	public Object[] getGroupData(int id, String date){
+		Object[] data = new Object[100];
+		return data;
 	}
 	
 	public int getLastID()
