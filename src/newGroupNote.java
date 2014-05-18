@@ -17,6 +17,8 @@ public class newGroupNote extends JFrame implements ActionListener
 	private JButton btnCancel;
 	private JLabel lblID;
 	private JLabel labelName;
+	private int CID;
+	private MyTableModel passedTable;
 	private JRadioButton rdbtnMonday;
 	private JRadioButton rdbtnTuesday;
 	private JRadioButton rdbtnThursday;
@@ -47,8 +49,9 @@ public class newGroupNote extends JFrame implements ActionListener
 	TempSetInfo temp = new TempSetInfo();
 	private JTextField topic;
 	
-	public newGroupNote(int id) {
-		
+	public newGroupNote(int id, MyTableModel table) {
+	passedTable = table;	
+	CID = id;
 	DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
 	Calendar c = Calendar.getInstance();
 	c.setFirstDayOfWeek(Calendar.MONDAY);
@@ -490,11 +493,28 @@ public class newGroupNote extends JFrame implements ActionListener
 			} */
 			
 			temp.sendGroupInfo(data);
-			
+			Object[][] data2 = getGroup(CID);
+			passedTable.update(data2);
 			AddNote.dispose();
 
 		}
 		
+	}
+	
+	private Object[][] getGroup(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//return data;
+		try {
+			int size = test.getGroupSize("GRP_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test.getGroupRows(size, id);
+			return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}	
 	}
 
 	public void actionPerformed(ActionEvent e) 
