@@ -403,8 +403,15 @@ public class Intake implements ActionListener
 		chckbxJailprobationInLast = new JCheckBox("Jail/Probation in last 30 days?");
 		chckbxJailprobationInLast.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
-			{if(chckbxJailprobationInLast.isSelected())
+			{
+				if(chckbxJailprobationInLast.isSelected()){
 				txtProbationWhy.setVisible(true);
+				txtProbationWhy.setText("Why:");
+				}
+				if(!chckbxJailprobationInLast.isSelected()){
+					txtProbationWhy.setVisible(false);
+					txtProbationWhy.setText("");
+				}
 			}
 		});
 		chckbxJailprobationInLast.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -420,15 +427,22 @@ public class Intake implements ActionListener
 		chckbxOnProbation.setVisible(true);
 		chckbxOnProbation.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
-			{if(chckbxJailprobationInLast.isSelected())
-				txtProbationWhy.setVisible(true);
+			{
+				if(chckbxOnProbation.isSelected()){
+					txtProbationWhy.setVisible(true);
+					txtProbationWhy.setText("Why:");
+				}
+				if(!chckbxOnProbation.isSelected()){
+					txtProbationWhy.setVisible(false);
+					txtProbationWhy.setText("");
+				}
 			}
 		});
 		chckbxOnProbation.setBounds(260, 566, 135, 23);
 
 		txtProbationWhy = new JTextField();
 		txtProbationWhy.setBounds(400, 566, 245, 28);
-		txtProbationWhy.setText("Why:");
+		//txtProbationWhy.setText("Why:");
 		txtProbationWhy.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtProbationWhy.setVisible(false);
 		txtProbationWhy.setColumns(10);
@@ -455,10 +469,14 @@ public class Intake implements ActionListener
 		chckbxPhysicalHospitalizationIn.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxPhysicalHospitalizationIn.isSelected())
+				if(chckbxPhysicalHospitalizationIn.isSelected()){
 					txtPhysicalHosp.setVisible(true);
-				if(!chckbxPhysicalHospitalizationIn.isSelected())
+					txtPhysicalHosp.setText("Why:");
+				}
+				if(!chckbxPhysicalHospitalizationIn.isSelected()){
 					txtPhysicalHosp.setVisible(false);
+					txtPhysicalHosp.setText("");
+				}
 			}
 		});
 		chckbxPhysicalHospitalizationIn.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -469,10 +487,14 @@ public class Intake implements ActionListener
 		chckbxMentalHospitalizationIn.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxMentalHospitalizationIn.isSelected())
+				if(chckbxMentalHospitalizationIn.isSelected()){
 					txtMentalHosp.setVisible(true);
-				if(!chckbxMentalHospitalizationIn.isSelected())
+					txtMentalHosp.setText("Why:");
+				}
+				if(!chckbxMentalHospitalizationIn.isSelected()){
 					txtMentalHosp.setVisible(false);
+					txtMentalHosp.setText("");
+				}
 			}
 		});
 		chckbxMentalHospitalizationIn.setBounds(20, 716, 290, 23);
@@ -481,14 +503,14 @@ public class Intake implements ActionListener
 		txtPhysicalHosp = new JTextField();
 		txtPhysicalHosp.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtPhysicalHosp.setBounds(320, 688, 325, 28);
-		txtPhysicalHosp.setText("Why:");
+		//txtPhysicalHosp.setText("Why:");
 		txtPhysicalHosp.setVisible(false);
 		txtPhysicalHosp.setColumns(10);
 
 		txtMentalHosp = new JTextField();
 		txtMentalHosp.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtMentalHosp.setBounds(320, 714, 325, 28);
-		txtMentalHosp.setText("Why:");
+		//txtMentalHosp.setText("Why:");
 		txtMentalHosp.setVisible(false);
 		txtMentalHosp.setColumns(10);
 
@@ -496,10 +518,14 @@ public class Intake implements ActionListener
 		chckbxIvUsedIn.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxIvUsedIn.isSelected())
+				if(chckbxIvUsedIn.isSelected()){
 					txtHowMany.setVisible(true);
-				if(!chckbxIvUsedIn.isSelected())
+					txtHowMany.setText("How Many");
+				}
+				if(!chckbxIvUsedIn.isSelected()){
 					txtHowMany.setVisible(false);
+					txtHowMany.setText("");
+				}
 			}
 		});
 		chckbxIvUsedIn.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -509,10 +535,14 @@ public class Intake implements ActionListener
 		chckbxPriorTPlan.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxPriorTPlan.isSelected())
+				if(chckbxPriorTPlan.isSelected()){
 					txtWhereAndWhen.setVisible(true);
-				if(!chckbxPriorTPlan.isSelected())
+					txtWhereAndWhen.setText("Where and When");
+				}
+				if(!chckbxPriorTPlan.isSelected()){
 					txtWhereAndWhen.setVisible(false);
+					txtWhereAndWhen.setText("");
+				}
 			}
 		});
 		chckbxPriorTPlan.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -520,7 +550,7 @@ public class Intake implements ActionListener
 
 		txtHowMany = new JTextField();
 		txtHowMany.setBounds(230, 859, 415, 28);
-		txtHowMany.setText("How Many");
+		//txtHowMany.setText("How Many");
 		txtHowMany.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtHowMany.setVisible(false);
 		txtHowMany.setColumns(10);
@@ -528,7 +558,7 @@ public class Intake implements ActionListener
 		txtWhereAndWhen = new JTextField();
 		txtWhereAndWhen.setBounds(230, 885, 415, 28);
 		txtWhereAndWhen.setHorizontalAlignment(SwingConstants.LEFT);
-		txtWhereAndWhen.setText("Where and When");
+		//txtWhereAndWhen.setText("Where and When");
 		txtWhereAndWhen.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtWhereAndWhen.setVisible(false);
 		txtWhereAndWhen.setColumns(10);
@@ -956,10 +986,14 @@ public class Intake implements ActionListener
 		chckbxYesToAsam = new JCheckBox("Yes to ASAM 1a and 1b, or 2, or 3?");
 		chckbxYesToAsam.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if(chckbxYesToAsam.isSelected())
+				if(chckbxYesToAsam.isSelected()){
 					txtActionsTaken.setVisible(true);
-				if(!chckbxYesToAsam.isSelected())
+					txtActionsTaken.setText("Actions Taken:");
+				}
+				if(!chckbxYesToAsam.isSelected()){
 					txtActionsTaken.setVisible(false);
+					txtActionsTaken.setText("");
+				}
 			}
 		});
 		chckbxYesToAsam.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -968,7 +1002,7 @@ public class Intake implements ActionListener
 		Intake.add(chckbxYesToAsam);
 
 		txtActionsTaken = new JTextField();
-		txtActionsTaken.setText("Actions Taken");
+		//txtActionsTaken.setText("Actions Taken");
 		txtActionsTaken.setBounds(291, 950, 354, 28);
 		txtActionsTaken.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken.setVisible(false);
@@ -979,10 +1013,14 @@ public class Intake implements ActionListener
 		chckbxYesToAsam_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxYesToAsam_1.isSelected())
+				if(chckbxYesToAsam_1.isSelected()){
 					txtActionsTaken_1.setVisible(true);
-				if(!chckbxYesToAsam_1.isSelected())
+					txtActionsTaken_1.setText("Actions Taken:");
+				}
+				if(!chckbxYesToAsam_1.isSelected()){
 					txtActionsTaken_1.setVisible(false);
+					txtActionsTaken_1.setText("");
+				}
 			}
 		});
 		chckbxYesToAsam_1.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -992,7 +1030,7 @@ public class Intake implements ActionListener
 
 		txtActionsTaken_1 = new JTextField();
 		txtActionsTaken_1.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtActionsTaken_1.setText("Actions Taken");
+		//txtActionsTaken_1.setText("Actions Taken");
 		txtActionsTaken_1.setBounds(290, 980, 354, 28);
 		txtActionsTaken_1.setVisible(false);
 		Intake.add(txtActionsTaken_1);
@@ -1004,17 +1042,21 @@ public class Intake implements ActionListener
 		chckbxYesToAsam_2.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxYesToAsam_2.isSelected())
+				if(chckbxYesToAsam_2.isSelected()){
 					txtActionsTaken_2.setVisible(true);
-				if(!chckbxYesToAsam_2.isSelected())
+					txtActionsTaken_2.setText("Actions Taken:");
+				}
+				if(!chckbxYesToAsam_2.isSelected()){
 					txtActionsTaken_2.setVisible(false);
+					txtActionsTaken_2.setText("");
+				}
 			}
 		});
 		chckbxYesToAsam_2.setBounds(20, 1010, 270, 28);
 		Intake.add(chckbxYesToAsam_2);
 
 		txtActionsTaken_2 = new JTextField();
-		txtActionsTaken_2.setText("Actions Taken:");
+		//txtActionsTaken_2.setText("Actions Taken:");
 		txtActionsTaken_2.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken_2.setBounds(290, 1010, 355, 28);
 		txtActionsTaken_2.setVisible(false);
@@ -1026,10 +1068,14 @@ public class Intake implements ActionListener
 		chckbxYesToAsam_3.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxYesToAsam_3.isSelected())
+				if(chckbxYesToAsam_3.isSelected()){
 					txtActionsTaken_3.setVisible(true);
-				if(!chckbxYesToAsam_3.isSelected())
+					txtActionsTaken_3.setText("Actions Taken:");
+				}
+				if(!chckbxYesToAsam_3.isSelected()){
 					txtActionsTaken_3.setVisible(false);
+					txtActionsTaken_3.setText("");
+				}
 			}
 		});
 		chckbxYesToAsam_3.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -1038,7 +1084,7 @@ public class Intake implements ActionListener
 		Intake.add(chckbxYesToAsam_3);
 
 		txtActionsTaken_3 = new JTextField();
-		txtActionsTaken_3.setText("Actions Taken");
+		//txtActionsTaken_3.setText("Actions Taken");
 		txtActionsTaken_3.setBounds(290, 1040, 335, 28);
 		txtActionsTaken_3.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtActionsTaken_3.setVisible(false);
@@ -1049,10 +1095,14 @@ public class Intake implements ActionListener
 		chckbxDoYouHave.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) 
 			{
-				if(chckbxDoYouHave.isSelected())
+				if(chckbxDoYouHave.isSelected()){
 					txtDescribe.setVisible(true);
-				if(!chckbxDoYouHave.isSelected())
+					txtDescribe.setText("Describe:");
+				}
+				if(!chckbxDoYouHave.isSelected()){
 					txtDescribe.setVisible(false);
+					txtDescribe.setText("");
+				}
 			}
 		});
 		chckbxDoYouHave.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -1060,7 +1110,7 @@ public class Intake implements ActionListener
 		Intake.add(chckbxDoYouHave);
 
 		txtDescribe = new JTextField();
-		txtDescribe.setText("Describe:");
+		//txtDescribe.setText("Describe:");
 		txtDescribe.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDescribe.setBounds(20, 1100, 625, 28);
 		txtDescribe.setVisible(false);
