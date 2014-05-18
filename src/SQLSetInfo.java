@@ -802,14 +802,21 @@ public class SQLSetInfo {
 		Connection connection = null;
 		Statement statement = null; 
 		String field = "";
+		String query = "";
 		if(s.matches("\\d{5}"))
+		{
 			field = "C_ID";
+			int f = Integer.parseInt(s);
+			query = "DELETE FROM "+ table + " WHERE "+field+" = " + f;
+		}
 		else if(s.matches("\\d{3}-\\d{3}-\\d{4}"))
+		{
 			field = "C_PrimPhone";
+			 query = "DELETE FROM "+ table + " WHERE "+field+" = " + "\'" + s +"\'";
+		}
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "DELETE FROM "+ table + " WHERE "+field+" = " + "\'" + s +"\'";
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 
@@ -837,7 +844,7 @@ public class SQLSetInfo {
 		Statement statement = null; 
 		
 		int i = 0;
-		int ClientID = (int) arcData[i];i++;
+		int ClientID = Integer.parseInt((String) arcData[i]);i++;
 		String completion = (String) arcData[i];i++;
 		int comp = (int) arcData[i];i++;
 		String prognosis = (String) arcData[i];i++;
@@ -892,16 +899,16 @@ public class SQLSetInfo {
 			try { 
 				connection = SQLConnection.getConnection();
 				statement = connection.createStatement();
-				query = "INSERT Client_Discharge (C_ID, DIS_Reason, DIS_Success, DIS_Prognosis, DIS_TRMTSummary, DIS_TransitionPlan, DIS_TGoal1"
+				query = "INSERT Client_Discharge (C_ID, DIS_Reason, DIS_Success, DIS_Prognosis, DIS_TRMTSummary, DIS_TransitionPlan, DIS_TGoal1, DIS_TGoal1Met"
 						+ ", DIS_TGoal2, DIS_TGoal2Met, DIS_TGoal3, DIS_TGoal3Met, DIS_TGoal4, DIS_TGoal4Met, DIS_TGoal5, DIS_TGoal5Met"
-						+ ", DIS_TGoal6, DIS_TGoal6Met, DIS_CDUse, DIS_CDUseText, DIS_Criminal, DIS_CriminalText, DIS_PANotified, DIS_PAContactDate"
-						+ ", DIS_AXIS1, DIS_AXIS2, DIS_AXIS3, DIS_AXIS4, DIS_AXIS5GAF, IN_AXIS1, IN_AXIS2, IN_AXIS3, IN_AXIS4, IN_AXIS5/GAF"
+						+ ", DIS_TGoal6, DIS_TGoal6Met, DIS_CDUse, DIS_CDUseTxt, DIS_Criminal, DIS_CriminalTxt, DIS_PANotified, DIS_PAContactDate"
+						+ ", DIS_AXIS1, DIS_AXIS2, DIS_AXIS3, DIS_AXIS4, DIS_AXIS5GAF, IN_AXIS1, IN_AXIS2, IN_AXIS3, IN_AXIS4, IN_AXIS5"
 						+ ", DIS_CounselorRec, DIS_ReturnRec, DIS_ClientComment, DIS_FCounty, DIS_DSMIVCode, DIS_PrimCounselor"
 						+ ", DIS_PayMethod, DIS_PayNotes, DIS_Funder) "
 						+ "VALUES (" + ClientID + ", \"" + completion + "\", " + comp + ", \"" + prognosis + "\", \"" + treatment  + ""
 						+ "\", \"" + TransPlan + "\", \"" + goal1 + "\", " + intgoal1 + ", \"" + goal2 + "\", " + intgoal2 + ", \""
 						+ goal3 + "\", " + intgoal3 + ", \"" + goal4 + "\", " + intgoal4 + ", \"" + goal5 + "\", "
-						+ intgoal5 + ", \"" + goal6 + "\", " + intgoal6 + "\", " + intDrug + ", \"" + drug + "\""
+						+ intgoal5 + ", \"" + goal6 + "\", " + intgoal6 + ", " + intDrug + ", \"" + drug + "\""
 						+ ", " + intCrim + ", \"" + crim + "\", \"" + aNotified + "\", \"" + contactDate + "\", "
 						+ "\"" + axis1 + "\", \"" + axis2 + "\", \"" + axis3 + "\", "
 						+ "\"" + axis4 + "\", \"" + axis5 + "\", \"" + preaxis1 + "\", \"" + preaxis2 + "\", \"" + preaxis3 + "\", "

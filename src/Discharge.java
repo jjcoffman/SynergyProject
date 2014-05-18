@@ -6,7 +6,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import java.awt.event.MouseAdapter;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import java.awt.Component;
 
 
@@ -87,6 +89,7 @@ public class Discharge
 	private JCheckBox chckbxCriminalInvolvement;
 	private JCheckBox chckbxPersonagencyNotified;
 	private MyTableModel passed;
+	private String ID;
 	
 	
 	/**
@@ -588,6 +591,7 @@ public class Discharge
 	private void importData(int s)
 	{
 		Object[] data = new Object[90];
+		
 		data = dBase.getClientDischarge(s);
 		int i = 0;
 		
@@ -602,6 +606,7 @@ public class Discharge
 		}
 		try 
 		{
+			ID = (String) data[i]; 
 			lblClientId.setText("ID: " + (String) data[i]);i++;
 		}
 		catch(NullPointerException e) 
@@ -637,7 +642,7 @@ public class Discharge
 		{
 			data = new Object[95];
 			int i = 0;
-			data[i] = lblClientId.getText();i++; 
+			data[i] = ID;i++; 
 			
 			
 			if(chckbxSuccessfulCompletion.isSelected())
@@ -683,6 +688,11 @@ public class Discharge
 			else if(chckbxDeathOfClient.isSelected())
 			{
 				data[1] = "Death of Client";
+				data[2] = 0;
+			}
+			else
+			{
+				data[1] = "None Selected";
 				data[2] = 0;
 			}
 			i = 3; //update for the next values
@@ -794,12 +804,12 @@ public class Discharge
 		if(!txtDischargeDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "Middle initial must be 1 letter only");
+			JOptionPane.showMessageDialog(null, "Discharge Date must be in the format XXX-XXX-XXXX");
 		}
 		if(!txtContactDate.getText().matches("\\d{2}\\/\\d{2}\\/\\d{4}") && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "Middle initial must be 1 letter only");
+			JOptionPane.showMessageDialog(null, "Agency Contact Date must be in the format XXX-XXX-XXXX ");
 		}
 		return valid;
 	}

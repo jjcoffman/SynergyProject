@@ -62,16 +62,17 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		lblIntakeDate.setBounds(46, 22, 84, 17);
 		lblIntakeDate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		fin.add(lblIntakeDate);
-		
+		String x = (String)arcData[0];
+		int id = Integer.parseInt(x);
 		String s = "";
 		try {
-			s = getIntake((int)data[0]);
+			s = getIntake(id);
 		} catch (Exception e) 
 		{
 			s = "ERROR";
 		}
 		
-		s = getName(Integer.getInteger((String) data[0]));
+		s = getName(id);
 		JLabel lblintakedate = new JLabel(s);
 		lblintakedate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblintakedate.setBounds(142, 22, 96, 16);
@@ -179,7 +180,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		spFin.setBounds(0, 0, 665, 350);
 		spFin.setVisible(true);
-		intClientID = (int) arcData[0];
+		intClientID = Integer.parseInt((String) arcData[0]);
 		window.setPreferredSize(new Dimension(665, 350));
 		window.setSize(665, 700);
         window.setLocationRelativeTo(null);
@@ -410,8 +411,8 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		arcData[i] = test.getFunder(intClientID);i++;
 		
-		
-		for(int x = 0; x < 37; x++)
+		System.out.println("arcData size " + i);
+		for(int x = 0; x < 38; x++)
 		{
 			if(arcData[x].equals(""))
 				arcData[x] = " ";
