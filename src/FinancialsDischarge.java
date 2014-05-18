@@ -182,7 +182,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		fin.add(lblMoneyOwedAt);
 		
 		txtOwed = new JEditorPane();
-		txtOwed.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		txtOwed.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtOwed.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtOwed.setBounds(0, 200, 661, 63);
 		fin.add(txtOwed);
