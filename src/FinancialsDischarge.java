@@ -10,11 +10,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.text.Document;
 
 
 public class FinancialsDischarge extends JFrame implements ActionListener
@@ -60,13 +65,13 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		String s = "";
 		try {
-			//TODO s = (String) data[87];
+			s = getIntake((int)data[0]);
 		} catch (Exception e) 
 		{
 			s = "ERROR";
 		}
 		
-		
+		s = getName((int)data[0]);
 		JLabel lblintakedate = new JLabel(s);
 		lblintakedate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblintakedate.setBounds(142, 22, 96, 16);
@@ -94,7 +99,6 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		fin.add(lblDsmIvCode);
 		
 		txtDSM = new JTextField();
-		txtDSM.setDocument(new JTextFieldLimit(20));
 		txtDSM.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtDSM.setBounds(142, 60, 109, 28);
 		fin.add(txtDSM);
@@ -176,7 +180,6 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		spFin.setBounds(0, 0, 665, 350);
 		spFin.setVisible(true);
 		intClientID = (int) arcData[0];
-		getFinInfo(intClientID);
 		window.setPreferredSize(new Dimension(665, 350));
 		window.setSize(665, 700);
         window.setLocationRelativeTo(null);
@@ -195,6 +198,71 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 
 	}
 
+	public String getName(int id){
+		String name = null;
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				name = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+				System.out.println("got name");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return name;
+	}
+
+	private String getIntake(int id) 
+	{
+		String name = null;
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				name = (rs.getString("C_AdmitDate"));
+				System.out.println("got Date");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return name;
+	}
+
 	private boolean validateInput() 
 	{
 		Boolean valid = true;
@@ -204,11 +272,40 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 			valid = false;
 			JOptionPane.showMessageDialog(null, "The Date must be in numbers in the format DD/MM/YYYY");
 		}
-		if(!txtDSM.getText().matches("[0-9A-Za-z ]{4}") && valid == true)
+		if(txtDSM.getText().length() > 20 && valid == true)
 		{
 			valid = false;
-			JOptionPane.showMessageDialog(null, "The Date must be in numbers in the format DD/MM/YYYY");
+			JOptionPane.showMessageDialog(null, "The DSM field is too large, limit 15 characters");
 		}
+		if(textCounselor.getText().length() > 30 && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Counselor field is too large, limit 30 characters");
+		}
+		if(comboBox.getSelectedItem().equals("Other") && valid == true)
+		{
+			if(txtOther.getText().length() > 15 && valid == true)
+			{
+				valid = false;
+				JOptionPane.showMessageDialog(null, "The Payment Method field is too large, limit 15 characters");
+			}
+		}
+		if(txtOwed.getText().length() > 150 && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The Owed field is too large, limit 150 characters");
+		}
+		if(txtCounty.getText().length() > 20 && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "The County field is too large, limit 20 characters");
+		}
+		
+		
+		
+		
+		
+		
 		return valid;
 	}
 	
@@ -264,10 +361,12 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		{
 			Boolean cont = validateInput();
 			if(cont == true)
+			{
 				sendData();
-			Object[][] datas = getExisting();
-			passed.update(datas);
-			window.dispose();
+				Object[][] datas = getExisting();
+				passed.update(datas);
+				window.dispose();
+			}
 			
 		}
 	}
@@ -295,39 +394,26 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 	}
 	private void sendData() 
 	{
-		int i = 86;
+		int i = 32;
 		arcData[i] = txtDSM.getText(); i++;
 		arcData[i] = textCounselor.getText(); i++;
 		
 		Object item = comboBox.getSelectedItem();
 		String s = ((AnyObject)item).toString();
-		arcData[i] = s; i++;
-		
-		arcData[i] = txtOther.getText(); i++;
-		arcData[i] = txtCounty.getText(); i++;i++;i++;i++;
-		
-		if(arcData[4].equals(""))
-			arcData[4] = 0;
-		
-		
-		
+		if(!s.equals("Other"))
+		{
+			arcData[i] = s; i++;}
+			else
+				{arcData[i] = txtOther.getText(); i++;}
+		arcData[i] = txtCounty.getText(); i++;
+		arcData[i] = txtOwed.getText(); i++;
 		for(int x = 0; x < 86; x++)
 		{
 			if(arcData[x].equals(""))
 				arcData[x] = " ";
 		}
-		
-		//this is wrong, sendToArchive(arcData, type)
-		//send.sendNewInfo(arcData, type);
-
+		send.sendDischarge(arcData);
 	}
 	
-	private void getFinInfo(int id){
-		try {
-		test.getFinDischarge(id);
-		}
-		catch(NullPointerException e) {
-			System.out.print("ERROR retrieving Info");
-		}
-	}
+	
 }

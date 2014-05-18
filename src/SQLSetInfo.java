@@ -3,6 +3,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class SQLSetInfo {
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
 
@@ -799,11 +801,15 @@ public class SQLSetInfo {
 	{
 		Connection connection = null;
 		Statement statement = null; 
-		
+		String field = "";
+		if(s.matches("\\d{5}"))
+			field = "C_ID";
+		else if(s.matches("\\d{2}\\/\\d{2}\\/\\d{4}"))
+			field = "C_PrimPhone";
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "DELETE FROM "+ table + " WHERE C_PrimPhone = " + "\'" + s +"\'";
+			String query = "DELETE FROM "+ table + " WHERE "+field+" = " + "\'" + s +"\'";
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 
@@ -820,5 +826,160 @@ public class SQLSetInfo {
 		}
 		
 	}
+
 	
+	public void sendDischarge(Object[] arcData) 
+	{
+		// TODO Auto-generated method stub
+		// look at Send new Info to copy code to send data
+		// make sure you delete the row in client_Record
+		Connection connection = null;
+		Statement statement = null; 
+		
+		int i = 0;
+		int ClientID = (int) arcData[i];i++;
+		String completion = (String) arcData[i];i++;
+		int comp = (int) arcData[i];i++;
+		String prognosis = (String) arcData[i];i++;
+		String treatment = (String) arcData[i];i++;
+		String goal1 = (String) arcData[i];i++;
+		int intgoal1 = (int) arcData[i];i++;
+		String goal2 = (String) arcData[i];i++;
+		int intgoal2 = (int) arcData[i];i++;
+		String goal3 = (String) arcData[i];i++;
+		int intgoal3 = (int) arcData[i];i++;
+		String goal4 = (String) arcData[i];i++;
+		int intgoal4 = (int) arcData[i];i++;
+		String goal5 = (String) arcData[i];i++;
+		int intgoal5 = (int) arcData[i];i++;
+		String goal6 = (String) arcData[i];i++;
+		int intgoal6 = (int) arcData[i];i++;
+		int intDrug = (int) arcData[i];i++;
+		String drug = (String) arcData[i];i++;
+		int intCrim = (int) arcData[i];i++;
+		String crim = (String) arcData[i];i++;
+		int aNotified = (int) arcData[i];i++;
+		String contactDate = (String) arcData[i];i++;
+		String axis1 = (String) arcData[i];i++;
+		String axis2 = (String) arcData[i];i++;
+		String axis3 = (String) arcData[i];i++;
+		String axis4 = (String) arcData[i];i++;
+		String axis5 = (String) arcData[i];i++;
+		String preaxis1 = (String) arcData[i];i++;
+		String preaxis2 = (String) arcData[i];i++;
+		String preaxis3 = (String) arcData[i];i++;
+		String preaxis4 = (String) arcData[i];i++;
+		String preaxis5 = (String) arcData[i];i++;
+		String TransPlan = (String) arcData[i];i++;
+		String rec = (String) arcData[i];i++;
+		String comment = (String) arcData[i];i++;
+		String dDate = (String) arcData[i];i++;
+		String dsm = (String) arcData[i];i++;
+		String counselor = (String) arcData[i];i++;
+		String payment = (String) arcData[i];i++;
+		String county = (String) arcData[i];i++;
+		String owed = (String) arcData[i];i++;
+		Object[] nameArray = getNameArray(ClientID);
+		String first = (String) nameArray[0];
+		String last = (String) nameArray[2];
+		String middle = (String) nameArray[1];
+		String query = "";
+		Boolean cont =  moveToArchive(ClientID);
+		if(cont == true)
+		{
+			deleteRow("Client_Record", String.valueOf(ClientID));
+			try { 
+				connection = SQLConnection.getConnection();
+				statement = connection.createStatement();
+				query = "INSERT Archived_Records ( ) "
+						+ "SELECT C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, C_DOB, C_SSN, C_Address, "
+						+ "C_City, C_State, C_Zip, C_County, C_CONumYears, C_Vet, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, "
+						+ "C_DischargeDate, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, "
+						+ "C_AuthEndDate, EMC_ID, ARC_ID, LEG_ID, DIS_ID, HEALTH_ID, ASAM_ID FROM Client_Record WHERE C_ID = " + ClientID+ ";";
+				System.out.println(query);
+				statement.executeUpdate(query);
+				deleteRow("Client_Record", String.valueOf(ClientID));
+			} 
+			catch (SQLException e) {
+				System.out.println("Error sending data to Client_Record");
+			} finally {
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						System.out.println("Error Connecting to Client_Record");
+					}
+				}
+			}
+		}
+		else
+			JOptionPane.showMessageDialog(null, "Discharge Failed to move to Archive");
+	}
+	public boolean moveToArchive(int ClientID)
+	{
+		Connection connection = null;
+		Statement statement = null; 
+		String query = "";
+		Boolean success =false;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			query = "INSERT Archived_Records (C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, "
+					+ "C_DOB, C_SSN, C_Address, C_City, C_State, C_Zip, C_County, C_CONumYears, C_Vet, C_DLNum, C_DLState, "
+					+ "C_MaritalStatus, C_SpouseName, C_AdmitDate, C_DischargeDate, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, "
+					+ "C_PayMethod, C_PrivateCharges, C_AuthStartDate, C_AuthEndDate, EMC_ID, ARC_ID, LEG_ID, DIS_ID, HEALTH_ID, ASAM_ID) "
+					+ "SELECT C_ID, C_LastName, C_FirstName, C_MI, C_Gender, C_Signature, C_PrimPhone, C_SecondPhone, C_DOB, C_SSN, C_Address, "
+					+ "C_City, C_State, C_Zip, C_County, C_CONumYears, C_Vet, C_DLNum, C_DLState, C_MaritalStatus, C_SpouseName, C_AdmitDate, "
+					+ "C_DischargeDate, C_Funder, C_FCounty, C_DSMIVCode, C_PrimCounselor, C_PayMethod, C_PrivateCharges, C_AuthStartDate, "
+					+ "C_AuthEndDate, EMC_ID, ARC_ID, LEG_ID, DIS_ID, HEALTH_ID, ASAM_ID FROM Client_Record WHERE C_ID = " + ClientID+ ";";
+			System.out.println(query);
+			statement.executeUpdate(query);
+			success = true;
+		} 
+		catch (SQLException e) {
+			System.out.println("Error sending data to Client_Record");
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					System.out.println("Error Connecting to Client_Record");
+				}
+			}
+		}
+		return success;
+	}
+	public Object[] getNameArray(int id){
+		Object[] name = new Object[3];
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Client_Record WHERE C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				name[0] = rs.getString("C_FirstName"); 
+				name[0] = rs.getString("C_MI"); 
+				name[1] = rs.getString("C_LastName");
+				System.out.println("got name");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return name;
+	}
 }

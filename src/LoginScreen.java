@@ -1,6 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+
 import java.awt.*;
 
 //this Class creates the Welcome screen for Login by the users
@@ -77,7 +81,6 @@ public class LoginScreen extends JFrame implements ActionListener
 			System.exit(0);
 		}
 	}
-	
 	public static void main(String[] args) 
 	{
 		SwingUtilities.invokeLater(new Runnable()

@@ -156,6 +156,7 @@ public class Intake implements ActionListener
 
 
 		txtFirstName = new JTextField();
+		txtFirstName.setDocument(new JTextFieldLimit(25));
 		txtFirstName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtFirstName.setBounds(20, 80, 180, 28);
 		txtFirstName.setColumns(10);
