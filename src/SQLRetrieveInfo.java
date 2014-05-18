@@ -459,7 +459,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getInt("IV_Use")); i++;
 				results[i] = (rs.getInt("PRIOR_TPlan")); i++;
 				results[i] = (rs.getString("How_Many")); i++;
-				results[i] = (rs.getString("WhereANDWhen"));  
+				results[i] = (rs.getString("WhereANDWhen")); i++;
 			} }catch (SQLException e) {
 				e.printStackTrace();
 			} 
@@ -471,18 +471,18 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("SUB1_Name")); i++;
 				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
-				results[i] = (rs.getString("Sub1_Frequency")); i++;
-				results[i] = (rs.getString("Sub1_Method")); i++;
+				results[i] = (rs.getString("SUB1_Frequency")); i++;
+				results[i] = (rs.getString("SUB1_Method")); i++;
 				results[i] = (rs.getString("SUB2_Name")); i++;
 				results[i] = (rs.getString("SUB2_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB2_AmountUsed")); i++;
-				results[i] = (rs.getString("Sub2_Frequency")); i++;
-				results[i] = (rs.getString("Sub2_Method")); i++;
+				results[i] = (rs.getString("SUB2_Frequency")); i++;
+				results[i] = (rs.getString("SUB2_Method")); i++;
 				results[i] = (rs.getString("SUB3_Name")); i++;
 				results[i] = (rs.getString("SUB3_DateLastUsed")); i++;
 				results[i] = (rs.getString("SUB3_AmountUsed")); i++;
-				results[i] = (rs.getString("Sub3_Frequency")); i++;
-				results[i] = (rs.getString("Sub3_Method")); i++;
+				results[i] = (rs.getString("SUB3_Frequency")); i++;
+				results[i] = (rs.getString("SUB3_Method")); i++;
 
 			}
 			try{

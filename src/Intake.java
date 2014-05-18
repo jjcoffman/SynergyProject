@@ -1227,7 +1227,7 @@ public class Intake implements ActionListener
 			txtMI.setText(""); i++;
 		}
 
-		i++; //Gender
+			i++; //Gender
 
 		try 
 		{
@@ -1530,9 +1530,9 @@ public class Intake implements ActionListener
 		try 
 		{
 			if((int) data[i] == 0)
-				chckbxOnProbation.setSelected(false);
+				chckbxJailprobationInLast.setSelected(false);
 			else
-				chckbxOnProbation.setSelected(true);
+				chckbxJailprobationInLast.setSelected(true);
 			i++;
 		}
 		catch(NullPointerException e) 
