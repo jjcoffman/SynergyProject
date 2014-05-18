@@ -15,8 +15,26 @@ import javax.swing.SwingConstants;
 public class Admin
 {
 	private JPanel Admin;
+	private MyTableModel users;
+	private MyTableModel clients;
+	private MyTableModel individual;
+	private MyTableModel group;
+	private JTable usersTable;
+	private JTable individualTable;
+	private JTable groupTable;
+	private JTable clientsTable;
+	private JLabel lblCID;
+	private JLabel lblCName;
+	private JLabel lblCPhone;
+	private JLabel lblECName;
+	private JLabel lblECPhone;
+	private int id;
+	private String selectedDate = "";
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
+	SQLSetInfo test2 = new SQLSetInfo();
+	TempRetrieveInfo test3 = new TempRetrieveInfo();
+	
 	
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL 
 	/**							
@@ -34,13 +52,14 @@ public class Admin
 		
 		JPanel ManageUsers = new JPanel();
 		Object[][] data = getUsers();//{{1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
-		String[] columnNames = {"ID #", "First Name", "Last Name", "Admin Access"};
+		String[] columnNames = {"ID #", "UserName", "Name", "Admin Access"};
 		ManageUsers.setLayout(null);
-		JTable table = new JTable(data, columnNames);
-		table.setFont(new Font("Verdana", Font.PLAIN, 13));
-		table.setGridColor(Color.LIGHT_GRAY);
-		table.setFillsViewportHeight(true);
-		JScrollPane scroll = new JScrollPane(table);
+		users = new MyTableModel(data, columnNames);
+		usersTable = new JTable(users);
+		usersTable.setFont(new Font("Verdana", Font.PLAIN, 13));
+		usersTable.setGridColor(Color.LIGHT_GRAY);
+		usersTable.setFillsViewportHeight(true);
+		JScrollPane scroll = new JScrollPane(usersTable);
 		scroll.setFont(new Font("Verdana", Font.PLAIN, 13));
 		scroll.setSize(800, 400);
 		scroll.setLocation(6, 60);
@@ -80,10 +99,10 @@ public class Admin
 		lblpanels.setBounds(20, 20, 360, 16);
 		Archive.add(lblpanels);
 		
-		JButton btnSelect = new JButton("Select");
-		btnSelect.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnSelect.setBounds(20, 420, 160, 29);
-		Archive.add(btnSelect);
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnRefresh.setBounds(20, 420, 160, 29);
+		Archive.add(btnRefresh);
 		
 		JLabel lblClientName = new JLabel("Client Name:");
 		lblClientName.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -118,20 +137,43 @@ public class Admin
 		Archive.setLayout(null);
 		Object[][] data3 = getExisting();
 		String[] columnNames3 = {"Client ID","Client Name"};
-		table = new JTable(data3, columnNames3);
-		table.setFont(new Font("Verdana", Font.PLAIN, 13));
-		table.setGridColor(Color.LIGHT_GRAY);
-		table.setFillsViewportHeight(true);
-		table.getColumnModel().getColumn(0).setWidth(10);
-		table.getColumnModel().getColumn(1).setWidth(40);
-		JScrollPane sp = new JScrollPane(table);
+		clients = new MyTableModel(data3, columnNames3);
+		clientsTable = new JTable(clients);
+		clientsTable.setFont(new Font("Verdana", Font.PLAIN, 13));
+		clientsTable.setGridColor(Color.LIGHT_GRAY);
+		clientsTable.setFillsViewportHeight(true);
+		clientsTable.getColumnModel().getColumn(0).setWidth(10);
+		clientsTable.getColumnModel().getColumn(1).setWidth(40);
+		clientsTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{	
+				if(clientsTable.getSelectedRow() != -1)
+				{
+					Object test = clientsTable.getValueAt(clientsTable.getSelectedRow(),0);
+					id = (int)test;
+					lblCID.setText(String.valueOf(id));
+					lblCName.setText(getClientName(id));
+					lblCPhone.setText(getClientPhone(id));
+					lblECName.setText(getECName(id));
+					lblECPhone.setText(getECPhone(id));
+					Object[][] data = getInd(id);
+					individual.update(data);
+					Object[][] data2 = getGroup(id);
+					group.update(data2);
+					//System.out.println(id);
+					//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+				}
+			}
+		});
+		JScrollPane sp = new JScrollPane(clientsTable);
 		sp.setBounds(20, 50, 360, 360);
 		sp.setVisible(true);
 		Archive.add(sp);
 		
-		Object[][] data1 = getGroup();
-		String[] columnNames1 = {"Date","Counselor"};
-		JTable groupTable = new JTable(data1, columnNames1);
+		Object[][] data1 = getGroup(id);
+		String[] columnNames1 = {"Week Of","Counselor"};
+		group = new MyTableModel(data1, columnNames1);
+		groupTable = new JTable(group);
 		groupTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		groupTable.setGridColor(Color.LIGHT_GRAY);
 		groupTable.setFillsViewportHeight(true);
@@ -142,15 +184,16 @@ public class Admin
 		spGroup.setVisible(true);
 		Archive.add(spGroup);
 		
-		Object[][] data2 = getInd();
+		Object[][] data2 = getInd(id);
 		String[] columnNames2 = {"Date","Counselor"};
-		JTable IndividualTable = new JTable(data2, columnNames2);
-		IndividualTable.setFont(new Font("Verdana", Font.PLAIN, 13));
-		IndividualTable.setGridColor(Color.LIGHT_GRAY);
-		IndividualTable.setFillsViewportHeight(true);
-		IndividualTable.getColumnModel().getColumn(0).setWidth(10);
-		IndividualTable.getColumnModel().getColumn(1).setWidth(40);
-		JScrollPane spInd = new JScrollPane(IndividualTable);
+		individual = new MyTableModel(data2, columnNames2);
+		individualTable = new JTable(individual);
+		individualTable.setFont(new Font("Verdana", Font.PLAIN, 13));
+		individualTable.setGridColor(Color.LIGHT_GRAY);
+		individualTable.setFillsViewportHeight(true);
+		individualTable.getColumnModel().getColumn(0).setWidth(10);
+		individualTable.getColumnModel().getColumn(1).setWidth(40);
+		JScrollPane spInd = new JScrollPane(individualTable);
 		spInd.setBounds(400, 270, 200, 220);
 		spInd.setVisible(true);
 		Archive.add(spInd);
@@ -158,7 +201,11 @@ public class Admin
 		JButton btnViewInd = new JButton("View");
 		btnViewInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new ViewIndividualNote(2, "10/12/2014");}});
+			{
+				selectedDate = (String)individual.getValueAt(individualTable.getSelectedRow(),0);
+				new ViewArcIndividualNote(id, selectedDate);
+			}
+		});
 		btnViewInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewInd.setBounds(450, 500, 100, 29);
 		Archive.add(btnViewInd);
@@ -184,12 +231,37 @@ public class Admin
 		Archive.add(lblGroupNotes);
 		
 		JButton btnViewprintForms = new JButton("View/Print Forms");
-		btnViewprintForms.setBounds(20, 460, 160, 29);
+		btnViewprintForms.setBounds(220, 420, 160, 29);
 		Archive.add(btnViewprintForms);
 		
-		JButton btnDischarge = new JButton("Search");
-		btnDischarge.setBounds(220, 420, 160, 29);
-		Archive.add(btnDischarge);
+		//JButton btnDischarge = new JButton("Search");
+		//btnDischarge.setBounds(220, 420, 160, 29);
+		//Archive.add(btnDischarge);
+		
+		lblCID = new JLabel();
+		lblCID.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCID.setBounds(550, 40, 200, 16);
+		Archive.add(lblCID);
+		
+		lblCName = new JLabel();
+		lblCName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCName.setBounds(550, 70, 200, 16);
+		Archive.add(lblCName);
+		
+		lblCPhone = new JLabel();
+		lblCPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblCPhone.setBounds(550, 100, 200, 16);
+		Archive.add(lblCPhone);
+		
+		lblECName = new JLabel();
+		lblECName.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblECName.setBounds(550, 140, 200, 16);
+		Archive.add(lblECName);
+		
+		lblECPhone = new JLabel();
+		lblECPhone.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblECPhone.setBounds(550, 170, 200, 16);
+		Archive.add(lblECPhone);
 
 		//add items such as buttons etc
 		
@@ -201,37 +273,20 @@ public class Admin
 	{
 		return Admin;
 	}
-	
-	private Object[][] getInd() 
-	{
-		Object[][] data = {{"1/12/14","Bootstrap Bill"}};
-		return data;
-	}
-	//this gets the group notes
-	private Object[][] getGroup() 
-	{
-		Object[][] data = {{"1/12/14","Bootstrap Bill"}};
-		return data;
-	}
 
 	//This will fill the object array with the data from the the existing users
 	private Object[][] getExisting() 
 	{
-		Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
-		return data;
-	}
-	private Object[][] getUsers()
-	{
 		//Object[][] data = {{12342,"Clint Eastwood"},{23423,"Will Clark"},{34454,"Barry Bonds"},{34552,"Derek Jeter"}};
 		//return data;
 		try {
-			int size = test.getSize("USERS");
+			int size = test3.getSize("Archived_Records");
 		
-		Object[][] data = new Object[size][4];
+		Object[][] data = new Object[size][2];
 		for (int i = 1; i <= size; i++){
-			data[i-1] = test.getUSERSRows(i - 1, 1);
+			data[i-1] = test3.getArchiveInfo(i - 1, 1);
 		}
-		System.out.println("rows in USERS: " + test.getSize("USERS"));
+		System.out.println("rows in Archived_Records: " + test3.getSize("USERS"));
 		return data;
 		}
 		catch(NullPointerException e) {
@@ -240,6 +295,94 @@ public class Admin
 			return data;
 		}
 	}
+	private Object[][] getUsers()
+	{
+		//Object[][] data = {{12342,"users1", "Clint Eastwood", "no"}};
+		//return data;
+		try {
+			int size = test3.getSize("USERS");
+		
+		Object[][] data = new Object[size][4];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test3.getUSERSRows(i - 1, 1);
+		}
+		System.out.println("rows in USERS: " + test3.getSize("USERS"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No", "data", "base", "Connected"}};
+			return data;
+		}
+	}
+	
+	private Object[][] getInd(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+		//return data;
+		try {
+			int size = test2.getIndSize("IND_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test2.getIndRows(size, id);
+			return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}	
+	}
+	
+	//this gets the group notes
+	private Object[][] getGroup(int id) {
+		//Object[][] data = {{"1/12/14","Bootstrap Bill"}};
+		//return data;
+		try {
+			int size = test2.getGroupSize("GRP_NOTES", id);
+			Object[][] data = new Object[size][2];
+			data= test2.getGroupRows(size, id);
+			return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No database", "Connected"}};
+			return data;
+		}	
+	}
+	
+	private String getClientName(int id){
+		try {
+		return test3.getArcName(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+	}
+	private String getClientPhone(int id){
+		try {
+		return test3.getArcPhone(id);
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+	}
+	private String getECName(int id){
+		try {
+		return test2.getECName(id);
+		}
+		catch(NullPointerException e) {
+			return "N/A";
+		}
+	}
+	private String getECPhone(int id){
+		try {
+		return test2.getECPhone(id);
+		}
+		catch(NullPointerException e) {
+			return "N/A";
+		}
+	}
+	
 }
 
 		//past this into a class the panel that contains this panel, if you are unsure don't do anything with this!!!!!!!!

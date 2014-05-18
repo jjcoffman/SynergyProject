@@ -570,6 +570,35 @@ public class TempRetrieveInfo {
 		return results;
 	}
 
+	public Object[] getArchiveInfo(int rowNum, int numRows){
+		Object[] results = new Object[2];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Archived_Records limit " + rowNum + "," + numRows;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				results[0] = (rs.getInt("C_ID"));
+				results[1] = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return results;
+	}
+	
 	public Object[] getUSERSRows(int rowNum, int numRows){
 		Object[] results = new Object[4];
 		ResultSet rs = null;
@@ -582,9 +611,9 @@ public class TempRetrieveInfo {
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
-				results[0] = "default";
-				results[1] = (rs.getString("USER_FNAME"));
-				results[2] = (rs.getString("USER_LNAME"));
+				results[0] = (rs.getString("USER_ID"));
+				results[1] = (rs.getString("USERNAME"));
+				results[2] = (rs.getString("USER_FNAME") + " " + rs.getString("USER_LNAME"));
 				String access = rs.getString("ADMIN_ACCESS");
 				if (access.equals("1")){
 					results[3] = "yes";
@@ -861,6 +890,70 @@ public class TempRetrieveInfo {
 		}
 		System.out.println("Got ID: " + result);
 		return result;
+	}
+	
+	public String getArcPhone(int id){
+		String phone = null;
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Archived_Records WHERE C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				phone = rs.getString("C_PrimPhone");
+				System.out.println("got phone");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return phone;
+	}
+	
+	public String getArcName(int id){
+		String name = null;
+		
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM Archived_Records WHERE C_ID = " + id;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				name = (rs.getString("C_FirstName") + " " + rs.getString("C_LastName"));
+				System.out.println("got name");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return name;
 	}
 	
 	public void sendGroupNote(Object[] data){
