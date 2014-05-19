@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -273,7 +274,7 @@ public class Print {
 		String pngPath = "";
 		 if (fs.toString().contains("MacOSXFileSystem"))
 		 {
-			 pngPath = printPath + fs.getSeparator() + ".";
+			 pngPath = printPath + fs.getSeparator() + "." ; //TODO + "."
 			 printPath = printPath + fs.getSeparator();
 			 macHidden = ".";
 		 }
@@ -285,103 +286,108 @@ public class Print {
 		}
 		 
 		
-		 File a = new File("bin/1-ADMISSION BOOKKEEPING FORM.png");
+		 
+		 
+		 
+		 
+		File a = new File("resources/1-ADMISSION BOOKKEEPING FORM.png");
 		 File b = new File(pngPath + "1-ADMISSION BOOKKEEPING FORM.png");
-		 copyFile(a, b);
-		 File c = new File("bin/1-Exit Bookkeeping.png");
+
+		 copyFile(a,b);
+		 File c = new File("resources/1-Exit Bookkeeping.png");
 		 File d = new File(pngPath + "1-Exit Bookkeeping.png");
 		 copyFile(c,d);
-		 File e = new File("bin/1-Screening & Client Information Page 001.png");
+		 File e = new File("resources/1-Screening & Client Information Page 001.png");
 		 File f = new File(pngPath + "1-Screening & Client Information Page 001.png");
 		 copyFile(e,f);
-		 File g = new File("bin/1-Screening & Client Information Page 002.png");
+		 File g = new File("resources/1-Screening & Client Information Page 002.png");
 		 File h = new File(pngPath + "1-Screening & Client Information Page 002.png");
 		 copyFile(g,h);
-		 File i= new File("bin/1-UA.png");
+		 File i= new File("resources/1-UA.png");
 		 File j = new File(pngPath + "1-UA.png");
 		 copyFile(i,j);
-		 File k = new File("bin/10-Fire Response Plan.png");
+		 File k = new File("resources/10-Fire Response Plan.png");
 		 File l= new File(pngPath + "10-Fire Response Plan.png");
 		 copyFile(k,l);
-		 File m = new File("bin/2- 1on1 notes 2.png");
+		 File m = new File("resources/2- 1on1 notes 2.png");
 		 File n = new File(pngPath + "2- 1on1 notes 2.png");
 		 copyFile(m,n);
-		 File o = new File("bin/2-CFR Statement.png");
+		 File o = new File("resources/2-CFR Statement.png");
 		 File p = new File(pngPath + "2-CFR Statement.png");
 		 copyFile(o,p);
-		 File q = new File("bin/2-H.Q Page 002.png");
+		 File q = new File("resources/2-H.Q Page 002.png");
 		 File r = new File(pngPath + "2-H.Q Page 002.png");
 		 copyFile(q,r);
-		 File s = new File("bin/2-H.Q Page 003.png");
+		 File s = new File("resources/2-H.Q Page 003.png");
 		 File t = new File(pngPath + "2-H.Q Page 003.png");
 		 copyFile(s,t);
-		 File u = new File("bin/2-H.Q Page 004.png");
+		 File u = new File("resources/2-H.Q Page 004.png");
 		 File v = new File(pngPath + "2-H.Q Page 004.png");
 		 copyFile(u,v);
-		 File w = new File("bin/2-H.Q Page 005.png");
+		 File w = new File("resources/2-H.Q Page 005.png");
 		 File x = new File(pngPath + "2-H.Q Page 005.png");
 		 copyFile(w,x);
-		 File y = new File("bin/2-RULES AND RIGHTS VIOLATION.png");
+		 File y = new File("resources/2-RULES AND RIGHTS VIOLATION.png");
 		 File z = new File(pngPath + "2-RULES AND RIGHTS VIOLATION.png");
 		 copyFile(y,z);
-		 File a1= new File("bin/3-Discharge Criteria.png");
+		 File a1= new File("resources/3-Discharge Criteria.png");
 		 File b1 = new File(pngPath + "3-Discharge Criteria.png");
 		 copyFile(a1, b1);
-		 File c1 = new File("bin/3-Follow-up and Consent.png");
+		 File c1 = new File("resources/3-Follow-up and Consent.png");
 		 File d1 = new File(pngPath + "3-Follow-up and Consent.png");
 		 copyFile(c1,d1);
-		 File e1 = new File("bin/3-TX Plan.png");
+		 File e1 = new File("resources/3-TX Plan.png");
 		 File f1 = new File(pngPath + "3-TX Plan.png");
 		 copyFile(e1,f1);
-		 File g1= new File("bin/4-AUTHORIZATION FOR RELEASE OF PSYCHIATRIC.png");
+		 File g1= new File("resources/4-AUTHORIZATION FOR RELEASE OF PSYCHIATRIC.png");
 		 File h1 = new File(pngPath + "4-AUTHORIZATION FOR RELEASE OF PSYCHIATRIC.png");
 		 copyFile(g1,h1);
-		 File i1 = new File("bin/4-CLIENT ADMISSION AGREEMENT revised Page 001.png");
+		 File i1 = new File("resources/4-CLIENT ADMISSION AGREEMENT revised Page 001.png");
 		 File j1 = new File(pngPath + "4-CLIENT ADMISSION AGREEMENT revised Page 001.png");
 		 copyFile(i1,j1); 
-		 File k1 = new File("bin/4-CLIENT ADMISSION AGREEMENT revised Page 004.png");
+		 File k1 = new File("resources/4-CLIENT ADMISSION AGREEMENT revised Page 004.png");
 		 File l1 = new File(pngPath + "4-CLIENT ADMISSION AGREEMENT revised Page 004.png");
 		 copyFile(k1,l1); 
-		 File m1 = new File("bin/4-Discharge Summary Page 001.png");
+		 File m1 = new File("resources/4-Discharge Summary Page 001.png");
 		 File n1 = new File(pngPath + "4-Discharge Summary Page 001.png");
 		 copyFile(m1,n1);
-		 File o1 = new File("bin/4-Discharge Summary Page 002.png");
+		 File o1 = new File("resources/4-Discharge Summary Page 002.png");
 		 File p1 = new File(pngPath + "4-Discharge Summary Page 002.png");
 		 copyFile(o1, p1);
-		 File q1 = new File("bin/4-DSM IV.png");
+		 File q1 = new File("resources/4-DSM IV.png");
 		 File r1 = new File(pngPath + "4-DSM IV.png");
 		 copyFile(q1,r1);
-		 File s1 = new File("bin/5-Client Self Evaluation and Exit Plan.png");
+		 File s1 = new File("resources/5-Client Self Evaluation and Exit Plan.png");
 		 File t1 = new File(pngPath + "5-Client Self Evaluation and Exit Plan.png");
 		 copyFile(s1, t1);
-		 File u1 = new File("bin/5-Consent Doc1.png");
+		 File u1 = new File("resources/5-Consent Doc1.png");
 		 File v1 = new File(pngPath + "5-Consent Doc1.png");
 		 copyFile(u1,v1);
-		 File w1 = new File("bin/6-Phase Eval.png");
+		 File w1 = new File("resources/6-Phase Eval.png");
 		 File x1 = new File(pngPath + "6-Phase Eval.png");
 		 copyFile(w1,x1);
-		 File y1 = new File("bin/6-Safekeeping Agreement.png");
+		 File y1 = new File("resources/6-Safekeeping Agreement.png");
 		 File z1 = new File(pngPath + "6-Safekeeping Agreement.png");
 		 copyFile(y1,z1);
-		 File a2 = new File("bin/7-Criminal Justice Release.png");
+		 File a2 = new File("resources/7-Criminal Justice Release.png");
 		 File b2 = new File(pngPath + "7-Criminal Justice Release.png");
 		 copyFile(a2, b2);
-		 File c2 = new File("bin/7-LINEN AGREEMENT.png");
+		 File c2 = new File("resources/7-LINEN AGREEMENT.png");
 		 File d2 = new File(pngPath + "7-LINEN AGREEMENT.png");
 		 copyFile(c2, d2);
-		 File e2 = new File("bin/7-Phase II Info.png");
+		 File e2 = new File("resources/7-Phase II Info.png");
 		 File f2 = new File(pngPath + "7-Phase II Info.png");
 		 copyFile(e2,f2);
-		 File g2 = new File("bin/7-The Program and Resident Rules Page 001.png");
+		 File g2 = new File("resources/7-The Program and Resident Rules Page 001.png");
 		 File h2 = new File(pngPath + "7-The Program and Resident Rules Page 001.png");
 		 copyFile(g2,h2);
-		 File i2 = new File("bin/7-The Program and Resident Rules Page 002.png");
+		 File i2 = new File("resources/7-The Program and Resident Rules Page 002.png");
 		 File j2 = new File(pngPath + "7-The Program and Resident Rules Page 002.png");
 		 copyFile(i2,j2);
-		 File k2 = new File("bin/8-Group Rules.png");
+		 File k2 = new File("resources/8-Group Rules.png");
 		 File l2 = new File(pngPath + "8-Group Rules.png");
 		 copyFile(k2,l2);
-		 File m2 = new File("bin/9-Hygiene Standards.png");
+		 File m2 = new File("resources/9-Hygiene Standards.png");
 		 File n2 = new File(pngPath + "9-Hygiene Standards.png");
 		 copyFile(m2,n2);
 
@@ -1273,6 +1279,6 @@ public class Print {
 		
 		
 		}
-		
+
 }
 
