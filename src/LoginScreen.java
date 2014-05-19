@@ -13,13 +13,13 @@ public class LoginScreen extends JFrame implements ActionListener
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField uName;
-	private JTextField pWord;
 	private JButton btnLogin;
 	private JFrame WelcomeScreen;
 	private JButton btnExit;
 	
 	TempRetrieveInfo get = new TempRetrieveInfo();
 	private JLabel lblNewLabel_1;
+	private JPasswordField pWord;
 
 	public LoginScreen()
 	{
@@ -54,11 +54,6 @@ public class LoginScreen extends JFrame implements ActionListener
 		btnExit.addActionListener(this);
 		WelcomeScreen.getContentPane().add(btnExit);
 		
-		pWord = new JTextField();
-		pWord.setBounds(490, 180, 150, 28);
-		WelcomeScreen.getContentPane().add(pWord);
-		pWord.setColumns(10);
-		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUsername.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -82,6 +77,11 @@ public class LoginScreen extends JFrame implements ActionListener
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(410, 220, 250, 16);
 		WelcomeScreen.getContentPane().add(lblNewLabel_1);
+		
+		pWord = new JPasswordField();
+		pWord.setFont(new Font("Verdana", Font.PLAIN, 13));
+		pWord.setBounds(490, 180, 150, 28);
+		WelcomeScreen.getContentPane().add(pWord);
 		
 		WelcomeScreen.setVisible(true);
 	}
