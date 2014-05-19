@@ -522,7 +522,167 @@ public class SQLRetrieveInfo {
 		return results;
 	}
 
-	
+	//this is for getting the clients stuff for their paperwork at archive or at existing
+	public Object[] getPaperworkInfo(String tableName, String ID)
+	{
+		Object[] results = new Object[90];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+		int i = 0;
+		String query = "SELECT * FROM "+tableName+" WHERE C_ID = " + "\"" + ID + "\"";  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+
+			while(rs.next()){
+				results[i] = (rs.getString("C_LastName")); i++;
+				results[i] = (rs.getString("C_FirstName")); i++; 
+
+				results[i] = (rs.getString("C_MI")); i++;
+				results[i] = (rs.getString("C_Gender")); i++;
+				results[i] = (rs.getString("C_PrimPhone")); i++;
+				results[i] = (rs.getString("C_SecondPhone")); i++;
+				results[i] = (rs.getString("C_DOB")); i++;
+				results[i] = (rs.getString("C_SSN")); i++;
+				results[i] = (rs.getString("C_Address")); i++;
+				results[i] = (rs.getString("C_City")); i++;
+				results[i] = (rs.getString("C_State")); i++;
+				results[i] = (rs.getString("C_ZIP")); i++;
+				results[i] = (rs.getString("C_County")); i++;
+				results[i] = (rs.getString("C_CONumYears")); i++;
+				results[i] = (rs.getInt("C_Vet")); i++;
+				results[i] = (rs.getString("C_DLNum")); i++;
+				results[i] = (rs.getString("C_DLState")); i++;
+				results[i] = (rs.getString("C_MaritalStatus")); i++;
+				results[i] = (rs.getString("C_SpouseName")); i++;
+				results[i] = (rs.getString("C_IntakeDate")); i++; //19
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		} 
+
+		try { 
+			query = "SELECT * FROM EMC_Info WHERE C_ID = " + "\"" + ID + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				results[i] = (rs.getString("EMC_Name")); i++;
+				results[i] = (rs.getString("EMC_Relation")); i++;
+				results[i] = (rs.getString("EMC_PrimPhone")); i++;
+				results[i] = (rs.getString("EMC_SecondPhone")); i++;
+				results[i] = (rs.getString("EMC_Address")); i++;
+				results[i] = (rs.getString("EMC_City")); i++;
+				results[i] = (rs.getString("EMC_State")); i++;
+				results[i] = (rs.getString("EMC_ZIP")); i++; //27
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} 
+
+		try{
+			query = "SELECT * FROM ARC_Info WHERE C_ID = " + "\"" + ID + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				results[i] = (rs.getString("ARC_Name")); i++;
+				results[i] = (rs.getString("ARC_ContactName")); i++;
+				results[i] = (rs.getString("ARC_County")); i++;
+				results[i] = (rs.getString("ARC_Phone")); i++;
+				results[i] = (rs.getString("ARC_Cell")); i++;
+				results[i] = (rs.getString("ARC_Address")); i++;
+				results[i] = (rs.getString("ARC_City")); i++;
+				results[i] = (rs.getString("ARC_State")); i++;
+				results[i] = (rs.getString("ARC_ZIP")); i++; //36
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} 
+
+		try{
+			query = "SELECT * FROM LEG_Info WHERE C_ID = " + "\"" + ID + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				results[i] = (rs.getInt("LEG_JPLast30")); i++;
+				results[i] = (rs.getString("LEG_JPWhy")); i++;
+				results[i] = (rs.getString("LEG_OName")); i++;
+				results[i] = (rs.getString("LEG_Address")); i++;
+				results[i] = (rs.getString("LEG_Phone")); i++;
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} 
+
+		try{
+			query = "SELECT * FROM HEALTH_Info WHERE C_ID = " + "\"" + ID + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				results[i] = (rs.getInt("PHYS_Hospital")); i++;
+				results[i] = (rs.getString("PHYS_HospWhy")); i++;
+				results[i] = (rs.getInt("MENT_Hospital")); i++;
+				results[i] = (rs.getString("MENT_HospWhy")); i++;
+				results[i] = (rs.getInt("IV_Use")); i++;
+				results[i] = (rs.getInt("PRIOR_TPlan")); i++;
+				results[i] = (rs.getString("How_Many")); i++;
+				results[i] = (rs.getString("WhereANDWhen")); i++;
+			} }catch (SQLException e) {
+				e.printStackTrace();
+			} 
+
+		try{
+			query = "SELECT * FROM SUB_Info WHERE C_ID = " + "\"" + ID + "\"";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				results[i] = (rs.getString("SUB1_Name")); i++;
+				results[i] = (rs.getString("SUB1_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB1_AmountUsed")); i++;
+				results[i] = (rs.getString("SUB1_Frequency")); i++;
+				results[i] = (rs.getString("SUB1_Method")); i++;
+				results[i] = (rs.getString("SUB2_Name")); i++;
+				results[i] = (rs.getString("SUB2_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB2_AmountUsed")); i++;
+				results[i] = (rs.getString("SUB2_Frequency")); i++;
+				results[i] = (rs.getString("SUB2_Method")); i++;
+				results[i] = (rs.getString("SUB3_Name")); i++;
+				results[i] = (rs.getString("SUB3_DateLastUsed")); i++;
+				results[i] = (rs.getString("SUB3_AmountUsed")); i++;
+				results[i] = (rs.getString("SUB3_Frequency")); i++;
+				results[i] = (rs.getString("SUB3_Method")); i++;
+
+			}
+			try{
+				query = "SELECT * FROM ASAM WHERE C_ID = " + "\"" + ID + "\"";
+				rs = statement.executeQuery(query);
+				while(rs.next()){
+					results[i] = (rs.getString("Med1_Diag")); i++;
+					results[i] = (rs.getString("Med1_Name")); i++;
+					results[i] = (rs.getString("Med1_Dosage")); i++;
+					results[i] = (rs.getString("Med2_Diag")); i++;
+					results[i] = (rs.getString("Med2_Name")); i++;
+					results[i] = (rs.getString("Med2_Dosage")); i++;
+					results[i] = (rs.getString("Med3_Diag")); i++;
+					results[i] = (rs.getString("Med3_Name")); i++;
+					results[i] = (rs.getString("Med3_Dosage")); i++;
+				} }catch (SQLException e) {
+					e.printStackTrace();
+				} 
+
+
+
+
+			System.out.println("Number of fields for printing is " + i);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println(results[0] + " " + results[1]);
+		return results;
+	}
 	
 	
 

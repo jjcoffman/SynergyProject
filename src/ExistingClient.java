@@ -224,6 +224,13 @@ public class ExistingClient
 		JButton btnViewprintForms = new JButton("View/Print Forms");
 		btnViewprintForms.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnViewprintForms.setBounds(20, 520, 160, 29);
+		btnViewprintForms.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				new Print("Client_Record", String.valueOf(id));
+				}
+		});
 		panel.add(btnViewprintForms);
 		
 		JButton btnDischarge = new JButton("Discharge");

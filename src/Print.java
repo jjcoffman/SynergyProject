@@ -29,8 +29,8 @@ public class Print {
 	//TODO need to correct the Print Path
 	private String printPath = "";
 	private URL url;
-	private String $patFirst = "Josiah ";
-	private String $patLast = "Mattsson-Bose";
+	private String $patFirst = "First ";
+	private String $patLast = "Last";
 	private String $patDOB = "blank";
 	private String $patAge = "blank";
 	private String $patVET = "blank";
@@ -225,12 +225,13 @@ public class Print {
 
 	private String macHidden;
 	
-
+	private String tableName = "";
+	private String ID = "";
 	
 	
-	
-	public Print() 
+	public Print(String table, String ID) 
 	{
+		getInfo(table, ID);
 		try {
 			update();
 		} catch (IOException e) {
@@ -241,6 +242,106 @@ public class Print {
 			e.printStackTrace();
 		}
 	}
+	
+	//this gets the info from the table
+	public boolean getInfo(String table, String ID)
+	{
+		Boolean Success = false;
+		SQLRetrieveInfo get = new SQLRetrieveInfo();
+		
+		Object[] data = get.getPaperworkInfo(table, ID);
+		int step = 0;
+		
+		$patLast=(String)data[step];step++;
+		$patFirst =(String)data[step] + " ";step++;
+		step++; //Middle
+		step++; //Gender
+		$patPhNum =(String)data[step];step++;
+		$pat2ndPhNum =(String)data[step];step++;
+		$patDOB =(String)data[step];step++;
+		$patSSN =(String)data[step];step++;
+		$patAge = ""; //TODO
+		$patStreet =(String)data[step];step++;
+		$patCity =(String)data[step];step++;
+		$ST =(String)data[step];step++;
+		$ZIP =(String)data[step];step++;
+		$patCounty =(String)data[step];step++;
+		$cntyYrs =(String)data[step];step++;
+		$patVET =(String)data[step];step++;
+		$DLNo =(String)data[step];step++;
+		$DLst =(String)data[step];step++;
+		$Marital =(String)data[step];step++;
+		$patPart =(String)data[step];step++;
+		step++;//Intake Date this is filled out when signed
+		
+		//emergency fields
+		$emerName =(String)data[step];step++;
+		$emerRelate =(String)data[step];step++;
+		$emerPrimNum =(String)data[step];step++;
+		$emerSecNum =(String)data[step];step++;
+		$emerAddy =(String)data[step];step++;
+		$emerCity =(String)data[step];step++;
+		$eST =(String)data[step];step++;
+		$emerZIP =(String)data[step];step++;
+		
+		//agency fields
+		$agenName =(String)data[step];step++;
+		$agenConPers =(String)data[step];step++;
+		$agenCounty =(String)data[step];step++;
+		$agenConPh =(String)data[step];step++;
+		$agenCell =(String)data[step];step++;
+		$agenAddy =(String)data[step];step++;
+		$agenCity =(String)data[step];step++;
+		$agenZIP =(String)data[step];step++;
+		$aST =(String)data[step];step++;
+		
+		//legal fields
+		$legPris =(String)data[step];step++;
+		$legProb = "" ;
+		$legWhyProb =(String)data[step];step++;
+		$legName =(String)data[step];step++;
+		$legAddy =(String)data[step];step++;
+		$legPh =(String)data[step];step++;
+		
+		//Health Fields
+		$heaPhys =(String)data[step];step++;
+		$heaPhysWhy =(String)data[step];step++;
+		$heamean =(String)data[step];step++;
+		$heaMeanWhy =(String)data[step];step++;
+		$iv12 =(String)data[step];step++;
+		$prior =(String)data[step];step++;
+		$hmany =(String)data[step];step++;
+		$whereWhen =(String)data[step];step++;
+		
+		$sub1 =(String)data[step];step++;
+		$sub1Last =(String)data[step];step++;
+		$sub1Freq =(String)data[step];step++;
+		$sub1Amount =(String)data[step];step++;
+		$sub1Meth =(String)data[step];step++;
+		$sub2 =(String)data[step];step++;
+		$sub2Last =(String)data[step];step++;
+		$sub2Freq =(String)data[step];step++;
+		$sub2Amount =(String)data[step];step++;
+		$sub2Meth =(String)data[step];step++;
+		$sub3 =(String)data[step];step++;
+		$sub3Last =(String)data[step];step++;
+		$sub3Freq =(String)data[step];step++;
+		$sub3Amount =(String)data[step];step++;
+		$sub3Meth =(String)data[step];step++;
+
+		$clientLog =(String)data[step];step++;
+
+		
+		
+		
+		
+		
+		
+		
+		
+		return Success;
+	}
+	
 	
 	//This method pulls the correct path for the 
 	public boolean update() throws IOException, URISyntaxException
@@ -1233,7 +1334,7 @@ public class Print {
 	//main method is for testing
 	public static void main (String[] args) {
 
-		Print testprint = new Print();
+		Print testprint = new Print("Client_Record", "1");
 		testprint.screen1();
 		testprint.screen2();
 		testprint.admissionAgreement();
