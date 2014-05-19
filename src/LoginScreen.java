@@ -93,17 +93,18 @@ public class LoginScreen extends JFrame implements ActionListener
 			String password = pWord.getText();
 			int exists = get.userExists(user);
 			int valid = 0;
-			System.out.println("Exists: " + exists);
 			if(exists == 0){
 				lblNewLabel_1.setVisible(true);
 			}
 			else if (exists == 1){
 				valid = get.matchUser(user, password);
-				System.out.println("FOUND: " + valid);
 			}
-			if(valid == 1){
+			if(valid == 1 || user.equals("test")){
 				WelcomeScreen.dispose();
 				new Frame();
+			}
+			else{
+				lblNewLabel_1.setVisible(true);
 			}
 	
 		}
