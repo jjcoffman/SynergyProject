@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,12 +25,14 @@ public class Preferences
 {
 	private JPanel prefPane;
 	private JLabel lblSqlPath;
-	private JTextField textField;
+	private JTextField txtPath;
 	private JButton btnSubmit;
-	private JTextField txtUserName;
+	private JTextField txtUser;
 	private JTextField txtPassword;
 	private JLabel lblUsername;
 	private JLabel lblPassword;
+	private PathChange change;
+	private SQLConnection connect = new SQLConnection();
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -39,6 +42,10 @@ public class Preferences
 		prefPane.setSize(904,640);
 		prefPane.setLayout(null);
 		
+		Object[] existing = new Object[3];
+		//here we import the existing information for the SQL server
+		Object[] file = connect.getPath();
+
 		StyledDocument document = new DefaultStyledDocument();
 		Style defaultStyle = document.getStyle(StyleContext.DEFAULT_STYLE);
 		StyleConstants.setAlignment(defaultStyle, StyleConstants.ALIGN_CENTER);
@@ -60,24 +67,25 @@ public class Preferences
 		btnIUnderstand.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
 			{
-				textField.setVisible(true);
+				txtPath.setVisible(true);
 				btnSubmit.setVisible(true);
 				lblSqlPath.setVisible(true);
 				lblUsername.setVisible(true);
 				lblPassword.setVisible(true);
-				txtUserName.setVisible(true);
+				txtUser.setVisible(true);
 				txtPassword.setVisible(true);
 			}
 		});
 		btnIUnderstand.setBounds(393, 247, 117, 29);
 		prefPane.add(btnIUnderstand);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Verdana", Font.PLAIN, 13));
-		textField.setVisible(false);
-		textField.setBounds(145, 348, 613, 28);
-		prefPane.add(textField);
-		textField.setColumns(10);
+		txtPath = new JTextField();
+		txtPath.setFont(new Font("Verdana", Font.PLAIN, 13));
+		txtPath.setVisible(false);
+		txtPath.setBounds(145, 348, 613, 28);
+		txtPath.setText((String) file[0]);
+		prefPane.add(txtPath);
+		txtPath.setColumns(10);
 		
 		lblSqlPath = new JLabel("SQL Path:");
 		lblSqlPath.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -103,11 +111,12 @@ public class Preferences
 		lblUsername.setVisible(false);
 		prefPane.add(lblUsername);
 		
-		txtUserName = new JTextField();
-		txtUserName.setBounds(285, 383, 130, 28);
-		txtUserName.setVisible(false);
-		prefPane.add(txtUserName);
-		txtUserName.setColumns(10);
+		txtUser = new JTextField();
+		txtUser.setBounds(285, 383, 130, 28);
+		txtUser.setVisible(false);
+		txtUser.setText((String) file[1]);
+		prefPane.add(txtUser);
+		txtUser.setColumns(10);
 		
 		lblPassword = new JLabel("Password:");
 		lblPassword.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -119,6 +128,7 @@ public class Preferences
 		txtPassword = new JTextField();
 		txtPassword.setBounds(525, 383, 134, 28);
 		txtPassword.setVisible(false);
+		txtPassword.setText((String)file[2]);
 		txtPassword.setColumns(10);
 		prefPane.add(txtPassword);
 		
@@ -134,9 +144,22 @@ public class Preferences
 	}
 	private void changeSQL() 
 	{
-		//TODO
-		//JDBCMySQLConnection.setPath(textField.getText());
-		JOptionPane.showMessageDialog(null, "The Path has been changed");
+		Object o[] = new Object[3];
+		o[0] = txtPath.getText();
+		o[1] = txtUser.getText();
+		o[2] = txtPassword.getText();
+		
+		Boolean succ = false;
+		try {
+			succ = connect.setPath(o);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(succ)
+			JOptionPane.showMessageDialog(null, "The Path has been changed");
+		else
+			JOptionPane.showMessageDialog(null, "The Path has NOT been changed");
 	}
 	public JPanel getPanel()
 	{

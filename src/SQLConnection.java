@@ -1,4 +1,5 @@
 //Step 1: Use interfaces from java.sql package 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,18 +8,23 @@ public class SQLConnection {
   //static reference to itself
   private static SQLConnection instance = new SQLConnection();
   private static String URL = "jdbc:mysql://127.0.0.1/newDB";
-  private static final String USER = "root";
-  private static final String PASSWORD = "T01RMA72";
+  private static String USER = "root";
+  private static String PASSWORD = "T01RMA72";
   private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
+  private static PathChange pathe;
    
   //private constructor
-  private SQLConnection() {
+  SQLConnection() 
+  {
       try {
           //Step 2: Load MySQL Java driver
           Class.forName(DRIVER_CLASS);
-      } catch (ClassNotFoundException e) {
+      } catch (ClassNotFoundException e) 
+      {
           e.printStackTrace();
       }
+      pathe = new PathChange(URL, USER, PASSWORD);
+
   }
    
   private Connection createConnection() {
@@ -37,9 +43,37 @@ public class SQLConnection {
       return instance.createConnection();
   }
   
-  //this method changes the the url path
-  public static void setPath(String s)
+  //this method changes the the url path and passwords etc
+  public Boolean setPath(Object[] o) throws IOException
   {
-	  URL = s;
+	  URL = (String) o[0];
+	  USER = (String) o[1];
+	  PASSWORD  = (String) o[2];
+	  
+	 Boolean succ = pathe.exportSQL(URL, USER, PASSWORD);
+	return succ;
+	  
+  }
+  
+  //the returns the current path and passwords etc
+  public Object[] getPath()
+  {
+	  Object[] ret = new Object[3];
+	  ret[0] = URL;
+	  ret[1] = USER;
+	  ret[2] = PASSWORD;
+	  return ret;
+  }
+  public String getPathOnly()
+  {
+	  return URL;
+  }
+  public String getUser()
+  {
+	  return USER;
+  }
+  public String getPass()
+  {
+	  return PASSWORD;
   }
 }
