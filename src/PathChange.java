@@ -8,14 +8,14 @@ import java.nio.file.Path;
 public class PathChange 
 {
 		private String macPath= System.getProperty ("user.home") + "/Documents/SQLPath.txt";
-		private String winPath = "SQLPath.txt";
-		private String path = "";
-		private String user = "";
-		private String pass = "";
+		private String winPath = System.getProperty ("user.home") + "\\Links\\SQLPath.txt";
+		private static String path = "";
+		private static String user = "";
+		private static  String pass = "";
 		private SQLConnection conn;
-		private static String URL = "jdbc:mysql://127.0.0.1/newDB"; //defaults values for starting the program
-		  private static String USER = "root";
-		  private static String PASSWORD = "T01RMA72";
+		//private static String URL = "jdbc:mysql://127.0.0.1/newDB"; //defaults values for starting the program
+		  //private static String USER = "root";
+		  //private static String PASSWORD = "T01RMA72";
 		private boolean success = false;
 		
 		public PathChange() 
@@ -36,7 +36,9 @@ public class PathChange
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			path = (String) obj[0];
+			user = (String) obj[1];
+			pass = (String) obj[2];
 		}
 		
 		public boolean exportSQL(String path1, String username, String password) throws IOException
@@ -106,7 +108,7 @@ public class PathChange
 					if (!file.exists()) {
 						file.createNewFile();
 						conn = new SQLConnection();
-						exportSQL(URL, USER, PASSWORD);
+						exportSQL(conn.getPathOnly(), conn.getUser(), conn.getPass());
 					}
 					
 					
@@ -144,11 +146,36 @@ public class PathChange
 		
 		public boolean changePath(String path1, String user1, String pass1)
 		{
-			String old = path;
+			String oldP = path1;
+			String oldU = user1;
+			String oldPass = pass1;
 			new PathChange(path1, user1, pass1);
-			if(old.equals(path))
-				return false;
-			return true;
+			boolean change = false;
+			if(!oldP.equals(path))
+			{
+				change = true;
+			}
+			else if(!oldU.equals(user))
+			{
+				change =  true;
+			}
+			else if(!oldPass.equals(pass))
+			{
+				change = true;
+			}
+			return change;
 			
+		}
+		public String getPath()
+		{
+			return path;
+		}
+		public String getUser()
+		{
+			return user;
+		}
+		public String getPass()
+		{
+			return pass;
 		}
 }

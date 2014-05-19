@@ -6,16 +6,18 @@ import java.sql.SQLException;
 
 public class SQLConnection {
   //static reference to itself
-  private static SQLConnection instance = new SQLConnection();
+ 
   private static String URL = "jdbc:mysql://127.0.0.1/newDB";
   private static String USER = "root";
   private static String PASSWORD = "T01RMA72";
   private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
-  private static PathChange pathe;
+  private static PathChange pathe = new PathChange();
+  private static SQLConnection instance = new SQLConnection();
    
   //private constructor
   SQLConnection() 
   {
+	 
       try {
           //Step 2: Load MySQL Java driver
           Class.forName(DRIVER_CLASS);
@@ -23,7 +25,11 @@ public class SQLConnection {
       {
           e.printStackTrace();
       }
-      pathe = new PathChange(URL, USER, PASSWORD);
+      System.out.println();
+      pathe.changePath(URL, USER, PASSWORD);
+      URL = pathe.getPath();
+      USER = pathe.getUser();
+      PASSWORD = pathe.getPass();
 
   }
    
