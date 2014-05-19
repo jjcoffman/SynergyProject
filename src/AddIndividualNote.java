@@ -25,6 +25,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private JTextArea textArea;
 	private MyTableModel passedtable;
 	private int CID;
+	private int currentUser;
 	JRadioButton rdbtnStartAM;
 	JRadioButton rdbtnStartPM;
 	JRadioButton rdbtnEndAM;
@@ -33,9 +34,11 @@ public class AddIndividualNote extends JFrame implements ActionListener
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
 	SQLSetInfo test = new SQLSetInfo();
+	TempRetrieveInfo get = new TempRetrieveInfo();
 	
-	public AddIndividualNote(int id, MyTableModel table)
+	public AddIndividualNote(int id, MyTableModel table, int user)
 	{
+		currentUser = user;
 		passedtable = table;
 		CID = id;
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
@@ -211,7 +214,7 @@ public class AddIndividualNote extends JFrame implements ActionListener
 			data[2] = textField.getText();
 			data[3] = txtT.getText();
 			data[4] = textField_2.getText();
-			data[5] = "Default";
+			data[5] = get.getCounselor(currentUser);
 			data[6] = txtHhmm.getText();
 			data[8] = textField_6.getText();
 			data[10] = textArea.getText();

@@ -13,14 +13,18 @@ public class NewClient
 	private JPanel newClient;
 	private JTable table;
 	private MyTableModel pending;
+	private int userid;
+	private int access;
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
 	
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel() 
+	public void buildPanel(int id2, int admin2) 
 	{
+		userid = id2;
+		access = admin2;
 		newClient = new JPanel();
 		newClient.setFont(new Font("Verdana", Font.PLAIN, 13));
 		newClient.setSize(904,640);

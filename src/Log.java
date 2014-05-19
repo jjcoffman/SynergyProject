@@ -46,13 +46,16 @@ public class Log
 	private JLabel lblDrugCourt;
 	private JLabel lblAB109;
 	private JLabel lblCPS;
+	private int userid;
+	private int access;
 	//THIS IS USED FOR WINDOW BUILDER TO KNOW WHERE TO LOOK TO SHOW THE PANEL
 	/**							
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel()  //NOT A CONSTRUCTOR!
+	public void buildPanel(int id2, int admin2)  //NOT A CONSTRUCTOR!
 	{
-
+		userid = id2;
+		access = admin2;
 		Log = new JPanel();
 		Log.setSize(904,640);
 		Log.setLayout(null);

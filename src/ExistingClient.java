@@ -25,6 +25,8 @@ public class ExistingClient
 	private MyTableModel individual;
 	private MyTableModel group;
 	private int id;
+	private int userid;
+	private int access;
 	private String selectedDate = "";
 	private JLabel lblCID;
 	private JLabel lblCName;
@@ -40,8 +42,10 @@ public class ExistingClient
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel()
+	public void buildPanel(int id2, int admin2)
 	{
+		userid = id2;
+		access = admin2;
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(904, 640);
@@ -178,7 +182,7 @@ public class ExistingClient
 		JButton btnAddInd = new JButton("Add");
 		btnAddInd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) 
-			{new AddIndividualNote(id, individual);}
+			{new AddIndividualNote(id, individual, userid);}
 		});
 		btnAddInd.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnAddInd.setBounds(540, 520, 94, 29);

@@ -30,6 +30,8 @@ public class Admin
 	private JLabel lblECPhone;
 	private int id;
 	private int userid;
+	private int userid2;
+	private int access;
 	private String selectedDate = "";
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
@@ -41,8 +43,10 @@ public class Admin
 	/**							
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel()  //NOT A CONSTRUCTOR!
+	public void buildPanel(int id2, int admin2)  //NOT A CONSTRUCTOR!
 	{
+		userid2 = id2;
+		access = admin2;
 		Admin = new JPanel();
 		Admin.setSize(904,640);
 		Admin.setLayout(null);

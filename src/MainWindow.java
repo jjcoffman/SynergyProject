@@ -33,10 +33,10 @@ public class MainWindow
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel(int id, int admin2) //this class is an unnamed constructor and is perfect for manipulation of GUI objects
+	public void buildPanel(int id2, int admin2) //this class is an unnamed constructor and is perfect for manipulation of GUI objects
 	{
 		//here are the objects we use to navigate this window
-		userid = id;
+		userid = id2;
 		access = admin2;
 		panel = new JPanel();
 		panel.setRequestFocusEnabled(false);
@@ -63,19 +63,19 @@ public class MainWindow
 		card.setSize(904, 650);
 		card.setLocation(120, 80);
 		
-		nc.buildPanel();
+		nc.buildPanel(userid, access);
 		JPanel n = (JPanel) nc.getPanel();
 		card.add(n, "1");
 		
-		ec.buildPanel();
+		ec.buildPanel(userid, access);
 		JPanel e = (JPanel) ec.getPanel();
 		card.add(e, "2");
 			
-		log.buildPanel();	//This builds the object
+		log.buildPanel(userid, access);	//This builds the object
 		JPanel l = (JPanel) log.getPanel(); //this creates a local version
 		card.add(l, "3"); //this adds it to the current panel
 		
-		admin.buildPanel();
+		admin.buildPanel(userid, access);
 		JPanel ad = (JPanel) admin.getPanel();
 		card.add(ad, "4");
 		
