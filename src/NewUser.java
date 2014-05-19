@@ -11,9 +11,9 @@ public class NewUser extends JFrame implements ActionListener
 {
 	
 	private static final long serialVersionUID = 1L;
-	private JButton btnLogin;
 	private JFrame Edit;
 	private JButton btnExit;
+	private JButton btnSubmit;
 	private SigPane pane;
 	private JTextField txtUserID;
 	private JTextField txtUserName;
@@ -22,12 +22,17 @@ public class NewUser extends JFrame implements ActionListener
 	private String userID;
 	private String userPassword;
 	private BufferedImage image;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFName;
+	private JTextField textLName;
+	private MyTableModel table;
+	private JCheckBox chckbxUserHasAdminstrative;
 	
+	TempSetInfo set = new TempSetInfo();
+	TempRetrieveInfo test3 = new TempRetrieveInfo();
 
-	public NewUser()
+	public NewUser(MyTableModel passedTable)
 	{
+		table = passedTable;
 		Edit = new JFrame("Edit User");
 		Edit.setTitle("Create New User");
 		Edit.setSize(700, 400);
@@ -85,14 +90,15 @@ public class NewUser extends JFrame implements ActionListener
         });
 		Edit.getContentPane().add(btnClear);
 		
-		JCheckBox chckbxUserHasAdminstrative = new JCheckBox("User has Adminstrative Access");
+		chckbxUserHasAdminstrative = new JCheckBox("User has Adminstrative Access");
 		chckbxUserHasAdminstrative.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxUserHasAdminstrative.setBounds(350, 80, 242, 23);
 		Edit.getContentPane().add(chckbxUserHasAdminstrative);
 		
-		JButton btnSubmit = new JButton("Submit");
+		btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Verdana", Font.PLAIN, 13));
 		btnSubmit.setBounds(570, 330, 120, 29);
+		btnSubmit.addActionListener(this);
 		Edit.getContentPane().add(btnSubmit);
 		
 		JLabel lblSignaturePanel = new JLabel("Signature Panel");
@@ -112,29 +118,68 @@ public class NewUser extends JFrame implements ActionListener
 		lblLastName.setBounds(290, 50, 130, 28);
 		Edit.getContentPane().add(lblLastName);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(420, 20, 140, 28);
-		Edit.getContentPane().add(textField);
+		textFName = new JTextField();
+		textFName.setColumns(10);
+		textFName.setBounds(420, 20, 140, 28);
+		Edit.getContentPane().add(textFName);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(420, 50, 140, 28);
-		Edit.getContentPane().add(textField_1);
+		textLName = new JTextField();
+		textLName.setColumns(10);
+		textLName.setBounds(420, 50, 140, 28);
+		Edit.getContentPane().add(textLName);
 		Edit.pack();
 		Edit.setVisible(true);
+		
+
+		
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
-		if(e.getSource()==btnLogin)
+		if(e.getSource()==btnSubmit)
 		{
+			Object[] data = new Object[6];
+			data[0] = Integer.parseInt(txtUserID.getText());
+			data[1] = txtUserName.getText();
+			data[2] = txtPassword.getText();
+			data[3] = textFName.getText();
+			data[4] = textLName.getText();
+			if (chckbxUserHasAdminstrative.isSelected()){
+				data[5] = 1;
+			}
+			else {
+				data[5] = 0;
+			}
+			
+			set.newUser(data);
+			Object[][] data2 = getUsers();
+			table.update(data2);
 			Edit.dispose();
-			new Frame();
 	
 		}
 		else if(e.getSource()==btnExit)
 		{
 			System.exit(0);
+		}
+	}
+	
+	private Object[][] getUsers()
+	{
+		//Object[][] data = {{12342,"users1", "Clint Eastwood", "no"}};
+		//return data;
+		try {
+			int size = test3.getSize("USERS");
+		
+		Object[][] data = new Object[size][4];
+		for (int i = 1; i <= size; i++){
+			data[i-1] = test3.getUSERSRows(i - 1, 1);
+		}
+		System.out.println("rows in USERS: " + test3.getSize("USERS"));
+		return data;
+		}
+		catch(NullPointerException e) {
+			System.out.println("No database connected!");
+			Object[][] data = {{"No", "data", "base", "Connected"}};
+			return data;
 		}
 	}
 	
