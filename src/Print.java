@@ -251,7 +251,7 @@ public class Print {
 		
 		Object[] data = get.getPaperworkInfo(table, ID);
 		int step = 0;
-		
+		$clientLog =ID;
 		$patLast=(String)data[step];step++;
 		$patFirst =(String)data[step] + " ";step++;
 		step++; //Middle
@@ -313,23 +313,41 @@ public class Print {
 		$hmany =(String)data[step];step++;
 		$whereWhen =(String)data[step];step++;
 		
+		//substance fields
 		$sub1 =(String)data[step];step++;
 		$sub1Last =(String)data[step];step++;
-		$sub1Freq =(String)data[step];step++;
 		$sub1Amount =(String)data[step];step++;
+		$sub1Freq =(String)data[step];step++;
 		$sub1Meth =(String)data[step];step++;
 		$sub2 =(String)data[step];step++;
 		$sub2Last =(String)data[step];step++;
-		$sub2Freq =(String)data[step];step++;
 		$sub2Amount =(String)data[step];step++;
-		$sub2Meth =(String)data[step];step++;
+		$sub2Freq =(String)data[step];step++;
+		$sub2Meth =(String)data[step];step++;	
 		$sub3 =(String)data[step];step++;
 		$sub3Last =(String)data[step];step++;
-		$sub3Freq =(String)data[step];step++;
 		$sub3Amount =(String)data[step];step++;
+		$sub3Freq =(String)data[step];step++;
 		$sub3Meth =(String)data[step];step++;
+		
+		//ASAM Fields
+		$diag1 =(String)data[step];step++;
+		$diag2 =(String)data[step];step++;
+		$diag3 =(String)data[step];step++;
+		$med1 =(String)data[step];step++;
+		$med2 =(String)data[step];step++;
+		$med3 =(String)data[step];step++;
+		$dos1 =(String)data[step];step++;
+		$dos2 =(String)data[step];step++;
+		$dos3 =(String)data[step];step++;
 
-		$clientLog =(String)data[step];step++;
+		//END OF RETRIEVE FROM THOSE FIELDS
+		
+		
+		
+		
+
+		
 
 		
 		
