@@ -20,6 +20,7 @@ public class LoginScreen extends JFrame implements ActionListener
 	TempRetrieveInfo get = new TempRetrieveInfo();
 	private JLabel lblNewLabel_1;
 	private JPasswordField pWord;
+	private JLabel error;
 
 	public LoginScreen()
 	{
@@ -83,28 +84,51 @@ public class LoginScreen extends JFrame implements ActionListener
 		pWord.setBounds(490, 180, 150, 28);
 		WelcomeScreen.getContentPane().add(pWord);
 		
+		error = new JLabel("Error: No Database Connected!");
+		error.setVisible(false);
+		error.setForeground(Color.RED);
+		error.setFont(new Font("Verdana", Font.PLAIN, 13));
+		error.setHorizontalAlignment(SwingConstants.CENTER);
+		error.setBounds(410, 300, 250, 16);
+		WelcomeScreen.getContentPane().add(error);
+		
 		WelcomeScreen.setVisible(true);
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource()==btnLogin)
 		{
-			String user = uName.getText();
-			String password = pWord.getText();
-			int exists = get.userExists(user);
-			int valid = 0;
-			if(exists == 0){
-				lblNewLabel_1.setVisible(true);
+			try {
+				String user = uName.getText();
+				String password = pWord.getText();
+				int exists = get.userExists(user);
+				int valid = 0;
+				int admin = 0;
+				int userId = 0;
+				if (user.equals("test")){
+					WelcomeScreen.dispose();
+					new Frame();
+				}
+				if(exists == 0){
+					lblNewLabel_1.setVisible(true);
+				}
+				else if (exists == 1){
+					valid = get.matchUser(user, password);
+				}
+				if(valid == 1){
+					userId = get.getUserID(user);
+					admin = get.permissionLevel(userId);
+					System.out.println("Admin level: " + userId + " " + admin);
+					WelcomeScreen.dispose();
+					new Frame();
+				}
+				else{
+					lblNewLabel_1.setVisible(true);
+				}
 			}
-			else if (exists == 1){
-				valid = get.matchUser(user, password);
-			}
-			if(valid == 1 || user.equals("test")){
-				WelcomeScreen.dispose();
-				new Frame();
-			}
-			else{
-				lblNewLabel_1.setVisible(true);
+			catch(NullPointerException x){
+				System.out.println("no database connected");
+				error.setVisible(true);
 			}
 	
 		}
