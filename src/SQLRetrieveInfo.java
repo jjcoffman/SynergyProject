@@ -525,6 +525,7 @@ public class SQLRetrieveInfo {
 	//this is for getting the clients stuff for their paperwork at archive or at existing
 	public Object[] getPaperworkInfo(String tableName, String ID)
 	{
+		
 		Object[] results = new Object[90];
 		ResultSet rs = null;
 		Connection connection = null;
@@ -557,7 +558,7 @@ public class SQLRetrieveInfo {
 				results[i] = (rs.getString("C_DLState")); i++;
 				results[i] = (rs.getString("C_MaritalStatus")); i++;
 				results[i] = (rs.getString("C_SpouseName")); i++;
-				results[i] = (rs.getString("C_IntakeDate")); i++; //19
+				results[i] = (rs.getString("C_AdmitDate")); i++; //19
 			}
 		}
 		catch (SQLException e) {

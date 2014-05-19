@@ -115,6 +115,7 @@ public class Print {
 	
 	private String $patCounselor = "blank";
 	
+	//groupnotes
 	private String $mondayStart = "blank";
 	private String $mondayEnd = "blank";
 	private String $mondayTopic = "blank";
@@ -241,6 +242,50 @@ public class Print {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//these actually export the files
+		screen1();
+		screen2();
+		admissionAgreement();
+		admissionAgreement2();
+		financial();
+		rights();
+		rules1();
+		rules2();
+		groupRules();
+		hygiene();
+		fire();
+		//panel2
+		ua();
+		hq2();
+		hq3();
+		hq4();
+		hq5();
+		//panel3
+		bookkeeping();
+		cfr();
+		followUp();
+		auth();
+		consent1();
+		consent2();
+		crim();
+		//panel4
+		viol();
+		//panel5
+		indiv();
+		tx();
+		dsmiv();
+		pheval();
+		pheval2();
+		//panel6
+		exitBook();
+		disCrit();
+		exitBook();
+		disSum1();
+		disSum2();
+		safeKeep();
+		linen();
+
 	}
 	
 	//this gets the info from the table
@@ -267,7 +312,12 @@ public class Print {
 		$ZIP =(String)data[step];step++;
 		$patCounty =(String)data[step];step++;
 		$cntyYrs =(String)data[step];step++;
-		$patVET =(String)data[step];step++;
+		if((int)data[step] == 1)
+			$patVET ="Y";
+		else
+			$patVET = "N";
+		
+		step++;
 		$DLNo =(String)data[step];step++;
 		$DLst =(String)data[step];step++;
 		$Marital =(String)data[step];step++;
@@ -296,7 +346,11 @@ public class Print {
 		$aST =(String)data[step];step++;
 		
 		//legal fields
-		$legPris =(String)data[step];step++;
+		if((int)data[step] == 1)
+		$legPris = "Y";
+		else
+			$legPris = "N";
+		step++;
 		$legProb = "" ;
 		$legWhyProb =(String)data[step];step++;
 		$legName =(String)data[step];step++;
@@ -304,12 +358,28 @@ public class Print {
 		$legPh =(String)data[step];step++;
 		
 		//Health Fields
-		$heaPhys =(String)data[step];step++;
+		if((int)data[step] == 1)
+			$heaPhys = "Y";
+			else
+				$heaPhys = "N";
+			step++;
 		$heaPhysWhy =(String)data[step];step++;
-		$heamean =(String)data[step];step++;
+		if((int)data[step] == 1)
+			$heamean = "Y";
+			else
+				$heamean = "N";
+			step++;
 		$heaMeanWhy =(String)data[step];step++;
-		$iv12 =(String)data[step];step++;
-		$prior =(String)data[step];step++;
+		if((int)data[step] == 1)
+			$iv12 = "Y";
+			else
+				$iv12 = "N";
+			step++;
+		if((int)data[step] == 1)
+			$prior = "Y";
+			else
+				$prior = "N";
+			step++;
 		$hmany =(String)data[step];step++;
 		$whereWhen =(String)data[step];step++;
 		
@@ -344,9 +414,11 @@ public class Print {
 		//END OF RETRIEVE FROM THOSE FIELDS
 		
 		
+		//TODO
+		//GROUP NOTES
+		//INDIVIDUAL NOTES
 		
 		
-
 		
 
 		
@@ -1353,47 +1425,7 @@ public class Print {
 	public static void main (String[] args) {
 
 		Print testprint = new Print("Client_Record", "1");
-		testprint.screen1();
-		testprint.screen2();
-		testprint.admissionAgreement();
-		testprint.admissionAgreement2();
-		testprint.financial();
-		testprint.rights();
-		testprint.rules1();
-		testprint.rules2();
-		testprint.groupRules();
-		testprint.hygiene();
-		testprint.fire();
-		//panel2
-		testprint.ua();
-		testprint.hq2();
-		testprint.hq3();
-		testprint.hq4();
-		testprint.hq5();
-		//panel3
-		testprint.bookkeeping();
-		testprint.cfr();
-		testprint.followUp();
-		testprint.auth();
-		testprint.consent1();
-		testprint.consent2();
-		testprint.crim();
-		//panel4
-		testprint.viol();
-		//panel5
-		testprint.indiv();
-		testprint.tx();
-		testprint.dsmiv();
-		testprint.pheval();
-		testprint.pheval2();
-		//panel6
-		testprint.exitBook();
-		testprint.disCrit();
-		testprint.exitBook();
-		testprint.disSum1();
-		testprint.disSum2();
-		testprint.safeKeep();
-		testprint.linen();
+		
 		
 		
 		
