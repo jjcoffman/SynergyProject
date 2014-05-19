@@ -553,7 +553,16 @@ public class Print {
 		 copyFile(s1, t1);
 		 File u1 = new File("resources/5-Consent Doc1.png");
 		 File v1 = new File(pngPath + "5-Consent Doc1.png");
-		 copyFile(u1,v1);
+		 copyFile(u1,v1);	 
+		 File xj = new File("resources/5-Financial West Slope Recovery.png");
+		 File xy = new File(pngPath + "5-Financial West Slope Recovery.png");
+		 copyFile(xj,xy);
+		 File xd = new File("resources/6-CLIENT RIGHTS AND CONSENT to TREATMENT.png");
+		 File xs = new File(pngPath + "6-CLIENT RIGHTS AND CONSENT to TREATMENT.png");
+		 copyFile(xd,xs);
+		 File xq = new File("resources/6-Consent Doc2.png");
+		 File xw = new File(pngPath + "6-Consent Doc2.png");
+		 copyFile(xq,xw);
 		 File w1 = new File("resources/6-Phase Eval.png");
 		 File x1 = new File(pngPath + "6-Phase Eval.png");
 		 copyFile(w1,x1);
