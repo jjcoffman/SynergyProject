@@ -611,7 +611,7 @@ public class TempRetrieveInfo {
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
-				results[0] = (rs.getString("USER_ID"));
+				results[0] = (rs.getInt("USER_ID"));
 				results[1] = (rs.getString("USERNAME"));
 				results[2] = (rs.getString("USER_FNAME") + " " + rs.getString("USER_LNAME"));
 				String access = rs.getString("ADMIN_ACCESS");

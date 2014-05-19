@@ -59,6 +59,19 @@ public class Admin
 		usersTable.setFont(new Font("Verdana", Font.PLAIN, 13));
 		usersTable.setGridColor(Color.LIGHT_GRAY);
 		usersTable.setFillsViewportHeight(true);
+		usersTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{	
+				if(usersTable.getSelectedRow() != -1)
+				{
+					Object test = users.getValueAt(usersTable.getSelectedRow(),0);
+					id = (int)test;
+					System.out.println("user id: " + id);
+					//System.out.println(id);
+					//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
+				}
+			}
+		});
 		JScrollPane scroll = new JScrollPane(usersTable);
 		scroll.setFont(new Font("Verdana", Font.PLAIN, 13));
 		scroll.setSize(800, 400);
@@ -68,7 +81,7 @@ public class Admin
 		
 		JButton btnEditSelectedUser = new JButton("Edit Selected User");
 		btnEditSelectedUser.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) { new EditUser();
+			public void mouseClicked(MouseEvent e) { new EditUser(id, users);
 			}
 		});
 		btnEditSelectedUser.setFont(new Font("Verdana", Font.PLAIN, 13));

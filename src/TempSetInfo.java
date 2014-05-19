@@ -1089,6 +1089,37 @@ public class TempSetInfo {
 		}
 	}
 	
+	public void updateUser(Object[] data) {
+		Connection connection = null;
+		Statement statement = null; 
+		int id = (int)data[0];
+		String userName = (String)data[1];
+		String userPassword = (String)data[2];
+		String fName = (String)data[3];
+		String lName = (String)data[4];
+		int access = (int)data[5];
+		
+
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "INSERT INTO USERS (USERNAME, USER_ID, USER_PASS, USER_FNAME, USER_LNAME, ADMIN_ACCESS, Salt) " + "VALUES ( '" + userName + "', " + id + ", '" + userPassword + "', '" + fName + "', '" + lName + "', " + access + ", 'salt'" + ")";
+			System.out.println(query);
+			statement.executeUpdate(query);
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	public static void deleteRow(String table, String s) 
 	{
 		Connection connection = null;
