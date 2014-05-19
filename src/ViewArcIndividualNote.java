@@ -27,6 +27,8 @@ public class ViewArcIndividualNote extends JFrame
 	
 	public ViewArcIndividualNote(int id, String date)
 	{
+		Object[] data = new Object[2];
+		data = getNoteText(id, date);
 	viewNote = new JFrame("View Individual Note");
 	viewNote.getContentPane().setLayout(null);
 	viewNote.setSize(450, 300);
@@ -45,7 +47,7 @@ public class ViewArcIndividualNote extends JFrame
 	lblClientId.setBounds(20, 40, 90, 16);
 	viewNote.getContentPane().add(lblClientId);
 	
-	txtNote = new JTextArea(getNoteText(id, date));
+	txtNote = new JTextArea((String)data[0]);
 	txtNote.setLineWrap(true);
 	txtNote.setWrapStyleWord(true);
 	txtNote.setEditable(false);
@@ -79,7 +81,7 @@ public class ViewArcIndividualNote extends JFrame
 	lblCounselor.setBounds(20, 60, 90, 16);
 	viewNote.getContentPane().add(lblCounselor);
 	
-	lblNewLabel = new JLabel("lblCounselorField");
+	lblNewLabel = new JLabel((String)data[1]);
 	lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
 	lblNewLabel.setBounds(110, 60, 200, 16);
 	viewNote.getContentPane().add(lblNewLabel);
@@ -107,12 +109,16 @@ public class ViewArcIndividualNote extends JFrame
 		}
 	}
 	
-	private String getNoteText(int id,String date) {
+	private Object[] getNoteText(int id,String date) {
+		Object[] data = new Object[2];
 		try {
-			return test2.getIndNote(id, date);
+			data = test3.getIndNote(id, date);
 			}
 			catch(NullPointerException e) {
-				return "";
+				data[0] = "";
+				data[1] = "";
+				return data;
 			}
+		return data;
 	}
 }

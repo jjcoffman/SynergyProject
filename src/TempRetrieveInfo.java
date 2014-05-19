@@ -667,8 +667,8 @@ public class TempRetrieveInfo {
 		return result;
 	}
 	
-	public String getIndNote(int id, String date){
-		String result = null;
+	public Object[] getIndNote(int id, String date){
+		Object[] result = new Object[2];
 		ResultSet rs = null;
 		Connection connection = null;
 		Statement statement = null; 
@@ -680,7 +680,8 @@ public class TempRetrieveInfo {
 			statement = connection.createStatement();
 			rs = statement.executeQuery(query);
 			while(rs.next()){
-				result = rs.getString("Note");
+				result[0] = rs.getString("Note");
+				result[1] = rs.getString("Counselor");
 			}
 
 		} catch (SQLException e) 

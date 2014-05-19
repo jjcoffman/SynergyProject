@@ -341,7 +341,7 @@ public class TempSetInfo {
 			String startTime = (String)data[4] + (String)data[5];
 			String endTime = (String)data[6] + (String)data[7];
 			String note = (String)data[8];
-			String counselor = "default";
+			String counselor = (String)data[11];
 			String query = null;
 			
 			if (day.equals("Monday")){
@@ -451,7 +451,7 @@ public class TempSetInfo {
 			String startTime = (String)data[4] + (String)data[5];
 			String endTime = (String)data[6] + (String)data[7];
 			String note = (String)data[8];
-			String counselor = "default";
+			String counselor = (String)data[11];
 			String query = null;
 			if (day.equals("Monday")){
 				if (session.equals("KickOff")){
