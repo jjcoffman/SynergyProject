@@ -79,19 +79,13 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 			s = "ERROR";
 		}
 		
-		s = getName(id);
+		s = getIntake(id);
 		JLabel lblintakedate = new JLabel(s);
 		lblintakedate.setFont(new Font("Verdana", Font.PLAIN, 13));
 		lblintakedate.setBounds(142, 22, 96, 16);
 		fin.add(lblintakedate);
 		
-		String name = "";
-		try {
-			name = (String) data[0] + " " + data[1] + " " + data[2];
-		} catch (Exception e) 
-		{
-			name = "ERROR IN NAME";
-		}
+		String name = getName(id);
 		
 		JLabel lblclientname = new JLabel(name);
 		lblclientname.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -171,7 +165,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		txtDischarge = new JTextField();
 		txtDischarge.setFont(new Font("Verdana", Font.PLAIN, 13));
-		txtDischarge.setText((String) arcData[31]);
+		txtDischarge.setText((String) arcData[36]);
 		txtDischarge.setBounds(536, 20, 96, 28);
 		fin.add(txtDischarge);
 		txtDischarge.setColumns(10);
@@ -198,12 +192,6 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.getContentPane().add(spFin);
 		window.pack();
-		
-
-			window.dispose();
-			sendData();
-
-		
 		
 		window.setVisible(true);
 
@@ -405,7 +393,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 	}
 	private void sendData() 
 	{
-		int i = 32;
+		int i = 37;
 		arcData[i] = txtDSM.getText(); i++;
 		arcData[i] = textCounselor.getText(); i++;
 		
@@ -422,7 +410,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 		
 		//TODO it keeps giving issues here about null pointers
 		System.out.println("arcData size " + i);
-		for(int x = 0; x < 38; x++)
+		for(int x = 0; x < 41; x++)
 		{
 			if(arcData[x].equals(""))
 				arcData[x] = " ";

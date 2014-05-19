@@ -441,6 +441,7 @@ public class Discharge
 		txtCrim.setFont(text);
 		txtCrim.setBounds(231, 688, 391, 28);
 		Discharge.add(txtCrim);
+		txtCrim.setVisible(false);
 		txtCrim.setColumns(10);
 		
 		chckbxPersonagencyNotified = new JCheckBox("Person/Agency Notified");
