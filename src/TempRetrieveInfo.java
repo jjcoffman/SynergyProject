@@ -1018,6 +1018,35 @@ public class TempRetrieveInfo {
 		return result;
 	}
 	
+	public String getCounselor(int id){
+		String result = "";
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM USERS WHERE USER_ID = " + id;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				result = rs.getString("USER_LNAME");
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	
 	public int getUserID(String user){
 		int result = -1;
 		ResultSet rs = null;

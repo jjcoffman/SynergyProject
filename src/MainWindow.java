@@ -26,14 +26,18 @@ public class MainWindow
 	JButton btnIntake;
 	JButton btnArchive;
 	JButton btnExit;
+	private int userid;
+	private int access;
 	CardLayout cl = new CardLayout();
 	private JButton btnPreferences;
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public void buildPanel() //this class is an unnamed constructor and is perfect for manipulation of GUI objects
+	public void buildPanel(int id, int admin2) //this class is an unnamed constructor and is perfect for manipulation of GUI objects
 	{
 		//here are the objects we use to navigate this window
+		userid = id;
+		access = admin2;
 		panel = new JPanel();
 		panel.setRequestFocusEnabled(false);
 		menu = new JPanel();
@@ -157,7 +161,10 @@ public class MainWindow
 		btnPreferences.setBounds(5, 400, 110, 70);
 		menu_1.add(btnPreferences);
 
-	
+		if (access == 0){
+			btnArchive.setVisible(false);
+			btnPreferences.setVisible(false);
+		}
 		//and finally set it to visible
 		panel.setVisible(true);
 	}

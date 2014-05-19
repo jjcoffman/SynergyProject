@@ -105,10 +105,10 @@ public class LoginScreen extends JFrame implements ActionListener
 				int valid = 0;
 				int admin = 0;
 				int userId = 0;
-				if (user.equals("test")){
-					WelcomeScreen.dispose();
-					new Frame();
-				}
+			//	if (user.equals("test")){
+				//	WelcomeScreen.dispose();
+				//	new Frame();
+			//	}
 				if(exists == 0){
 					lblNewLabel_1.setVisible(true);
 				}
@@ -118,9 +118,10 @@ public class LoginScreen extends JFrame implements ActionListener
 				if(valid == 1){
 					userId = get.getUserID(user);
 					admin = get.permissionLevel(userId);
-					System.out.println("Admin level: " + userId + " " + admin);
+					String lname = get.getCounselor(userId);
+					System.out.println("Admin level: " + userId + " " + admin + " " + lname);
 					WelcomeScreen.dispose();
-					new Frame();
+					new Frame(userId, admin);
 				}
 				else{
 					lblNewLabel_1.setVisible(true);

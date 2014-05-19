@@ -16,10 +16,14 @@ public class Frame extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JFrame frame = new JFrame("West Slope Recovery");
 	JPanel EnclosingPanel;
+	private int userid;
+	private int access;
 	
 	
-	public Frame()
+	public Frame(int id, int admin)
 	{
+		userid = id;
+		access = admin;
 		MainWindow pane = new MainWindow();
 		JTextField text = new JTextField("");
 		text.setBounds(0, 80, 120, -80);
@@ -40,7 +44,7 @@ public class Frame extends JFrame
 		
 		//here we add the panels
 		
-		pane.buildPanel();
+		pane.buildPanel(userid, access);
 		JComponent p = pane.getPanel();
 		frame.getContentPane().add(p);
 		frame.getContentPane().add(text);
