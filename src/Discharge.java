@@ -749,7 +749,7 @@ public class Discharge
 				data[i] = "Poor";i++;
 			}
 			else
-				data[i] = "NONE";i++;
+				{data[i] = "NONE";i++;}
 			
 			data[i] = txtTreatment.getText();i++;
 			data[i] = txtGoal1.getText();i++;
