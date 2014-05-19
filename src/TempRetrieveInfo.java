@@ -989,11 +989,59 @@ public class TempRetrieveInfo {
 		return data;
 	}
 	
-	public void sendGroupNote(Object[] data){
-		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
-		if (((String)data[2]).equals("Monday")) {
-			
+	public int matchUser(String name, String password){
+		int result = 0;
+		Connection connection = null;
+		Statement statement = null; 
+		try { 
+			ResultSet rs = null;
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "SELECT EXISTS(SELECT 1 FROM USERS WHERE USERNAME = '" + name + "' AND USER_PASS = '" + password + "')";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = rs.getInt("EXISTS(SELECT 1 FROM USERS WHERE USERNAME = '" + name + "' AND USER_PASS = '" + password + "')");
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
+		return result;
+	}
+	
+	public int userExists(String name){
+		int result = 0;
+		Connection connection = null;
+		Statement statement = null; 
+		try { 
+			ResultSet rs = null;
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			String query = "SELECT EXISTS(SELECT 1 FROM USERS WHERE USERNAME = '" + name + "')";
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				result = rs.getInt("EXISTS(SELECT 1 FROM USERS WHERE USERNAME = '" + name + "')");
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 }
