@@ -26,19 +26,18 @@ public class SQLConnection {
           e.printStackTrace();
       }
       System.out.println();
-      Boolean change = pathe.changePath(URL, USER, PASSWORD);
+      Boolean change = null;
+	try {
+		change = pathe.changePath(URL, USER, PASSWORD);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
       if(change == true){
       URL = pathe.getPath();
       USER = pathe.getUser();
       PASSWORD = pathe.getPass();} 
-      else{
-		try {
-			pathe.exportSQL(URL, USER, PASSWORD);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-      }
+      
   }
    
   private Connection createConnection() {
@@ -68,7 +67,16 @@ public class SQLConnection {
 	return succ;
 	  
   }
-  
+  public Boolean setPath(String p, String u, String pw) throws IOException
+  {
+	  URL = p;
+	  USER = u;
+	  PASSWORD  = pw;
+	  
+	 Boolean succ = pathe.exportSQL(URL, USER, PASSWORD);
+	return succ;
+	  
+  }
   //the returns the current path and passwords etc
   public Object[] getPath()
   {

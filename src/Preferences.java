@@ -160,6 +160,7 @@ public class Preferences
 			JOptionPane.showMessageDialog(null, "The Path has been changed");
 		else
 			JOptionPane.showMessageDialog(null, "The Path has NOT been changed");
+		System.exit(0);
 	}
 	public JPanel getPanel()
 	{

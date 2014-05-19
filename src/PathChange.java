@@ -31,7 +31,7 @@ public class PathChange
 			pass = pass1;
 			Object[] obj = new Object[3];
 			try {
-				obj = importSQL();
+				importSQL();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -79,13 +79,9 @@ public class PathChange
 			//here we return a boolean value stating whether or not updating the filepath worked or not.
 			return true;
 	}
-		public Object[] importSQL() throws IOException
+		public void importSQL() throws IOException
 		{
 			//here we declare our split and delimiters for reading the files
-			String path = "";
-			String user = "";
-			String pass = "";
-			Object[] sqlInfo = new Object[3];
 					//Here we fill the array with values
 					//1. path
 					//2. user
@@ -107,11 +103,9 @@ public class PathChange
 					//this checks for the files existence, if none this is the first instance the program has been ran and creates one
 					if (!file.exists()) {
 						file.createNewFile();
-						exportSQL(conn.getPathOnly(), conn.getUser(), conn.getPass());
+						exportSQL(path, user, pass);
 					}
-					
-					
-					
+					else{
 					try {
 						int step = 0;
 						InputStream input = new BufferedInputStream(
@@ -122,28 +116,24 @@ public class PathChange
 						//here we read each line and return the info as an array of strings in a generic object array
 						if (step == 0) {
 							path = reader.readLine();
-							sqlInfo[0] = path;
 							System.out.println();
 							step++;
 						}
 						if (step == 1) {
 							user = reader.readLine();
-							sqlInfo[1] = user;
 							step++;
 						}
 						if (step == 2) {
 							pass = reader.readLine();
-							sqlInfo[2] = pass;
 							step++;
 						}
 					} catch (Exception e) {
 						System.out.println("error in PathChange getting the correct path");
+					} 
 					}
-
-			return sqlInfo; 
 	}
 		
-		public boolean changePath(String path1, String user1, String pass1)
+		public boolean changePath(String path1, String user1, String pass1) throws IOException
 		{
 			String oldP = path1;
 			String oldU = user1;
@@ -162,8 +152,9 @@ public class PathChange
 			{
 				change = true;
 			}
+			if(change == true)
+				conn.setPath(path, user, pass);		
 			return change;
-			
 		}
 		public String getPath()
 		{
