@@ -29,6 +29,7 @@ public class Admin
 	private JLabel lblECName;
 	private JLabel lblECPhone;
 	private int id;
+	private int userid;
 	private String selectedDate = "";
 	
 	SQLRetrieveInfo test = new SQLRetrieveInfo();
@@ -65,8 +66,7 @@ public class Admin
 				if(usersTable.getSelectedRow() != -1)
 				{
 					Object test = users.getValueAt(usersTable.getSelectedRow(),0);
-					id = (int)test;
-					System.out.println("user id: " + id);
+					userid = (int)test;
 					//System.out.println(id);
 					//System.out.println("Ind Note Count: " +test2.getIndSize("IND_Notes", id));
 				}
@@ -81,7 +81,7 @@ public class Admin
 		
 		JButton btnEditSelectedUser = new JButton("Edit Selected User");
 		btnEditSelectedUser.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) { new EditUser(id, users);
+			public void mouseClicked(MouseEvent e) { new EditUser(userid, users);
 			}
 		});
 		btnEditSelectedUser.setFont(new Font("Verdana", Font.PLAIN, 13));

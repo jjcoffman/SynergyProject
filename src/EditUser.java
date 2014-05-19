@@ -17,7 +17,6 @@ public class EditUser extends JFrame implements ActionListener
 	private SigPane pane;
 	private JTextField txtUserID;
 	private JTextField txtUserName;
-	private JTextField txtPassword;
 	private String userName;
 	private String userID;
 	private String userPassword;
@@ -30,11 +29,14 @@ public class EditUser extends JFrame implements ActionListener
 	
 	TempSetInfo set = new TempSetInfo();
 	TempRetrieveInfo test3 = new TempRetrieveInfo();
+	private JPasswordField passwordField;
 
 	public EditUser(int id, MyTableModel passedTable)
 	{
 		CID = id;
 		table = passedTable;
+		Object[] values = new Object[5];
+		values = test3.getUserInfo(CID);
 		Edit = new JFrame("Edit User");
 		Edit.setSize(700, 400);
 		Edit.setPreferredSize(new Dimension(700, 400));
@@ -65,20 +67,17 @@ public class EditUser extends JFrame implements ActionListener
 		Edit.getContentPane().add(lblUsersPassword);
 		
 		txtUserID = new JTextField(String.valueOf(CID));
+		txtUserID.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtUserID.setEditable(false);
 		txtUserID.setBounds(150, 20, 140, 28);
 		Edit.getContentPane().add(txtUserID);
 		txtUserID.setColumns(10);
 		
-		txtUserName = new JTextField();
+		txtUserName = new JTextField((String)values[0]);
+		txtUserName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtUserName.setBounds(150, 50, 140, 28);
 		Edit.getContentPane().add(txtUserName);
 		txtUserName.setColumns(10);
-		
-		txtPassword = new JTextField();
-		txtPassword.setBounds(150, 80, 140, 28);
-		Edit.getContentPane().add(txtPassword);
-		txtPassword.setColumns(10);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.setFont(new Font("Verdana", Font.PLAIN, 13));
@@ -95,6 +94,12 @@ public class EditUser extends JFrame implements ActionListener
 		chckbxUserHasAdminstrative = new JCheckBox("User has Adminstrative Access");
 		chckbxUserHasAdminstrative.setFont(new Font("Verdana", Font.PLAIN, 13));
 		chckbxUserHasAdminstrative.setBounds(350, 80, 242, 23);
+		if((int)values[3] == 1){
+			chckbxUserHasAdminstrative.setSelected(true);
+		}
+		else{
+			chckbxUserHasAdminstrative.setSelected(false);
+		}
 		Edit.getContentPane().add(chckbxUserHasAdminstrative);
 		
 		btnSubmit = new JButton("Submit");
@@ -120,15 +125,22 @@ public class EditUser extends JFrame implements ActionListener
 		lblLastName.setBounds(290, 50, 130, 28);
 		Edit.getContentPane().add(lblLastName);
 		
-		textFName = new JTextField();
+		textFName = new JTextField((String)values[1]);
+		textFName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textFName.setColumns(10);
 		textFName.setBounds(420, 20, 140, 28);
 		Edit.getContentPane().add(textFName);
 		
-		textLName = new JTextField();
+		textLName = new JTextField((String)values[2]);
+		textLName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textLName.setColumns(10);
 		textLName.setBounds(420, 50, 140, 28);
 		Edit.getContentPane().add(textLName);
+		
+		passwordField = new JPasswordField((String)values[4]);
+		passwordField.setFont(new Font("Verdana", Font.PLAIN, 13));
+		passwordField.setBounds(150, 80, 140, 28);
+		Edit.getContentPane().add(passwordField);
 		Edit.pack();
 		Edit.setVisible(true);
 		
@@ -142,7 +154,7 @@ public class EditUser extends JFrame implements ActionListener
 			Object[] data = new Object[6];
 			data[0] = Integer.parseInt(txtUserID.getText());
 			data[1] = txtUserName.getText();
-			data[2] = txtPassword.getText();
+			data[2] = passwordField.getText();
 			data[3] = textFName.getText();
 			data[4] = textLName.getText();
 			if (chckbxUserHasAdminstrative.isSelected()){
@@ -189,10 +201,4 @@ public class EditUser extends JFrame implements ActionListener
 	{
 		image = pane.getImage();
 	}
-	
-	
-	
-	//TODO add get and setters from the SQL of users
-	
-
 }

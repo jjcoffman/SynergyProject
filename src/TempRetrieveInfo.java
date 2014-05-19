@@ -956,6 +956,39 @@ public class TempRetrieveInfo {
 		return name;
 	}
 	
+	public Object[] getUserInfo(int id){
+		Object[] data = new Object[5];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+
+		String query = "SELECT * FROM USERS WHERE USER_ID = " + id;  
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while (rs.next()) {
+				data[0] = rs.getString("USERNAME");
+				data[1] = rs.getString("USER_FNAME");
+				data[2] = rs.getString("USER_LNAME");
+				data[3] = rs.getInt("ADMIN_ACCESS");
+				data[4] = rs.getString("USER_PASS");
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return data;
+	}
+	
 	public void sendGroupNote(Object[] data){
 		//0: Client Id, 1: Week Of, 2: day, 3: session, 4: startTime, 5: startAMPM, 6: endTime, 7: endAMPM, 8: note
 		if (((String)data[2]).equals("Monday")) {

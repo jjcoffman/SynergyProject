@@ -1103,7 +1103,7 @@ public class TempSetInfo {
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();
-			String query = "INSERT INTO USERS (USERNAME, USER_ID, USER_PASS, USER_FNAME, USER_LNAME, ADMIN_ACCESS, Salt) " + "VALUES ( '" + userName + "', " + id + ", '" + userPassword + "', '" + fName + "', '" + lName + "', " + access + ", 'salt'" + ")";
+			String query = "UPDATE USERS SET USERNAME = '"+ userName + "', USER_PASS = '" + userPassword + "', USER_FNAME = '" + fName + "', USER_LNAME = '" + lName + "', ADMIN_ACCESS = " + access + " WHERE USER_ID = " + id;
 			System.out.println(query);
 			statement.executeUpdate(query);
 		} 

@@ -64,16 +64,19 @@ public class NewUser extends JFrame implements ActionListener
 		Edit.getContentPane().add(lblUsersPassword);
 		
 		txtUserID = new JTextField();
+		txtUserID.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtUserID.setBounds(150, 20, 140, 28);
 		Edit.getContentPane().add(txtUserID);
 		txtUserID.setColumns(10);
 		
 		txtUserName = new JTextField();
+		txtUserName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtUserName.setBounds(150, 50, 140, 28);
 		Edit.getContentPane().add(txtUserName);
 		txtUserName.setColumns(10);
 		
 		txtPassword = new JTextField();
+		txtPassword.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtPassword.setBounds(150, 80, 140, 28);
 		Edit.getContentPane().add(txtPassword);
 		txtPassword.setColumns(10);
@@ -119,11 +122,13 @@ public class NewUser extends JFrame implements ActionListener
 		Edit.getContentPane().add(lblLastName);
 		
 		textFName = new JTextField();
+		textFName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textFName.setColumns(10);
 		textFName.setBounds(420, 20, 140, 28);
 		Edit.getContentPane().add(textFName);
 		
 		textLName = new JTextField();
+		textLName.setFont(new Font("Verdana", Font.PLAIN, 13));
 		textLName.setColumns(10);
 		textLName.setBounds(420, 50, 140, 28);
 		Edit.getContentPane().add(textLName);
