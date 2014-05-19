@@ -471,7 +471,7 @@ public class Print {
 		 }
 		else
 		{
-			 Runtime.getRuntime().exec("attrib +H myHiddenFile.java");
+			Runtime.getRuntime().exec("attrib +H myHiddenFile.java");
 			pngPath = printPath + fs.getSeparator();
 			printPath = printPath + fs.getSeparator();
 		}

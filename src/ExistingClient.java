@@ -228,7 +228,10 @@ public class ExistingClient
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
+				if(table.getSelectedRow() != -1)
+				{
 				new Print("Client_Record", String.valueOf(id));
+				}
 				}
 		});
 		panel.add(btnViewprintForms);
