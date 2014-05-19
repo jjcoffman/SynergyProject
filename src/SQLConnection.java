@@ -26,11 +26,19 @@ public class SQLConnection {
           e.printStackTrace();
       }
       System.out.println();
-      pathe.changePath(URL, USER, PASSWORD);
+      Boolean change = pathe.changePath(URL, USER, PASSWORD);
+      if(change == true){
       URL = pathe.getPath();
       USER = pathe.getUser();
-      PASSWORD = pathe.getPass();
-
+      PASSWORD = pathe.getPass();} 
+      else{
+		try {
+			pathe.exportSQL(URL, USER, PASSWORD);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+      }
   }
    
   private Connection createConnection() {

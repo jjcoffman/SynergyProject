@@ -36,9 +36,9 @@ public class PathChange
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			path = (String) obj[0];
-			user = (String) obj[1];
-			pass = (String) obj[2];
+			//path = (String) obj[0];
+			//user = (String) obj[1];
+			//pass = (String) obj[2];
 		}
 		
 		public boolean exportSQL(String path1, String username, String password) throws IOException
@@ -107,7 +107,6 @@ public class PathChange
 					//this checks for the files existence, if none this is the first instance the program has been ran and creates one
 					if (!file.exists()) {
 						file.createNewFile();
-						conn = new SQLConnection();
 						exportSQL(conn.getPathOnly(), conn.getUser(), conn.getPass());
 					}
 					
