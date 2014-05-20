@@ -2179,7 +2179,11 @@ public class Intake implements ActionListener
 			valid = false;
 			JOptionPane.showMessageDialog(null, "Clients basic information is required to continue!");
 		}
-		
+		if(!txtState.getText().matches("[a-zA-Z]{2}") && valid == true)
+		{
+			valid = false;
+			JOptionPane.showMessageDialog(null, "Statemust be 2 letters only");
+		}
 		
 		
 		if(!txtMI.getText().matches("[a-zA-Z]{1}") && valid == true)

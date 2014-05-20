@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -199,11 +200,11 @@ public class Print {
 	private String $indivNote = "blank";
 	
 	private String $DSM = "blank";
-	private String $payMeth;
-	private String $priChar;
-	private String $authDateStart;
-	private String $authDateEnd;
-	private String $adDate;
+	private String $payMeth;//
+	private String $priChar;//
+	private String $authDateStart;//
+	private String $authDateEnd;//
+	private String $adDate;//
 	private String $owed;
 	private String $exitDate;
 	private String $patEndCounselor;
@@ -238,9 +239,9 @@ public class Print {
 	private String $disAxis5;
 		
 	private String $counRec1;
-	private String $counRec2;
-	private String $counRec3;
-	private String $counRec4;
+	private String $counRec2;//
+	private String $counRec3;//
+	private String $counRec4;//
 	
 	private String $shouldReturn;
 	private String $clientComment;
@@ -331,10 +332,10 @@ public class Print {
 		$patDOB =(String)data[step];step++;
 		$patSSN =(String)data[step];step++;
 		$patAge = ""; //TODO
-		$patStreet =(String)data[step];step++;
-		$patCity =(String)data[step];step++;
-		$ST =(String)data[step];step++;
-		$ZIP =(String)data[step];step++;
+		$patStreet =(String)data[step] + " ";step++;
+		$patCity =(String)data[step]+ " ";step++;
+		$ST =(String)data[step] + " ";step++;
+		$ZIP =(String)data[step]+ " ";step++;
 		$patCounty =(String)data[step];step++;
 		$cntyYrs =(String)data[step];step++;
 		if((int)data[step] == 1)
@@ -439,15 +440,53 @@ public class Print {
 		//END OF RETRIEVE FROM THOSE FIELDS
 		
 		
-		//TODO
-		
-		
-		
+		step = 0;
+		//ASAM
+		Object[] asam = get.getASAMPrint(Integer.parseInt(ID));
+		$q1 =(String)asam[step];step++;
+		$a2 =(String)asam[step];step++;
+		$q3 =(String)asam[step];step++;
+		$q4 =(String)asam[step];step++;
+		$physLim =(String)asam[step];step++;
 
-		
-		
-		
-		
+
+		//TODO
+		step = 0;
+		Object[] dis = get.getDischarge(Integer.parseInt(ID));
+		 $DSM =(String)dis[step];step++;
+		 $owed =(String)dis[step];step++;
+		 $exitDate =(String)dis[step];step++;
+		 $patEndCounselor =(String)dis[step];step++;
+		 $treatPlanGoal1 =(String)dis[step];step++;
+		 $treatPlanGoal2 =(String)dis[step];step++;
+		 $treatPlanGoal3 =(String)dis[step];step++;
+		 $treatPlanGoal4 =(String)dis[step];step++;
+		 $treatPlanGoal5 =(String)dis[step];step++;
+		 $treatPlanGoal6 =(String)dis[step];step++;
+		 $treatPlanGoalMet1 =(String)dis[step];step++;
+		 $treatPlanGoalMet2 =(String)dis[step];step++;
+		 $treatPlanGoalMet3 =(String)dis[step];step++;
+		 $treatPlanGoalMet4 =(String)dis[step];step++;
+		 $treatPlanGoalMet5 =(String)dis[step];step++;
+		 $treatPlanGoalMet6 =(String)dis[step];step++;
+		 $treatSum =(String)dis[step];step++;
+		 $curDrugUse =(String)dis[step];step++;
+		 $curCrim =(String)dis[step];step++;
+		 $addAxis1 =(String)dis[step];step++;
+		 $addAxis2 =(String)dis[step];step++;
+		 $addAxis3 =(String)dis[step];step++;
+		 $addAxis4 =(String)dis[step];step++;
+		 $addAxis5 =(String)dis[step];step++;
+		 $addGAFScore =(String)dis[step];step++;
+		 $disAxis1 =(String)dis[step];step++;
+		 $disAxis2 =(String)dis[step];step++;
+		 $disAxis3 =(String)dis[step];step++;
+		 $disAxis4 =(String)dis[step];step++;
+		 $disAxis5 =(String)dis[step];step++;	
+		 $counRec1 =(String)dis[step];step++;
+		 $shouldReturn =(String)dis[step];step++;
+		 $clientComment =(String)dis[step];step++;
+
 		
 		
 		
@@ -503,8 +542,8 @@ public class Print {
 		 
 		 
 		 
-		 
-		File a = new File("resources/1-ADMISSION BOOKKEEPING FORM.png");
+		 try{
+		 File a = new File("resources/1-ADMISSION BOOKKEEPING FORM.png");
 		 File b = new File(pngPath + "1-ADMISSION BOOKKEEPING FORM.png");
 
 		 copyFile(a,b);
@@ -613,8 +652,13 @@ public class Print {
 		 File m2 = new File("resources/9-Hygiene Standards.png");
 		 File n2 = new File(pngPath + "9-Hygiene Standards.png");
 		 copyFile(m2,n2);
+		 }
+		 catch(FileAlreadyExistsException e)
+		 {
+			 System.out.println("PNG's are already present");
+		 }
 
-		 System.out.println(a.exists());
+		
 		 
 		 
          
@@ -633,7 +677,7 @@ public class Print {
 
 		try {
 	
-			String content = "<style type=\"text/css\">body {	background-image: url("+macHidden+"1-Screening%20&%20Client%20Information%20Page%20001.png);	background-repeat: no-repeat;}.end{	position: absolute;	height: 0px;	width: 202px;	left: 254px;	top: 1026px;	right: 20px;	bottom: auto;}.patFirst {	position: absolute; 	height: auto;   width: 190px;	left: 45px;		top: 107px;		right: 20px;	bottom: auto;}.patLast {	position: absolute;	height: auto;	width: 197px;	left: 247px;	top: 109px;	right: 20px;	bottom: auto;}.patDOB {	position: absolute;		height: auto;	width: 100px;	left: 459px;	top: 107px;		right: auto;	bottom: auto;}.patAge {	position: absolute;	height: auto;	width: 42px;	left: 563px;	top: 107px;	right: 20px;	bottom: auto;}.patVET {	position: absolute;	height: auto;	width: 88px;	left: 653px;	top: 109px;	right: 20px;	bottom: auto;	}.patStreet {	position: absolute;	height: auto;	width: 322px;	left: 45px;	top: 145px;	right: 20px;	bottom: auto;}.patCity {	position: absolute;	height: auto;	width: 198px;	left: 371px;	top: 143px;	right: 20px;	bottom: auto;}.ST {	position: absolute;	height: auto;	width: 38px;	left: 577px;	top: 143px;	right: 20px;	bottom: auto;}.ZIP {	position: absolute;	height: auto;	width: 72px;	left: 625px;	top: 143px;	right: 20px;	bottom: auto;}.patCounty{	position: absolute;	height: auto;	width: 214px;	left: 45px;	top: 183px;	right: 20px;	bottom: auto;}.patNumOfYears{	position: absolute;	height: auto;	width: 66px;	left: 263px;	top: 181px;	right: 20px;	bottom: auto;}.patPrimaryNum{	position: absolute;	height: auto;	width: 66px;	left: 333px;	top: 181px;	right: 20px;	bottom: auto;}.patSecondaryNum{	position: absolute;	height: auto;	width: 66px;	left: 519px;	top: 181px;	right: 20px;	bottom: auto;}.patSSN{	position: absolute;	height: auto;	width: 152px;	left: 45px;	top: 219px;	right: 20px;	bottom: auto;}.patDLNo{	position: absolute;	height: auto;	width: 146px;	left: 203px;	top: 219px;	right: 20px;	bottom: auto;}.patDLst{	position: absolute;	height: auto;	width: 44px;	left: 355px;	top: 219px;	right: 20px;	bottom: auto;}.patMarital{	position: absolute;	height: auto;	width: 44px;	left: 401px;	top: 218px;	right: 20px;	bottom: auto;}.patPart{	position: absolute;	height: auto;	width: 184px;	left: 513px;	top: 217px;	right: 20px;	bottom: auto;}.emerName{	position: absolute;	height: auto;	width: 338px;	left: 45px;	top: 295px;	right: 20px;	bottom: auto;}.emerRelate{	position: absolute;	height: auto;	width: 124px;	left: 389px;	top: 293px;	right: 20px;	bottom: auto;}.emerPrimNum{	position: absolute;	height: auto;	width: 184px;	left: 516px;	top: 296px;	right: 20px;	bottom: auto;}.emerAddy{	position: absolute;	height: auto;	width: 214px;	left: 45px;	top: 327px;	right: 20px;	bottom: auto;}.emerCity{	position: absolute;	height: auto;	width: 158px;	left: 263px;	top: 323px;	right: 20px;	bottom: auto;}.emerST{	position: absolute;	height: auto;	width: 34px;	left: 423px;	top: 323px;	right: 20px;	bottom: auto;}.emerZIP{	position: absolute;	height: auto;	width: 46px;	left: 463px;	top: 323px;	right: 20px;	bottom: auto;}.emerSecNum{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 323px;	right: 20px;	bottom: auto;}.agenName{	position: absolute;	height: auto;	width: 154px;	left: 47px;	top: 389px;	right: 20px;	bottom: auto;}.agenConPers{	position: absolute;	height: auto;	width: 214px;	left: 207px;	top: 387px;	right: 20px;	bottom: auto;}.agenCounty{	position: absolute;	height: auto;	width: 94px;	left: 425px;	top: 387px;	right: 20px;	bottom: auto;}.agenConPh{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 386px;	right: 20px;	bottom: auto;}.agenAddy{	position: absolute;	height: auto;	width: 206px;	left: 45px;	top: 415px;	right: 20px;	bottom: auto;}.agenCity{	position: absolute;	height: auto;	width: 146px;	left: 255px;	top: 417px;	right: 20px;	bottom: auto;}.agenST{	position: absolute;	height: auto;	width: 42px;	left: 406px;	top: 415px;	right: 20px;	bottom: auto;}.agenZIP{	position: absolute;	height: auto;	width: 66px;	left: 447px;	top: 415px;	right: 20px;	bottom: auto;}.agenCell{	position: absolute;	height: auto;	width: 184px;	left: 517px;	top: 417px;	right: 20px;	bottom: auto;}.legPris{	position: absolute;	height: auto;	width: 44px;	left: 213px;	top: 479px;	right: 20px;	bottom: auto;}.legProb{	position: absolute;	height: auto;	width: 54px;	left: 407px;	top: 479px;	right: 20px;	bottom: auto;}.legWhyProb{	position: absolute;	height: auto;	width: 202px;	left: 497px;	top: 479px;	right: 20px;	bottom: auto;}.legName{	position: absolute;	height: auto;	width: 220px;	left: 45px;	top: 507px;	right: 20px;	bottom: auto;}.legAddy{	position: absolute;	height: auto;	width: 252px;	left: 267px;	top: 507px;	right: 20px;	bottom: auto;}.legPh{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 507px;	right: 20px;	bottom: auto;}.heaPhys{	position: absolute;	height: auto;	width: 48px;	left: 335px;	top: 571px;	right: 20px;	bottom: auto;}.heaPhysWhy{	position: absolute;	height: auto;	width: 288px;	left: 417px;	top: 569px;	right: 20px;	bottom: auto;}.heaMean{	position: absolute;	height: auto;	width: 48px;	left: 331px;	top: 597px;	right: 20px;	bottom: auto;}.heaMeanWhy{	position: absolute;	height: auto;	width: 288px;	left: 419px;	top: 599px;	right: 20px;	bottom: auto;}.sub1{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 651px;	right: 20px;	bottom: auto;}.sub1Last{	position: absolute;	height: auto;	width: 136px;	left: 175px;	top: 650px;	right: 20px;	bottom: auto;}.sub1Freq{	position: absolute;	height: auto;	width: 136px;	left: 312px;	top: 652px;	right: 20px;	bottom: auto;}.sub1Amount{	position: absolute;	height: auto;	width: 136px;	left: 447px;	top: 652px;	right: 20px;	bottom: auto;}.sub1Meth{	position: absolute;	height: auto;	width: 136px;	left: 584px;	top: 650px;	right: 20px;	bottom: auto;}.sub2{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 672px;	right: 20px;	bottom: auto;}.sub2Last{	position: absolute;	height: auto;	width: 136px;	left: 175px;	top: 671px;	right: 20px;	bottom: auto;}.sub2Freq{	position: absolute;	height: auto;	width: 136px;	left: 312px;	top: 671px;	right: 20px;	bottom: auto;}.sub2Amount{	position: absolute;	height: auto;	width: 136px;	left: 449px;	top: 672px;	right: 20px;	bottom: auto;}.sub2Meth{	position: absolute;	height: auto;	width: 136px;	left: 584px;	top: 672px;	right: 20px;	bottom: auto;}.sub3{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 693px;	right: 20px;	bottom: auto;}.sub3Last{	position: absolute;	height: auto;	width: 136px;	left: 177px;	top: 692px;	right: 20px;	bottom: auto;}.sub3Freq{	position: absolute;	height: auto;	width: 136px;	left: 313px;	top: 692px;	right: 20px;	bottom: auto;}.sub3Amount{	position: absolute;	height: auto;	width: 136px;	left: 449px;	top: 693px;	right: 20px;	bottom: auto;}.sub3Meth{	position: absolute;	height: auto;	width: 136px;	left: 583px;	top: 692px;	right: 20px;	bottom: auto;}.iv12{	position: absolute;	height: auto;	width: 41px;	left: 268px;	top: 724px;	right: 20px;	bottom: auto;}.prior{	position: absolute;	height: auto;	width: 38px;	left: 540px;	top: 723px;	right: 20px;	bottom: auto;}.hmany{	position: absolute;	height: auto;	width: 59px;	left: 667px;	top: 723px;	right: 20px;	bottom: auto;}.whereWhen{	position: absolute;	height: auto;	width: 529px;	left: 184px;	top: 752px;	right: 20px;	bottom: auto;}.clientLog{	position: absolute;	height: auto;	width: 81px;	left: 214px;	top: 892px;	right: 20px;	bottom: auto;}</style><div class=\"patFirst\">"+$patFirst+"</div><div class=\"patLast\">"+$patLast+"</div><div class=\"patDOB\">"+$patDOB+"</div><div class=\"patAge\">"+$patAge+"</div><div class=\"patVET\">"+$patVET+"</div><div class=\"patStreet\">"+$patStreet+"</div><div class=\"patCity\">"+$patCity+"</div><div class=\"ST\">"+$ST+"</div><div class=\"ZIP\">"+$ZIP+"</div><div class=\"patCounty\">"+$patCounty+"</div><div class=\"patNumOfYears\">"+$cntyYrs+"</div><div class=\"patPrimaryNum\">"+$patPhNum+"</div><div class=\"patSecondaryNum\">"+$pat2ndPhNum+"</div><div class=\"patSSN\">"+$patSSN+"</div><div class=\"patDLNo\">"+$DLNo+"</div><div class=\"patDLst\">"+$DLst+"</div><div class=\"patMarital\">"+$Marital+"</div><div class=\"patPart\">"+$patPart+"</div><div class=\"emerName\">"+$emerName+"</div><div class=\"emerRelate\">"+$emerRelate+"</div><div class=\"emerPrimNum\">"+$emerPrimNum+"</div><div class=\"emerAddy\">"+$emerAddy+"</div><div class=\"emerCity\">"+$emerCity+"</div><div class=\"emerST\">"+$eST+"</div><div class=\"emerZIP\">"+$emerZIP+"</div><div class=\"emerSecNum\">"+$emerSecNum+"</div><div class=\"agenName\">"+$agenName+"</div><div class=\"agenConPers\">"+$agenConPers+"</div><div class=\"agenCounty\">"+$agenCounty+"</div><div class=\"agenConPh\">"+$agenConPh+"</div><div class=\"agenAddy\">"+$agenAddy+"</div><div class=\"agenCity\">"+$agenCity+"</div><div class=\"agenZIP\">"+$agenZIP+"</div><div class=\"agenST\">"+$aST+"</div><div class=\"agenCell\">"+$agenCell+"</div><div class=\"legPris\">"+$legPris+"</div><div class=\"legProb\">"+$legProb+"</div><div class=\"legWhyProb\">"+$legWhyProb+"</div><div class=\"legName\">"+$legName+"</div><div class=\"legAddy\">"+$legAddy+"</div><div class=\"legPh\">"+$legPh+"</div><div class=\"heaPhys\">"+$heaPhys+"</div><div class=\"heaPhysWhy\">"+$heaPhysWhy+"</div><div class=\"heaMean\">"+$heamean+"</div><div class=\"heaMeanWhy\">"+$heaMeanWhy+"</div><div class=\"sub1\">"+$sub1+"</div><div class=\"sub1Last\">"+$sub1Last+"</div><div class=\"sub1Freq\">"+$sub1Freq+"</div><div class=\"sub1Amount\">"+$sub1Amount+"</div><div class=\"sub1Meth\">"+$sub1Meth+"</div><div class=\"sub2\">"+$sub2+"</div><div class=\"sub2Last\">"+$sub2Last+"</div><div class=\"sub2Freq\">"+$sub2Freq+"</div><div class=\"sub2Amount\">"+$sub2Amount+"</div><div class=\"sub2Meth\">"+$sub2Meth+"</div><div class=\"sub3\">"+$sub3+"</div><div class=\"sub3Last\">"+$sub3Last+"</div><div class=\"sub3Freq\">"+$sub3Freq+"</div><div class=\"sub3Amount\">"+$sub3Amount+"</div><div class=\"sub3Meth\">"+$sub3Meth+"</div><div class=\"iv12\">"+$iv12+"</div><div class=\"prior\">"+$prior+"</div><div class=\"hmany\">"+$hmany+"</div><div class=\"whereWhen\">"+$whereWhen+"</div><div class=\"clientLog\">"+$clientLog+"</div><div class=\"end\"></div>\"";
+			String content = "<style type=\"text/css\">body {	background-image: url("+macHidden+"1-Screening%20&%20Client%20Information%20Page%20001.png);	background-repeat: no-repeat;}.end{	position: absolute;	height: 0px;	width: 202px;	left: 254px;	top: 1026px;	right: 20px;	bottom: auto;}.patFirst {	position: absolute; 	height: auto;   width: 190px;	left: 45px;		top: 107px;		right: 20px;	bottom: auto;}.patLast {	position: absolute;	height: auto;	width: 197px;	left: 247px;	top: 109px;	right: 20px;	bottom: auto;}.patDOB {	position: absolute;		height: auto;	width: 100px;	left: 459px;	top: 107px;		right: auto;	bottom: auto;}.patAge {	position: absolute;	height: auto;	width: 42px;	left: 563px;	top: 107px;	right: 20px;	bottom: auto;}.patVET {	position: absolute;	height: auto;	width: 88px;	left: 653px;	top: 109px;	right: 20px;	bottom: auto;	}.patStreet {	position: absolute;	height: auto;	width: 322px;	left: 45px;	top: 145px;	right: 20px;	bottom: auto;}.patCity {	position: absolute;	height: auto;	width: 198px;	left: 371px;	top: 143px;	right: 20px;	bottom: auto;}.ST {	position: absolute;	height: auto;	width: 38px;	left: 577px;	top: 143px;	right: 20px;	bottom: auto;}.ZIP {	position: absolute;	height: auto;	width: 72px;	left: 625px;	top: 143px;	right: 20px;	bottom: auto;}.patCounty{	position: absolute;	height: auto;	width: 214px;	left: 45px;	top: 183px;	right: 20px;	bottom: auto;}.patNumOfYears{	position: absolute;	height: auto;	width: 66px;	left: 263px;	top: 181px;	right: 20px;	bottom: auto;}.patPrimaryNum{	position: absolute;	height: auto;	width: 120px;	left: 333px;	top: 181px;	right: 20px;	bottom: auto;}.patSecondaryNum{	position: absolute;	height: auto;	width: 120px;	left: 519px;	top: 181px;	right: 20px;	bottom: auto;}.patSSN{	position: absolute;	height: auto;	width: 152px;	left: 45px;	top: 219px;	right: 20px;	bottom: auto;}.patDLNo{	position: absolute;	height: auto;	width: 146px;	left: 203px;	top: 219px;	right: 20px;	bottom: auto;}.patDLst{	position: absolute;	height: auto;	width: 44px;	left: 355px;	top: 219px;	right: 20px;	bottom: auto;}.patMarital{	position: absolute;	height: auto;	width: 44px;	left: 401px;	top: 218px;	right: 20px;	bottom: auto;}.patPart{	position: absolute;	height: auto;	width: 184px;	left: 513px;	top: 217px;	right: 20px;	bottom: auto;}.emerName{	position: absolute;	height: auto;	width: 338px;	left: 45px;	top: 295px;	right: 20px;	bottom: auto;}.emerRelate{	position: absolute;	height: auto;	width: 124px;	left: 389px;	top: 293px;	right: 20px;	bottom: auto;}.emerPrimNum{	position: absolute;	height: auto;	width: 184px;	left: 516px;	top: 296px;	right: 20px;	bottom: auto;}.emerAddy{	position: absolute;	height: auto;	width: 214px;	left: 45px;	top: 327px;	right: 20px;	bottom: auto;}.emerCity{	position: absolute;	height: auto;	width: 158px;	left: 263px;	top: 323px;	right: 20px;	bottom: auto;}.emerST{	position: absolute;	height: auto;	width: 34px;	left: 423px;	top: 323px;	right: 20px;	bottom: auto;}.emerZIP{	position: absolute;	height: auto;	width: 46px;	left: 463px;	top: 323px;	right: 20px;	bottom: auto;}.emerSecNum{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 323px;	right: 20px;	bottom: auto;}.agenName{	position: absolute;	height: auto;	width: 154px;	left: 47px;	top: 389px;	right: 20px;	bottom: auto;}.agenConPers{	position: absolute;	height: auto;	width: 214px;	left: 207px;	top: 387px;	right: 20px;	bottom: auto;}.agenCounty{	position: absolute;	height: auto;	width: 94px;	left: 425px;	top: 387px;	right: 20px;	bottom: auto;}.agenConPh{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 386px;	right: 20px;	bottom: auto;}.agenAddy{	position: absolute;	height: auto;	width: 206px;	left: 45px;	top: 415px;	right: 20px;	bottom: auto;}.agenCity{	position: absolute;	height: auto;	width: 146px;	left: 255px;	top: 417px;	right: 20px;	bottom: auto;}.agenST{	position: absolute;	height: auto;	width: 42px;	left: 406px;	top: 415px;	right: 20px;	bottom: auto;}.agenZIP{	position: absolute;	height: auto;	width: 66px;	left: 447px;	top: 415px;	right: 20px;	bottom: auto;}.agenCell{	position: absolute;	height: auto;	width: 184px;	left: 517px;	top: 417px;	right: 20px;	bottom: auto;}.legPris{	position: absolute;	height: auto;	width: 44px;	left: 213px;	top: 479px;	right: 20px;	bottom: auto;}.legProb{	position: absolute;	height: auto;	width: 54px;	left: 407px;	top: 479px;	right: 20px;	bottom: auto;}.legWhyProb{	position: absolute;	height: auto;	width: 202px;	left: 497px;	top: 479px;	right: 20px;	bottom: auto;}.legName{	position: absolute;	height: auto;	width: 220px;	left: 45px;	top: 507px;	right: 20px;	bottom: auto;}.legAddy{	position: absolute;	height: auto;	width: 252px;	left: 267px;	top: 507px;	right: 20px;	bottom: auto;}.legPh{	position: absolute;	height: auto;	width: 184px;	left: 523px;	top: 507px;	right: 20px;	bottom: auto;}.heaPhys{	position: absolute;	height: auto;	width: 48px;	left: 335px;	top: 571px;	right: 20px;	bottom: auto;}.heaPhysWhy{	position: absolute;	height: auto;	width: 288px;	left: 417px;	top: 569px;	right: 20px;	bottom: auto;}.heaMean{	position: absolute;	height: auto;	width: 48px;	left: 331px;	top: 597px;	right: 20px;	bottom: auto;}.heaMeanWhy{	position: absolute;	height: auto;	width: 288px;	left: 419px;	top: 599px;	right: 20px;	bottom: auto;}.sub1{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 651px;	right: 20px;	bottom: auto;}.sub1Last{	position: absolute;	height: auto;	width: 136px;	left: 175px;	top: 650px;	right: 20px;	bottom: auto;}.sub1Freq{	position: absolute;	height: auto;	width: 136px;	left: 312px;	top: 652px;	right: 20px;	bottom: auto;}.sub1Amount{	position: absolute;	height: auto;	width: 136px;	left: 447px;	top: 652px;	right: 20px;	bottom: auto;}.sub1Meth{	position: absolute;	height: auto;	width: 136px;	left: 584px;	top: 650px;	right: 20px;	bottom: auto;}.sub2{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 672px;	right: 20px;	bottom: auto;}.sub2Last{	position: absolute;	height: auto;	width: 136px;	left: 175px;	top: 671px;	right: 20px;	bottom: auto;}.sub2Freq{	position: absolute;	height: auto;	width: 136px;	left: 312px;	top: 671px;	right: 20px;	bottom: auto;}.sub2Amount{	position: absolute;	height: auto;	width: 136px;	left: 449px;	top: 672px;	right: 20px;	bottom: auto;}.sub2Meth{	position: absolute;	height: auto;	width: 136px;	left: 584px;	top: 672px;	right: 20px;	bottom: auto;}.sub3{	position: absolute;	height: auto;	width: 136px;	left: 39px;	top: 693px;	right: 20px;	bottom: auto;}.sub3Last{	position: absolute;	height: auto;	width: 136px;	left: 177px;	top: 692px;	right: 20px;	bottom: auto;}.sub3Freq{	position: absolute;	height: auto;	width: 136px;	left: 313px;	top: 692px;	right: 20px;	bottom: auto;}.sub3Amount{	position: absolute;	height: auto;	width: 136px;	left: 449px;	top: 693px;	right: 20px;	bottom: auto;}.sub3Meth{	position: absolute;	height: auto;	width: 136px;	left: 583px;	top: 692px;	right: 20px;	bottom: auto;}.iv12{	position: absolute;	height: auto;	width: 41px;	left: 268px;	top: 724px;	right: 20px;	bottom: auto;}.prior{	position: absolute;	height: auto;	width: 38px;	left: 540px;	top: 723px;	right: 20px;	bottom: auto;}.hmany{	position: absolute;	height: auto;	width: 59px;	left: 667px;	top: 723px;	right: 20px;	bottom: auto;}.whereWhen{	position: absolute;	height: auto;	width: 529px;	left: 184px;	top: 752px;	right: 20px;	bottom: auto;}.clientLog{	position: absolute;	height: auto;	width: 81px;	left: 214px;	top: 892px;	right: 20px;	bottom: auto;}</style><div class=\"patFirst\">"+$patFirst+"</div><div class=\"patLast\">"+$patLast+"</div><div class=\"patDOB\">"+$patDOB+"</div><div class=\"patAge\">"+$patAge+"</div><div class=\"patVET\">"+$patVET+"</div><div class=\"patStreet\">"+$patStreet+"</div><div class=\"patCity\">"+$patCity+"</div><div class=\"ST\">"+$ST+"</div><div class=\"ZIP\">"+$ZIP+"</div><div class=\"patCounty\">"+$patCounty+"</div><div class=\"patNumOfYears\">"+$cntyYrs+"</div><div class=\"patPrimaryNum\">"+$patPhNum+"</div><div class=\"patSecondaryNum\">"+$pat2ndPhNum+"</div><div class=\"patSSN\">"+$patSSN+"</div><div class=\"patDLNo\">"+$DLNo+"</div><div class=\"patDLst\">"+$DLst+"</div><div class=\"patMarital\">"+$Marital+"</div><div class=\"patPart\">"+$patPart+"</div><div class=\"emerName\">"+$emerName+"</div><div class=\"emerRelate\">"+$emerRelate+"</div><div class=\"emerPrimNum\">"+$emerPrimNum+"</div><div class=\"emerAddy\">"+$emerAddy+"</div><div class=\"emerCity\">"+$emerCity+"</div><div class=\"emerST\">"+$eST+"</div><div class=\"emerZIP\">"+$emerZIP+"</div><div class=\"emerSecNum\">"+$emerSecNum+"</div><div class=\"agenName\">"+$agenName+"</div><div class=\"agenConPers\">"+$agenConPers+"</div><div class=\"agenCounty\">"+$agenCounty+"</div><div class=\"agenConPh\">"+$agenConPh+"</div><div class=\"agenAddy\">"+$agenAddy+"</div><div class=\"agenCity\">"+$agenCity+"</div><div class=\"agenZIP\">"+$agenZIP+"</div><div class=\"agenST\">"+$aST+"</div><div class=\"agenCell\">"+$agenCell+"</div><div class=\"legPris\">"+$legPris+"</div><div class=\"legProb\">"+$legProb+"</div><div class=\"legWhyProb\">"+$legWhyProb+"</div><div class=\"legName\">"+$legName+"</div><div class=\"legAddy\">"+$legAddy+"</div><div class=\"legPh\">"+$legPh+"</div><div class=\"heaPhys\">"+$heaPhys+"</div><div class=\"heaPhysWhy\">"+$heaPhysWhy+"</div><div class=\"heaMean\">"+$heamean+"</div><div class=\"heaMeanWhy\">"+$heaMeanWhy+"</div><div class=\"sub1\">"+$sub1+"</div><div class=\"sub1Last\">"+$sub1Last+"</div><div class=\"sub1Freq\">"+$sub1Freq+"</div><div class=\"sub1Amount\">"+$sub1Amount+"</div><div class=\"sub1Meth\">"+$sub1Meth+"</div><div class=\"sub2\">"+$sub2+"</div><div class=\"sub2Last\">"+$sub2Last+"</div><div class=\"sub2Freq\">"+$sub2Freq+"</div><div class=\"sub2Amount\">"+$sub2Amount+"</div><div class=\"sub2Meth\">"+$sub2Meth+"</div><div class=\"sub3\">"+$sub3+"</div><div class=\"sub3Last\">"+$sub3Last+"</div><div class=\"sub3Freq\">"+$sub3Freq+"</div><div class=\"sub3Amount\">"+$sub3Amount+"</div><div class=\"sub3Meth\">"+$sub3Meth+"</div><div class=\"iv12\">"+$iv12+"</div><div class=\"prior\">"+$prior+"</div><div class=\"hmany\">"+$hmany+"</div><div class=\"whereWhen\">"+$whereWhen+"</div><div class=\"clientLog\">"+$clientLog+"</div><div class=\"end\"></div>\"";
  
 			File file = new File(printPath+"1-1-Screening & Client Information Page 001.html");//INSERT DIRECTORY HERE
  
@@ -1479,78 +1523,78 @@ public class Print {
 			$weekOf = (String) ind[s];s++;
 			s++;//End
 			s++;//monKO
-			$monNote1 = (String) ind[s];s++;
+			$monNote1 = (String) ind[s]+ " ";s++;
 			$monTop = (String) ind[s];s++;
 			$monStart = (String) ind[s];s++;
 			$monEnd = (String) ind[s];s++;
-			$counID1 = (String) ind[s];s++;
-			$monNote2 = (String) ind[s];s++;
+			$counID1 = "Counselor ID: " + (String) ind[s];s++;
+			$monNote2 = (String) ind[s] + " ";s++;
 			$monAMTop = (String) ind[s];s++;
-			$counID2 = (String) ind[s];s++;
-			$monNotes3 = (String) ind[s];s++;
+			$counID2 = "Counselor ID: " + (String) ind[s];s++;
+			$monNotes3 = (String) ind[s] + " ";s++;
 			$monPMTop = (String) ind[s];s++;
-			$counID3 = (String) ind[s];s++;
+			$counID3 = "Counselor ID: " + (String) ind[s];s++;
 
-			$tuesNote1 = (String) ind[s];s++;
+			$tuesNote1 = (String) ind[s] + " ";s++;
 			$tuesTop = (String) ind[s];s++;
 			$tuesStart = (String) ind[s];s++;
 			$tuesEnd = (String) ind[s];s++;
-			$counID4 = (String) ind[s];s++;
-			$tuesNote2 = (String) ind[s];s++;
+			$counID4 = "Counselor ID: " + (String) ind[s];s++;
+			$tuesNote2 = (String) ind[s] + " ";s++;
 			$tuesAMTop = (String) ind[s];s++;
-			$counID5 = (String) ind[s];s++;
-			$tuesNote4 = (String) ind[s];s++;
+			$counID5 = "Counselor ID: " + (String) ind[s];s++;
+			$tuesNote4 = (String) ind[s] + " ";s++;
 			$tuesPMTop = (String) ind[s];s++;
-			$counID6 = (String) ind[s];s++;
+			$counID6 = "Counselor ID: " + (String) ind[s];s++;
 			
-			$wedNote1 = (String) ind[s];s++;
+			$wedNote1 = (String) ind[s] + " ";s++;
 			$wedTop = (String) ind[s];s++;
 			$wedStart = (String) ind[s];s++;
 			$wedEnd = (String) ind[s];s++;
-			$counID7 = (String) ind[s];s++;
-			$wedNote2 = (String) ind[s];s++; //TODO
+			$counID7 = "Counselor ID: " + (String) ind[s];s++;
+			$wedNote2 = (String) ind[s] + " ";s++; //TODO
 			$wedAMTop = (String) ind[s];s++;
-			$counID8 = (String) ind[s];s++;
-			$wedNote3 = (String) ind[s];s++;
+			$counID8 = "Counselor ID: " + (String) ind[s];s++;
+			$wedNote3 = (String) ind[s] + " ";s++;
 			$wedPMTop = (String) ind[s];s++;
-			$counID9 = (String) ind[s];s++;
+			$counID9 = "Counselor ID: " + (String) ind[s];s++;
 			 
-			$thursNote1 = (String) ind[s];s++;
+			$thursNote1 = (String) ind[s] + " ";s++;
 			$thursTop = (String) ind[s];s++;
 			$thursStart = (String) ind[s];s++;
 			$thursEnd = (String) ind[s];s++;
-			$counID10 = (String) ind[s];s++;
-			$thursNote2 = (String) ind[s];s++;
+			$counID10 = "Counselor ID: " + (String) ind[s];s++;
+			$thursNote2 = (String) ind[s] + " ";s++;
 			$thursAMTop = (String) ind[s];s++;
-			$counID11 = (String) ind[s];s++;
-			$thursNote3 = (String) ind[s];s++;
+			$counID11 = "Counselor ID: " + (String) ind[s];s++;
+			$thursNote3 = (String) ind[s] + " ";s++;
 			$thursPMTop = (String) ind[s];s++;
-			$counID12 = (String) ind[s];s++;
+			$counID12 = "Counselor ID: " + (String) ind[s];s++;
 			
-			$friNote1 = (String) ind[s];s++;
+			$friNote1 = (String) ind[s] + " ";s++;
 			$friTop = (String) ind[s];s++;
 			$friStart = (String) ind[s];s++;
 			$friEnd = (String) ind[s];s++;
-			$counID13 = (String) ind[s];s++;
-			$friNote2 = (String) ind[s];s++;
+			$counID13 = "Counselor ID: " + (String) ind[s];s++;
+			$friNote2 = (String) ind[s] + " ";s++;
 			$friAMTop = (String) ind[s];s++;
-			$counID14 = (String) ind[s];s++;
-			$friNote3 = (String) ind[s];s++;
+			$counID14 = "Counselor ID: " + (String) ind[s];s++;
+			$friNote3 = (String) ind[s] + " ";s++;
 			$friPMTop = (String) ind[s];s++;
-			$counID15 = (String) ind[s];s++;
+			$counID15 = "Counselor ID: " + (String) ind[s];s++;
 			
-			$satNote1 = (String) ind[s];s++;
+			$satNote1 = (String) ind[s] + " ";s++;
 			$satTop = (String) ind[s];s++;
 			$satStart = (String) ind[s];s++;
 			$satEnd = (String) ind[s];s++;
-			$counID16 = (String) ind[s];s++;
-			$satNote2 = (String) ind[s];s++;
+			$counID16 = "Counselor ID: " + (String) ind[s];s++;
+			$satNote2 = (String) ind[s] + " ";s++;
 			$satAMTop = (String) ind[s];s++;
-			$counID17 = (String) ind[s];s++;
+			$counID17 = "Counselor ID: " + (String) ind[s];s++;
 			
-			$sunNote1 = (String) ind[s];s++;
+			$sunNote1 = (String) ind[s] + " ";s++;
 			$sunTop = (String) ind[s];s++;
-			$counID18 = (String) ind[s];s++;
+			$counID18 = "Counselor ID: " + (String) ind[s];s++;
 			$sunStart = (String) ind[s];s++;
 			$sunEnd = (String) ind[s];s++;
 

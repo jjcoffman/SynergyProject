@@ -699,6 +699,7 @@ public class TempRetrieveInfo {
 		System.out.println("Got Note: " + result);
 		return result;
 	}
+	
 	public Object[] getIndNotes(int id){
 		Object[] result = new Object[9999];
 		ResultSet rs = null;
@@ -756,6 +757,7 @@ public class TempRetrieveInfo {
 		result[0] = i;
 		return result;
 	}
+	
 	public Object[] getGroupNotes(int id){
 		Object[] data = new Object[9999];
 		ResultSet rs = null;
@@ -872,6 +874,8 @@ public class TempRetrieveInfo {
 
 	}
 
+	
+	
 	
 	public Object[] getGroupData(int id, String date){
 		Object[] data = new Object[100];

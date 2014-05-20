@@ -21,6 +21,110 @@ public class SQLRetrieveInfo {
 		return results;
 	}
 
+	
+	public Object[] getDischarge(int id)
+	{
+		Object[] data = new Object[33];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+		int i = 0;
+		String query = "SELECT * FROM Client_Discharge WHERE C_ID = " + id ;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next())
+			{
+				data[i++] = rs.getString("DIS_DSMIVCode");
+				data[i++] = rs.getString("DIS_PayNotes");
+				data[i++] = rs.getString("DIS_PAContactDate");
+				data[i++] = rs.getString("DIS_PrimCounselor");
+				data[i++] = rs.getString("DIS_TGoal1");
+				data[i++] = rs.getString("DIS_TGoal2");
+				data[i++] = rs.getString("DIS_TGoal3");
+				data[i++] = rs.getString("DIS_TGoal4");
+				data[i++] = rs.getString("DIS_TGoal5");
+				data[i++] = rs.getString("DIS_TGoal6");
+				data[i++] = rs.getString("DIS_TGoal1Met");
+				data[i++] = rs.getString("DIS_TGoal2Met");
+				data[i++] = rs.getString("DIS_TGoal3Met");
+				data[i++] = rs.getString("DIS_TGoal4Met");
+				data[i++] = rs.getString("DIS_TGoal5Met");
+				data[i++] = rs.getString("DIS_TGoal6Met");
+				data[i++] = rs.getString("DIS_TRMTSummary");
+				data[i++] = rs.getString("DIS_CDUseText");
+				data[i++] = rs.getString("DIS_CriminalTxt");
+				data[i++] = rs.getString("IN_AXIS1");
+				data[i++] = rs.getString("IN_AXIS2");
+				data[i++] = rs.getString("IN_AXIS3");
+				data[i++] = rs.getString("IN_AXIS4");
+				data[i++] = rs.getString("IN_AXIS5GAF");
+				data[i++] = rs.getString("DIS_AXIS1");
+				data[i++] = rs.getString("DIS_AXIS2");
+				data[i++] = rs.getString("DIS_AXIS3");
+				data[i++] = rs.getString("DIS_AXIS4");
+				data[i++] = rs.getString("DIS_AXIS5GAF");
+				data[i++] = rs.getString("DIS_CounselorRec");
+				data[i++] = rs.getString("DIS_ReturnRec");
+				data[i++] = rs.getString("DIS_ClientComment");
+
+		
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	return data;
+	}
+	
+	public Object[] getASAMPrint(int id)
+	{
+		Object[] data = new Object[16];
+		ResultSet rs = null;
+		Connection connection = null;
+		Statement statement = null; 
+		int i = 0;
+		String query = "SELECT * FROM ASAM WHERE C_ID = " + id ;
+		try { 
+			connection = SQLConnection.getConnection();
+			statement = connection.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next())
+			{
+
+				data[i++] = rs.getString("ASAM1_Actions");
+				data[i++] = rs.getString("ASAM2_Actions");
+				data[i++] = rs.getString("ASAM3_Actions");
+				data[i++] = rs.getString("ASAM4_Actions");
+				data[i++] = rs.getString("PhysLimits_Actions");
+
+		
+			}
+
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	return data;
+	}
 	public Object[] getArchiveRows(int rowNum, int numRows){
 		Object[] results = new Object[11];
 		ResultSet rs = null;
