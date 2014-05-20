@@ -773,7 +773,7 @@ public class SQLSetInfo {
 		Connection connection = null;
 		Statement statement = null; 
 		int old = ID;
-		old = ID-1;
+		ID++;
 		try { 
 			connection = SQLConnection.getConnection();
 			statement = connection.createStatement();

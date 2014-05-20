@@ -416,6 +416,7 @@ public class FinancialsDischarge extends JFrame implements ActionListener
 				arcData[x] = " ";
 		}
 		send.sendDischarge(arcData);
+		
 	}
 
 	

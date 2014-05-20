@@ -258,6 +258,16 @@ public class Admin
 		JButton btnViewprintForms = new JButton("View/Print Forms");
 		btnViewprintForms.setBounds(220, 420, 160, 29);
 		Archive.add(btnViewprintForms);
+		btnViewprintForms.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) 
+			{
+				if(clientsTable.getSelectedRow() != -1)
+				{
+				//new Print("Client_Record", String.valueOf(id));
+				}
+				}
+		});
+		
 		
 		//JButton btnDischarge = new JButton("Search");
 		//btnDischarge.setBounds(220, 420, 160, 29);

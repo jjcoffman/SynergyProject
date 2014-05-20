@@ -212,7 +212,7 @@ public class Intake implements ActionListener
 		});
 		txtState.setFont(new Font("Verdana", Font.PLAIN, 13));
 		txtState.setBounds(480, 130, 80, 28);
-		txtState.setText("California");
+		txtState.setText("CA");
 		txtState.setColumns(10);
 
 		txtCounty = new JTextField();
